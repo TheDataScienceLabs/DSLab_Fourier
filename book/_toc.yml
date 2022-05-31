@@ -4,4 +4,4 @@
 format: jb-book
 root: index
 chapters:
-- glob: labs/*.ipynb
+- glob: labs/*
