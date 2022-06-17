@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>&lt;no title&gt; &#8212; The Data Science Labs on Fourier Theory</title>
+    <title>What is a sound? &#8212; The Data Science Labs on Fourier Theory</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -113,7 +113,14 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   What is a sound?
+  </a>
+ </li>
+</ul>
+
     </div>
 </nav></div>
         <div class="bd-sidebar__bottom">
@@ -317,7 +324,48 @@ title="Print to PDF"
         <i class="fas fa-list"></i> Contents
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="simple visible nav section-nav flex-column">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   What is a sound?
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-more-complicated-sound">
+     A more complicated sound
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#exercise">
+       Exercise
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#making-sounds">
+   Making sounds
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#making-music">
+   Making Music
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Exercise
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Exercise
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </nav>
@@ -327,7 +375,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1><no title></h1>
+                <h1>What is a sound?</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -336,7 +384,48 @@ title="Print to PDF"
                             <h2> Contents </h2>
                         </div>
                         <nav aria-label="Page">
-                            <ul class="simple visible nav section-nav flex-column">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   What is a sound?
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-more-complicated-sound">
+     A more complicated sound
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#exercise">
+       Exercise
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#making-sounds">
+   Making sounds
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#making-music">
+   Making Music
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Exercise
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Exercise
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
                         </nav>
@@ -349,6 +438,171 @@ title="Print to PDF"
                 
   <p>1: Play a pure cosine wave. Play the scale. Play a song. Observe that playing song twice as fast is faster AND higher pitch. (Fourier series properties)</p>
 <p>Arduino: make a little piano</p>
+<section class="tex2jax_ignore mathjax_ignore" id="what-is-a-sound">
+<h1>What is a sound?<a class="headerlink" href="#what-is-a-sound" title="Permalink to this headline">#</a></h1>
+<p>Your ears are pretty remarkable. They are very sensitive air pressure sensors. When your ears detect patterns in the change of air pressure, you hear that as a sound.</p>
+<p>Let’s hear an example. If you have headphones, put them on now. Then, run the following cell and press play.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Audio</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">44100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">440</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
+
+<span class="n">Audio</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="mi">44100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What did you just hear? Let’s visualize it using a graph.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see that it is a sine wave with a frequency of 440 Hz. In music, the sound it makes is called <code class="docutils literal notranslate"><span class="pre">A</span></code>, or more specifically, <code class="docutils literal notranslate"><span class="pre">A4</span></code> or “middle A”. When your ears detect air pressure changing in this pattern, you hear it as a middle A.</p>
+<p>Let’s inspect the code we just used a bit more carefully. We gave the function <code class="docutils literal notranslate"><span class="pre">Audio</span></code> two parameters, <code class="docutils literal notranslate"><span class="pre">y</span></code> and <code class="docutils literal notranslate"><span class="pre">rate</span></code>. What’s in <code class="docutils literal notranslate"><span class="pre">y</span></code>?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It’s a list of numbers showing the air pressure at various times. The scale of the y-axis is arbitrary – your computer re-scales it to make an appropriate volume before playing the sound. The parameter <code class="docutils literal notranslate"><span class="pre">rate</span></code> simply says how often to read a new number from the list. Most digital audio equipment is set up to read 44100 numbers per second, so that’s the rate we are using.</p>
+<section id="a-more-complicated-sound">
+<h2>A more complicated sound<a class="headerlink" href="#a-more-complicated-sound" title="Permalink to this headline">#</a></h2>
+<p>The example above is quite simple, but you can actually make almost any sound this way. Let’s load up a more complicated sound and have a look at it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mystery_sound</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;mystery_sound.txt&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mystery_sound</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The curve it makes is not just a sine wave. What does it sound like?</p>
+<section id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h3>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">Audio</span></code> command to play this sound. Then, after listening to it, write down the name of the tune that plays.</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="making-sounds">
+<h1>Making sounds<a class="headerlink" href="#making-sounds" title="Permalink to this headline">#</a></h1>
+<p>Now that you see a sound can be expressed as a list of numbers, let’s set about making our own music. We will need a way to make musical notes. To do that, we will use the <strong>chromatic scale</strong>. In the chromatic scale, twelve notes make up an octave and their frequencies are evenly spaced. These are the notes made by piano keys.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">44100</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">notes</span> <span class="o">=</span> <span class="s2">&quot;A A# B C C# D D# E F F# G G#&quot;</span>
+<span class="n">frequencies</span> <span class="o">=</span> <span class="mi">440</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="o">/</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">scale</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">notes</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span> <span class="n">frequencies</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">note</span><span class="p">,</span> <span class="n">frequency</span> <span class="ow">in</span> <span class="n">scale</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Middle </span><span class="si">{</span><span class="n">note</span><span class="si">}</span><span class="s2"> has the frequency </span><span class="si">{</span><span class="n">frequency</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">frequency</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">Audio</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="mi">44100</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="making-music">
+<h1>Making Music<a class="headerlink" href="#making-music" title="Permalink to this headline">#</a></h1>
+<p>By stringing these together, we can form a song. We will use the function <code class="docutils literal notranslate"><span class="pre">np.concatenate</span></code> which stacks up arrays end-to-end. Here is the start of “Row Row Your Boat”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">boat_notes</span> <span class="o">=</span> <span class="s2">&quot;C C C D E E D E F G&quot;</span>
+<span class="n">boat_song</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="n">note</span><span class="p">]</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">boat_notes</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">boat_song</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">Audio</span><span class="p">(</span><span class="n">boat_song</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="mi">44100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What if we only play every other number? Let’s try it with slicing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">faster</span> <span class="o">=</span> <span class="n">boat_song</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">faster</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">Audio</span><span class="p">(</span><span class="n">faster</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="mi">44100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s try dragging the notes out longer by repeating each number twice.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slower</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">boat_song</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">slower</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">Audio</span><span class="p">(</span><span class="n">slower</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="mi">44100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>When we play it back faster, the song has a higher pitch but lasts half as long. When we play it back slower the song has a lower pitch and lasts twice as long. Most people find that the song is still recognizably the same when the pitch is doubled or halved, so we give a note with twice or one-half the frequency the same letter. Here is a wider scale we can use:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_scale</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">letter</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">notes</span><span class="o">.</span><span class="n">split</span><span class="p">()):</span>
+        <span class="n">full_scale</span><span class="p">[</span><span class="n">letter</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">440</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">+</span> <span class="n">j</span> <span class="o">/</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">full_scale</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h2>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<p>Here are the notes for the chorus of Hail Purdue. Play the song!</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">D</span><span class="c1">#3 D#3 F3 G3 G#3 A#4 C4 C4 C#4 C#4 G#3 A#4 C4 C4 C4</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>Exercise<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<p>Musicians often speed up or slow down their music for an artistic effect. The file <code class="docutils literal notranslate"><span class="pre">chipmunk.txt</span></code> has an excerpt from The Chipmunk Song by Ross Bagdasarian. Make a slowed-down version so you can hear what he sounded like while recording the voices of the chipmunks.</p>
+<div class="highlight-https://madmusic.com/samples/a/l/Alvin_+_The_Chipmunks_-_Chipmunk_Song_(Christmas_Don't_Be_Late).mp3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chipmunk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;chipmunk.txt&quot;</span><span class="p">)</span>
+<span class="n">Audio</span><span class="p">(</span><span class="n">chipmunk</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="mi">44100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
