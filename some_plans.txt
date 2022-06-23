@@ -1,0 +1,4 @@
+introduce adding notes together to make arpegios/chords
+record your own voice and manipulate it
+add voices together
+change sampling rate to make frequency shifting easier
