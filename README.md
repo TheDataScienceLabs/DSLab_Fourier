@@ -1,6 +1,6 @@
 # DSLab_Fourier
 
-A lab course suitable for concurrent enrollment with a first course on Fourier theory
+A lab course suitable for concurrent enrollment with a first course on Fourier theory. [See the labs online here.](https://thedatasciencelabs.github.io/DSLab_Fourier/)
 
 ## Usage
 
