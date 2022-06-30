@@ -477,13 +477,13 @@ title="Print to PDF"
   <section id="finding-the-components-of-a-measured-signal">
 <h1>Finding the components of a measured signal<a class="headerlink" href="#finding-the-components-of-a-measured-signal" title="Permalink to this headline">#</a></h1>
 <p>In a previous lab, we showed how to rewrite the complicated function
-\[
+$<span class="math notranslate nohighlight">\(
 f(t) = 3\sin(2\pi220t) -\cos(2\pi220t)+\sin^2(2\pi220t)+2\sin(2\pi440t+\pi/6)
-\]
-using just two sinusoid components,
-\[
+\)</span><span class="math notranslate nohighlight">\(
+using just two sinusoid components, 
+\)</span><span class="math notranslate nohighlight">\(
 f(t) = \sqrt{10} \sin(2\pi 220 t-\arctan(1/3)) +\frac{1}{2} + \frac{\sqrt{13}}{2}\sin\left(2\pi 440 t+\arctan\left(1/2\sqrt{3}\right)\right).
-\]
+\)</span>$
 We frequently want to recover the components of a sound in this way, but usually we are not so lucky as to have an explicit functional form written out. Instead, we have measurements of the function at regular intervals. If we just had a measurement of the sound, using a digital microphone perhaps, how would we figure out what sound components make up that signal?</p>
 <p>The following cell loads and plots a function sampled at 44100 Hz, for 5 seconds, consisting of three sine functions with frequencies 220, 330, and 495 Hz. We wish to uncover their amplitudes and phases. That’s the focus of this lab.</p>
 <div class="cell docutils container">
@@ -518,10 +518,10 @@ We frequently want to recover the components of a sound in this way, but usually
 \sin(a)\cos(b) &amp;= \frac{1}{2} \sin(a-b)+\frac{1}{2}\sin(a+b)
 \end{align*}\]</div>
 <p>We have a function <span class="math notranslate nohighlight">\(f\)</span> with a known form,
-\[
+$<span class="math notranslate nohighlight">\(
 f(t) = A \sin(2\pi 220t + a) + B \sin(2\pi 330 t+b) + C\sin(2\pi 495 t+c).
-\]
-We wish to find the coefficients <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(B\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, and <span class="math notranslate nohighlight">\(C\)</span>, <span class="math notranslate nohighlight">\(c\)</span>. We will exploit the prosthaphaeresis formulas by multiplying <span class="math notranslate nohighlight">\(f\)</span> by a known function.</p>
+\)</span><span class="math notranslate nohighlight">\(
+We wish to find the coefficients \)</span>A<span class="math notranslate nohighlight">\(, \)</span>a<span class="math notranslate nohighlight">\(, \)</span>B<span class="math notranslate nohighlight">\(, \)</span>b<span class="math notranslate nohighlight">\(, and \)</span>C<span class="math notranslate nohighlight">\(, \)</span>c<span class="math notranslate nohighlight">\(. We will exploit the prosthaphaeresis formulas by multiplying \)</span>f$ by a known function.</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 f(t)\sin(2\pi 220 t) 
@@ -539,27 +539,27 @@ f(t)\sin(2\pi 220 t)
 <section id="exercise">
 <h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h2>
 <p>We just used one of the prosthaphaeresis formulas to show that
-\[
-\int_0^5 f(t)\sin(2\pi 220 t) ;dt = 5\frac{A}{2}\cos(a).
-\]
-Use the other one to show that
-\[
-\int_0^5 f(t)\cos(2\pi 220 t) ;dt = 5\frac{A}{2}\sin(a).
-\]</p>
+$<span class="math notranslate nohighlight">\(
+\int_0^5 f(t)\sin(2\pi 220 t) \;dt = 5\frac{A}{2}\cos(a).
+\)</span><span class="math notranslate nohighlight">\(
+Use the other one to show that 
+\)</span><span class="math notranslate nohighlight">\(
+\int_0^5 f(t)\cos(2\pi 220 t) \;dt = 5\frac{A}{2}\sin(a).
+\)</span>$</p>
 <p>Now that we have these, we can combine them. If we say <span class="math notranslate nohighlight">\(X=5\frac{A}{2}\cos(a)\)</span> and <span class="math notranslate nohighlight">\(Y=5\frac{A}{2}\sin(a)\)</span> then we must have
-\[
+$<span class="math notranslate nohighlight">\(
 X^2+Y^2 = \frac{25}{4} A^2.
-\]
-Assuming <span class="math notranslate nohighlight">\(A\)</span> is positive, we can write <span class="math notranslate nohighlight">\(A=\frac{2}{5}\sqrt{X^2+Y^2}\)</span>.</p>
+\)</span><span class="math notranslate nohighlight">\(
+Assuming \)</span>A<span class="math notranslate nohighlight">\( is positive, we can write \)</span>A=\frac{2}{5}\sqrt{X^2+Y^2}$.</p>
 </section>
 <section id="id1">
 <h2>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
 <p>In two or three sentences, explain why we can always assume <span class="math notranslate nohighlight">\(A\)</span> is positive and make up for the difference when picking the phase.</p>
 <p>By taking the ratio <span class="math notranslate nohighlight">\(Y/X\)</span> we can cancel out <span class="math notranslate nohighlight">\(A\)</span>, giving
-\[
+$<span class="math notranslate nohighlight">\(
 \frac{Y}{X} = \tan(a).
-\]
-Taking the arctangent will get us exatly the value of <span class="math notranslate nohighlight">\(a\)</span>. Actually, since the domain of arctangent is <span class="math notranslate nohighlight">\((-\pi/2, \pi/2)\)</span> but the phase could be anywhere, we can use the function <code class="docutils literal notranslate"><span class="pre">arctan2</span></code> which takes a <span class="math notranslate nohighlight">\(Y\)</span> and and <span class="math notranslate nohighlight">\(X\)</span> value, and gives the angle to that point as a number between <span class="math notranslate nohighlight">\(-\pi\)</span> and <span class="math notranslate nohighlight">\(\pi\)</span>. Let’s do that now, just instead of an integral we’ll use a Riemann sum.</p>
+\)</span><span class="math notranslate nohighlight">\(
+Taking the arctangent will get us exatly the value of \)</span>a<span class="math notranslate nohighlight">\(. Actually, since the domain of arctangent is \)</span>(-\pi/2, \pi/2)<span class="math notranslate nohighlight">\( but the phase could be anywhere, we can use the function `arctan2` which takes a \)</span>Y<span class="math notranslate nohighlight">\( and and \)</span>X<span class="math notranslate nohighlight">\( value, and gives the angle to that point as a number between \)</span>-\pi<span class="math notranslate nohighlight">\( and \)</span>\pi$. Let’s do that now, just instead of an integral we’ll use a Riemann sum.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">220</span><span class="o">*</span><span class="n">t</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="mi">44100</span>
@@ -803,15 +803,16 @@ Taking the arctangent will get us exatly the value of <span class="math notransl
 <section class="tex2jax_ignore mathjax_ignore" id="conclusions">
 <h1>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">#</a></h1>
 <p>By using the technique of multiplying by test functions we were able to take a recording of sound and figure out exactly what phase and amplitude of sine waves went into it. This let us take a function and write it as a sum of sines, like so:</p>
-<p>\[
+<div class="math notranslate nohighlight">
+\[
 f(t) = \sum_{k=100}^{20,000} A_k \sin(2\pi k t+a_k).
-\]</p>
+\]</div>
 <p>Even when we did not start with a signal made of pure sine waves, we were able to write a waveform this way and produce the same sound.</p>
-<p>The list of amplitudes <span class="math notranslate nohighlight">\(A_k\)</span> is called the <strong>discrete Fourier transform</strong> of <span class="math notranslate nohighlight">\(f(t)\)</span>. We can find the discrete Fourier transform of any waveform <span class="math notranslate nohighlight">\(f\)</span> to write it in terms of sines. When you write a function as a sum of sineIn the following labs, you will learn:</p>
+<p>The list of amplitudes <span class="math notranslate nohighlight">\(A_k\)</span> is called the <strong>discrete Fourier transform</strong> of <span class="math notranslate nohighlight">\(f(t)\)</span>. We can find the discrete Fourier transform of any waveform <span class="math notranslate nohighlight">\(f\)</span> to write it in terms of sines. When you write a function as a sum of sine functions in this way, it is called a <strong>Fourier series</strong>. In the following labs, you will learn:</p>
 <ul class="simple">
 <li><p>a much, much more fast and efficient way to compute the discrete Fourier transform</p></li>
 <li><p>how Fourier transforms are used to make MP3 files which are much, much more efficient at representing sounds</p></li>
-<li><p>more ways of representing a</p></li>
+<li><p>more ways of representing a Fourier series, using complex numbers</p></li>
 </ul>
 </section>
 
