@@ -5,3 +5,4 @@ format: jb-book
 root: index
 chapters:
 - glob: labs/*
+- file: labs/piano/labx.ipynb
