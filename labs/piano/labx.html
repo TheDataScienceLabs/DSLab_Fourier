@@ -1,0 +1,621 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Build a piano &#8212; The Data Science Labs on Fourier Theory</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">The Data Science Labs on Fourier Theory</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    The Data Science Labs on Fourier Theory
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1_play_sounds.html">
+   What is a sound?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2_experiencing_sound.html">
+   The human experience of sound
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../3_sampling_and_reconstruction.html">
+   Finding the components of a measured signal
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/AldenMB/DSLab_Fourier/main?urlpath=tree/book/labs/piano/labx.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/AldenMB/DSLab_Fourier"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AldenMB/DSLab_Fourier/issues/new?title=Issue%20on%20page%20%2Flabs/piano/labx.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/labs/piano/labx.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-hardware">
+   Using hardware.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#max98257a">
+   MAX98257A
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connect-the-circuit-and-try-the-example-code">
+   Connect the circuit and try the example code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#understand-the-code">
+   understand the code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#class-c-amplifer">
+   Class C amplifer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#i2s">
+   I2S
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#build-a-simple-piano">
+   Build a simple piano
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resonance-frequency">
+   Resonance Frequency
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interupt">
+   Interupt
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Build a piano</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-hardware">
+   Using hardware.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#max98257a">
+   MAX98257A
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connect-the-circuit-and-try-the-example-code">
+   Connect the circuit and try the example code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#understand-the-code">
+   understand the code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#class-c-amplifer">
+   Class C amplifer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#i2s">
+   I2S
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#build-a-simple-piano">
+   Build a simple piano
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resonance-frequency">
+   Resonance Frequency
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interupt">
+   Interupt
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="build-a-piano">
+<h1>Build a piano<a class="headerlink" href="#build-a-piano" title="Permalink to this headline">#</a></h1>
+<section id="using-hardware">
+<h2>Using hardware.<a class="headerlink" href="#using-hardware" title="Permalink to this headline">#</a></h2>
+<ol class="simple">
+<li><p>MAX98257A</p></li>
+<li><p>8ohms,0.5W speaker <a class="reference external" href="https://www.adafruit.com/product/1890#tutorials">https://www.adafruit.com/product/1890#tutorials</a></p></li>
+<li><p>a lot of push buttons</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Video</span>
+
+<span class="n">Video</span><span class="p">(</span><span class="s2">&quot;piano.mp4&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><video src="piano.mp4" controls  >
+      Your browser does not support the <code>video</code> element.
+    </video></div></div>
+</div>
+</section>
+<section id="max98257a">
+<h2>MAX98257A<a class="headerlink" href="#max98257a" title="Permalink to this headline">#</a></h2>
+<p>It takes standard I2S digital audio input and, not only decodes it into analog, but also amplifies it directly into a speaker. I2S (not to be confused with I2C) in a digital sound protocol that is used on circuit boards to pass audio data around. By changing the connection of the Gain pin of it you can acutally change its sound,the default is 9db, the documentation is <a class="reference external" href="https://learn.adafruit.com/adafruit-max98357-i2s-class-d-mono-amp/pinouts">https://learn.adafruit.com/adafruit-max98357-i2s-class-d-mono-amp/pinouts</a></p>
+</section>
+<section id="connect-the-circuit-and-try-the-example-code">
+<h2>Connect the circuit and try the example code<a class="headerlink" href="#connect-the-circuit-and-try-the-example-code" title="Permalink to this headline">#</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>I2S ID</p></th>
+<th class="head"><p>SCK pin</p></th>
+<th class="head"><p>WS pin</p></th>
+<th class="head"><p>SD pin</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>16</p></td>
+<td><p>17</p></td>
+<td><p>18</p></td>
+</tr>
+</tbody>
+</table>
+<br>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pico</p></th>
+<th class="head"><p>MAX98357A</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GP16</p></td>
+<td><p>BCLK</p></td>
+</tr>
+<tr class="row-odd"><td><p>GP17</p></td>
+<td><p>LCR</p></td>
+</tr>
+<tr class="row-even"><td><p>GP18</p></td>
+<td><p>Din</p></td>
+</tr>
+<tr class="row-odd"><td><p>VBUS</p></td>
+<td><p>Vin</p></td>
+</tr>
+<tr class="row-even"><td><p>ground</p></td>
+<td><p>ground</p></td>
+</tr>
+</tbody>
+</table>
+<br>
+<a class="reference internal image-reference" href="../../_images/example.jpeg"><img alt="eaxample circuit" src="../../_images/example.jpeg" style="width: 200px;" /></a>
+<p>Don’t forget to connect the ground and Vin of MAX98357A. We use VBUS becasue we need high power supply when the sound go high.</p>
+<p>build the circuit and run the example code to produce a 440Hz sine wave.
+(you will need to update your micropython to 1.19 above version to support I2S)
+<a class="reference external" href="https://github.com/miketeachman/micropython-i2s-examples">https://github.com/miketeachman/micropython-i2s-examples</a></p>
+</section>
+<section id="understand-the-code">
+<h2>understand the code<a class="headerlink" href="#understand-the-code" title="Permalink to this headline">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">rate</span></code> is the speed of sample rate. It is the speed DAC can tranfer a number to an output voltage. You can also understand how many data points dac can give you in 1 second.
+<code class="docutils literal notranslate"><span class="pre">frequency</span></code> is the frequency of the sine wave we want. For example if we want a 440Hz sine wave, and the <code class="docutils literal notranslate"><span class="pre">rate</span></code> is 22050. We have 22050 sample points in 1 second, and those points must form a 440 period of sine wave. Then sample points in each circle is 22050/440.</p>
+</section>
+<section id="class-c-amplifer">
+<h2>Class C amplifer<a class="headerlink" href="#class-c-amplifer" title="Permalink to this headline">#</a></h2>
+<p>MAX98357A contain a class C amplifer. using an oscilloscope to see the waveform with small and large horiaontal scale</p>
+</section>
+<section id="i2s">
+<h2>I2S<a class="headerlink" href="#i2s" title="Permalink to this headline">#</a></h2>
+<p>In the example code, entire sine table was writen inside a buffer. Then pico automatically sends those data through I2S (by using DAC). You may find if you add a 2ms sleeping period in the while loop, the sounds may not changing, acutally you have 1/TONE_FREQUENCY_IN_HZ free time each while loop to do other things. Try that.</p>
+</section>
+<section id="build-a-simple-piano">
+<h2>Build a simple piano<a class="headerlink" href="#build-a-simple-piano" title="Permalink to this headline">#</a></h2>
+<p>Build a piano with 12 keys. When the first key is push down, the speaker output 220 Hz sine wave. The next key is 220 * <span class="math notranslate nohighlight">\( \sqrt[12]{2}\)</span>, So and so next. Write you own code and connect the circuit.
+You may get something like</p>
+<a class="reference internal image-reference" href="../../_images/piano.jpeg"><img alt="eaxample circuit" src="../../_images/piano.jpeg" style="width: 400px;" /></a>
+<p>(person tips )</p>
+<p>Based on the provided example. You need to using for loop to initialize four list.
+First list stores the frequency value corresponding corresponding to each keys.
+The second list store 12 int value, their value is either 1 or 0 to represent if corresponding keys is pushing down.
+The third list is contain the sine table for each freqenecy.
+The forth store 12 Pin object.</p>
+</section>
+<section id="resonance-frequency">
+<h2>Resonance Frequency<a class="headerlink" href="#resonance-frequency" title="Permalink to this headline">#</a></h2>
+<p>It can be measured that the output of the amplifer has the same AC rms. Listen to sound of each key carefully and write down what do you find. Write about why you think that happened.</p>
+</section>
+<section id="interupt">
+<h2>Interupt<a class="headerlink" href="#interupt" title="Permalink to this headline">#</a></h2>
+<p>Learning how to use interpt with mircopython. A good tourial is: <a class="reference external" href="https://www.coderdojotc.org/micropython/advanced-labs/02-interrupt-handlers/">https://www.coderdojotc.org/micropython/advanced-labs/02-interrupt-handlers/</a> .Add another button double the frequency of each button.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./labs/piano"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Mireille Boutin, Alden Bradford<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
