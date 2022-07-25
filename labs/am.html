@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Week 7: Different Types of Loops &#8212; The Data Science Labs on Fourier Theory</title>
+    <title>Week ?: Beats and Tremolo Effects &#8212; The Data Science Labs on Fourier Theory</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Week 7: Different Types of Loops" href="dft.html" />
@@ -109,7 +111,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../index.html">
-                    The Data Science Labs on Fourier Theory
+                    The Data Science Labs on Fourier Analysis
                 </a>
             </li>
         </ul>
@@ -131,7 +133,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Week 7: Different Types of Loops
+   Week ?: Beats and Tremolo Effects
   </a>
  </li>
  <li class="toctree-l1">
@@ -151,7 +153,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Week 7: Different Types of Loops
+   Week ?: Beats and Tremolo Effects
   </a>
  </li>
  <li class="toctree-l1">
@@ -370,18 +372,40 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-00-content-span">
-   <span style="color:orange;">
-    00. Content
-   </span>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Week ?: Beats and Tremolo Effects
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-orange-00-content-span">
+     <span style="color:orange;">
+      00. Content
+     </span>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span">
+     <span style="color:orange;">
+      0. Required Hardware
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction-to-amplitude-modulation">
+   Introduction to Amplitude Modulation
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span">
-   <span style="color:orange;">
-    0. Required Hardware
-   </span>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-tremolo-effect">
+   The Tremolo Effect
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#beats">
+   Beats
   </a>
  </li>
 </ul>
@@ -393,7 +417,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Week 7: Different Types of Loops</h1>
+                <h1>Week ?: Beats and Tremolo Effects</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -403,18 +427,40 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-00-content-span">
-   <span style="color:orange;">
-    00. Content
-   </span>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Week ?: Beats and Tremolo Effects
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-orange-00-content-span">
+     <span style="color:orange;">
+      00. Content
+     </span>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span">
+     <span style="color:orange;">
+      0. Required Hardware
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction-to-amplitude-modulation">
+   Introduction to Amplitude Modulation
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span">
-   <span style="color:orange;">
-    0. Required Hardware
-   </span>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-tremolo-effect">
+   The Tremolo Effect
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#beats">
+   Beats
   </a>
  </li>
 </ul>
@@ -427,10 +473,10 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="week-7-different-types-of-loops">
-<h1>Week 7: Different Types of Loops<a class="headerlink" href="#week-7-different-types-of-loops" title="Permalink to this headline">#</a></h1>
-<p><font size="6"> Laboratory 6 </font> <br>
-<font size="3"> Last updated July 22, 2022 </font></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="week-beats-and-tremolo-effects">
+<h1>Week ?: Beats and Tremolo Effects<a class="headerlink" href="#week-beats-and-tremolo-effects" title="Permalink to this headline">#</a></h1>
+<p><font size="6"> Laboratory ? </font> <br>
+<font size="3"> Last updated July 25, 2022 </font></p>
 <section id="span-style-color-orange-00-content-span">
 <h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this headline">#</a></h2>
 <p><font size="5"> Mathematics </font></p>
@@ -464,6 +510,45 @@ title="Print to PDF"
 </div>
 </div>
 </section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction-to-amplitude-modulation">
+<h1>Introduction to Amplitude Modulation<a class="headerlink" href="#introduction-to-amplitude-modulation" title="Permalink to this headline">#</a></h1>
+<p>Amplitude modulation is the process of multiplying a CT signal by a periodic signal <span class="math notranslate nohighlight">\(c(t)\)</span> called a carrier.
+If the signal is denoted by <span class="math notranslate nohighlight">\(x(t)\)</span>, then the modulated signal <span class="math notranslate nohighlight">\(y(t)\)</span> is given by $<span class="math notranslate nohighlight">\(y(t)=x(t)c(t).\)</span><span class="math notranslate nohighlight">\(
+For example, we can modulate a signal \)</span>x(t)<span class="math notranslate nohighlight">\( using a cosine carrier \)</span>c(t)=\cos (2 \pi f_0 t) <span class="math notranslate nohighlight">\( with frequency \)</span>f_0<span class="math notranslate nohighlight">\(. Then the modulated signal \)</span>y(t)<span class="math notranslate nohighlight">\( is given by
+\)</span><span class="math notranslate nohighlight">\( y(t)=x(t) \cos (2 \pi f_0 t) .\)</span>$</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-tremolo-effect">
+<h1>The Tremolo Effect<a class="headerlink" href="#the-tremolo-effect" title="Permalink to this headline">#</a></h1>
+<p>When the frequency of the carrier is low, more specifically when it is below the audible range (audible range is about 20Hz to 20KHz), then modulation creates a “tremolo” effect” on the original signal. This is something you can hear if <span class="math notranslate nohighlight">\(x(t)\)</span> is an audio signal. It sounds like one is turning the volume up and down, periodically. Let’s try it out!</p>
+<p><font size="5"> Modulation with Sine wave Exercises </font></p>
+<p>Exercise: Let <span class="math notranslate nohighlight">\(x(t)= \sin 2 \pi 440 t\)</span> (this is a middle A). Play it. Now consider the carrier <span class="math notranslate nohighlight">\(c(t)=\cos (2 \pi f_0 t )\)</span> with <span class="math notranslate nohighlight">\(f_0=2 Hz\)</span>. Play the modulated sound <span class="math notranslate nohighlight">\(y(t)= x(t) c(t).\)</span></p>
+<p>Exercise: Change the frequency <span class="math notranslate nohighlight">\(f_0\)</span>. Compare what happens when the frequency is very low (&lt;20Hz) and when it is very high (20-20kHZ).</p>
+<p>Exercise:  Record your voice, and modulate it with <span class="math notranslate nohighlight">\(c(t)=\cos (2 \pi f_0 t )\)</span></p>
+<p><font size="5"> Modulation with triangular wave Exercises </font></p>
+<p>Exercise: Create a periodic triangular wave with frequency of 3 Hz. The area of each triangle should be equal to one. Play the triangular wave. Change the triagular wave frequency and play the resulting modulated sound.</p>
+<p>Exercise: Modulate a middle A with the triangular wave you created in the previous exercise. Play the modulated sound. Change the triagular wave frequency and play the resulting modulated sound. Compare what happens when the frequency is very low (&lt;20Hz) and when it is very high (20-20kHZ).</p>
+<p>Exercise: Modulate the sound of your voise with the triangular wave and play the modulated sound Change the triagular wave frequency and play the resulting modulated sound. Compare what happens when the frequency is very low (&lt;20Hz) and when it is very high (20-20kHZ).</p>
+<p><font size="5"> Modulation with Square wave Exercises </font></p>
+<p>Exercise: Create a periodic square wave with frequency of 3 Hz. The square should occupy half of the period. Play the square wave.</p>
+<p>Exercise: Modulate a middle A with the square wave you created in the previous exercise. Play the modulated sound.</p>
+<p>Exercise: Modulate the sound of your voise with the square wave and play the modulated sound.</p>
+<p><font size="5"> Create your own modulation effect </font></p>
+<p>Exercise: Create the signal <span class="math notranslate nohighlight">\(x(t\)</span> a recording of you saying “B’Euler up!”.</p>
+<p>Exercise: Create an original periodic signal <span class="math notranslate nohighlight">\(c_1(t)\)</span>. Use it to modulate <span class="math notranslate nohighlight">\(x(t\)</span> and play the resulting modulated signal.</p>
+<p>Exercise: Create another original periodic signal  <span class="math notranslate nohighlight">\(c_2(t)\)</span> with the same frequency as  <span class="math notranslate nohighlight">\(c_1(t)\)</span>. Use it to modulate <span class="math notranslate nohighlight">\(x(t\)</span> and play the resulting modulated signal.</p>
+<p>Exercise: Play the signal <span class="math notranslate nohighlight">\(x(t) c_1(t) c_2(t)\)</span>. Describe that signal.</p>
+<p>Exercise: Play the signal <span class="math notranslate nohighlight">\(x(t) (c_1(t) + c_2(t)) \)</span>. Describe that signal.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="beats">
+<h1>Beats<a class="headerlink" href="#beats" title="Permalink to this headline">#</a></h1>
+<p>Now we will explore what happens when the carrier frequency is close to the signal frequency.</p>
+<p>Exercise: Consider the signal <span class="math notranslate nohighlight">\(x(t)= \sin 2 \pi 440 t \)</span> (a middle A) and the carrier <span class="math notranslate nohighlight">\(c(t)=\sin 2\pi 442 t\)</span>. PLay the modulated signal <span class="math notranslate nohighlight">\(y(t)=x(t) c(t)\)</span>. Describe what you hear: what is the difference between <span class="math notranslate nohighlight">\(x(t)\)</span> and <span class="math notranslate nohighlight">\(y(t)\)</span>?</p>
+<p>The phenomenon you just heard is called “beats” and is often used for tuning two instruments. Both instruments play the same note and the players pay attention to the presence of beats in the resulting sound. As long as there are beats, they know that they are not “in tune.” They continue adjusting their instruments until there are no beats in the sound, at which point they are in tune.</p>
+<p>Exercise: Try it out! Let <span class="math notranslate nohighlight">\(x(t)= sin 2 \pi 440 t\)</span>. Construct a  carried <span class="math notranslate nohighlight">\(c(t)= \sin 2 \pi f_0 (t) t\)</span> be a carrier with frequency changing from 438HZ to 440HZ. Play the modulated signal. Are the beats present at the beginning? Do the beats disappear at the end ? What happens in between?</p>
+<p>The mathematical explanation for this phenomenon lies in the following equality:
+$<span class="math notranslate nohighlight">\( sin 2 \pi f_1 sin 2 \pi f_2 = sin 2 \pi \frac{(f_1+f_2)}{2}+ sin 2 \pi \frac{(f_1-f_2)}{2}\)</span>$</p>
+<p>Exercise: Prove the above formula and explain how it relates to the beat phenomenon.</p>
 </section>
 
     <script type="text/x-thebe-config">
