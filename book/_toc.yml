@@ -6,6 +6,4 @@ root: index
 chapters:
 - glob: labs/*
 - file: labs/piano/labx.ipynb
-- file: labs/am.ipynb
-- file: labs/dft.ipynb
-- file: labs/filtering.ipynb
+
