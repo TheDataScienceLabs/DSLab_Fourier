@@ -4,9 +4,9 @@
 format: jb-book
 root: index
 parts:
-- Caption: Preliminaries
-    Chapter:
-    - file: labs/intro_lab.ipynb
+- caption: Preliminaries
+  chapters:
+  - file: labs/intro_lab.ipynb
 
 - caption: Synthesis
   chapters:
@@ -24,7 +24,7 @@ parts:
   - file: labs/filtering.ipynb
 
 - caption: Other Stuff- to be sorted
-     chapters:
-    - file: labs/piano/labx.ipynb
-    - file: 2_Gait_Labs
+  chapters:
+  - file: labs/piano/labx.ipynb
+  - glob: labs/2_Gait_Labs/*/*
 
