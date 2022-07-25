@@ -3,7 +3,28 @@
 
 format: jb-book
 root: index
-chapters:
-- glob: labs/*
-- file: labs/piano/labx.ipynb
+parts:
+- Caption: Preliminaries
+    Chapter:
+    - file: labs/intro_lab.ipynb
+
+- caption: Synthesis
+  chapters:
+  - file: labs/1_play_sounds.ipynb
+  - file: labs/2_experiencing_sound.ipynb
+  - file: labs/am.ipynb
+
+- caption: Analysis
+  chapters:
+  - file: labs/3_sampling_and_reconstruction.ipynb
+  - file: labs/dft.ipynb
+
+- caption: Processing
+  chapters:
+  - file: labs/filtering.ipynb
+
+- caption: Other Stuff- to be sorted
+     chapters:
+    - file: labs/piano/labx.ipynb
+    - file: 2_Gait_Labs
 
