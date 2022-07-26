@@ -1,4 +1,4 @@
-# Introduction
+# About This Course
 ## The Data Science Labs on Fourier Analysis
 **Alden Bradford and Mireille Boutin**
 

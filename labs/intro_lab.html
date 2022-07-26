@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Week 2: Playing Sound" href="1_play_sounds.html" />
-    <link rel="prev" title="Introduction" href="../index.html" />
+    <link rel="prev" title="About This Course" href="../index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -111,7 +111,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../index.html">
-                    Introduction
+                    About This Course
                 </a>
             </li>
         </ul>
@@ -162,7 +162,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="dft.html">
-   Week 7: Different Types of Loops
+   Week ?: Sampled Signal Analysis with the DFT
   </a>
  </li>
 </ul>
@@ -174,7 +174,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="filtering.html">
-   Week 7: Different Types of Loops
+   Week ?: Sampled Signal Filtering with the Circular Convolution
   </a>
  </li>
 </ul>
@@ -411,6 +411,23 @@ title="Print to PDF"
     00. Content
    </span>
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mathematics">
+     Mathematics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#programming-skills">
+     Programming Skills
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#embedded-systems">
+     Embedded Systems
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span">
@@ -475,6 +492,23 @@ title="Print to PDF"
     00. Content
    </span>
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mathematics">
+     Mathematics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#programming-skills">
+     Programming Skills
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#embedded-systems">
+     Embedded Systems
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span">
@@ -527,23 +561,29 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="week-1-introduction">
 <h1>Week 1: Introduction<a class="headerlink" href="#week-1-introduction" title="Permalink to this headline">#</a></h1>
 <p><font size="6"> Laboratory 0 </font> <br>
-<font size="3"> Last updated July 25, 2022 </font></p>
+<font size="3"> Last updated July 26, 2022 </font></p>
 <section id="span-style-color-orange-00-content-span">
 <h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this headline">#</a></h2>
-<p><font size="5"> Mathematics </font></p>
+<section id="mathematics">
+<h3>Mathematics<a class="headerlink" href="#mathematics" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>N/A</p></li>
 </ul>
-<p><font size="5"> Programming Skills </font></p>
+</section>
+<section id="programming-skills">
+<h3>Programming Skills<a class="headerlink" href="#programming-skills" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Importing Libraries</p></li>
 <li><p>Functions</p></li>
 <li><p>Loops</p></li>
 </ul>
-<p><font size="5"> Embedded Systems </font></p>
+</section>
+<section id="embedded-systems">
+<h3>Embedded Systems<a class="headerlink" href="#embedded-systems" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>N/A</p></li>
 </ul>
+</section>
 </section>
 <section id="span-style-color-orange-0-required-hardware-span">
 <h2><span style="color:orange;"> 0. Required Hardware </span><a class="headerlink" href="#span-style-color-orange-0-required-hardware-span" title="Permalink to this headline">#</a></h2>
@@ -569,15 +609,15 @@ title="Print to PDF"
 <section id="skill-checks">
 <h2>Skill Checks<a class="headerlink" href="#skill-checks" title="Permalink to this headline">#</a></h2>
 <p>Exercise 1: Use Euler’s formula to write <span class="math notranslate nohighlight">\(\cos \theta\)</span> in terms of complex exponentials. Write the steps of your derivation using Latex code.</p>
-<p>Note: If you are new to Latex, see the first week lab of the Data Science Labs on Multivariable Calculus.</p>
-<p>Exercise 2: Simplify the expression <span class="math notranslate nohighlight">\(e^{i 2 \pi k}-1\)</span>, where <span class="math notranslate nohighlight">\(k\)</span> is an integer.</p>
-<p>Exercise 3: a) Write a function that computes the following sum: $<span class="math notranslate nohighlight">\(\sum_{n=0}^N e^{i \frac{2 \pi}{10} n }\)</span><span class="math notranslate nohighlight">\( b) Use your function to evaluate the sum for \)</span>N=7$.</p>
+<p>Note: If you are new to Latex, see the [first week lab of the Data Science Labs on Differential and Integral Calculus].(<a class="reference external" href="https://thedatasciencelabs.github.io/DSLab_Calculus/labs/1_intro_to_notebooks/lab0.html">https://thedatasciencelabs.github.io/DSLab_Calculus/labs/1_intro_to_notebooks/lab0.html</a>)</p>
+<p>Exercise 2: Simplify the expression <span class="math notranslate nohighlight">\(e^{i 2 \pi k}-1\)</span>, where <span class="math notranslate nohighlight">\(k\)</span> is an integer. Write the steps of your simplification using Latex code. Note: Here, we are asking for an algebraic simplification. However, you may use numerical computations to help you find/check the answer.</p>
+<p>Exercise 3: a) Write a function that computes the sum <span class="math notranslate nohighlight">\(\sum_{n=0}^N e^{i \frac{2 \pi}{10} n }\)</span>. b) Use your function to evaluate the sum for <span class="math notranslate nohighlight">\(N=7\)</span>. Hint: Don’t forget to load the relevant library.</p>
 </section>
 <section id="span-style-color-orange-3-submitting-the-lab-span">
 <h2><span style="color:orange;"> 3. Submitting the Lab </span><a class="headerlink" href="#span-style-color-orange-3-submitting-the-lab-span" title="Permalink to this headline">#</a></h2>
-<p>Once you have finished the first lab, you will need to submit it. Note that you are expected to submit the lab before the end of class everyweek.</p>
+<p>Once you have finished the first lab, you will need to submit it. Recall that you are expected to submit the lab before the end of class everyweek.</p>
 <p>Before you submit, make sure that everything is completely filled out and saved (either by typing Ctrl+S or by clicking the floppy disk icon in the top left of this application). Once you’ve done this, navigate to <em>File</em> in the top left of the screen and find <em>Save and Export Notebook As…”</em>. Once the drop down comes up, click on PDF and save a file to the folder you made at the beginning of this lab. Once this has been done you can turn it in under the submission link in Brightspace.</p>
-<p>Once you’ve done this, you are done and are free to leave!</p>
+<p>Once you have submitted your lab in Brightspace, you are done and free to leave!</p>
 </section>
 </section>
 
@@ -612,7 +652,7 @@ title="Print to PDF"
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Introduction</p>
+            <p class="prev-next-title">About This Course</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="1_play_sounds.html" title="next page">
