@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Week ?: Sampled Signal Analysis with the DFT &#8212; The Data Science Labs on Fourier Theory</title>
+    <title>Week ?: Sampled Signal Analysis with the DFT &#8212; The Data Science Labs on Fourier Analysis</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Week ?: Sampled Signal Filtering with the Circular Convolution" href="filtering.html" />
@@ -97,7 +99,7 @@ const thebe_selector_output = ".output, .cell_output"
       <img src="../_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">The Data Science Labs on Fourier Theory</h1>
+      <h1 class="site-logo" id="site-title">The Data Science Labs on Fourier Analysis</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -137,13 +139,35 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="piano_project.html">
+   Week ?: Build a piano
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="distance_sensor_project.html">
+   Week ?: Play music with an Ultrasonic Sensor
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2_experiencing_sound.html">
    Week 3: The human experience of sound
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Amplitude Modulation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="am.html">
    Week ?: Beats and Tremolo Effects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="voice_changer_project.html">
+   Week ?: Build a Voice Changer
   </a>
  </li>
 </ul>
@@ -441,6 +465,27 @@ title="Print to PDF"
    </span>
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-2-first-example-span">
+   <span style="color:orange;">
+    2. First Example
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-3-second-example-span">
+   <span style="color:orange;">
+    3. Second Example
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-4-the-theory-span">
+   <span style="color:orange;">
+    4. The Theory
+   </span>
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -498,6 +543,27 @@ title="Print to PDF"
    </span>
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-2-first-example-span">
+   <span style="color:orange;">
+    2. First Example
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-3-second-example-span">
+   <span style="color:orange;">
+    3. Second Example
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-4-the-theory-span">
+   <span style="color:orange;">
+    4. The Theory
+   </span>
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -552,6 +618,29 @@ title="Print to PDF"
 </section>
 <section id="span-style-color-orange-1-intro-span">
 <h2><span style="color:orange;"> 1. Intro </span><a class="headerlink" href="#span-style-color-orange-1-intro-span" title="Permalink to this headline">#</a></h2>
+<p>The signals we acquire in real-life have a finite duration.</p>
+<p>In order to analyze a finite duration signal, we first repeat it periodically with a period P (P must be at least as long as the duration of the signal. It could be greater, in which case there would be “zeros” padded between the repetitions)</p>
+<p>We assume that the repeated signal is such that it is equal to its Fourier series $<span class="math notranslate nohighlight">\(f(t)= \frac{a_0}{2}+ \sum_{k=1}^\infty a_k \cos \left(\frac{2 \pi}{P} k t \right) + b_k \sin \left(\frac{2 \pi}{P} k t  \right).\)</span>$</p>
+<p>We are interested in analyzing the signal <span class="math notranslate nohighlight">\(f(t)\)</span> given a digital recording of the signal. In particular, we would like to be able to find the values of the coefficients <span class="math notranslate nohighlight">\(a_k,b_k\)</span> using the uniform sampling <span class="math notranslate nohighlight">\( f_d[n]=f(nT)\)</span>, where <span class="math notranslate nohighlight">\(T\)</span> is the sampling period. (The samples are equally spread out.)</p>
+<p>MAYBE WE CAN SKIP THIS? Observe that <span class="math notranslate nohighlight">\(f_d[n]= f(n T)\)</span> is periodic with (integer) period <span class="math notranslate nohighlight">\(N\)</span> if an only if <span class="math notranslate nohighlight">\(\frac{P}{T}=\frac{N}{K}\)</span> is a rational number. For example, if <span class="math notranslate nohighlight">\(T=\frac{P}{N}\)</span>, then we acquire <span class="math notranslate nohighlight">\(N\)</span> samples per period, and <span class="math notranslate nohighlight">\(f_d[n]\)</span> is periodic with period <span class="math notranslate nohighlight">\(N\)</span>. Similarly, if <span class="math notranslate nohighlight">\(T=\frac{2 P}{N}\)</span>, then we acquire <span class="math notranslate nohighlight">\(N\)</span> samples per two periods, and so <span class="math notranslate nohighlight">\(\frac{N}{2}\)</span> samples per period. If <span class="math notranslate nohighlight">\(N\)</span> is odd, then the period of  <span class="math notranslate nohighlight">\(f_d[n]\)</span> is <span class="math notranslate nohighlight">\(N\)</span> (it has to be an integer). If <span class="math notranslate nohighlight">\(N\)</span> is even, then the period of <span class="math notranslate nohighlight">\(f_d[n]\)</span> is <span class="math notranslate nohighlight">\(\frac{N}{2}\)</span>.</p>
+<p>In order to simplify the math, we rewrite <span class="math notranslate nohighlight">\(f(t)\)</span> in terms of complex exponentials: $<span class="math notranslate nohighlight">\( f(t)=  \sum_{k=-\infty}^\infty c_n e^{i \frac{2\pi}{P}kt} \)</span><span class="math notranslate nohighlight">\( where \)</span> c_0=\frac{a_0}{2} <span class="math notranslate nohighlight">\( and \)</span>c_n=c_{-n}^*=\frac{1}{2} (a_n- i b_n)<span class="math notranslate nohighlight">\(,  for \)</span>n&gt;1$.</p>
+<p>Exercise: Derive the above formula. (Hint: replace each sine and cosine by a sum of complex exponential. If you do not know the sums already, find them using Euler’s formula. B’Euler up! )</p>
+<p>We will recover the <span class="math notranslate nohighlight">\(a_k,b_k\)</span> using the DFT= Discrete Fourier Transform. Here is the formula for the DFT  coefficient of a sampled signal <span class="math notranslate nohighlight">\(f_d[n]\)</span> with period <span class="math notranslate nohighlight">\(N\)</span>:
+$<span class="math notranslate nohighlight">\( F[k]= \sum_{n=0}^{N-1} f_d[n] e^{-i \frac{2 \pi}{N} k n }  \)</span><span class="math notranslate nohighlight">\(
+We call \)</span>F[k]<span class="math notranslate nohighlight">\( the {\em \)</span>k^{th}<span class="math notranslate nohighlight">\( coefficient} of the DFT of \)</span>f_d[n]$.</p>
+<p>As we will see later, in some circumstances, namely if</p>
+<p>1)the Fourier series of <span class="math notranslate nohighlight">\(f(t)\)</span> is finite, that is to say <span class="math notranslate nohighlight">\(c_k=0\)</span> for all <span class="math notranslate nohighlight">\(k&gt;N_0\)</span>, and
+2) <span class="math notranslate nohighlight">\(N\)</span> is large enough,</p>
+<p>then we have <span class="math notranslate nohighlight">\(F[k]= N c_k\)</span>, for all  <span class="math notranslate nohighlight">\(0\leq k \leq N_0\)</span>. Therefore, in those circumstances, one can recover the Fourier series coefficients of <span class="math notranslate nohighlight">\(f(t)\)</span> from the DFT coefficients.</p>
+</section>
+<section id="span-style-color-orange-2-first-example-span">
+<h2><span style="color:orange;"> 2. First Example </span><a class="headerlink" href="#span-style-color-orange-2-first-example-span" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="span-style-color-orange-3-second-example-span">
+<h2><span style="color:orange;"> 3. Second Example </span><a class="headerlink" href="#span-style-color-orange-3-second-example-span" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="span-style-color-orange-4-the-theory-span">
+<h2><span style="color:orange;"> 4. The Theory </span><a class="headerlink" href="#span-style-color-orange-4-the-theory-span" title="Permalink to this headline">#</a></h2>
 </section>
 </section>
 
