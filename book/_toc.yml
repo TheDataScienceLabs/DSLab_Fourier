@@ -11,9 +11,15 @@ parts:
 - caption: Synthesis
   chapters:
   - file: labs/1_play_sounds.ipynb
+  - file: labs/piano_project.ipynb
+  - file: labs/distance_sensor_project.ipynb 
   - file: labs/2_experiencing_sound.ipynb
-  - file: labs/am.ipynb
 
+- caption: Amplitude Modulation
+  chapters:
+  - file: labs/am.ipynb
+  - file: labs/voice_changer_project.ipynb
+  
 - caption: Analysis
   chapters:
   - file: labs/3_sampling_and_reconstruction.ipynb
