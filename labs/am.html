@@ -658,9 +658,12 @@ title="Print to PDF"
 <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-orange-1-introduction-to-amplitude-modulation-span">
 <h1><span style="color:orange;"> 1. Introduction to Amplitude Modulation </span><a class="headerlink" href="#span-style-color-orange-1-introduction-to-amplitude-modulation-span" title="Permalink to this headline">#</a></h1>
 <p>Amplitude modulation is the process of multiplying a CT signal by a periodic signal <span class="math notranslate nohighlight">\(c(t)\)</span> called a carrier.
-If the signal is denoted by <span class="math notranslate nohighlight">\(x(t)\)</span>, then the modulated signal <span class="math notranslate nohighlight">\(y(t)\)</span> is given by $<span class="math notranslate nohighlight">\(y(t)=x(t)c(t).\)</span><span class="math notranslate nohighlight">\(
-For example, we can modulate a signal \)</span>x(t)<span class="math notranslate nohighlight">\( using a cosine carrier \)</span>c(t)=\cos (2 \pi f_0 t) <span class="math notranslate nohighlight">\( with frequency \)</span>f_0<span class="math notranslate nohighlight">\(. Then the modulated signal \)</span>y(t)<span class="math notranslate nohighlight">\( is given by
-\)</span><span class="math notranslate nohighlight">\( y(t)=x(t) \cos (2 \pi f_0 t) .\)</span>$</p>
+If the signal is denoted by <span class="math notranslate nohighlight">\(x(t)\)</span>, then the modulated signal <span class="math notranslate nohighlight">\(y(t)\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[y(t)=x(t)c(t).\]</div>
+<p>For example, we can modulate a signal <span class="math notranslate nohighlight">\(x(t)\)</span> using a cosine carrier <span class="math notranslate nohighlight">\(c(t)=\cos (2 \pi f_0 t) \)</span> with frequency <span class="math notranslate nohighlight">\(f_0\)</span>. Then the modulated signal <span class="math notranslate nohighlight">\(y(t)\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[ y(t)=x(t) \cos (2 \pi f_0 t) .\]</div>
 <p>As you may have learned in the companion course, amplitude modulation is essentially used to shift frequencies. This is because of the multiplication property of the Fourier transform/series. We will come back to the idea of shifting frequencies at the end of this lab. But first, let us explore a fun and intuitive effect that can be created with amplitude modulation: the tremolo effect.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-orange-2-the-tremolo-effect-span">
@@ -699,9 +702,10 @@ For example, we can modulate a signal \)</span>x(t)<span class="math notranslate
 <p>Exercise 15: Consider the signal <span class="math notranslate nohighlight">\(x(t)= \sin \left( 2 \pi 440 t \right) \)</span> (a middle A) and the carrier <span class="math notranslate nohighlight">\(c(t)=\sin \left( 2\pi 442 t\right)\)</span>. Play the modulated signal <span class="math notranslate nohighlight">\(y(t)=x(t) c(t)\)</span>. Describe what you hear: what is the difference between <span class="math notranslate nohighlight">\(x(t)\)</span> and <span class="math notranslate nohighlight">\(y(t)\)</span>? Plot a few cycles of the original signal and compare with the modulated signal. Describe what you see.</p>
 <p>The phenomenon you just heard is called “beats” and is often used for tuning two instruments. The tuning procedure proceeds as follows: Both instruments play the same note and the players pay attention to the presence of beats in the resulting sound. As long as there are beats, they know that they are not “in tune.” They continue adjusting their instruments until there are no beats in the sound, at which point they are in tune.</p>
 <p>Exercise 16: Try it out! Let <span class="math notranslate nohighlight">\(x(t)= sin \left( 2 \pi 440 t \right)\)</span>. Construct a  carried <span class="math notranslate nohighlight">\(c(t)= \sin \left( 2 \pi f_0 (t) t\right)\)</span> be a carrier with frequency changing from 438HZ to 440HZ. Play the modulated signal. Are the beats present at the beginning? Do the beats disappear at the end ? What happens in between?</p>
-<p>The mathematical explanation for this phenomenon lies in the following equality:
-$<span class="math notranslate nohighlight">\( \sin\left(  2 \pi f_1 \right) \sin \left( 2 \pi f_2 t \right) = \frac{1}{2}\cos \left( 2 \pi \frac{(f_1-f_2)}{2} t \right) - \frac{1}{2}\cos \ \left( 2 \pi \frac{(f_1+f_2)}{2} t \right).\)</span>$
-Thus</p>
+<p>The mathematical explanation for this phenomenon lies in the following equality:</p>
+<div class="math notranslate nohighlight">
+\[ \sin\left(  2 \pi f_1 \right) \sin \left( 2 \pi f_2 t \right) = \frac{1}{2}\cos \left( 2 \pi \frac{(f_1-f_2)}{2} t \right) - \frac{1}{2}\cos \ \left( 2 \pi \frac{(f_1+f_2)}{2} t \right).\]</div>
+<p>Thus</p>
 <p>Exercise 16: Prove the above formula and explain how it relates to the beat phenomenon. Hint: Transform the sines into complex exponentials.</p>
 <p>Exercise 17: Is it possible to use the beats to determine the difference between the frequencies <span class="math notranslate nohighlight">\(f_1\)</span> and <span class="math notranslate nohighlight">\(f_2\)</span> of the two sines? If so, how? If not, why not.</p>
 <p>Exercise 18: Can one use this technique to tune two out-of-tune instruments so that they play an A at the 440Hz frequency?  If so, how? If not, explain why not.</p>
