@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Week 6: Beats and Tremolo Effects &#8212; The Data Science Labs on Fourier Analysis</title>
+    <title>Week 6: Tremolo/Beats Effects &#8212; The Data Science Labs on Fourier Analysis</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -162,7 +162,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Week 6: Beats and Tremolo Effects
+   Week 6: Tremolo/Beats Effects
   </a>
  </li>
  <li class="toctree-l1">
@@ -187,6 +187,16 @@ const thebe_selector_output = ".output, .cell_output"
    Week 9: Sampled Signal Analysis with the DFT
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pedometer/pedometer_project.html">
+   Week 10: Build a Pedometer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pedometer/pedo_frequency_project.html">
+   Week 11: Step Detection versus Frequency Analysis
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -197,6 +207,18 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="filtering.html">
    Week ?: Sampled Signal Filtering with the Circular Convolution
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Design a project of your own
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="final_project.html">
+   Week 14-15: Final Project
   </a>
  </li>
 </ul>
@@ -424,7 +446,7 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Week 6: Beats and Tremolo Effects
+   Week 6: Tremolo/Beats Effects
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -497,9 +519,16 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-3-beats-span">
+  <a class="reference internal nav-link" href="#span-style-color-orange-3-the-math-behind-span">
    <span style="color:orange;">
-    3. Beats
+    3. The Math Behind
+   </span>
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-4-instrument-tuning-with-beats-span">
+   <span style="color:orange;">
+    4. Instrument Tuning with “beats”
    </span>
   </a>
  </li>
@@ -512,7 +541,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Week 6: Beats and Tremolo Effects</h1>
+                <h1>Week 6: Tremolo/Beats Effects</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -524,7 +553,7 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Week 6: Beats and Tremolo Effects
+   Week 6: Tremolo/Beats Effects
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -597,9 +626,16 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-3-beats-span">
+  <a class="reference internal nav-link" href="#span-style-color-orange-3-the-math-behind-span">
    <span style="color:orange;">
-    3. Beats
+    3. The Math Behind
+   </span>
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-4-instrument-tuning-with-beats-span">
+   <span style="color:orange;">
+    4. Instrument Tuning with “beats”
    </span>
   </a>
  </li>
@@ -613,10 +649,10 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="week-6-beats-and-tremolo-effects">
-<h1>Week 6: Beats and Tremolo Effects<a class="headerlink" href="#week-6-beats-and-tremolo-effects" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="week-6-tremolo-beats-effects">
+<h1>Week 6: Tremolo/Beats Effects<a class="headerlink" href="#week-6-tremolo-beats-effects" title="Permalink to this headline">#</a></h1>
 <p><font size="6"> Laboratory ? </font> <br>
-<font size="3"> Last updated August 1, 2022 </font></p>
+<font size="3"> Last updated August 9, 2022 </font></p>
 <section id="span-style-color-orange-00-content-span">
 <h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this headline">#</a></h2>
 <section id="mathematics">
@@ -634,14 +670,14 @@ title="Print to PDF"
 <section id="embedded-systems">
 <h3>Embedded Systems<a class="headerlink" href="#embedded-systems" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
-<li><p>Type here</p></li>
+<li><p>N/A</p></li>
 </ul>
 </section>
 </section>
 <section id="span-style-color-orange-0-required-hardware-span">
 <h2><span style="color:orange;"> 0. Required Hardware </span><a class="headerlink" href="#span-style-color-orange-0-required-hardware-span" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
-<li><p>Type here</p></li>
+<li><p>N/A</p></li>
 </ul>
 <h3 style="background-color:lightblue"> Write your name and email below: </h3>
 <p><strong>Name:</strong> me</p>
@@ -664,7 +700,7 @@ If the signal is denoted by <span class="math notranslate nohighlight">\(x(t)\)<
 <p>For example, we can modulate a signal <span class="math notranslate nohighlight">\(x(t)\)</span> using a cosine carrier <span class="math notranslate nohighlight">\(c(t)=\cos (2 \pi f_0 t) \)</span> with frequency <span class="math notranslate nohighlight">\(f_0\)</span>. Then the modulated signal <span class="math notranslate nohighlight">\(y(t)\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[ y(t)=x(t) \cos (2 \pi f_0 t) .\]</div>
-<p>As you may have learned in the companion course, amplitude modulation is essentially used to shift frequencies. This is because of the multiplication property of the Fourier transform/series. We will come back to the idea of shifting frequencies at the end of this lab. But first, let us explore a fun and intuitive effect that can be created with amplitude modulation: the tremolo effect.</p>
+<p>As you may have learned in a course on Fourier analysis, amplitude modulation is essentially used to shift frequencies. This is because of the multiplication property of the Fourier transform/series. We will come back to the idea of shifting frequencies at the end of this lab. But first, let us explore a fun and intuitive effect that can be created with amplitude modulation: the tremolo effect (also called “beat” effect”).</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-orange-2-the-tremolo-effect-span">
 <h1><span style="color:orange;">  2. The Tremolo Effect </span><a class="headerlink" href="#span-style-color-orange-2-the-tremolo-effect-span" title="Permalink to this headline">#</a></h1>
@@ -696,19 +732,36 @@ If the signal is denoted by <span class="math notranslate nohighlight">\(x(t)\)<
 <p>Exercise 14: Play the signal <span class="math notranslate nohighlight">\(x(t) (c_1(t) + c_2(t)) \)</span>. Describe that signal.</p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="span-style-color-orange-3-beats-span">
-<h1><span style="color:orange;">  3. Beats </span><a class="headerlink" href="#span-style-color-orange-3-beats-span" title="Permalink to this headline">#</a></h1>
-<p>Now we will explore what happens when the carrier frequency is close to the signal frequency.</p>
-<p>Exercise 15: Consider the signal <span class="math notranslate nohighlight">\(x(t)= \sin \left( 2 \pi 440 t \right) \)</span> (a middle A) and the carrier <span class="math notranslate nohighlight">\(c(t)=\sin \left( 2\pi 442 t\right)\)</span>. Play the modulated signal <span class="math notranslate nohighlight">\(y(t)=x(t) c(t)\)</span>. Describe what you hear: what is the difference between <span class="math notranslate nohighlight">\(x(t)\)</span> and <span class="math notranslate nohighlight">\(y(t)\)</span>? Plot a few cycles of the original signal and compare with the modulated signal. Describe what you see.</p>
-<p>The phenomenon you just heard is called “beats” and is often used for tuning two instruments. The tuning procedure proceeds as follows: Both instruments play the same note and the players pay attention to the presence of beats in the resulting sound. As long as there are beats, they know that they are not “in tune.” They continue adjusting their instruments until there are no beats in the sound, at which point they are in tune.</p>
-<p>Exercise 16: Try it out! Let <span class="math notranslate nohighlight">\(x(t)= sin \left( 2 \pi 440 t \right)\)</span>. Construct a  carried <span class="math notranslate nohighlight">\(c(t)= \sin \left( 2 \pi f_0 (t) t\right)\)</span> be a carrier with frequency changing from 438HZ to 440HZ. Play the modulated signal. Are the beats present at the beginning? Do the beats disappear at the end ? What happens in between?</p>
-<p>The mathematical explanation for this phenomenon lies in the following equality:</p>
+<section class="tex2jax_ignore mathjax_ignore" id="span-style-color-orange-3-the-math-behind-span">
+<h1><span style="color:orange;">  3. The Math Behind </span><a class="headerlink" href="#span-style-color-orange-3-the-math-behind-span" title="Permalink to this headline">#</a></h1>
+<p>Because of the properties of complex exponentials, multiplying two periodic signal corresponds to changing the frequencies of their components.</p>
+<p>Now we will explore what happens when two periodic signals with a similar frequency are added together.</p>
+<p>For example, multiplying two sine wave together is the same as adding a wave at their average frequency and a wave at half their frequency difference.</p>
+<p>Indeed, we have</p>
 <div class="math notranslate nohighlight">
 \[ \sin\left(  2 \pi f_1 \right) \sin \left( 2 \pi f_2 t \right) = \frac{1}{2}\cos \left( 2 \pi \frac{(f_1-f_2)}{2} t \right) - \frac{1}{2}\cos \ \left( 2 \pi \frac{(f_1+f_2)}{2} t \right).\]</div>
-<p>Thus the</p>
-<p>Exercise 16: Prove the above formula and explain how it relates to the beat phenomenon. Hint: Transform the sines into complex exponentials.</p>
-<p>Exercise 17: Is it possible to use the beats to determine the difference between the frequencies <span class="math notranslate nohighlight">\(f_1\)</span> and <span class="math notranslate nohighlight">\(f_2\)</span> of the two sines? If so, how? If not, why not.</p>
-<p>Exercise 18: Can one use this technique to tune two out-of-tune instruments so that they play an A at the 440Hz frequency?  If so, how? If not, explain why not.</p>
+<p>Exercise 15: Prove the above formula. Hint: Transform the sines into complex exponentials.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="span-style-color-orange-4-instrument-tuning-with-beats-span">
+<h1><span style="color:orange;">  4. Instrument Tuning with “beats” </span><a class="headerlink" href="#span-style-color-orange-4-instrument-tuning-with-beats-span" title="Permalink to this headline">#</a></h1>
+<p>Peole playing in orchestra are well familiar with the tremolo effect, which they typically call “beats”, as they use it to tune their instruments.</p>
+<p>The idea is the following: if two instruments play the same note, then the sound produced corresponds to the addition of two periodic signals. For simplicity, let’s assume that the first instrument plays a cosine wave at a frequency <span class="math notranslate nohighlight">\(f_a\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ x_a(t)= \cos 2\pi f_a t, \]</div>
+<p>and let’s assume that the second instrument plays another cosine wave at a similar (but not equal) frequency <span class="math notranslate nohighlight">\(f_b\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ x_b(t)= \cos 2\pi f_b t. \]</div>
+<p>Then the combined sound is</p>
+<div class="math notranslate nohighlight">
+\[x(t)= x_a(t)+x_b(t)=   \cos 2\pi f_a t+ \cos 2\pi f_b t.\]</div>
+<p>Exercise 16: Assume <span class="math notranslate nohighlight">\(f_a=400 Hz\)</span> and <span class="math notranslate nohighlight">\(f_b=410 Hz\)</span>. Write <span class="math notranslate nohighlight">\(x(t)\)</span> as a product of two sine waves.</p>
+<p>By replacing <span class="math notranslate nohighlight">\(f_1\)</span> by <span class="math notranslate nohighlight">\(f_a + \frac{f_a-f_b}{2}\)</span> and  <span class="math notranslate nohighlight">\(f_2\)</span> by <span class="math notranslate nohighlight">\(f_a - \frac{f_a-f_b}{2}\)</span> in the equation above, we get</p>
+<div class="math notranslate nohighlight">
+\[ \sin\left(  2 \pi \left( f_a + \frac{f_a-f_b}{2}\right) t \right) \sin \left( 2 \pi \left( f_a - \frac{f_a-f_b}{2}\right) t \right) = \frac{1}{2}\cos \left( 2 \pi f_a t \right) - \frac{1}{2}\cos f_b t \right) .\]</div>
+<p>IN other words, two cosine waves with a similar frequency added together correspond to modulating a sine wave at the average frequency with a sine wave at the frequency difference. So one expects a tremolo effect to occue when the instruments are not in tune.</p>
+<p>Exercise 17: Suppose the signals <span class="math notranslate nohighlight">\( \sin \left( 2 \pi 440 t \right) \)</span> (a middle A) and the signal <span class="math notranslate nohighlight">\(\sin \left( 2\pi 442 t\right)\)</span> are added together. What would be the frequency of the carrier (i.e., the beat/tremolo frequency)? Play the added signals: do you hear the beats? Plot the modulated signal: is it the same? Plot a few cycles of each signal (added and modulated) and compare.</p>
+<p>Exercise 18:Can two musicians listening to the added sounds use the beats to determine the difference between the frequencies of their instruments? If so, how? If not, why not.</p>
+<p>Exercise 19: Can two musicians playing out-of-tune instruments use the beat phenomenon so to tune their instrument in such a way that they play an A at the 440Hz frequency?  If so, how? If not, explain why not.</p>
 </section>
 
     <script type="text/x-thebe-config">
