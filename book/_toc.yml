@@ -24,11 +24,17 @@ parts:
   chapters:
   - file: labs/3_sampling_and_reconstruction.ipynb
   - file: labs/dft.ipynb
-
+  - file: labs/pedometer/pedometer_project.ipynb
+  - file: labs/pedometer/pedo_frequency_project.ipynb
+  
 - caption: Processing
   chapters:
   - file: labs/filtering.ipynb
 
+- caption: Design a project of your own
+  chapters:
+  - file: labs/final_project.ipynb
+  
 - caption: Other Stuff- to be sorted
   chapters:
   - file: labs/piano/labx.ipynb
