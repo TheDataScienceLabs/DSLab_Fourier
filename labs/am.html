@@ -652,7 +652,7 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="week-6-tremolo-beats-effects">
 <h1>Week 6: Tremolo/Beats Effects<a class="headerlink" href="#week-6-tremolo-beats-effects" title="Permalink to this headline">#</a></h1>
 <p><font size="6"> Laboratory ? </font> <br>
-<font size="3"> Last updated August 9, 2022 </font></p>
+<font size="3"> Last updated August 10, 2022 </font></p>
 <section id="span-style-color-orange-00-content-span">
 <h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this headline">#</a></h2>
 <section id="mathematics">
@@ -739,7 +739,7 @@ If the signal is denoted by <span class="math notranslate nohighlight">\(x(t)\)<
 <p>For example, multiplying two sine wave together is the same as adding a wave at their average frequency and a wave at half their frequency difference.</p>
 <p>Indeed, we have</p>
 <div class="math notranslate nohighlight">
-\[ \sin\left(  2 \pi f_1 \right) \sin \left( 2 \pi f_2 t \right) = \frac{1}{2}\cos \left( 2 \pi \frac{(f_1-f_2)}{2} t \right) - \frac{1}{2}\cos \ \left( 2 \pi \frac{(f_1+f_2)}{2} t \right).\]</div>
+\[ \sin\left(  2 \pi f_1 \right) \sin \left( 2 \pi f_2 t \right) = \frac{1}{2}\cos \left( 2 \pi (f_1-f_2) t \right) - \frac{1}{2}\cos \ \left( 2 \pi (f_1+f_2) t \right).\]</div>
 <p>Exercise 15: Prove the above formula. Hint: Transform the sines into complex exponentials.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-orange-4-instrument-tuning-with-beats-span">
@@ -755,12 +755,12 @@ If the signal is denoted by <span class="math notranslate nohighlight">\(x(t)\)<
 <div class="math notranslate nohighlight">
 \[x(t)= x_a(t)+x_b(t)=   \cos 2\pi f_a t+ \cos 2\pi f_b t.\]</div>
 <p>Exercise 16: Assume <span class="math notranslate nohighlight">\(f_a=400 Hz\)</span> and <span class="math notranslate nohighlight">\(f_b=410 Hz\)</span>. Write <span class="math notranslate nohighlight">\(x(t)\)</span> as a product of two sine waves.</p>
-<p>By replacing <span class="math notranslate nohighlight">\(f_1\)</span> by <span class="math notranslate nohighlight">\(f_a + \frac{f_a-f_b}{2}\)</span> and  <span class="math notranslate nohighlight">\(f_2\)</span> by <span class="math notranslate nohighlight">\(f_a - \frac{f_a-f_b}{2}\)</span> in the equation above, we get</p>
+<p>More generally, by replacing <span class="math notranslate nohighlight">\(f_1\)</span> by <span class="math notranslate nohighlight">\(\frac{f_a+f_b}{2}\)</span> and  <span class="math notranslate nohighlight">\(f_2\)</span> by <span class="math notranslate nohighlight">\( \frac{f_b-f_a}{2}\)</span> in the equation above, we get</p>
 <div class="math notranslate nohighlight">
-\[ \sin\left(  2 \pi \left( f_a + \frac{f_a-f_b}{2}\right) t \right) \sin \left( 2 \pi \left( f_a - \frac{f_a-f_b}{2}\right) t \right) = \frac{1}{2}\cos \left( 2 \pi f_a t \right) - \frac{1}{2}\cos f_b t \right) .\]</div>
-<p>IN other words, two cosine waves with a similar frequency added together correspond to modulating a sine wave at the average frequency with a sine wave at the frequency difference. So one expects a tremolo effect to occue when the instruments are not in tune.</p>
+\[ \sin\left(  2 \pi \left(  \frac{f_a+f_b}{2} \right) t \right) \sin \left( 2 \pi \left(  \frac{f_b-f_a}{2}    \right) t           \right) = \frac{1}{2}\cos \left( 2 \pi f_a t \right) - \frac{1}{2}\cos\left( 2 \pi f_b t \right) .\]</div>
+<p>In other words, two cosine waves with a similar frequency added together correspond to modulating a sine wave at the average frequency with a sine wave at half thw frequency difference. So one expects a tremolo effect to occur when the instruments are not in tune.</p>
 <p>Exercise 17: Suppose the signals <span class="math notranslate nohighlight">\( \sin \left( 2 \pi 440 t \right) \)</span> (a middle A) and the signal <span class="math notranslate nohighlight">\(\sin \left( 2\pi 442 t\right)\)</span> are added together. What would be the frequency of the carrier (i.e., the beat/tremolo frequency)? Play the added signals: do you hear the beats? Plot the modulated signal: is it the same? Plot a few cycles of each signal (added and modulated) and compare.</p>
-<p>Exercise 18:Can two musicians listening to the added sounds use the beats to determine the difference between the frequencies of their instruments? If so, how? If not, why not.</p>
+<p>Exercise 18: Can two musicians listening to the added sounds determine the difference between the frequencies of their instruments? If so, how? If not, why not.</p>
 <p>Exercise 19: Can two musicians playing out-of-tune instruments use the beat phenomenon so to tune their instrument in such a way that they play an A at the 440Hz frequency?  If so, how? If not, explain why not.</p>
 </section>
 
