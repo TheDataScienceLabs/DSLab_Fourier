@@ -728,7 +728,7 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="week-9-sampled-signal-analysis-with-the-dft">
 <h1>Week 9: Sampled Signal Analysis with the DFT<a class="headerlink" href="#week-9-sampled-signal-analysis-with-the-dft" title="Permalink to this headline">#</a></h1>
 <p><font size="6"> Laboratory ? </font> <br>
-<font size="3"> Last updated July 27, 2022 </font></p>
+<font size="3"> Last updated August 10, 2022 </font></p>
 <section id="span-style-color-orange-00-content-span">
 <h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this headline">#</a></h2>
 <section id="mathematics">
@@ -738,6 +738,7 @@ title="Print to PDF"
 <li><p>Euler’s formula</p></li>
 <li><p>Sampling and Aliasing</p></li>
 <li><p>Periodicity of discrete-time complex exponentials</p></li>
+<li><p>orthogonality of discrete complex harmonics exponentials</p></li>
 </ul>
 </section>
 <section id="programming-skills">
@@ -925,12 +926,20 @@ This phenomenon is called “aliasing.”</p>
 </section>
 <section id="theorem">
 <h2>Theorem<a class="headerlink" href="#theorem" title="Permalink to this headline">#</a></h2>
-<p>If f(t) has a finite Fourier series with <span class="math notranslate nohighlight">\(2K+1\)</span> terms $<span class="math notranslate nohighlight">\(f(t)=\sum_{k=-K}^K c_k e^{i \frac{2\pi}{P} t}\)</span><span class="math notranslate nohighlight">\( (so its maximum frequency is \)</span>K\frac{1}{P}<span class="math notranslate nohighlight">\(), and if we sample f(t) with a sampling frequency \)</span>\frac{1}{T}<span class="math notranslate nohighlight">\( such that  \)</span><span class="math notranslate nohighlight">\(\frac{1}{T} &gt; 2 K\frac{1}{P}\)</span><span class="math notranslate nohighlight">\( then the DFT of \)</span>f_d[n]<span class="math notranslate nohighlight">\( gives us the coefficients \)</span>a_k,b_k<span class="math notranslate nohighlight">\( of the Fourier series of \)</span>f(t)$.</p>
-<p>More specifically, we have $<span class="math notranslate nohighlight">\(F[k]= N c_k= N\frac{1}{2}(a_k-ib_k), \text{ for all }  \)</span>0\leq k \leq K$$.</p>
+<p>If f(t) has a finite Fourier series with <span class="math notranslate nohighlight">\(2K+1\)</span> terms</p>
+<div class="math notranslate nohighlight">
+\[f(t)=\sum_{k=-K}^K c_k e^{i \frac{2\pi}{P} t}\]</div>
+<p>(so its maximum frequency is <span class="math notranslate nohighlight">\(K\frac{1}{P}\)</span>), and if we sample f(t) with a sampling frequency <span class="math notranslate nohighlight">\(\frac{1}{T}\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{T} &gt; 2 K\frac{1}{P}\]</div>
+<p>then the DFT of <span class="math notranslate nohighlight">\(f_d[n]\)</span> gives us the coefficients <span class="math notranslate nohighlight">\(c_k\)</span> of the Fourier series of <span class="math notranslate nohighlight">\(f(t)\)</span>.</p>
+<p>More specifically, we have</p>
+<p>$<span class="math notranslate nohighlight">\(F[k]= N c_k= N\frac{1}{2}(a_k-ib_k), \text{ for all }  0\leq k \leq K\)</span>$.</p>
 </section>
 <section id="special-case">
 <h2>Special case<a class="headerlink" href="#special-case" title="Permalink to this headline">#</a></h2>
-<p>If <span class="math notranslate nohighlight">\(\frac{P}{T}=N\)</span> is an integer (i.e., we take exactly N samples per period), and <span class="math notranslate nohighlight">\(N&gt;2K\)</span>, then we are guaranteed that no aliasing will occur and we can recover the coefficients <span class="math notranslate nohighlight">\(c_k\)</span> from the DFT coefficients <span class="math notranslate nohighlight">\(F[k]\)</span> as $<span class="math notranslate nohighlight">\(F[k]= N c_k= N\frac{1}{2}(a_k-ib_k), \text{ for all } \)</span>0\leq k \leq K$$.</p>
+<p>If <span class="math notranslate nohighlight">\(\frac{P}{T}=N\)</span> is an integer (i.e., we take exactly N samples per period), and <span class="math notranslate nohighlight">\(N&gt;2K\)</span>, then we are guaranteed that no aliasing will occur and we can recover the coefficients <span class="math notranslate nohighlight">\(c_k\)</span> from the DFT coefficients <span class="math notranslate nohighlight">\(F[k]\)</span> as</p>
+<p>$<span class="math notranslate nohighlight">\(F[k]= N c_k= N\frac{1}{2}(a_k-ib_k), \text{ for all } 0\leq k \leq K\)</span>$.</p>
 </section>
 <section id="exercise-8">
 <h2>Exercise 8:<a class="headerlink" href="#exercise-8" title="Permalink to this headline">#</a></h2>
@@ -941,7 +950,7 @@ This phenomenon is called “aliasing.”</p>
    0  &amp;, \text{ else}. 
 \end{array}
 \right.\)</span>$</p>
-<p>The DFT coefficients are complex numbers. Under the hypothesis of the above theorem, their magnitude <span class="math notranslate nohighlight">\(|F[k]|=N |c_k|=N \sqrt{a^2+b^2}\)</span> tells  us how much of the frequency <span class="math notranslate nohighlight">\(k \frac{2\pi}{P}\)</span> is in the signal, up to a constant factor <span class="math notranslate nohighlight">\(N\)</span>. So, for example, the DFT coefficient with the largest magnitude indicates the largest frequency contained in the signal.</p>
+<p>The DFT coefficients are complex numbers. Under the hypothesis of the above theorem, their magnitude <span class="math notranslate nohighlight">\(|F[k]|=N |c_k|=N \sqrt{a^2+b^2}\)</span> tells  us how much of the frequency <span class="math notranslate nohighlight">\(k \frac{2\pi}{P}\)</span> is in the signal, up to a constant factor <span class="math notranslate nohighlight">\(N\)</span>. In particular, the DFT coefficient with the largest magnitude indicates the largest frequency contained in the signal.</p>
 </section>
 <section id="exercise-9">
 <h2>Exercise 9:<a class="headerlink" href="#exercise-9" title="Permalink to this headline">#</a></h2>
