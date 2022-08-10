@@ -772,11 +772,11 @@ title="Print to PDF"
 </section>
 <section id="span-style-color-orange-1-intro-span">
 <h2><span style="color:orange;"> 1. Intro </span><a class="headerlink" href="#span-style-color-orange-1-intro-span" title="Permalink to this headline">#</a></h2>
-<p>The signals we acquire in real-life have a finite duration. We typically assume that “start at zero,” meaning that they are equal to zero until <span class="math notranslate nohighlight">\(t=0\)</span>. After the signal duration is passed, i.e. when <span class="math notranslate nohighlight">\(t\)</span> is greater than the duration of the signal, then we also assume that the signal is equal to zero.</p>
+<p>The signals we acquire in real-life have a finite duration. We typically assume that they “start at zero,” meaning that they are equal to zero until <span class="math notranslate nohighlight">\(t=0\)</span>. After the signal duration is passed, i.e. when <span class="math notranslate nohighlight">\(t\)</span> is greater than the duration of the signal, then we also assume that the signal is equal to zero.</p>
 <p>Mathematically, a finite duration signal <span class="math notranslate nohighlight">\(x(t)\)</span> takes the form $<span class="math notranslate nohighlight">\( x(t)=\left\{ \begin{array}{ll} x(t), &amp; 0\leq t &lt; \text{signal duration}, \\ 0, &amp; \text{ else.}\end{array}  \right. \)</span>$</p>
-<p>In order to analyze a finite duration signal, we repeat it periodically with a period <span class="math notranslate nohighlight">\(P\)</span> that is at least as long as the duration of the signal. When <span class="math notranslate nohighlight">\(P\)</span> is greater than the duraction, we say that the signal has been “zero padded” between the repetitions.</p>
+<p>In order to analyze a finite duration signal, we repeat it periodically with a period <span class="math notranslate nohighlight">\(P\)</span> that is at least as long as the duration of the signal. When <span class="math notranslate nohighlight">\(P\)</span> is strictly greater than the duraction, we say that the signal has been “zero padded” between the repetitions.</p>
 <p>We assume that the repeated signal is such that it is equal to its Fourier series $<span class="math notranslate nohighlight">\(f(t)= \frac{a_0}{2}+ \sum_{k=1}^\infty a_k \cos \left(\frac{2 \pi}{P} k t \right) + b_k \sin \left(\frac{2 \pi}{P} k t  \right).\)</span>$</p>
-<p>We are interested in analyzing the signal <span class="math notranslate nohighlight">\(f(t)\)</span> given a digital recording of the signal. In particular, we would like to be able to find the values of the coefficients <span class="math notranslate nohighlight">\(a_k,b_k\)</span> using the uniform sampling <span class="math notranslate nohighlight">\( f_d[n]=f(nT)\)</span>, where <span class="math notranslate nohighlight">\(T\)</span> is the sampling period. A uniform sampling means that the samples are equally spread out within a period. The sampling period <span class="math notranslate nohighlight">\(T\)</span> is the time difference between two sample points. The quantity <span class="math notranslate nohighlight">\(\frac{1}{T}\)</span> is called the sampling “frequency.”</p>
+<p>We are interested in analyzing the signal <span class="math notranslate nohighlight">\(f(t)\)</span> given a digital recording of the signal. In particular, we would like to be able to find the values of the coefficients <span class="math notranslate nohighlight">\(a_k,b_k\)</span> using the uniform sampling <span class="math notranslate nohighlight">\( f_d[n]=f(nT)\)</span>, for some <span class="math notranslate nohighlight">\(T&gt;0\)</span>. The parameter <span class="math notranslate nohighlight">\(T\)</span> is called the sampling period. A uniform sampling means that the samples are equally spread out within a period. The sampling period <span class="math notranslate nohighlight">\(T\)</span> is the time difference between two sample points. The quantity <span class="math notranslate nohighlight">\(\frac{1}{T}\)</span> is called the sampling “frequency.”</p>
 <p>In order to simplify the math, we rewrite <span class="math notranslate nohighlight">\(f(t)\)</span> in terms of complex exponentials: $<span class="math notranslate nohighlight">\( f(t)=  \sum_{k=-\infty}^\infty c_n e^{i \frac{2\pi}{P}kt} \)</span><span class="math notranslate nohighlight">\( where \)</span> c_0=\frac{a_0}{2} <span class="math notranslate nohighlight">\( and \)</span>c_n=c_{-n}^*=\frac{1}{2} (a_n- i b_n)<span class="math notranslate nohighlight">\(,  for \)</span>n&gt;1$.</p>
 </section>
 <section id="exercise-1">
@@ -784,17 +784,23 @@ title="Print to PDF"
 <p>Derive the above formula. (Hint: replace each sine and cosine by a sum of complex exponentials. If you do not know the sums already, find them using Euler’s formula <span class="math notranslate nohighlight">\(e^{i\theta}=\cos \theta + i \sin \theta\)</span>. B’Euler up! )</p>
 <p>We will recover the coefficients <span class="math notranslate nohighlight">\(a_k,b_k\)</span> using the Discrete Fourier Transform, or “DFT” for short. The DFT transform a periodic signal with period <span class="math notranslate nohighlight">\(N\)</span> into a sequence of complex numbers that is also periodic with period <span class="math notranslate nohighlight">\(N\)</span>. The numbers in the sequence are called the “DFT coefficients.”</p>
 <p>Here is the formula for the <span class="math notranslate nohighlight">\(k^{th}\)</span> DFT coefficient of a sampled signal <span class="math notranslate nohighlight">\(f_d[n]\)</span> with period <span class="math notranslate nohighlight">\(N\)</span>:
-$<span class="math notranslate nohighlight">\( F[k]= \sum_{n=0}^{N-1} f_d[n] e^{-i \frac{2 \pi}{N} k n }  \)</span>$</p>
+$<span class="math notranslate nohighlight">\( F[k]= \sum_{n=0}^{N-1} f_d[n] e^{-i \frac{2 \pi}{N} k n }.  \)</span>$</p>
 <p>As we will see later, in some circumstances, namely if</p>
 <ul class="simple">
 <li><p>the Fourier series of <span class="math notranslate nohighlight">\(f(t)\)</span> is finite, that is to say if <span class="math notranslate nohighlight">\(c_k=0\)</span> for all <span class="math notranslate nohighlight">\(|k|&gt;N_0\)</span>, and</p></li>
 <li><p><span class="math notranslate nohighlight">\(N\)</span> is large enough,</p></li>
 </ul>
-<p>then we have $<span class="math notranslate nohighlight">\(F[k]= N c_k, \text{ for all }0\leq k \leq N_0\)</span><span class="math notranslate nohighlight">\(. Therefore, in those circumstances, one can recover the Fourier series coefficients \)</span>a_k=2 (c_k+c_k^K)<span class="math notranslate nohighlight">\(, \)</span>b_k=2(c_k-c_k^*)<span class="math notranslate nohighlight">\( of the signal \)</span>f(t)$ from the DFT coefficients of the sampled signal. The rest of the lab explores and clarifies this.</p>
+<p>then we have</p>
+<div class="math notranslate nohighlight">
+\[F[k]= N c_k, \text{ for all }0\leq k \leq N_0.\]</div>
+<p>Therefore, in those circumstances, one can recover the Fourier series coefficients <span class="math notranslate nohighlight">\(a_k=2 (c_k+c_k^*)\)</span>, <span class="math notranslate nohighlight">\(b_k=2(c_k-c_k^*)\)</span> of the signal <span class="math notranslate nohighlight">\(f(t)\)</span> from the DFT coefficients of the sampled signal. The rest of the lab explores and clarifies this.</p>
 </section>
 <section id="span-style-color-orange-2-periodicity-of-the-sampling-span">
 <h2><span style="color:orange;"> 2. Periodicity of the Sampling </span><a class="headerlink" href="#span-style-color-orange-2-periodicity-of-the-sampling-span" title="Permalink to this headline">#</a></h2>
-<p>In order for the proposed analysis method to work, the sampling must be a periodic signal. Note that, depending on the sampling period <span class="math notranslate nohighlight">\(T\)</span> chosen, the sampled signal may or may not be periodic.</p>
+<p>In order for the proposed analysis method to work, the sampled signal must be periodic. In order words, there must exist an integer <span class="math notranslate nohighlight">\(N\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[ f_d[n+N] = f_d[n], \forall n.\]</div>
+<p>Depending on the sampling period <span class="math notranslate nohighlight">\(T\)</span> chosen, the sampled signal may or may not be periodic.</p>
 </section>
 <section id="exercise-2">
 <h2>Exercise 2:<a class="headerlink" href="#exercise-2" title="Permalink to this headline">#</a></h2>
@@ -813,13 +819,14 @@ $<span class="math notranslate nohighlight">\( F[k]= \sum_{n=0}^{N-1} f_d[n] e^{
 <h2><span style="color:orange;"> 2. Toy Example of Signal Analysis </span><a class="headerlink" href="#span-style-color-orange-2-toy-example-of-signal-analysis-span" title="Permalink to this headline">#</a></h2>
 <p>Suppose the signal recorded, once repeated periorically, is of the form $<span class="math notranslate nohighlight">\(  f(t)= a_1 \cos \left(2 \pi 100 t \right) + a_4 \cos \left(2 \pi 400 k t  \right). \)</span><span class="math notranslate nohighlight">\(
 So the signal has period \)</span>P=\frac{1}{100}$.</p>
-<p>Given is a recording with 1000 samples per unit of time (so the sampling period is <span class="math notranslate nohighlight">\(T=\frac{1}{1000}\)</span>): $<span class="math notranslate nohighlight">\( f_d[n] = f( n \frac{1} {1000}).\)</span><span class="math notranslate nohighlight">\(
-More specifically, the recorded signal is  
-\)</span><span class="math notranslate nohighlight">\( \begin{aligned}
+<p>Given is a recording with 1000 samples per unit of time (so the sampling period is <span class="math notranslate nohighlight">\(T=\frac{1}{1000}\)</span>: $<span class="math notranslate nohighlight">\( f_d[n] = f( n \frac{1} {1000}).\)</span>$
+More specifically, the recorded signal is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{aligned}
 f_d[n]&amp;= a_1 \cos \left(2 \pi 100 \frac{n} {1000} \right) + a_4 \cos \left(2 \pi 400 k \frac{n} {1000}  \right)\\
 &amp;= a_1 \cos \left(2 \pi \frac{n}{10} \right) + a_4 \cos \left(2 \pi 4 \frac{n}{10} \right). 
-\end{aligned} \)</span><span class="math notranslate nohighlight">\(
-Observe that \)</span>f_d[n]<span class="math notranslate nohighlight">\( is periodic, with period \)</span>N=10<span class="math notranslate nohighlight">\(. This is because we are taking \)</span>10<span class="math notranslate nohighlight">\( samples per period (since \)</span>\frac{P}{T}=\frac{1000}{100}=10$).</p>
+\end{aligned} \end{split}\]</div>
+<p>Observe that <span class="math notranslate nohighlight">\(f_d[n]\)</span> is periodic, with period <span class="math notranslate nohighlight">\(N=10\)</span>. This is because we are taking <span class="math notranslate nohighlight">\(10\)</span> samples per period (since <span class="math notranslate nohighlight">\(\frac{P}{T}=\frac{1000}{100}=10\)</span>).</p>
 <p>Let us write <span class="math notranslate nohighlight">\(f_d[n]\)</span> in terms of complex exponentials: $<span class="math notranslate nohighlight">\( f_d[n]= \frac{a_1}{2} \left(e^{i  2 \pi \frac{n}{10}}+ e^{-i 2 \pi \frac{n}{10}}\right) + \frac{a_4}{2}\left(e^{i 2 \pi  4 \frac{n}{10}}+ e^{-i 2 \pi 4 \frac{n}{10}}\right). \)</span>$</p>
 <p>Now let us compute the first coefficient of the DFT.</p>
 <p>We have
@@ -848,13 +855,21 @@ F[4]&amp;= \sum_{n=0}^{9} f_d[n]  e^{-i \frac{2\pi}{10} 4 n} \\
 &amp;= \sum_{n=0}^{4} \left( \frac{a_1}{2} \left(e^{i 2 \pi \frac{n}{10}}+ e^{-i 2 \pi 2 \frac{n}{10}}\right) 
 +
 \frac{a_4}{2}\left(e^{i 2 \pi  4 \frac{n}{10}}+ e^{-i 2 \pi 4 \frac{n}{10}}\right)\right) e^{-i \frac{2\pi}{5} 4 n} \\
-&amp;=&amp; 10 \frac{a_4}{2}
-\end{aligned}\)</span><span class="math notranslate nohighlight">\( 
-Therefore, \)</span>a_4=2 \frac{F[4]}{5}<span class="math notranslate nohighlight">\(. So we are able to obtain the value of \)</span>a_4<span class="math notranslate nohighlight">\( from the value of \)</span>F[4]$.</p>
+&amp;= 10 \frac{a_4}{2},
+\end{aligned}\)</span>$
+again by using the fact that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \sum_{n=0}^{N-1} e^{j \frac{2\pi}{N} k_1 n } e^{j \frac{2\pi}{N} k_2 n } = \left\{ 
+\begin{array}{cc}
+    N &amp;, \text{ if } k_1-k_2  \text{ is a multiple of } N  \\
+   0  &amp;, \text{ else}. 
+\end{array}
+\right.\end{split}\]</div>
+<p>Therefore, <span class="math notranslate nohighlight">\(a_4=2 \frac{F[4]}{5}\)</span>. So we are able to obtain the value of <span class="math notranslate nohighlight">\(a_4\)</span> from the value of <span class="math notranslate nohighlight">\(F[4]\)</span>.</p>
 </section>
 <section id="exercise-6">
 <h2>Exercise 6:<a class="headerlink" href="#exercise-6" title="Permalink to this headline">#</a></h2>
-<p>Give students the same signal as before signal (of the given form) and ask them to obtain the value of <span class="math notranslate nohighlight">\(a_4\)</span>.</p>
+<p>Give students the same signal as before (of the given form) and ask them to obtain the value of <span class="math notranslate nohighlight">\(a_4\)</span>.</p>
 </section>
 <section id="span-style-color-orange-3-another-toy-example-with-aliasing-span">
 <h2><span style="color:orange;"> 3. Another Toy Example - with Aliasing </span><a class="headerlink" href="#span-style-color-orange-3-another-toy-example-with-aliasing-span" title="Permalink to this headline">#</a></h2>
@@ -901,11 +916,11 @@ This phenomenon is called “aliasing.”</p>
 </section>
 <section id="exercise-7">
 <h2>Exercise 7:<a class="headerlink" href="#exercise-7" title="Permalink to this headline">#</a></h2>
-<p>Check, numerically, that sampling <span class="math notranslate nohighlight">\(\cos (2\pi 100 t)\)</span> and <span class="math notranslate nohighlight">\(\cos (2\pi 100 t)\)</span>  with a period <span class="math notranslate nohighlight">\(T=\frac{1}{500}\)</span> yields the same sampled signal.</p>
+<p>Check, numerically, that sampling <span class="math notranslate nohighlight">\(\cos (2\pi 100 t)\)</span> or <span class="math notranslate nohighlight">\(\cos (2\pi 100 t)\)</span>  with a period <span class="math notranslate nohighlight">\(T=\frac{1}{500}\)</span> yields the same sampled signal.</p>
 </section>
 <section id="span-style-color-orange-4-the-theory-span">
 <h2><span style="color:orange;"> 4. The Theory </span><a class="headerlink" href="#span-style-color-orange-4-the-theory-span" title="Permalink to this headline">#</a></h2>
-<p>The aliasing phenomenon is well understood. In fact, you may have learned in your companion course about the Nyquist criterion which is a condition that, if satisfied, guarantees that aliasing will not uccur. Here, we will not dwelve further into this criterion per say and, instead, jump directly to the topic of interest: which is to analyze a signal <span class="math notranslate nohighlight">\(f(t)\)</span> from a sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span>. By analysing, we mean recovering its Fourier series coefficients <span class="math notranslate nohighlight">\(c_k\)</span>.</p>
+<p>The aliasing phenomenon is well understood. In fact, you may have heard about the Nyquist criterion: is a condition that, if satisfied, guarantees that aliasing will not uccur. In this lab, we will not dwelve further into this criterion per say but, instead, jump directly to the topic of interest, which is to analyze a signal <span class="math notranslate nohighlight">\(f(t)\)</span> from a sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span>. By “analysing,” we mean recovering the Fourier series coefficients <span class="math notranslate nohighlight">\(c_k\)</span>.</p>
 <p>The theory tells us that the DFT coefficients give us the value of the Fourier series coefficients of <span class="math notranslate nohighlight">\(f(t)\)</span> provided that we have taken “enough” samples considering the number of non-zero coefficients in the Fourier series of <span class="math notranslate nohighlight">\(f(t)\)</span>. More specifically, we have the following theorem.</p>
 </section>
 <section id="theorem">
