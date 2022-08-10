@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Week 14-15: Final Project" href="final_project.html" />
@@ -480,6 +482,20 @@ title="Print to PDF"
    </span>
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-2-circular-convolution-span">
+   <span style="color:orange;">
+    2. Circular Convolution
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-3-filtering-span">
+   <span style="color:orange;">
+    3. Filtering
+   </span>
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -537,6 +553,20 @@ title="Print to PDF"
    </span>
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-2-circular-convolution-span">
+   <span style="color:orange;">
+    2. Circular Convolution
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-3-filtering-span">
+   <span style="color:orange;">
+    3. Filtering
+   </span>
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -591,6 +621,22 @@ title="Print to PDF"
 </section>
 <section id="span-style-color-orange-1-intro-span">
 <h2><span style="color:orange;"> 1. Intro </span><a class="headerlink" href="#span-style-color-orange-1-intro-span" title="Permalink to this headline">#</a></h2>
+<p>Assume f(t) has a finite fourier series and that it is sampled with enough samples so as not to create aliasing.</p>
+<p>We are interested in transformation the sampled signal so to either increase or decrease the coefficients of some specific frequencies. For example, we would like to be able to process <span class="math notranslate nohighlight">\(f_d[n]\)</span> so that the coefficient of, say, it’s first harmonic is set to zero.  More specifically, we would like to do this in the time domain, that it is say without having to compute the Fourier series of <span class="math notranslate nohighlight">\(f_d[n]\)</span>.</p>
+</section>
+<section id="span-style-color-orange-2-circular-convolution-span">
+<h2><span style="color:orange;"> 2. Circular Convolution </span><a class="headerlink" href="#span-style-color-orange-2-circular-convolution-span" title="Permalink to this headline">#</a></h2>
+<p>Given two sampled signals <span class="math notranslate nohighlight">\(f_1[n]\)</span> and <span class="math notranslate nohighlight">\(f_2[n]\)</span> both periodic with period <span class="math notranslate nohighlight">\(N\)</span>, we define their circular convolution as</p>
+<div class="math notranslate nohighlight">
+\[ f_1 \circ f_2 [n] = \sum_{k=0}^{N-1} f_1[k] f_2[n-k] \]</div>
+<p>If <span class="math notranslate nohighlight">\(f_1[n]=\sum_{k=-N_0}^{N_0} c_k e^{i k \frac{2\pi}{N} n }\)</span> and <span class="math notranslate nohighlight">\(f_2[n]=\sum_{k=-N_0}^{N_0} b_k e^{i k \frac{2\pi}{N} n }\)</span> then</p>
+<div class="math notranslate nohighlight">
+\[f_1 \circ f_2[n] = N \sum_{k=-N_0}^{N-1} c_k b_k e^{i k \frac{2\pi}{N} n }.\]</div>
+<p>In other words, up to a constant factor <span class="math notranslate nohighlight">\(N\)</span>, the circular convlution multiplies the Fourier series coefficients of the two sampled signals.</p>
+</section>
+<section id="span-style-color-orange-3-filtering-span">
+<h2><span style="color:orange;"> 3. Filtering </span><a class="headerlink" href="#span-style-color-orange-3-filtering-span" title="Permalink to this headline">#</a></h2>
+<p>Filtering in the continuous time domain but performed on the discrete samples.</p>
 </section>
 </section>
 
