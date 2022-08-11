@@ -519,9 +519,9 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-3-the-math-behind-span">
+  <a class="reference internal nav-link" href="#span-style-color-orange-3-the-math-behind-multiplication-by-a-periodic-carrier-span">
    <span style="color:orange;">
-    3. The Math Behind
+    3. The Math Behind Multiplication by a Periodic Carrier
    </span>
   </a>
  </li>
@@ -626,9 +626,9 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-3-the-math-behind-span">
+  <a class="reference internal nav-link" href="#span-style-color-orange-3-the-math-behind-multiplication-by-a-periodic-carrier-span">
    <span style="color:orange;">
-    3. The Math Behind
+    3. The Math Behind Multiplication by a Periodic Carrier
    </span>
   </a>
  </li>
@@ -652,7 +652,7 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="week-6-tremolo-beats-effects">
 <h1>Week 6: Tremolo/Beats Effects<a class="headerlink" href="#week-6-tremolo-beats-effects" title="Permalink to this headline">#</a></h1>
 <p><font size="6"> Laboratory ? </font> <br>
-<font size="3"> Last updated August 10, 2022 </font></p>
+<font size="3"> Last updated August 11, 2022 </font></p>
 <section id="span-style-color-orange-00-content-span">
 <h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this headline">#</a></h2>
 <section id="mathematics">
@@ -693,14 +693,14 @@ title="Print to PDF"
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-orange-1-introduction-to-amplitude-modulation-span">
 <h1><span style="color:orange;"> 1. Introduction to Amplitude Modulation </span><a class="headerlink" href="#span-style-color-orange-1-introduction-to-amplitude-modulation-span" title="Permalink to this headline">#</a></h1>
-<p>Amplitude modulation is the process of multiplying a CT signal by a periodic signal <span class="math notranslate nohighlight">\(c(t)\)</span> called a carrier.
+<p>Amplitude modulation is the process of multiplying a CT signal by a another signal <span class="math notranslate nohighlight">\(c(t)\)</span> called a “carrier.”<br />
 If the signal is denoted by <span class="math notranslate nohighlight">\(x(t)\)</span>, then the modulated signal <span class="math notranslate nohighlight">\(y(t)\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[y(t)=x(t)c(t).\]</div>
 <p>For example, we can modulate a signal <span class="math notranslate nohighlight">\(x(t)\)</span> using a cosine carrier <span class="math notranslate nohighlight">\(c(t)=\cos (2 \pi f_0 t) \)</span> with frequency <span class="math notranslate nohighlight">\(f_0\)</span>. Then the modulated signal <span class="math notranslate nohighlight">\(y(t)\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[ y(t)=x(t) \cos (2 \pi f_0 t) .\]</div>
-<p>As you may have learned in a course on Fourier analysis, amplitude modulation is essentially used to shift frequencies. This is because of the multiplication property of the Fourier transform/series. We will come back to the idea of shifting frequencies at the end of this lab. But first, let us explore a fun and intuitive effect that can be created with amplitude modulation: the tremolo effect (also called “beat” effect”).</p>
+<p>As you may have learned in your companion course (e.g. ECE301), periodic carriers play a special role in signal processing as they can be used to shift the frequencies of a signal. This is because of the multiplication property of the Fourier transform/series.  We will come back to the idea of shifting frequencies at the end of this lab. But first, let us explore a fun and intuitive effect that can be created with amplitude modulation: the tremolo effect (also called “beat effect”).</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-orange-2-the-tremolo-effect-span">
 <h1><span style="color:orange;">  2. The Tremolo Effect </span><a class="headerlink" href="#span-style-color-orange-2-the-tremolo-effect-span" title="Permalink to this headline">#</a></h1>
@@ -732,19 +732,20 @@ If the signal is denoted by <span class="math notranslate nohighlight">\(x(t)\)<
 <p>Exercise 14: Play the signal <span class="math notranslate nohighlight">\(x(t) (c_1(t) + c_2(t)) \)</span>. Describe that signal.</p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="span-style-color-orange-3-the-math-behind-span">
-<h1><span style="color:orange;">  3. The Math Behind </span><a class="headerlink" href="#span-style-color-orange-3-the-math-behind-span" title="Permalink to this headline">#</a></h1>
-<p>Because of the properties of complex exponentials, multiplying two periodic signal corresponds to changing the frequencies of their components.</p>
-<p>Now we will explore what happens when two periodic signals with a similar frequency are added together.</p>
-<p>For example, multiplying two sine wave together is the same as adding a wave at their average frequency and a wave at half their frequency difference.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="span-style-color-orange-3-the-math-behind-multiplication-by-a-periodic-carrier-span">
+<h1><span style="color:orange;">  3. The Math Behind Multiplication by a Periodic Carrier </span><a class="headerlink" href="#span-style-color-orange-3-the-math-behind-multiplication-by-a-periodic-carrier-span" title="Permalink to this headline">#</a></h1>
+<p>Because of the properties of complex exponentials, multiplying a signal by a periodic carrier signal results in changing the frequencies of the components of the signal.</p>
+<p>For example, multiplying two sine wave together is the same as adding a wave at their average frequency and a wave at their frequency difference.</p>
 <p>Indeed, we have</p>
 <div class="math notranslate nohighlight">
-\[ \sin\left(  2 \pi f_1 \right) \sin \left( 2 \pi f_2 t \right) = \frac{1}{2}\cos \left( 2 \pi (f_1-f_2) t \right) - \frac{1}{2}\cos \ \left( 2 \pi (f_1+f_2) t \right).\]</div>
+\[ \sin\left(  2 \pi f_1 t \right) \sin \left( 2 \pi f_2 t \right) = \frac{1}{2}\cos \left( 2 \pi (f_1-f_2) t \right) - \frac{1}{2}\cos \ \left( 2 \pi (f_1+f_2) t \right).\]</div>
+<p>In other words, the frequency <span class="math notranslate nohighlight">\(f_1\)</span>  in the signal <span class="math notranslate nohighlight">\(\sin \left( 2\pi f_1 t\right)\)</span> is divided into two components which are “shifted” to new frequencies on either sides of <span class="math notranslate nohighlight">\(f_1\)</span>; the extent of the shift is given by the carrier frequency <span class="math notranslate nohighlight">\(f_2\)</span>.</p>
 <p>Exercise 15: Prove the above formula. Hint: Transform the sines into complex exponentials.</p>
+<p>Now we will explore what happens when two periodic signals with a similar frequency are added together (right-hand-side of the equation), and use the formula above to interpret the result as an amplitude modulation.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-orange-4-instrument-tuning-with-beats-span">
 <h1><span style="color:orange;">  4. Instrument Tuning with “beats” </span><a class="headerlink" href="#span-style-color-orange-4-instrument-tuning-with-beats-span" title="Permalink to this headline">#</a></h1>
-<p>Peole playing in orchestra are well familiar with the tremolo effect, which they typically call “beats”, as they use it to tune their instruments.</p>
+<p>Orchestra players are well familiar with the tremolo effect, which they call “beats”, as they use it to tune their instruments.</p>
 <p>The idea is the following: if two instruments play the same note, then the sound produced corresponds to the addition of two periodic signals. For simplicity, let’s assume that the first instrument plays a cosine wave at a frequency <span class="math notranslate nohighlight">\(f_a\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[ x_a(t)= \cos 2\pi f_a t, \]</div>
@@ -755,10 +756,10 @@ If the signal is denoted by <span class="math notranslate nohighlight">\(x(t)\)<
 <div class="math notranslate nohighlight">
 \[x(t)= x_a(t)+x_b(t)=   \cos 2\pi f_a t+ \cos 2\pi f_b t.\]</div>
 <p>Exercise 16: Assume <span class="math notranslate nohighlight">\(f_a=400 Hz\)</span> and <span class="math notranslate nohighlight">\(f_b=410 Hz\)</span>. Write <span class="math notranslate nohighlight">\(x(t)\)</span> as a product of two sine waves.</p>
-<p>More generally, by replacing <span class="math notranslate nohighlight">\(f_1\)</span> by <span class="math notranslate nohighlight">\(\frac{f_a+f_b}{2}\)</span> and  <span class="math notranslate nohighlight">\(f_2\)</span> by <span class="math notranslate nohighlight">\( \frac{f_b-f_a}{2}\)</span> in the equation above, we get</p>
+<p>To understand what happens in general, we replace <span class="math notranslate nohighlight">\(f_1\)</span> by <span class="math notranslate nohighlight">\(\frac{f_a+f_b}{2}\)</span> and  <span class="math notranslate nohighlight">\(f_2\)</span> by <span class="math notranslate nohighlight">\( \frac{f_b-f_a}{2}\)</span> in the equation above. This gives us</p>
 <div class="math notranslate nohighlight">
 \[ \sin\left(  2 \pi \left(  \frac{f_a+f_b}{2} \right) t \right) \sin \left( 2 \pi \left(  \frac{f_b-f_a}{2}    \right) t           \right) = \frac{1}{2}\cos \left( 2 \pi f_a t \right) - \frac{1}{2}\cos\left( 2 \pi f_b t \right) .\]</div>
-<p>In other words, two cosine waves with a similar frequency added together correspond to modulating a sine wave at the average frequency with a sine wave at half thw frequency difference. So one expects a tremolo effect to occur when the instruments are not in tune.</p>
+<p>In other words, two cosine waves with a similar frequency added together correspond to modulating a sine wave at the average frequency with a (carrier) sine wave at half the frequency difference. If <span class="math notranslate nohighlight">\(f_1\)</span> and <span class="math notranslate nohighlight">\(f_2\)</span> are close frequencies in the audible range, then their difference is small. Therefore, one expects a tremolo effect to occur when the instruments are not in tune.</p>
 <p>Exercise 17: Suppose the signals <span class="math notranslate nohighlight">\( \sin \left( 2 \pi 440 t \right) \)</span> (a middle A) and the signal <span class="math notranslate nohighlight">\(\sin \left( 2\pi 442 t\right)\)</span> are added together. What would be the frequency of the carrier (i.e., the beat/tremolo frequency)? Play the added signals: do you hear the beats? Plot the modulated signal: is it the same? Plot a few cycles of each signal (added and modulated) and compare.</p>
 <p>Exercise 18: Can two musicians listening to the added sounds determine the difference between the frequencies of their instruments? If so, how? If not, why not.</p>
 <p>Exercise 19: Can two musicians playing out-of-tune instruments use the beat phenomenon so to tune their instrument in such a way that they play an A at the 440Hz frequency?  If so, how? If not, explain why not.</p>
