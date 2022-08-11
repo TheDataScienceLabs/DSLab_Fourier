@@ -15,10 +15,11 @@ parts:
   - file: labs/distance_sensor_project.ipynb 
   - file: labs/2_experiencing_sound.ipynb
 
-- caption: Amplitude Modulation
+- caption: Modulation
   chapters:
   - file: labs/am.ipynb
   - file: labs/voice_changer_project.ipynb
+  - file: labs/chirps.ipynb
   
 - caption: Analysis
   chapters:
@@ -26,6 +27,8 @@ parts:
   - file: labs/dft.ipynb
   - file: labs/pedometer/pedometer_project.ipynb
   - file: labs/pedometer/pedo_frequency_project.ipynb
+  - file: labs/tuning.ipynb
+  - file: labs/instruments.ipynb
   
 - caption: Processing
   chapters:
