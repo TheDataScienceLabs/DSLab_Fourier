@@ -21,9 +21,9 @@ SAMPLE_SIZE_IN_BITS = 16
 
 audio_out = I2S(
     0,
-    sck=Pin(10),
-    ws=Pin(11),
-    sd=Pin(12),
+    sck=Pin(18),
+    ws=Pin(19),
+    sd=Pin(20),
     mode=I2S.TX,
     bits=SAMPLE_SIZE_IN_BITS,
     format=I2S.MONO,
