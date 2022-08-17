@@ -19,7 +19,7 @@ parts:
   chapters:
   - file: labs/am.ipynb
   - file: labs/voice_changer_project.ipynb
-  - file: labs/chirps.ipynb
+  - file: labs/chirp.ipynb
   
 - caption: Analysis
   chapters:
