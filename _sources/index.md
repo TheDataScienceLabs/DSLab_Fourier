@@ -6,6 +6,8 @@ Welcome to The Data Science Labs on Fourier Analysis! This is a one credit cours
 
 This course requires no work outside of the lab, including no homework, no quizzes, no tests, and no exams. All work is performed during the 150 minutes spent in the lab each week. A course on Fourier analysis (either ECE301, AAE301 or MA428) is a co-requisite for taking this course. Some experience in Python is also required (e.g. MA16290)
 
+The material builds on the concept of continuous-time Fourier series to synthesize and analyze signals. A direct connection is made between the continuous-time Fourier series and the discrete fourier transform (DFT), so that no knowledge of the Fourier transform (either continuous-time or discrete-time) is required. 
+
 We are still polishing the last details of the course. The planned first offering is in the Spring semester of 2023. 
 
 <br>
