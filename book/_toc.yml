@@ -20,12 +20,6 @@ parts:
   - file: labs/am.ipynb
   - file: labs/voice_changer_project.ipynb
   - file: labs/chirp.ipynb
-  - file: labs/am.ipynb
- 
-- caption: Modulation again
-  chapters:
-  - file: labs/am.ipynb
-  - file: labs/voice_changer_project.ipynb
  
 - caption: Analysis
   chapters:
