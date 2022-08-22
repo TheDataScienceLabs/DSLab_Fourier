@@ -17,10 +17,10 @@ parts:
 
 - caption: Modulation
   chapters:
-  - file: labs/am.ipynb
-  - file: labs/voice_changer_project.ipynb
-  - file: labs/chirp.ipynb
- 
+  - file: labs/modulation/am.ipynb
+  - file: labs/modulation/voice_changer_project.ipynb
+  - file: labs/modulation/chirp.ipynb
+
 - caption: Analysis
   chapters:
   - file: labs/3_sampling_and_reconstruction.ipynb
