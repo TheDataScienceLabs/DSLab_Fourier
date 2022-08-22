@@ -11,8 +11,8 @@ parts:
 - caption: Synthesis
   chapters:
   - file: labs/1_play_sounds.ipynb
-  - file: labs/piano_project.ipynb
-  - file: labs/distance_sensor_project.ipynb 
+  - file: labs/build_a_synthesizer/build_a_synthesizer.ipynb
+  - file: labs/build_a_theremin/build_a_theremin.ipynb
   - file: labs/2_experiencing_sound.ipynb
 
 - caption: Modulation
