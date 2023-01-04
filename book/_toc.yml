@@ -6,7 +6,7 @@ root: index
 parts:
 - caption: Preliminaries
   chapters:
-  - file: labs/intro_lab.ipynb
+  - file: labs/Intro/intro_lab.ipynb
 
 - caption: Synthesis
   chapters:
@@ -38,8 +38,4 @@ parts:
   chapters:
   - file: labs/final_project.ipynb
   
-- caption: Other Stuff- to be sorted
-  chapters:
-  - file: labs/piano/labx.ipynb
-  - glob: labs/2_Gait_Labs/*/*
 
