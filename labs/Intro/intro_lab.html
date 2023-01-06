@@ -498,9 +498,21 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-3-submitting-the-lab-span">
+  <a class="reference internal nav-link" href="#span-style-color-orange-3-breadboard-connections-revised-span">
    <span style="color:orange;">
-    3. Submitting the Lab
+    3. Breadboard Connections Revised
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-important-notes">
+   Some Important Notes:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-4-submitting-the-lab-span">
+   <span style="color:orange;">
+    4. Submitting the Lab
    </span>
   </a>
  </li>
@@ -579,9 +591,21 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-3-submitting-the-lab-span">
+  <a class="reference internal nav-link" href="#span-style-color-orange-3-breadboard-connections-revised-span">
    <span style="color:orange;">
-    3. Submitting the Lab
+    3. Breadboard Connections Revised
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-important-notes">
+   Some Important Notes:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-4-submitting-the-lab-span">
+   <span style="color:orange;">
+    4. Submitting the Lab
    </span>
   </a>
  </li>
@@ -625,7 +649,10 @@ title="Print to PDF"
 <section id="span-style-color-orange-0-required-hardware-span">
 <h2><span style="color:orange;"> 0. Required Hardware </span><a class="headerlink" href="#span-style-color-orange-0-required-hardware-span" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
-<li><p>N/A</p></li>
+<li><p>1 LED</p></li>
+<li><p>Voltage Regulator IC</p></li>
+<li><p>breadboard</p></li>
+<li><p>wires</p></li>
 </ul>
 </section>
 <section id="span-style-color-orange-1-before-starting-span">
@@ -650,8 +677,36 @@ title="Print to PDF"
 <p>Exercise 2: Simplify the expression <span class="math notranslate nohighlight">\(e^{i 2 \pi k}-1\)</span>, where <span class="math notranslate nohighlight">\(k\)</span> is an integer. Write the steps of your simplification using Latex code. Note: Here, we are asking for an algebraic simplification. However, you may use numerical computations to help you find/check the answer.</p>
 <p>Exercise 3: a) Write a function that computes the sum <span class="math notranslate nohighlight">\(\sum_{n=0}^N e^{i \frac{2 \pi}{10} n }\)</span>. b) Use your function to evaluate the sum for <span class="math notranslate nohighlight">\(N=7\)</span>. Hint: Don’t forget to load the relevant library.</p>
 </section>
-<section id="span-style-color-orange-3-submitting-the-lab-span">
-<h2><span style="color:orange;"> 3. Submitting the Lab </span><a class="headerlink" href="#span-style-color-orange-3-submitting-the-lab-span" title="Permalink to this headline">#</a></h2>
+<section id="span-style-color-orange-3-breadboard-connections-revised-span">
+<h2><span style="color:orange;"> 3. Breadboard Connections Revised </span><a class="headerlink" href="#span-style-color-orange-3-breadboard-connections-revised-span" title="Permalink to this headline">#</a></h2>
+<p>We will be using a breadboard throughout the labs to temporarily prototype all the experiments as it is easy to use without any soldering.</p>
+<p>A typical breadboard looks like this:</p>
+<a class="reference internal image-reference" href="../../_images/breadboard.jpg"><img alt="" src="../../_images/breadboard.jpg" style="width: 600px;" /></a>
+<p>The outer two rows on top and bottom of the board are shorted horizontally (any two points on the same row will have the same potential).
+The remaining areas are shorted column wise till the ridge at the middle. We can understand this clearly by seeing the internals of the breadboard.</p>
+<a class="reference internal image-reference" href="../../_images/breadboard_internal.jpg"><img alt="" src="../../_images/breadboard_internal.jpg" style="width: 600px;" /></a>
+</section>
+<section id="some-important-notes">
+<h2>Some Important Notes:<a class="headerlink" href="#some-important-notes" title="Permalink to this headline">#</a></h2>
+<ol class="simple">
+<li><p>Most of the electronic components that we use in the lab will run only on either 3.3V or 5V DC.</p></li>
+<li><p>If you are not sure about the safe operation of a component or any equipment in the lab. Please contact a TA.</p></li>
+<li><p>The longest leg of an LED is the anode which should be connected to the positive.</p></li>
+<li><p>Verify with any of the teaching staff before powering the circuit.</p></li>
+</ol>
+<p>Exercise 4: Wiring an LED on a breadboard</p>
+<p>The picture below shows a voltage regulator IC which we will use to regulate the voltage to protect our circuit.
+We need this regulator as the battery we are using to power the circuit is 9 volts and we will be using this IC to drop the voltage to 5V.</p>
+<a class="reference internal image-reference" href="../../_images/voltage_regulator_ic.jpg"><img alt="" src="../../_images/voltage_regulator_ic.jpg" style="width: 400px;" /></a>
+<p>When the IC is facing you as shown in the figure the left pin will be the input, the middle pin will be the common ground and the right pin will be the output voltage (5V with respect to ground).</p>
+<p>Now you can start wiring the circuit on the breadboard using this circuit diagram</p>
+<p>The circuit will look something like this.</p>
+<p>The output of the Voltage regulator will be 5V but our LED is rated for 2.5 - 3V, so we will be using a 220 ohm resistor in series with the LED so that it will not be damaged.</p>
+<a class="reference internal image-reference" href="../../_images/circuit_diagram.png"><img alt="" src="../../_images/circuit_diagram.png" style="width: 600px;" /></a>
+<p>If your circuit connections are correct, the LED should light up.</p>
+</section>
+<section id="span-style-color-orange-4-submitting-the-lab-span">
+<h2><span style="color:orange;"> 4. Submitting the Lab </span><a class="headerlink" href="#span-style-color-orange-4-submitting-the-lab-span" title="Permalink to this headline">#</a></h2>
 <p>Once you have finished the first lab, you will need to submit it. Recall that you are expected to submit the lab before the end of class everyweek.</p>
 <p>Before you submit, make sure that everything is completely filled out and saved (either by typing Ctrl+S or by clicking the floppy disk icon in the top left of this application). Once you’ve done this, navigate to <em>File</em> in the top left of the screen and find <em>Save and Export Notebook As…”</em>. Once the drop down comes up, click on PDF and save a file to the folder you made at the beginning of this lab. Once this has been done you can turn it in under the submission link in Brightspace.</p>
 <p>Once you have submitted your lab in Brightspace, you are done and free to leave!</p>
