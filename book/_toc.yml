@@ -29,7 +29,7 @@ parts:
   - file: labs/pedometer/pedo_frequency_project.ipynb
   - file: labs/tuning.ipynb
   - file: labs/instruments.ipynb
-  
+
 - caption: Processing
   chapters:
   - file: labs/filtering.ipynb
@@ -37,5 +37,7 @@ parts:
 - caption: Design a project of your own
   chapters:
   - file: labs/final_project.ipynb
-  
 
+- caption: Extra Materials
+  chapters:
+   - file: extra_materials/intro_to_breadboards/intro_to_breadboards.ipynb
