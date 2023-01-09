@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Extra Materials: Introduction to Breadboards &#8212; The Data Science Labs on Fourier Analysis</title>
+    <title>Introduction to Breadboards &#8212; The Data Science Labs on Fourier Analysis</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -242,7 +242,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Extra Materials: Introduction to Breadboards
+   Introduction to Breadboards
   </a>
  </li>
 </ul>
@@ -483,15 +483,23 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-1-breadboard-connections-revised-span">
+  <a class="reference internal nav-link" href="#span-style-color-orange-1-breadboard-connections-span">
    <span style="color:orange;">
-    1. Breadboard Connections Revised
+    1. Breadboard Connections
    </span>
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#some-important-notes">
      Some Important Notes:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span-wiring-an-led-on-a-breadboard">
+     <span style="color:red">
+      Exercise 1:
+     </span>
+     Wiring an LED on a breadboard
     </a>
    </li>
   </ul>
@@ -512,7 +520,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Extra Materials: Introduction to Breadboards</h1>
+                <h1>Introduction to Breadboards</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -554,15 +562,23 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-1-breadboard-connections-revised-span">
+  <a class="reference internal nav-link" href="#span-style-color-orange-1-breadboard-connections-span">
    <span style="color:orange;">
-    1. Breadboard Connections Revised
+    1. Breadboard Connections
    </span>
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#some-important-notes">
      Some Important Notes:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span-wiring-an-led-on-a-breadboard">
+     <span style="color:red">
+      Exercise 1:
+     </span>
+     Wiring an LED on a breadboard
     </a>
    </li>
   </ul>
@@ -584,9 +600,10 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="extra-materials-introduction-to-breadboards">
-<h1>Extra Materials: Introduction to Breadboards<a class="headerlink" href="#extra-materials-introduction-to-breadboards" title="Permalink to this headline">#</a></h1>
-<p><font size="3"> Last updated January 8, 2023 </font></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-breadboards">
+<h1>Introduction to Breadboards<a class="headerlink" href="#introduction-to-breadboards" title="Permalink to this headline">#</a></h1>
+<p><font size="6"> Extra material </font> <br>
+<font size="3"> Last updated January 9, 2023 </font></p>
 <section id="span-style-color-orange-00-content-span">
 <h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this headline">#</a></h2>
 <section id="mathematics">
@@ -611,15 +628,16 @@ title="Print to PDF"
 <section id="span-style-color-orange-0-required-hardware-span">
 <h2><span style="color:orange;"> 0. Required Hardware </span><a class="headerlink" href="#span-style-color-orange-0-required-hardware-span" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
-<li><p>1 LED</p></li>
+<li><p>9V battery</p></li>
+<li><p>LED</p></li>
 <li><p>Voltage Regulator IC (LM 7805)</p></li>
 <li><p>220 ohm resistor</p></li>
 <li><p>breadboard</p></li>
 <li><p>wires</p></li>
 </ul>
 </section>
-<section id="span-style-color-orange-1-breadboard-connections-revised-span">
-<h2><span style="color:orange;"> 1. Breadboard Connections Revised </span><a class="headerlink" href="#span-style-color-orange-1-breadboard-connections-revised-span" title="Permalink to this headline">#</a></h2>
+<section id="span-style-color-orange-1-breadboard-connections-span">
+<h2><span style="color:orange;"> 1. Breadboard Connections </span><a class="headerlink" href="#span-style-color-orange-1-breadboard-connections-span" title="Permalink to this headline">#</a></h2>
 <p>We will be using a breadboard throughout the labs to temporarily prototype all the experiments as it is easy to use without any soldering.</p>
 <p>A typical breadboard looks like this:</p>
 <a class="reference internal image-reference" href="../../_images/breadboard.jpg"><img alt="" src="../../_images/breadboard.jpg" style="width: 600px;" /></a>
@@ -634,7 +652,9 @@ The remaining areas are shorted column wise till the ridge at the middle. We can
 <li><p>The longest leg of an LED is the anode which should be connected to the positive.</p></li>
 <li><p>Verify with any of the teaching staff before powering the circuit.</p></li>
 </ol>
-<p>Exercise 1: Wiring an LED on a breadboard</p>
+</section>
+<section id="span-style-color-red-exercise-1-span-wiring-an-led-on-a-breadboard">
+<h3><span style="color:red"> Exercise 1: </span> Wiring an LED on a breadboard<a class="headerlink" href="#span-style-color-red-exercise-1-span-wiring-an-led-on-a-breadboard" title="Permalink to this headline">#</a></h3>
 <p>The picture below shows a voltage regulator IC which we will use to regulate the voltage to protect our circuit.
 We need this regulator as the battery we are using to power the circuit is 9 volts and we will be using this IC to drop the voltage to 5V.</p>
 <a class="reference internal image-reference" href="../../_images/voltage_regulator_ic.jpg"><img alt="" src="../../_images/voltage_regulator_ic.jpg" style="width: 400px;" /></a>
