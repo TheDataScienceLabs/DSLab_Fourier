@@ -29,7 +29,7 @@ Follow the instructions on the terminal to complete the installation.
 Open a new terminal window and type
 
 ```bash
-Python –version
+python -–version
 ```
 
 You will get an output like,
@@ -45,7 +45,7 @@ A virtual environment is used to isolate your project from other python projects
 You can easily create a virtual environment with the name "dslab" using conda by
 
 ```bash
-conda create --name dslab.
+conda create --name dslab
 ```
 
 This will create a new environment dslab.
