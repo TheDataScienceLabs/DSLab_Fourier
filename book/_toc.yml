@@ -23,8 +23,8 @@ parts:
 
 - caption: Analysis
   chapters:
-  - file: labs/3_sampling_and_reconstruction.ipynb
   - file: labs/dft.ipynb
+  - file: labs/Signal_analysis_with_DFT.ipynb
   - file: labs/pedometer/pedometer_project.ipynb
   - file: labs/pedometer/pedo_frequency_project.ipynb
   - file: labs/tuning.ipynb
