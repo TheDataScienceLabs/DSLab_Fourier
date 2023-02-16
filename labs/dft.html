@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Week 8: Sampled Signal Analysis with the DFT &#8212; The Data Science Labs on Fourier Analysis</title>
+    <title>Week 9: The Discrete Fourier Transform (DFT) &#8212; The Data Science Labs on Fourier Analysis</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -54,8 +54,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Week 10: Build a Pedometer" href="pedometer/pedometer_project.html" />
-    <link rel="prev" title="Week – : Finding the components of a measured signal" href="3_sampling_and_reconstruction.html" />
+    <link rel="next" title="Week 10: Frequency Analysis with the DFT" href="Signal_analysis_with_DFT.html" />
+    <link rel="prev" title="Week 8: Chirps and Bells" href="modulation/chirp.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -182,14 +182,14 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="3_sampling_and_reconstruction.html">
-   Week – : Finding the components of a measured signal
-  </a>
- </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Week 8: Sampled Signal Analysis with the DFT
+   Week 9: The Discrete Fourier Transform (DFT)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Signal_analysis_with_DFT.html">
+   Week 10: Frequency Analysis with the DFT
   </a>
  </li>
  <li class="toctree-l1">
@@ -568,25 +568,6 @@ title="Print to PDF"
      </span>
     </a>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-4-the-theory-span">
-   <span style="color:orange;">
-    4. The Theory
-   </span>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#theorem">
-   Theorem
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#special-case">
-   Special case
-  </a>
-  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#span-style-color-red-exercise-9-span">
      <span style="color:red">
@@ -597,9 +578,51 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-5-using-the-dft-to-find-dominant-frequencies-in-a-signal-span">
+  <a class="reference internal nav-link" href="#span-style-color-orange-4-the-theory-span">
    <span style="color:orange;">
-    5. Using the DFT to Find Dominant Frequencies in a Signal
+    4. The Theory
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sampling-theorem">
+   Sampling Theorem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#special-case-of-the-sampling-theorem">
+   Special case of the Sampling Theorem
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-10-span">
+     <span style="color:red">
+      Exercise 10
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-5-the-fft-command-span">
+   <span style="color:orange;">
+    5. The FFT Command
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-11-span">
+     <span style="color:red">
+      Exercise 11
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-6-using-the-dft-to-find-dominant-frequencies-in-a-signal-span">
+   <span style="color:orange;">
+    6. Using the DFT to Find Dominant Frequencies in a Signal
    </span>
   </a>
   <ul class="nav section-nav flex-column">
@@ -611,7 +634,7 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-red-exercise-10-span">
+    <a class="reference internal nav-link" href="#id2">
      <span style="color:red">
       Exercise 10
      </span>
@@ -635,7 +658,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Week 8: Sampled Signal Analysis with the DFT</h1>
+                <h1>Week 9: The Discrete Fourier Transform (DFT)</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -759,25 +782,6 @@ title="Print to PDF"
      </span>
     </a>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-4-the-theory-span">
-   <span style="color:orange;">
-    4. The Theory
-   </span>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#theorem">
-   Theorem
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#special-case">
-   Special case
-  </a>
-  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#span-style-color-red-exercise-9-span">
      <span style="color:red">
@@ -788,9 +792,51 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-5-using-the-dft-to-find-dominant-frequencies-in-a-signal-span">
+  <a class="reference internal nav-link" href="#span-style-color-orange-4-the-theory-span">
    <span style="color:orange;">
-    5. Using the DFT to Find Dominant Frequencies in a Signal
+    4. The Theory
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sampling-theorem">
+   Sampling Theorem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#special-case-of-the-sampling-theorem">
+   Special case of the Sampling Theorem
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-10-span">
+     <span style="color:red">
+      Exercise 10
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-5-the-fft-command-span">
+   <span style="color:orange;">
+    5. The FFT Command
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-11-span">
+     <span style="color:red">
+      Exercise 11
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-6-using-the-dft-to-find-dominant-frequencies-in-a-signal-span">
+   <span style="color:orange;">
+    6. Using the DFT to Find Dominant Frequencies in a Signal
    </span>
   </a>
   <ul class="nav section-nav flex-column">
@@ -802,7 +848,7 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-red-exercise-10-span">
+    <a class="reference internal nav-link" href="#id2">
      <span style="color:red">
       Exercise 10
      </span>
@@ -827,10 +873,10 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="week-8-sampled-signal-analysis-with-the-dft">
-<h1>Week 8: Sampled Signal Analysis with the DFT<a class="headerlink" href="#week-8-sampled-signal-analysis-with-the-dft" title="Permalink to this headline">#</a></h1>
-<p><font size="6"> Laboratory 7 </font> <br>
-<font size="3"> Last updated February 15, 2023 </font></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="week-9-the-discrete-fourier-transform-dft">
+<h1>Week 9: The Discrete Fourier Transform (DFT)<a class="headerlink" href="#week-9-the-discrete-fourier-transform-dft" title="Permalink to this headline">#</a></h1>
+<p><font size="6"> Laboratory 8 </font> <br>
+<font size="3"> Last updated February 16, 2023 </font></p>
 <section id="span-style-color-orange-00-content-span">
 <h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this headline">#</a></h2>
 <section id="mathematics">
@@ -879,19 +925,20 @@ title="Print to PDF"
 <p>Putting this in mathematical terms: a finite duration signal <span class="math notranslate nohighlight">\(x(t)\)</span> takes the form $<span class="math notranslate nohighlight">\( x(t)=\left\{ \begin{array}{ll} x(t), &amp; 0\leq t &lt; \text{signal duration}, \\ 0, &amp; \text{ else.}\end{array}  \right. \)</span>$</p>
 <p>In order to analyze a finite duration signal, we repeat it periodically with a period <span class="math notranslate nohighlight">\(P\)</span> that is at least as long as the duration of the signal. When <span class="math notranslate nohighlight">\(P\)</span> is strictly greater than the duraction, we say that the signal has been “zero padded” between the repetitions.</p>
 <p>We assume that the repeated signal is such that it is equal to its Fourier series $<span class="math notranslate nohighlight">\(f(t)= \frac{a_0}{2}+ \sum_{k=1}^\infty a_k \cos \left(\frac{2 \pi}{P} k t \right) + b_k \sin \left(\frac{2 \pi}{P} k t  \right).\)</span>$</p>
-<p>We are interested in analyzing the signal <span class="math notranslate nohighlight">\(f(t)\)</span>. In real-life, we cannot do this directly by manipulating the function <span class="math notranslate nohighlight">\(f(t)\)</span>, as we typically only have access to a digital recording of <span class="math notranslate nohighlight">\(f(t)\)</span>. So computing the Fourier transform of <span class="math notranslate nohighlight">\(f(t)\)</span> (by integration) is not possible. So we would like to be able to perform the analysis of <span class="math notranslate nohighlight">\(f(t)\)</span> by analysing its digital recording instead.</p>
+<p>We are interested in analyzing the signal <span class="math notranslate nohighlight">\(f(t)\)</span>. In real-life, we cannot do this directly by manipulating the function <span class="math notranslate nohighlight">\(f(t)\)</span>, as we typically only have access to a digital recording of <span class="math notranslate nohighlight">\(f(t)\)</span>. So computing the Fourier transform of <span class="math notranslate nohighlight">\(f(t)\)</span> (by integration) is not possible. We would like to be able to perform the analysis of <span class="math notranslate nohighlight">\(f(t)\)</span> by analysing its digital recording instead.</p>
 <p>One important analysis to be performed is the estimations of the coefficients  <span class="math notranslate nohighlight">\(a_k,b_k\)</span> from the digital recording.</p>
 <p>We assume that the digital recording takes the form of a discrete-time signal <span class="math notranslate nohighlight">\(f_d[n]\)</span>, with <span class="math notranslate nohighlight">\(n\in {\mathbb N}\)</span>, obtained by sampling the original signal <span class="math notranslate nohighlight">\(f(t)\)</span>. More specifically, we assume that <span class="math notranslate nohighlight">\(f_d[n]\)</span> is a uniform sampling of <span class="math notranslate nohighlight">\(f(t)\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[f_d[n]=f(nT), \text{ for some } T&gt;0.\]</div>
-<p>The parameter <span class="math notranslate nohighlight">\(T\)</span> is called the sampling period. A “uniform sampling” means that the samples are equally spaced; the spacing between the samples is the sampling period <span class="math notranslate nohighlight">\(T\)</span>. In other words, the sampling period <span class="math notranslate nohighlight">\(T\)</span> is the time difference between two sample points. The quantity <span class="math notranslate nohighlight">\(\frac{1}{T}\)</span> is called the sampling “frequency.”</p>
+<p>The parameter <span class="math notranslate nohighlight">\(T\)</span> is called the <strong>sampling period</strong>. The quantity <span class="math notranslate nohighlight">\(\frac{1}{T}\)</span> is called the <strong>sampling frequency</strong>.  In other words, the sampling period <span class="math notranslate nohighlight">\(T\)</span> is the time difference between two sample points, and the sampling frequency represent how many samples are acquired per time unit.</p>
 <p>In order to simplify the math, we rewrite <span class="math notranslate nohighlight">\(f(t)\)</span> in terms of complex exponentials: $<span class="math notranslate nohighlight">\( f(t)=  \sum_{k=-\infty}^\infty c_n e^{i \frac{2\pi}{P}kt} \)</span><span class="math notranslate nohighlight">\( where \)</span> c_0=\frac{a_0}{2} <span class="math notranslate nohighlight">\( and \)</span>c_n=c_{-n}^*=\frac{1}{2} (a_n- i b_n)<span class="math notranslate nohighlight">\(,  for \)</span>n&gt;1$.</p>
 <section id="span-style-color-red-exercise-1-span">
 <h3><span style="color:red"> Exercise 1 </span><a class="headerlink" href="#span-style-color-red-exercise-1-span" title="Permalink to this headline">#</a></h3>
-<p>Derive the above formula. (Hint: replace each sine and cosine by a sum of complex exponentials. If you do not know the sums already, find them using Euler’s formula <span class="math notranslate nohighlight">\(e^{i\theta}=\cos \theta + i \sin \theta\)</span>. B’Euler up! )</p>
-<p>In the following, we will show how to recover the coefficients <span class="math notranslate nohighlight">\(a_k,b_k\)</span> using the Discrete Fourier Transform, or “DFT” for short. The DFT transform a periodic signal with period <span class="math notranslate nohighlight">\(N\)</span> into a sequence of complex numbers that is also periodic with period <span class="math notranslate nohighlight">\(N\)</span>. The numbers in the sequence are called the “DFT coefficients.”</p>
-<p>Here is the formula for the <span class="math notranslate nohighlight">\(k^{th}\)</span> DFT coefficient of a sampled signal <span class="math notranslate nohighlight">\(f_d[n]\)</span> with period <span class="math notranslate nohighlight">\(N\)</span>:
-$<span class="math notranslate nohighlight">\( F[k]= \sum_{n=0}^{N-1} f_d[n] e^{-i \frac{2 \pi}{N} k n }.  \)</span>$</p>
+<p>Derive the above formula. (Hint: replace each sine and cosine by sums of complex exponentials. If you do not know the sums already, find them using Euler’s formula <span class="math notranslate nohighlight">\(e^{i\theta}=\cos \theta + i \sin \theta\)</span>. B’Euler up! )</p>
+<p>In the following, we will show how to recover the coefficients <span class="math notranslate nohighlight">\(a_k,b_k\)</span> using the <strong>Discrete Fourier Transform (DFT)</strong> of the sampling <span class="math notranslate nohighlight">\(f_n[n]\)</span>. The DFT transforms a periodic signal with period <span class="math notranslate nohighlight">\(N\)</span> into a sequence of complex numbers that is also periodic with period <span class="math notranslate nohighlight">\(N\)</span>. The numbers in the sequence are called the <strong>DFT coefficients.</strong></p>
+<p>The formula for the <span class="math notranslate nohighlight">\(k^{th}\)</span> DFT coefficient of a sampled signal <span class="math notranslate nohighlight">\(f_d[n]\)</span> with period <span class="math notranslate nohighlight">\(N\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[ F[k]= \sum_{n=0}^{N-1} f_d[n] e^{-i \frac{2 \pi}{N} k n }.  \]</div>
 <p>As we will see later, in some circumstances, namely if</p>
 <ul class="simple">
 <li><p>the Fourier series of <span class="math notranslate nohighlight">\(f(t)\)</span> is finite, that is to say if <span class="math notranslate nohighlight">\(c_k=0\)</span> for all <span class="math notranslate nohighlight">\(|k|&gt;N_0\)</span>, and</p></li>
@@ -925,13 +972,13 @@ $<span class="math notranslate nohighlight">\( F[k]= \sum_{n=0}^{N-1} f_d[n] e^{
 </section>
 <section id="span-style-color-orange-2-toy-example-of-signal-analysis-span">
 <h2><span style="color:orange;"> 2. Toy Example of Signal Analysis </span><a class="headerlink" href="#span-style-color-orange-2-toy-example-of-signal-analysis-span" title="Permalink to this headline">#</a></h2>
-<p>Suppose the signal recorded, once repeated periorically, is of the form $<span class="math notranslate nohighlight">\(  f(t)= a_1 \cos \left(2 \pi 100 t \right) + a_4 \cos \left(2 \pi 400 k t  \right). \)</span><span class="math notranslate nohighlight">\(
+<p>Suppose the signal recorded, once repeated periorically, is of the form $<span class="math notranslate nohighlight">\(  f(t)= a_1 \cos \left(2 \pi 100 t \right) + a_4 \cos \left(2 \pi 400 t  \right). \)</span><span class="math notranslate nohighlight">\(
 So the signal has period \)</span>P=\frac{1}{100}$.</p>
 <p>Given is a recording with 1000 samples per unit of time (so the sampling period is <span class="math notranslate nohighlight">\(T=\frac{1}{1000}\)</span>: $<span class="math notranslate nohighlight">\( f_d[n] = f( n \frac{1} {1000}).\)</span>$
 More specifically, the recorded signal is</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} \begin{aligned}
-f_d[n]&amp;= a_1 \cos \left(2 \pi 100 \frac{n} {1000} \right) + a_4 \cos \left(2 \pi 400 k \frac{n} {1000}  \right)\\
+f_d[n]&amp;= a_1 \cos \left(2 \pi 100 \frac{n} {1000} \right) + a_4 \cos \left(2 \pi 400  \frac{n} {1000}  \right)\\
 &amp;= a_1 \cos \left(2 \pi \frac{n}{10} \right) + a_4 \cos \left(2 \pi 4 \frac{n}{10} \right). 
 \end{aligned} \end{split}\]</div>
 <p>Observe that <span class="math notranslate nohighlight">\(f_d[n]\)</span> is periodic, with period <span class="math notranslate nohighlight">\(N=10\)</span>. This is because we are taking <span class="math notranslate nohighlight">\(10\)</span> samples per period (since <span class="math notranslate nohighlight">\(\frac{P}{T}=\frac{1000}{100}=10\)</span>).</p>
@@ -958,8 +1005,8 @@ Therefore, \)</span>a_1=2 \frac{F[1]}{10}<span class="math notranslate nohighlig
 <p>Test the formula <span class="math notranslate nohighlight">\(a_1=2 \frac{ F[1]}{10}\)</span> as follows:</p>
 <ul class="simple">
 <li><p>pick the values of <span class="math notranslate nohighlight">\(a_1\)</span> and <span class="math notranslate nohighlight">\(a_4\)</span>.</p></li>
-<li><p>replace the chosen values in the function <span class="math notranslate nohighlight">\(  f(t)= a_1 \cos \left(2 \pi 100 t \right) + a_4 \cos \left(2 \pi 400 k t  \right)\)</span>.</p></li>
-<li><p>Sample the function <span class="math notranslate nohighlight">\(f(t)\)</span> with a sampling period <span class="math notranslate nohighlight">\(T=100\)</span> to obtain the sampling <span class="math notranslate nohighlight">\( f_d[n]\)</span>.</p></li>
+<li><p>replace the chosen values in the function <span class="math notranslate nohighlight">\(  f(t)= a_1 \cos \left(2 \pi 100 t \right) + a_4 \cos \left(2 \pi 400 t  \right)\)</span>.</p></li>
+<li><p>Sample the function <span class="math notranslate nohighlight">\(f(t)\)</span> with a sampling period <span class="math notranslate nohighlight">\(T=1000^{=1}\)</span> to obtain the sampling <span class="math notranslate nohighlight">\( f_d[n]\)</span>.</p></li>
 <li><p>Compute <span class="math notranslate nohighlight">\(F[1]\)</span> using the formula  <span class="math notranslate nohighlight">\(F[1]=\sum_{n=0}^{9} f_d[n]  e^{-i \frac{2\pi}{10} n}\)</span>.</p></li>
 <li><p>Compute <span class="math notranslate nohighlight">\(a_1\)</span> using the formula <span class="math notranslate nohighlight">\(a_1=2 \frac{ F[1]}{10}\)</span>.</p></li>
 <li><p>Compare the value of <span class="math notranslate nohighlight">\(a_1\)</span> you obtained to the original value of <span class="math notranslate nohighlight">\(a_1\)</span> you had chosen. Is it the same?</p></li>
@@ -990,13 +1037,13 @@ again by using the fact that</p>
 <section id="span-style-color-orange-3-another-toy-example-of-signal-analysis-with-aliasing-span">
 <h2><span style="color:orange;"> 3. Another Toy Example of Signal Analysis- with Aliasing </span><a class="headerlink" href="#span-style-color-orange-3-another-toy-example-of-signal-analysis-with-aliasing-span" title="Permalink to this headline">#</a></h2>
 <p>Again, we assume thay the signal recorded is known to be of the form
-$<span class="math notranslate nohighlight">\(  f(t)= a_1 \cos \left(2 \pi 100 t \right) + a_4 \cos \left(2 \pi 400 k t  \right). \)</span><span class="math notranslate nohighlight">\(
+$<span class="math notranslate nohighlight">\(  f(t)= a_1 \cos \left(2 \pi 100 t \right) + a_4 \cos \left(2 \pi 400  t  \right). \)</span><span class="math notranslate nohighlight">\(
 So the signal has period \)</span>P=\frac{1}{100}$.</p>
 <p>This time, we are given a recording with 500 samples per unit of time (so the sampling period is <span class="math notranslate nohighlight">\(T=\frac{1}{500}\)</span>):
 $<span class="math notranslate nohighlight">\( f_d[n] = f( n \frac{1} {500}).\)</span><span class="math notranslate nohighlight">\(
 More specifically, the recorded signal is  
 \)</span><span class="math notranslate nohighlight">\( \begin{aligned}
-f_d[n]&amp;= a_1 \cos \left(2 \pi 100 \frac{n} {500} \right) + a_4 \cos \left(2 \pi 400 k \frac{n} {500}  \right)\\
+f_d[n]&amp;= a_1 \cos \left(2 \pi 100 \frac{n} {500} \right) + a_4 \cos \left(2 \pi 400  \frac{n} {500}  \right)\\
 &amp;= a_1 \cos \left(2 \pi  \frac{n}{5} \right) + a_4 \cos \left(2 \pi 4 \frac{n}{5} \right). 
 \end{aligned} \)</span>$</p>
 <p>Here <span class="math notranslate nohighlight">\(f_d[n]\)</span> is periodic with period <span class="math notranslate nohighlight">\(N=5\)</span>. This is because we are taking <span class="math notranslate nohighlight">\(5\)</span> samples per signal period (since <span class="math notranslate nohighlight">\(\frac{P}{T}=\frac{500}{100}=5\)</span>).</p>
@@ -1009,8 +1056,8 @@ f_d[n]&amp;= \frac{a_1}{2} \left(e^{i 2 \pi  \frac{n}{5}}+ e^{-i 2 \pi  \frac{n}
 <p>Now let us compute the first coefficient of the DFT.</p>
 <p>We have
 $<span class="math notranslate nohighlight">\( \begin{aligned}
-F[1]&amp;=&amp; \sum_{n=0}^{9} f_d[n]  e^{-i \frac{2\pi}{5} n} \\
-&amp;=&amp; 10 \frac{a_1}{2} + 10 \frac{a_2}{2}.
+F[1]&amp;=&amp; \sum_{n=0}^{4} f_d[n]  e^{-i \frac{2\pi}{5} n} \\
+&amp;=&amp; 5 \frac{a_1}{2} + 5 \frac{a_2}{2}.
 \end{aligned} \)</span><span class="math notranslate nohighlight">\(
 since
 \)</span><span class="math notranslate nohighlight">\( \sum_{n=0}^{N-1} e^{j \frac{2\pi}{N} k_1 n } e^{j \frac{2\pi}{N} k_2 n } = \left\{ 
@@ -1019,7 +1066,7 @@ since
    0  &amp;, \text{ else}. 
 \end{array}
 \right.\)</span>$</p>
-<p>Thus, in this case, <span class="math notranslate nohighlight">\(F[1]\)</span> does not give us the value of <span class="math notranslate nohighlight">\(a_1\)</span> anymore, but rather the sum of <span class="math notranslate nohighlight">\(a_1\)</span> and <span class="math notranslate nohighlight">\(a_2\)</span>.</p>
+<p>Thus, in this case, <span class="math notranslate nohighlight">\(F[1]\)</span> does not give us the value of <span class="math notranslate nohighlight">\(a_1\)</span> anymore, but rather only the sum of <span class="math notranslate nohighlight">\(a_1\)</span> and <span class="math notranslate nohighlight">\(a_2\)</span>.</p>
 <p>The reason for this is fundamental: the function <span class="math notranslate nohighlight">\(e^{i 2 \pi  4 \frac{n}{5}}\)</span> is the same as the function <span class="math notranslate nohighlight">\(e^{-i 2 \pi   \frac{n}{5}}\)</span>. So we cannot recover the coefficients separately because the two exponential signals, once sampled, become the same signal. Indeed, the sampled signal can be written as
 $<span class="math notranslate nohighlight">\( f_d[n]= \left( \frac{a_1}{2} +  \frac{a_2}{2} \right) e^{i 2\pi  \frac{n}{5}}+ \left( \frac{a_1}{2} +  \frac{a_2}{2} \right) e^{-i 2\pi  \frac{n}{5}}.\)</span>$</p>
 <p>Another way to see this is to observe that <span class="math notranslate nohighlight">\(\cos (2 \pi 4 \frac{n}{5})= \cos(2 \pi 4 \frac{n}{5}- 2\pi n )= \cos (-2 \pi  \frac{n}{5})=  \cos (2 \pi  \frac{n}{5})\)</span>.</p>
@@ -1033,42 +1080,72 @@ This phenomenon is called “aliasing.”</p>
 <h3><span style="color:red"> Exercise 8 </span><a class="headerlink" href="#span-style-color-red-exercise-8-span" title="Permalink to this headline">#</a></h3>
 <p>Check, numerically, that sampling <span class="math notranslate nohighlight">\(\cos (2\pi 100 t)\)</span> or <span class="math notranslate nohighlight">\(\cos (2\pi 100 t)\)</span>  with a period <span class="math notranslate nohighlight">\(T=\frac{1}{500}\)</span> in either cases yield the same discrete-time signal <span class="math notranslate nohighlight">\(f_d[n]\)</span>.</p>
 </section>
+<section id="span-style-color-red-exercise-9-span">
+<h3><span style="color:red"> Exercise 9 </span><a class="headerlink" href="#span-style-color-red-exercise-9-span" title="Permalink to this headline">#</a></h3>
+<p>Use an approach similar to that of Exercise 5 to show, numerically, that in the toy example with aliasing above, we have <span class="math notranslate nohighlight">\(\frac{2}{5} F[1]= a_1+a_2\)</span> (as opposed to <span class="math notranslate nohighlight">\(\frac{2}{5} F[1]= a_1\)</span>).</p>
+</section>
 </section>
 <section id="span-style-color-orange-4-the-theory-span">
 <h2><span style="color:orange;"> 4. The Theory </span><a class="headerlink" href="#span-style-color-orange-4-the-theory-span" title="Permalink to this headline">#</a></h2>
-<p>The aliasing phenomenon is well understood. In fact, you may have heard about the Nyquist criterion: is a condition that, if satisfied, guarantees that aliasing will not uccur. In this lab, we will not dwelve further into this criterion per say but, instead, jump directly to the topic of interest, which is to analyze a signal <span class="math notranslate nohighlight">\(f(t)\)</span> from a sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span>. By “analysing” we mean recovering the Fourier series coefficients <span class="math notranslate nohighlight">\(c_k\)</span>.</p>
-<p>The theory tells us that the DFT coefficients give us the value of the Fourier series coefficients of <span class="math notranslate nohighlight">\(f(t)\)</span> provided that we have taken “enough” samples considering the number of non-zero coefficients in the Fourier series of <span class="math notranslate nohighlight">\(f(t)\)</span>. More specifically, we have the following theorem.</p>
+<p>The aliasing phenomenon is well understood. In fact, you may have heard about the Nyquist criterion: a condition that, if satisfied, guarantees that aliasing will not uccur. In this lab, we will not dwelve further into this criterion per say but, instead, jump directly to the topic of interest, which is to analyze a signal <span class="math notranslate nohighlight">\(f(t)\)</span> from a sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span>. By “analysing” we mean recovering the Fourier series coefficients <span class="math notranslate nohighlight">\(c_k\)</span>.</p>
+<p>The <strong>(N-point) DFT</strong> of a signal <span class="math notranslate nohighlight">\(f_d[n]\)</span> with period <span class="math notranslate nohighlight">\(N\)</span> is defined as the discrete-time signal</p>
+<div class="math notranslate nohighlight">
+\[ F[k]= \sum_{n=0}^{N-1} f_d[n] e^{-i \frac{2 \pi}{N} k n }.  \]</div>
+<p>The value of <span class="math notranslate nohighlight">\(F[k]\)</span>  is called the <strong>k-th coefficients of the DFT</strong> of the signal.</p>
+<p>It turns out that the DFT coefficients give us the value of the Fourier series coefficients of <span class="math notranslate nohighlight">\(f(t)\)</span>, provided that we have taken “enough” samples considering the number of non-zero coefficients in the Fourier series of <span class="math notranslate nohighlight">\(f(t)\)</span>. More specifically, we have the following theorem.</p>
 </section>
-<section id="theorem">
-<h2>Theorem<a class="headerlink" href="#theorem" title="Permalink to this headline">#</a></h2>
+<section id="sampling-theorem">
+<h2>Sampling Theorem<a class="headerlink" href="#sampling-theorem" title="Permalink to this headline">#</a></h2>
 <p>If f(t) has a finite Fourier series with <span class="math notranslate nohighlight">\(2K+1\)</span> terms</p>
 <div class="math notranslate nohighlight">
-\[f(t)=\sum_{k=-K}^K c_k e^{i \frac{2\pi}{P} t}\]</div>
+\[f(t)=\sum_{k=-K}^K c_k e^{i \frac{2\pi}{P} k t} = \frac{a_0}{2}+ \sum_{k=1}^K a_k \cos \left(\frac{2 \pi}{P} k t \right) + b_k \sin \left(\frac{2 \pi}{P} k t  \right). \]</div>
 <p>(so its maximum frequency is <span class="math notranslate nohighlight">\(K\frac{1}{P}\)</span>), and if we sample f(t) with a sampling frequency <span class="math notranslate nohighlight">\(\frac{1}{T}\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[\frac{1}{T} &gt; 2 K\frac{1}{P}\]</div>
-<p>then the DFT of <span class="math notranslate nohighlight">\(f_d[n]\)</span> gives us the coefficients <span class="math notranslate nohighlight">\(c_k\)</span> of the Fourier series of <span class="math notranslate nohighlight">\(f(t)\)</span>.</p>
-<p>More specifically, we have</p>
+<p>which results in a periodic sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> with period <span class="math notranslate nohighlight">\(N\)</span>.</p>
+<p>Then the N-point DFT of <span class="math notranslate nohighlight">\(f_d[n]\)</span> gives the values of coefficients <span class="math notranslate nohighlight">\(c_k\)</span> of the Fourier series of <span class="math notranslate nohighlight">\(f(t)\)</span> as</p>
 <div class="math notranslate nohighlight">
 \[F[k]= N c_k= N\frac{1}{2}(a_k-ib_k), \text{ for all }  0\leq k \leq K.\]</div>
+<p>Proof of the Sampling Theorem:</p>
 </section>
-<section id="special-case">
-<h2>Special case<a class="headerlink" href="#special-case" title="Permalink to this headline">#</a></h2>
-<p>If <span class="math notranslate nohighlight">\(\frac{P}{T}=N\)</span> is an integer (i.e., we take exactly N samples per period), and <span class="math notranslate nohighlight">\(N&gt;2K\)</span>, then we are guaranteed that no aliasing will occur and we can recover the coefficients <span class="math notranslate nohighlight">\(c_k\)</span> from the DFT coefficients <span class="math notranslate nohighlight">\(F[k]\)</span> as</p>
+<section id="special-case-of-the-sampling-theorem">
+<h2>Special case of the Sampling Theorem<a class="headerlink" href="#special-case-of-the-sampling-theorem" title="Permalink to this headline">#</a></h2>
+<p>If a signal <span class="math notranslate nohighlight">\(f(t)\)</span> of the form</p>
+<div class="math notranslate nohighlight">
+\[f(t)=\sum_{k=-K}^K c_k e^{i \frac{2\pi}{P} k t}= \frac{a_0}{2}+ \sum_{k=1}^K a_k \cos \left(\frac{2 \pi}{P} k t \right) + b_k \sin \left(\frac{2 \pi}{P} k t  \right)\]</div>
+<p>is sampled in such a way that</p>
+<ul class="simple">
+<li><p>exactly <span class="math notranslate nohighlight">\(N\)</span> samples per period are taken (i.e., <span class="math notranslate nohighlight">\(\frac{P}{T}=N\)</span> is an integer)</p></li>
+<li><p><span class="math notranslate nohighlight">\(N&gt;2K\)</span></p></li>
+</ul>
+<p>then the DFT coefficients <span class="math notranslate nohighlight">\(F[k]\)</span> satisfy</p>
 <p>$<span class="math notranslate nohighlight">\(F[k]= N c_k= N\frac{1}{2}(a_k-ib_k), \text{ for all } 0\leq k \leq K\)</span>$.</p>
-<section id="span-style-color-red-exercise-9-span">
-<h3><span style="color:red"> Exercise 9 </span><a class="headerlink" href="#span-style-color-red-exercise-9-span" title="Permalink to this headline">#</a></h3>
-<p>Show that, under the hypothesis of the theorem, we have  <span class="math notranslate nohighlight">\(F[k]= N c_k\)</span> for all <span class="math notranslate nohighlight">\(0\leq k \leq K\)</span>.</p>
+<section id="span-style-color-red-exercise-10-span">
+<h3><span style="color:red"> Exercise 10 </span><a class="headerlink" href="#span-style-color-red-exercise-10-span" title="Permalink to this headline">#</a></h3>
+<p>Illustrate the Sampling Theorem with a numerical example:</p>
+<ul class="simple">
+<li><p>Write a  periodic signal <span class="math notranslate nohighlight">\(f(t)\)</span> as as a linear combination of  sines and cosines.</p></li>
+<li><p>Build a sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> with an appropriate sampling period <span class="math notranslate nohighlight">\(T\)</span>.</p></li>
+<li><p>Ue the formula from the theorem to recover the coefficients of the linear combination.</p></li>
+</ul>
+</section>
+</section>
+<section id="span-style-color-orange-5-the-fft-command-span">
+<h2><span style="color:orange;"> 5. The FFT Command </span><a class="headerlink" href="#span-style-color-orange-5-the-fft-command-span" title="Permalink to this headline">#</a></h2>
+<p>In the previous exercise, you had to write your own function to compute a DFT. Running your function may have taken a long time, especially if you used loops. Python has a quick command to compute a DFT. The command uses a fast algorithm called a Fast Fourier Transform (FFT) to compute the DFT.  Here is the synthax. CODE NEEDS TO BE ADDED HERE.</p>
 <p>Hint: Use the fact that $<span class="math notranslate nohighlight">\( \sum_{n=0}^{N-1} e^{j \frac{2\pi}{N} k_1 n } e^{j \frac{2\pi}{N} k_2 n } = \left\{ 
 \begin{array}{cc}
     N &amp;, \text{ if } k_1-k_2  \text{ is a multiple of } N  \\
    0  &amp;, \text{ else}. 
 \end{array}
 \right.\)</span>$</p>
+<section id="span-style-color-red-exercise-11-span">
+<h3><span style="color:red"> Exercise 11 </span><a class="headerlink" href="#span-style-color-red-exercise-11-span" title="Permalink to this headline">#</a></h3>
+<p>Repeat exercise 10, but this time, use the FFT command.</p>
 </section>
 </section>
-<section id="span-style-color-orange-5-using-the-dft-to-find-dominant-frequencies-in-a-signal-span">
-<h2><span style="color:orange;"> 5. Using the DFT to Find Dominant Frequencies in a Signal </span><a class="headerlink" href="#span-style-color-orange-5-using-the-dft-to-find-dominant-frequencies-in-a-signal-span" title="Permalink to this headline">#</a></h2>
+<section id="span-style-color-orange-6-using-the-dft-to-find-dominant-frequencies-in-a-signal-span">
+<h2><span style="color:orange;"> 6. Using the DFT to Find Dominant Frequencies in a Signal </span><a class="headerlink" href="#span-style-color-orange-6-using-the-dft-to-find-dominant-frequencies-in-a-signal-span" title="Permalink to this headline">#</a></h2>
 <p>The DFT coefficients are complex numbers. Under the hypothesis of the above theorem, their magnitude <span class="math notranslate nohighlight">\(|F[k]|=N |c_k|=N \sqrt{a^2+b^2}\)</span> tells  us how much of the frequency <span class="math notranslate nohighlight">\(k \frac{2\pi}{P}\)</span> is in the signal, up to a constant factor <span class="math notranslate nohighlight">\(N\)</span>. In particular, the DFT coefficient with the largest magnitude indicates the largest frequency contained in the signal.</p>
 <section id="id1">
 <h3><span style="color:red"> Exercise 9 </span><a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
@@ -1081,8 +1158,8 @@ This phenomenon is called “aliasing.”</p>
 </ul>
 <p>In the previous exercise, you had to write your own function to compute a DFT. Python has a quick command to do so: Here is the synthax.</p>
 </section>
-<section id="span-style-color-red-exercise-10-span">
-<h3><span style="color:red"> Exercise 10 </span><a class="headerlink" href="#span-style-color-red-exercise-10-span" title="Permalink to this headline">#</a></h3>
+<section id="id2">
+<h3><span style="color:red"> Exercise 10 </span><a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
 <p>Use the FFT command to compute the DFT of the sound you built in Exercise 9, and use it to find <span class="math notranslate nohighlight">\(k_0\)</span>.</p>
 </section>
 </section>
@@ -1123,17 +1200,17 @@ This phenomenon is called “aliasing.”</p>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="3_sampling_and_reconstruction.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="modulation/chirp.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Week – : Finding the components of a measured signal</p>
+            <p class="prev-next-title">Week 8: Chirps and Bells</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="pedometer/pedometer_project.html" title="next page">
+    <a class='right-next' id="next-link" href="Signal_analysis_with_DFT.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Week 10: Build a Pedometer</p>
+        <p class="prev-next-title">Week 10: Frequency Analysis with the DFT</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
