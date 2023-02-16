@@ -590,6 +590,11 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#proof-of-the-sampling-theorem">
+   Proof of the Sampling Theorem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#special-case-of-the-sampling-theorem">
    Special case of the Sampling Theorem
   </a>
@@ -614,29 +619,6 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#span-style-color-red-exercise-11-span">
      <span style="color:red">
       Exercise 11
-     </span>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-6-using-the-dft-to-find-dominant-frequencies-in-a-signal-span">
-   <span style="color:orange;">
-    6. Using the DFT to Find Dominant Frequencies in a Signal
-   </span>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     <span style="color:red">
-      Exercise 9
-     </span>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     <span style="color:red">
-      Exercise 10
      </span>
     </a>
    </li>
@@ -804,6 +786,11 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#proof-of-the-sampling-theorem">
+   Proof of the Sampling Theorem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#special-case-of-the-sampling-theorem">
    Special case of the Sampling Theorem
   </a>
@@ -828,29 +815,6 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#span-style-color-red-exercise-11-span">
      <span style="color:red">
       Exercise 11
-     </span>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-6-using-the-dft-to-find-dominant-frequencies-in-a-signal-span">
-   <span style="color:orange;">
-    6. Using the DFT to Find Dominant Frequencies in a Signal
-   </span>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     <span style="color:red">
-      Exercise 9
-     </span>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     <span style="color:red">
-      Exercise 10
      </span>
     </a>
    </li>
@@ -922,15 +886,15 @@ title="Print to PDF"
 <section id="span-style-color-orange-1-intro-span">
 <h2><span style="color:orange;"> 1. Intro </span><a class="headerlink" href="#span-style-color-orange-1-intro-span" title="Permalink to this headline">#</a></h2>
 <p>The signals we acquire in real-life have a finite duration. We typically assume that they “start at zero,” meaning that they are equal to zero until <span class="math notranslate nohighlight">\(t=0\)</span>. After the signal duration is passed, i.e. when <span class="math notranslate nohighlight">\(t\)</span> is greater than the duration of the signal, then we also assume that the signal is equal to zero.</p>
-<p>Putting this in mathematical terms: a finite duration signal <span class="math notranslate nohighlight">\(x(t)\)</span> takes the form $<span class="math notranslate nohighlight">\( x(t)=\left\{ \begin{array}{ll} x(t), &amp; 0\leq t &lt; \text{signal duration}, \\ 0, &amp; \text{ else.}\end{array}  \right. \)</span>$</p>
+<p>Putting this in mathematical terms: a finite duration signal <span class="math notranslate nohighlight">\(f(t)\)</span> takes the form $<span class="math notranslate nohighlight">\( f(t)=\left\{ \begin{array}{ll} f(t), &amp; 0\leq t &lt; \text{signal duration}, \\ 0, &amp; \text{ else.}\end{array}  \right. \)</span>$</p>
 <p>In order to analyze a finite duration signal, we repeat it periodically with a period <span class="math notranslate nohighlight">\(P\)</span> that is at least as long as the duration of the signal. When <span class="math notranslate nohighlight">\(P\)</span> is strictly greater than the duraction, we say that the signal has been “zero padded” between the repetitions.</p>
-<p>We assume that the repeated signal is such that it is equal to its Fourier series $<span class="math notranslate nohighlight">\(f(t)= \frac{a_0}{2}+ \sum_{k=1}^\infty a_k \cos \left(\frac{2 \pi}{P} k t \right) + b_k \sin \left(\frac{2 \pi}{P} k t  \right).\)</span>$</p>
-<p>We are interested in analyzing the signal <span class="math notranslate nohighlight">\(f(t)\)</span>. In real-life, we cannot do this directly by manipulating the function <span class="math notranslate nohighlight">\(f(t)\)</span>, as we typically only have access to a digital recording of <span class="math notranslate nohighlight">\(f(t)\)</span>. So computing the Fourier transform of <span class="math notranslate nohighlight">\(f(t)\)</span> (by integration) is not possible. We would like to be able to perform the analysis of <span class="math notranslate nohighlight">\(f(t)\)</span> by analysing its digital recording instead.</p>
+<p>We assume that the repeated signal is such that it is equal to its Fourier series: $<span class="math notranslate nohighlight">\(f(t)= \frac{a_0}{2}+ \sum_{k=1}^\infty a_k \cos \left(\frac{2 \pi}{P} k t \right) + b_k \sin \left(\frac{2 \pi}{P} k t  \right).\)</span>$</p>
+<p>We are interested in analyzing the signal <span class="math notranslate nohighlight">\(f(t)\)</span>. In real-life, we cannot do this directly by manipulating the function <span class="math notranslate nohighlight">\(f(t)\)</span>, as we typically only have access to a digital recording of <span class="math notranslate nohighlight">\(f(t)\)</span>. So, for example, computing the Fourier transform of <span class="math notranslate nohighlight">\(f(t)\)</span> (by integration) is not possible. We would like to be able to perform the analysis of <span class="math notranslate nohighlight">\(f(t)\)</span> by analysing its digital recording instead.</p>
 <p>One important analysis to be performed is the estimations of the coefficients  <span class="math notranslate nohighlight">\(a_k,b_k\)</span> from the digital recording.</p>
 <p>We assume that the digital recording takes the form of a discrete-time signal <span class="math notranslate nohighlight">\(f_d[n]\)</span>, with <span class="math notranslate nohighlight">\(n\in {\mathbb N}\)</span>, obtained by sampling the original signal <span class="math notranslate nohighlight">\(f(t)\)</span>. More specifically, we assume that <span class="math notranslate nohighlight">\(f_d[n]\)</span> is a uniform sampling of <span class="math notranslate nohighlight">\(f(t)\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[f_d[n]=f(nT), \text{ for some } T&gt;0.\]</div>
-<p>The parameter <span class="math notranslate nohighlight">\(T\)</span> is called the <strong>sampling period</strong>. The quantity <span class="math notranslate nohighlight">\(\frac{1}{T}\)</span> is called the <strong>sampling frequency</strong>.  In other words, the sampling period <span class="math notranslate nohighlight">\(T\)</span> is the time difference between two sample points, and the sampling frequency represent how many samples are acquired per time unit.</p>
+<p>The parameter <span class="math notranslate nohighlight">\(T\)</span> is called the <strong>sampling period</strong>. The quantity <span class="math notranslate nohighlight">\(\frac{1}{T}\)</span> is called the <strong>sampling frequency</strong>.   The sampling period <span class="math notranslate nohighlight">\(T\)</span> is the time difference between two sample points, and the sampling frequency represent how many samples are acquired per time unit.</p>
 <p>In order to simplify the math, we rewrite <span class="math notranslate nohighlight">\(f(t)\)</span> in terms of complex exponentials: $<span class="math notranslate nohighlight">\( f(t)=  \sum_{k=-\infty}^\infty c_n e^{i \frac{2\pi}{P}kt} \)</span><span class="math notranslate nohighlight">\( where \)</span> c_0=\frac{a_0}{2} <span class="math notranslate nohighlight">\( and \)</span>c_n=c_{-n}^*=\frac{1}{2} (a_n- i b_n)<span class="math notranslate nohighlight">\(,  for \)</span>n&gt;1$.</p>
 <section id="span-style-color-red-exercise-1-span">
 <h3><span style="color:red"> Exercise 1 </span><a class="headerlink" href="#span-style-color-red-exercise-1-span" title="Permalink to this headline">#</a></h3>
@@ -958,23 +922,26 @@ title="Print to PDF"
 <p>Depending on the sampling period <span class="math notranslate nohighlight">\(T\)</span> chosen, the sampled signal may or may not be periodic.</p>
 <section id="span-style-color-red-exercise-2-span">
 <h3><span style="color:red"> Exercise 2 </span><a class="headerlink" href="#span-style-color-red-exercise-2-span" title="Permalink to this headline">#</a></h3>
-<p>If the signal <span class="math notranslate nohighlight">\(f(t)=e^{i \frac{2\pi}{10} t }\)</span> is sampled with a sampling period <span class="math notranslate nohighlight">\(T=2\)</span>, show that the resulting sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> is periodic with period <span class="math notranslate nohighlight">\(N=5\)</span>. Hint: Use code instead of mathematics!</p>
+<p>If the signal <span class="math notranslate nohighlight">\(f(t)=e^{i \frac{2\pi}{10} t }\)</span> is sampled with a sampling period <span class="math notranslate nohighlight">\(T=2\)</span>, show that the resulting sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> is periodic with period <span class="math notranslate nohighlight">\(N=5\)</span>. (Use either code or mathematics.)</p>
 </section>
 <section id="span-style-color-red-exercise-3-span">
 <h3><span style="color:red"> Exercise 3 </span><a class="headerlink" href="#span-style-color-red-exercise-3-span" title="Permalink to this headline">#</a></h3>
-<p>If the signal <span class="math notranslate nohighlight">\(f(t)=e^{i \frac{2\pi}{10} t }\)</span> is sampled with a sampling period <span class="math notranslate nohighlight">\(T=3\)</span>, show that the resulting sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> is periodic with period <span class="math notranslate nohighlight">\(N=10\)</span>. Hint: Use code instead of mathematics!</p>
+<p>If the signal <span class="math notranslate nohighlight">\(f(t)=e^{i \frac{2\pi}{10} t }\)</span> is sampled with a sampling period <span class="math notranslate nohighlight">\(T=3\)</span>, show that the resulting sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> is periodic with period <span class="math notranslate nohighlight">\(N=10\)</span>. (Use either code or mathematics.)</p>
 </section>
 <section id="span-style-color-red-exercise-4-span">
 <h3><span style="color:red"> Exercise 4 </span><a class="headerlink" href="#span-style-color-red-exercise-4-span" title="Permalink to this headline">#</a></h3>
-<p>If the signal <span class="math notranslate nohighlight">\(f(t)=e^{i \frac{2\pi}{10} t }\)</span> is sampled with a sampling period <span class="math notranslate nohighlight">\(T=\sqrt{2}\)</span>, show that the resulting sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> is not periodic</p>
-<p>In general, <span class="math notranslate nohighlight">\(f_d[n]= f(n T)\)</span> is periodic with (integer) period <span class="math notranslate nohighlight">\(N\)</span> if an only if <span class="math notranslate nohighlight">\(\frac{P}{T}=\frac{N}{K}\)</span> is a rational number. For example, if <span class="math notranslate nohighlight">\(T=\frac{P}{N}\)</span>, then we acquire <span class="math notranslate nohighlight">\(N\)</span> samples per period, and <span class="math notranslate nohighlight">\(f_d[n]\)</span> is periodic with period <span class="math notranslate nohighlight">\(N\)</span>. Similarly, if <span class="math notranslate nohighlight">\(T=\frac{2 P}{N}\)</span>, then we acquire <span class="math notranslate nohighlight">\(N\)</span> samples per two periods, and so <span class="math notranslate nohighlight">\(\frac{N}{2}\)</span> samples per period. If <span class="math notranslate nohighlight">\(N\)</span> is odd, then the period of  <span class="math notranslate nohighlight">\(f_d[n]\)</span> is <span class="math notranslate nohighlight">\(N\)</span> (it has to be an integer). If <span class="math notranslate nohighlight">\(N\)</span> is even, then the period of <span class="math notranslate nohighlight">\(f_d[n]\)</span> is <span class="math notranslate nohighlight">\(\frac{N}{2}\)</span>.</p>
+<p>If the signal <span class="math notranslate nohighlight">\(f(t)=e^{i \frac{2\pi}{10} t }\)</span> is sampled with a sampling period <span class="math notranslate nohighlight">\(T=\sqrt{2}\)</span>, show that the resulting sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> is not periodic/ (Here you must use mathematics.)</p>
+<p>In general, <span class="math notranslate nohighlight">\(f_d[n]= f(n T)\)</span> is periodic  if an only if <span class="math notranslate nohighlight">\(\frac{P}{T}\)</span> is a rational number. That means that we can write <span class="math notranslate nohighlight">\(\frac{P}{T}\)</span> as a ratio of two integers:
+$<span class="math notranslate nohighlight">\(\frac{P}{T}=\frac{N}{K}.\)</span><span class="math notranslate nohighlight">\( 
+If \)</span>N<span class="math notranslate nohighlight">\( and \)</span>K<span class="math notranslate nohighlight">\( have no common factor, then \)</span>N<span class="math notranslate nohighlight">\( is the fundamental period of \)</span>f_d[n]$.</p>
+<p>For example, if <span class="math notranslate nohighlight">\(T=\frac{P}{N}\)</span>, then we acquire <span class="math notranslate nohighlight">\(N\)</span> samples per period, and <span class="math notranslate nohighlight">\(f_d[n]\)</span> is periodic with period <span class="math notranslate nohighlight">\(N\)</span>. Similarly, if <span class="math notranslate nohighlight">\(T=\frac{2 P}{N}\)</span>, then we acquire <span class="math notranslate nohighlight">\(N\)</span> samples per two periods, which corresponds to <span class="math notranslate nohighlight">\(\frac{N}{2}\)</span> samples per period. If <span class="math notranslate nohighlight">\(N\)</span> is odd, then <span class="math notranslate nohighlight">\(f_d[n]\)</span> has period <span class="math notranslate nohighlight">\(N\)</span> (it has to be an integer). If <span class="math notranslate nohighlight">\(N\)</span> is even, <span class="math notranslate nohighlight">\(f_d[n]\)</span> has period <span class="math notranslate nohighlight">\(\frac{N}{2}\)</span>.</p>
 </section>
 </section>
 <section id="span-style-color-orange-2-toy-example-of-signal-analysis-span">
 <h2><span style="color:orange;"> 2. Toy Example of Signal Analysis </span><a class="headerlink" href="#span-style-color-orange-2-toy-example-of-signal-analysis-span" title="Permalink to this headline">#</a></h2>
 <p>Suppose the signal recorded, once repeated periorically, is of the form $<span class="math notranslate nohighlight">\(  f(t)= a_1 \cos \left(2 \pi 100 t \right) + a_4 \cos \left(2 \pi 400 t  \right). \)</span><span class="math notranslate nohighlight">\(
 So the signal has period \)</span>P=\frac{1}{100}$.</p>
-<p>Given is a recording with 1000 samples per unit of time (so the sampling period is <span class="math notranslate nohighlight">\(T=\frac{1}{1000}\)</span>: $<span class="math notranslate nohighlight">\( f_d[n] = f( n \frac{1} {1000}).\)</span>$
+<p>Given is a recording with 1000 samples per unit of time (so the sampling period is <span class="math notranslate nohighlight">\(T=\frac{1}{1000}\)</span>): $<span class="math notranslate nohighlight">\( f_d[n] = f( n \frac{1} {1000}).\)</span>$
 More specifically, the recorded signal is</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} \begin{aligned}
@@ -983,7 +950,7 @@ f_d[n]&amp;= a_1 \cos \left(2 \pi 100 \frac{n} {1000} \right) + a_4 \cos \left(2
 \end{aligned} \end{split}\]</div>
 <p>Observe that <span class="math notranslate nohighlight">\(f_d[n]\)</span> is periodic, with period <span class="math notranslate nohighlight">\(N=10\)</span>. This is because we are taking <span class="math notranslate nohighlight">\(10\)</span> samples per period (since <span class="math notranslate nohighlight">\(\frac{P}{T}=\frac{1000}{100}=10\)</span>).</p>
 <p>Let us write <span class="math notranslate nohighlight">\(f_d[n]\)</span> in terms of complex exponentials: $<span class="math notranslate nohighlight">\( f_d[n]= \frac{a_1}{2} \left(e^{i  2 \pi \frac{n}{10}}+ e^{-i 2 \pi \frac{n}{10}}\right) + \frac{a_4}{2}\left(e^{i 2 \pi  4 \frac{n}{10}}+ e^{-i 2 \pi 4 \frac{n}{10}}\right). \)</span>$</p>
-<p>Now let us compute the first coefficient of the DFT.</p>
+<p>Now let us compute the first coefficient <span class="math notranslate nohighlight">\(F[1]\)</span> of the 10-point DFT of <span class="math notranslate nohighlight">\(f_d[n]\)</span>.</p>
 <p>We have
 $<span class="math notranslate nohighlight">\( \begin{aligned}
 F[1]&amp;= \sum_{n=0}^{9} f_d[n]  e^{-i \frac{2\pi}{10} n} \\
@@ -1014,7 +981,7 @@ Therefore, \)</span>a_1=2 \frac{F[1]}{10}<span class="math notranslate nohighlig
 <p>Similarly, we can recover <span class="math notranslate nohighlight">\(a_4\)</span> from <span class="math notranslate nohighlight">\(F[4]\)</span>. Indeed, we have
 $<span class="math notranslate nohighlight">\( \begin{aligned}
 F[4]&amp;= \sum_{n=0}^{9} f_d[n]  e^{-i \frac{2\pi}{10} 4 n} \\
-&amp;= \sum_{n=0}^{4} \left( \frac{a_1}{2} \left(e^{i 2 \pi \frac{n}{10}}+ e^{-i 2 \pi 2 \frac{n}{10}}\right) 
+&amp;= \sum_{n=0}^{4} \left( \frac{a_1}{2} \left(e^{i 2 \pi \frac{n}{10}}+ e^{-i 2 \pi  \frac{n}{10}}\right) 
 +
 \frac{a_4}{2}\left(e^{i 2 \pi  4 \frac{n}{10}}+ e^{-i 2 \pi 4 \frac{n}{10}}\right)\right) e^{-i \frac{2\pi}{5} 4 n} \\
 &amp;= 10 \frac{a_4}{2},
@@ -1039,7 +1006,7 @@ again by using the fact that</p>
 <p>Again, we assume thay the signal recorded is known to be of the form
 $<span class="math notranslate nohighlight">\(  f(t)= a_1 \cos \left(2 \pi 100 t \right) + a_4 \cos \left(2 \pi 400  t  \right). \)</span><span class="math notranslate nohighlight">\(
 So the signal has period \)</span>P=\frac{1}{100}$.</p>
-<p>This time, we are given a recording with 500 samples per unit of time (so the sampling period is <span class="math notranslate nohighlight">\(T=\frac{1}{500}\)</span>):
+<p>But this time, we are given a recording with only 500 samples per unit of time (so the sampling period is <span class="math notranslate nohighlight">\(T=\frac{1}{500}\)</span>):
 $<span class="math notranslate nohighlight">\( f_d[n] = f( n \frac{1} {500}).\)</span><span class="math notranslate nohighlight">\(
 More specifically, the recorded signal is  
 \)</span><span class="math notranslate nohighlight">\( \begin{aligned}
@@ -1053,11 +1020,14 @@ f_d[n]&amp;= \frac{a_1}{2} \left(e^{i 2 \pi  \frac{n}{5}}+ e^{-i 2 \pi  \frac{n}
 +
 \frac{a_2}{2}\left(e^{i 2 \pi  4 \frac{n}{5}}+ e^{-i 2 \pi 4 \frac{n}{5}}\right).
 \end{aligned} \)</span>$</p>
-<p>Now let us compute the first coefficient of the DFT.</p>
+<p>Now let us compute the first coefficient <span class="math notranslate nohighlight">\(F[1]\)</span> of the 5-point DFT of <span class="math notranslate nohighlight">\(f_d[n]\)</span>.</p>
 <p>We have
 $<span class="math notranslate nohighlight">\( \begin{aligned}
-F[1]&amp;=&amp; \sum_{n=0}^{4} f_d[n]  e^{-i \frac{2\pi}{5} n} \\
-&amp;=&amp; 5 \frac{a_1}{2} + 5 \frac{a_2}{2}.
+F[1]&amp;= \sum_{n=0}^{4} f_d[n]  e^{-i \frac{2\pi}{5} n} \\
+&amp;= \sum_{n=0}^{4} \left( \frac{a_1}{2} \left(e^{i 2 \pi \frac{n}{5}}+ e^{-i 2 \pi  \frac{n}{5}}\right) 
++
+\frac{a_4}{2}\left(e^{i 2 \pi  4 \frac{n}{5}}+ e^{-i 2 \pi 4 \frac{n}{5}}\right)\right) e^{-i \frac{2\pi}{5} 4 n} \\
+&amp;= 5 \frac{a_1}{2} + 5 \frac{a_2}{2}.
 \end{aligned} \)</span><span class="math notranslate nohighlight">\(
 since
 \)</span><span class="math notranslate nohighlight">\( \sum_{n=0}^{N-1} e^{j \frac{2\pi}{N} k_1 n } e^{j \frac{2\pi}{N} k_2 n } = \left\{ 
@@ -1088,10 +1058,10 @@ This phenomenon is called “aliasing.”</p>
 <section id="span-style-color-orange-4-the-theory-span">
 <h2><span style="color:orange;"> 4. The Theory </span><a class="headerlink" href="#span-style-color-orange-4-the-theory-span" title="Permalink to this headline">#</a></h2>
 <p>The aliasing phenomenon is well understood. In fact, you may have heard about the Nyquist criterion: a condition that, if satisfied, guarantees that aliasing will not uccur. In this lab, we will not dwelve further into this criterion per say but, instead, jump directly to the topic of interest, which is to analyze a signal <span class="math notranslate nohighlight">\(f(t)\)</span> from a sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span>. By “analysing” we mean recovering the Fourier series coefficients <span class="math notranslate nohighlight">\(c_k\)</span>.</p>
-<p>The <strong>(N-point) DFT</strong> of a signal <span class="math notranslate nohighlight">\(f_d[n]\)</span> with period <span class="math notranslate nohighlight">\(N\)</span> is defined as the discrete-time signal</p>
+<p>Recall that the <strong>(N-point) DFT</strong> of a signal <span class="math notranslate nohighlight">\(f_d[n]\)</span> with period <span class="math notranslate nohighlight">\(N\)</span> is defined as the discrete-time signal</p>
 <div class="math notranslate nohighlight">
-\[ F[k]= \sum_{n=0}^{N-1} f_d[n] e^{-i \frac{2 \pi}{N} k n }.  \]</div>
-<p>The value of <span class="math notranslate nohighlight">\(F[k]\)</span>  is called the <strong>k-th coefficients of the DFT</strong> of the signal.</p>
+\[ F[k]= \sum_{n=0}^{N-1} f_d[n] e^{-i \frac{2 \pi}{N} k n },  \]</div>
+<p>and the value of <span class="math notranslate nohighlight">\(F[k]\)</span>  is called the <strong>k-th coefficients of the DFT</strong> of the signal.</p>
 <p>It turns out that the DFT coefficients give us the value of the Fourier series coefficients of <span class="math notranslate nohighlight">\(f(t)\)</span>, provided that we have taken “enough” samples considering the number of non-zero coefficients in the Fourier series of <span class="math notranslate nohighlight">\(f(t)\)</span>. More specifically, we have the following theorem.</p>
 </section>
 <section id="sampling-theorem">
@@ -1102,11 +1072,54 @@ This phenomenon is called “aliasing.”</p>
 <p>(so its maximum frequency is <span class="math notranslate nohighlight">\(K\frac{1}{P}\)</span>), and if we sample f(t) with a sampling frequency <span class="math notranslate nohighlight">\(\frac{1}{T}\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[\frac{1}{T} &gt; 2 K\frac{1}{P}\]</div>
-<p>which results in a periodic sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> with period <span class="math notranslate nohighlight">\(N\)</span>.</p>
-<p>Then the N-point DFT of <span class="math notranslate nohighlight">\(f_d[n]\)</span> gives the values of coefficients <span class="math notranslate nohighlight">\(c_k\)</span> of the Fourier series of <span class="math notranslate nohighlight">\(f(t)\)</span> as</p>
+<p>which results in a periodic sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> with period <span class="math notranslate nohighlight">\(N=\frac{P}{T} R\)</span> for some integer <span class="math notranslate nohighlight">\(R\)</span>.</p>
+<p>Then the N-point DFT of <span class="math notranslate nohighlight">\(f_d[n]\)</span> gives the values of coefficients <span class="math notranslate nohighlight">\(c_k\)</span> of the Fourier series of <span class="math notranslate nohighlight">\(f(t)\)</span> as follows:</p>
 <div class="math notranslate nohighlight">
 \[F[k]= N c_k= N\frac{1}{2}(a_k-ib_k), \text{ for all }  0\leq k \leq K.\]</div>
-<p>Proof of the Sampling Theorem:</p>
+</section>
+<section id="proof-of-the-sampling-theorem">
+<h2>Proof of the Sampling Theorem<a class="headerlink" href="#proof-of-the-sampling-theorem" title="Permalink to this headline">#</a></h2>
+<p>The proof of the sampling theorem follows the same model as the computation performed in the toy examples.</p>
+<p>We start from the formula for the DFT coefficients and replace <span class="math notranslate nohighlight">\(f_d[n]\)</span> by its expression in terms of complex exponentials.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{aligned}
+F[k]&amp;= \sum_{n=0}^{N-1} f_d[n]  e^{-i \frac{2\pi}{N} k n} \\
+&amp;=  \sum_{n=0}^{N-1} f(nT) e^{-i \frac{2\pi}{N} k n} \\
+&amp;=  \sum_{n=0}^{N-1} \sum_{k'=-K}^K c_{k'} e^{i \frac{2\pi}{P} k' n T } e^{-i \frac{2\pi}{N} k n}.
+\end{aligned} \end{split}\]</div>
+<p>Since the sampling is assumed to be periodic with period <span class="math notranslate nohighlight">\(N\)</span>, <span class="math notranslate nohighlight">\(\frac{P}{T}=\frac{N}{R}\)</span> for some integer <span class="math notranslate nohighlight">\(R\)</span>.
+Replacing <span class="math notranslate nohighlight">\(\frac{P}{T}\)</span> by <span class="math notranslate nohighlight">\(\frac{N}{R}\)</span> in the right-hand-side yields</p>
+<div class="math notranslate nohighlight">
+\[ \begin{aligned}
+F[k] &amp;=  \sum_{n=0}^{N-1} \sum_{k'=-K}^K c_{k'} e^{i \frac{2\pi}{N} k' R n T } e^{-i \frac{2\pi}{N} k n}.
+\end{aligned} \]</div>
+<p>Then we simplify the right-hand-side by permuting the two sums and using the orthogonality property of the complex exponentials:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \sum_{n=0}^{N-1} e^{j \frac{2\pi}{N} k_1 n } e^{j \frac{2\pi}{N} k_2 n } = \left\{ 
+\begin{array}{cc}
+    N &amp;, \text{ if } k_1-k_2  \text{ is a multiple of } N  \\
+   0  &amp;, \text{ else}. 
+\end{array}
+\right.  \end{split}\]</div>
+<p>Step-by-step, we have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{aligned}
+F[k] &amp;=  \sum_{k'=-K}^K \sum_{n=0}^{N-1}  c_{k'} e^{i \frac{2\pi}{N} k' R n T } e^{-i \frac{2\pi}{N} k n}\\
+&amp;= \sum_{k'=-K}^K  c_{k'} \sum_{n=0}^{N-1}  e^{i \frac{2\pi}{N} k' R n T } e^{-i \frac{2\pi}{N} k n} \\
+&amp;= \sum_{k'=-K}^K  c_{k'} \left\{ 
+\begin{array}{cc}
+    N &amp;, \text{ if } k'R-k  \text{ is a multiple of } N  \\
+   0  &amp;, \text{ else}. 
+\end{array}
+\right.  \\
+\end{aligned} \end{split}\]</div>
+<p>Now if <span class="math notranslate nohighlight">\(\frac{1}{T} &gt; 2 K \frac{1}{P}\)</span>, we have <span class="math notranslate nohighlight">\(\frac{P}{T} &gt; 2 K\)</span> and thus  <span class="math notranslate nohighlight">\(\frac{N}{R} &gt; 2 K\)</span>, so  <span class="math notranslate nohighlight">\(N &gt; 2 K R\)</span>. This implies that the only <span class="math notranslate nohighlight">\(k'\)</span> in the range <span class="math notranslate nohighlight">\(k'\in \{ -N, -N+1, \ldots, N \}\)</span> which is such that <span class="math notranslate nohighlight">\(k'R\)</span> a multiple of <span class="math notranslate nohighlight">\(N\)</span> is <span class="math notranslate nohighlight">\(k'=0\)</span>. Likewise, the only <span class="math notranslate nohighlight">\(k'\)</span> in the range <span class="math notranslate nohighlight">\(k'\in \{ -N, -N+1, \ldots, N \}\)</span> which is such that <span class="math notranslate nohighlight">\(k'R\)</span> a multiple of <span class="math notranslate nohighlight">\(N\)</span> plus <span class="math notranslate nohighlight">\(k\)</span> is <span class="math notranslate nohighlight">\(k'=k\)</span>. Thus the right-hand-side sum simplifies to</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{aligned}
+F[k] &amp;=   N c_{k} \\
+\end{aligned} \end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\square\)</span></p>
+<p>In the special case where <span class="math notranslate nohighlight">\(\frac{P}{T}=N\)</span> is an integer, the theorem is even simpler to state.</p>
 </section>
 <section id="special-case-of-the-sampling-theorem">
 <h2>Special case of the Sampling Theorem<a class="headerlink" href="#special-case-of-the-sampling-theorem" title="Permalink to this headline">#</a></h2>
@@ -1115,52 +1128,29 @@ This phenomenon is called “aliasing.”</p>
 \[f(t)=\sum_{k=-K}^K c_k e^{i \frac{2\pi}{P} k t}= \frac{a_0}{2}+ \sum_{k=1}^K a_k \cos \left(\frac{2 \pi}{P} k t \right) + b_k \sin \left(\frac{2 \pi}{P} k t  \right)\]</div>
 <p>is sampled in such a way that</p>
 <ul class="simple">
-<li><p>exactly <span class="math notranslate nohighlight">\(N\)</span> samples per period are taken (i.e., <span class="math notranslate nohighlight">\(\frac{P}{T}=N\)</span> is an integer)</p></li>
+<li><p>exactly <span class="math notranslate nohighlight">\(N\)</span> samples per period are taken (i.e., <span class="math notranslate nohighlight">\(\frac{P}{T}=N\)</span> is an integer), and</p></li>
 <li><p><span class="math notranslate nohighlight">\(N&gt;2K\)</span></p></li>
 </ul>
 <p>then the DFT coefficients <span class="math notranslate nohighlight">\(F[k]\)</span> satisfy</p>
-<p>$<span class="math notranslate nohighlight">\(F[k]= N c_k= N\frac{1}{2}(a_k-ib_k), \text{ for all } 0\leq k \leq K\)</span>$.</p>
+<div class="math notranslate nohighlight">
+\[F[k]= N c_k= N\frac{1}{2}(a_k-ib_k), \text{ for all } 0\leq k \leq K.\]</div>
 <section id="span-style-color-red-exercise-10-span">
 <h3><span style="color:red"> Exercise 10 </span><a class="headerlink" href="#span-style-color-red-exercise-10-span" title="Permalink to this headline">#</a></h3>
 <p>Illustrate the Sampling Theorem with a numerical example:</p>
 <ul class="simple">
 <li><p>Write a  periodic signal <span class="math notranslate nohighlight">\(f(t)\)</span> as as a linear combination of  sines and cosines.</p></li>
 <li><p>Build a sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> with an appropriate sampling period <span class="math notranslate nohighlight">\(T\)</span>.</p></li>
-<li><p>Ue the formula from the theorem to recover the coefficients of the linear combination.</p></li>
+<li><p>Compute the DFT coefficients of the sampling</p></li>
+<li><p>Ue the formula from the theorem to recover the coefficients <span class="math notranslate nohighlight">\(a_k\)</span> <span class="math notranslate nohighlight">\(b_k\)</span> of the linear combination from the DFT coefficients.</p></li>
 </ul>
 </section>
 </section>
 <section id="span-style-color-orange-5-the-fft-command-span">
 <h2><span style="color:orange;"> 5. The FFT Command </span><a class="headerlink" href="#span-style-color-orange-5-the-fft-command-span" title="Permalink to this headline">#</a></h2>
 <p>In the previous exercise, you had to write your own function to compute a DFT. Running your function may have taken a long time, especially if you used loops. Python has a quick command to compute a DFT. The command uses a fast algorithm called a Fast Fourier Transform (FFT) to compute the DFT.  Here is the synthax. CODE NEEDS TO BE ADDED HERE.</p>
-<p>Hint: Use the fact that $<span class="math notranslate nohighlight">\( \sum_{n=0}^{N-1} e^{j \frac{2\pi}{N} k_1 n } e^{j \frac{2\pi}{N} k_2 n } = \left\{ 
-\begin{array}{cc}
-    N &amp;, \text{ if } k_1-k_2  \text{ is a multiple of } N  \\
-   0  &amp;, \text{ else}. 
-\end{array}
-\right.\)</span>$</p>
 <section id="span-style-color-red-exercise-11-span">
 <h3><span style="color:red"> Exercise 11 </span><a class="headerlink" href="#span-style-color-red-exercise-11-span" title="Permalink to this headline">#</a></h3>
 <p>Repeat exercise 10, but this time, use the FFT command.</p>
-</section>
-</section>
-<section id="span-style-color-orange-6-using-the-dft-to-find-dominant-frequencies-in-a-signal-span">
-<h2><span style="color:orange;"> 6. Using the DFT to Find Dominant Frequencies in a Signal </span><a class="headerlink" href="#span-style-color-orange-6-using-the-dft-to-find-dominant-frequencies-in-a-signal-span" title="Permalink to this headline">#</a></h2>
-<p>The DFT coefficients are complex numbers. Under the hypothesis of the above theorem, their magnitude <span class="math notranslate nohighlight">\(|F[k]|=N |c_k|=N \sqrt{a^2+b^2}\)</span> tells  us how much of the frequency <span class="math notranslate nohighlight">\(k \frac{2\pi}{P}\)</span> is in the signal, up to a constant factor <span class="math notranslate nohighlight">\(N\)</span>. In particular, the DFT coefficient with the largest magnitude indicates the largest frequency contained in the signal.</p>
-<section id="id1">
-<h3><span style="color:red"> Exercise 9 </span><a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
-<ul class="simple">
-<li><p>Build a signal that is a sum of sine and cosine. Vary the magnitude of the coefficients so that one is very large compared to the other.</p></li>
-<li><p>Play the sound corresponding to the signal your built.</p></li>
-<li><p>Write a function to compute the DFT of your signal and plot its magnitude. For what value of <span class="math notranslate nohighlight">\(k\)</span> is the magnitude of <span class="math notranslate nohighlight">\(F[k]\)</span> the largest? Denote this value of <span class="math notranslate nohighlight">\(k\)</span> by <span class="math notranslate nohighlight">\(k_0\)</span>.</p></li>
-<li><p>What frequency does the <span class="math notranslate nohighlight">\(k_0\)</span> you identified correspond to? Denote that frequency by <span class="math notranslate nohighlight">\(f_0\)</span>.</p></li>
-<li><p>Play a sound which only has the frequency <span class="math notranslate nohighlight">\(f_0\)</span> (i.e., set all coefficients to zero, except <span class="math notranslate nohighlight">\(a_{k_0}\)</span> and <span class="math notranslate nohighlight">\(b_{k_0}\)</span>. How does it compare to the original sound?</p></li>
-</ul>
-<p>In the previous exercise, you had to write your own function to compute a DFT. Python has a quick command to do so: Here is the synthax.</p>
-</section>
-<section id="id2">
-<h3><span style="color:red"> Exercise 10 </span><a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
-<p>Use the FFT command to compute the DFT of the sound you built in Exercise 9, and use it to find <span class="math notranslate nohighlight">\(k_0\)</span>.</p>
 </section>
 </section>
 <section id="span-style-color-green-reflection-span">
