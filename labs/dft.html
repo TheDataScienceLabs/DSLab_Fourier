@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Week 9: Sampled Signal Analysis with the DFT &#8212; The Data Science Labs on Fourier Analysis</title>
+    <title>Week 8: Sampled Signal Analysis with the DFT &#8212; The Data Science Labs on Fourier Analysis</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Week 10: Build a Pedometer" href="pedometer/pedometer_project.html" />
-    <link rel="prev" title="Week 8: Finding the components of a measured signal" href="3_sampling_and_reconstruction.html" />
+    <link rel="prev" title="Week – : Finding the components of a measured signal" href="3_sampling_and_reconstruction.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -184,12 +184,12 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="3_sampling_and_reconstruction.html">
-   Week 8: Finding the components of a measured signal
+   Week – : Finding the components of a measured signal
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Week 9: Sampled Signal Analysis with the DFT
+   Week 8: Sampled Signal Analysis with the DFT
   </a>
  </li>
  <li class="toctree-l1">
@@ -491,11 +491,15 @@ title="Print to PDF"
     1. Intro
    </span>
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-1">
-   Exercise 1:
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span">
+     <span style="color:red">
+      Exercise 1
+     </span>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#span-style-color-orange-2-periodicity-of-the-sampling-span">
@@ -503,21 +507,29 @@ title="Print to PDF"
     2. Periodicity of the Sampling
    </span>
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-2">
-   Exercise 2:
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-3">
-   Exercise 3:
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-4">
-   Exercise 4:
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-2-span">
+     <span style="color:red">
+      Exercise 2
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-3-span">
+     <span style="color:red">
+      Exercise 3
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-4-span">
+     <span style="color:red">
+      Exercise 4
+     </span>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#span-style-color-orange-2-toy-example-of-signal-analysis-span">
@@ -525,28 +537,38 @@ title="Print to PDF"
     2. Toy Example of Signal Analysis
    </span>
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-5-span">
+     <span style="color:red">
+      Exercise 5
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-6-span">
+     <span style="color:red">
+      Exercise 6
+     </span>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-5">
-   Exercise 5:
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-6">
-   Exercise 6:
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-3-another-toy-example-with-aliasing-span">
+  <a class="reference internal nav-link" href="#span-style-color-orange-3-another-toy-example-of-signal-analysis-with-aliasing-span">
    <span style="color:orange;">
-    3. Another Toy Example - with Aliasing
+    3. Another Toy Example of Signal Analysis- with Aliasing
    </span>
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-7">
-   Exercise 7:
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-8-span">
+     <span style="color:red">
+      Exercise 8
+     </span>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#span-style-color-orange-4-the-theory-span">
@@ -564,20 +586,44 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#special-case">
    Special case
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-9-span">
+     <span style="color:red">
+      Exercise 9
+     </span>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-8">
-   Exercise 8:
+  <a class="reference internal nav-link" href="#span-style-color-orange-5-using-the-dft-to-find-dominant-frequencies-in-a-signal-span">
+   <span style="color:orange;">
+    5. Using the DFT to Find Dominant Frequencies in a Signal
+   </span>
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     <span style="color:red">
+      Exercise 9
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-10-span">
+     <span style="color:red">
+      Exercise 10
+     </span>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-9">
-   Exercise 9:
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-10">
-   Exercise 10:
+  <a class="reference internal nav-link" href="#span-style-color-green-reflection-span">
+   <span style="color:green;">
+    Reflection
+   </span>
   </a>
  </li>
 </ul>
@@ -589,7 +635,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Week 9: Sampled Signal Analysis with the DFT</h1>
+                <h1>Week 8: Sampled Signal Analysis with the DFT</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -636,11 +682,15 @@ title="Print to PDF"
     1. Intro
    </span>
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-1">
-   Exercise 1:
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span">
+     <span style="color:red">
+      Exercise 1
+     </span>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#span-style-color-orange-2-periodicity-of-the-sampling-span">
@@ -648,21 +698,29 @@ title="Print to PDF"
     2. Periodicity of the Sampling
    </span>
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-2">
-   Exercise 2:
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-3">
-   Exercise 3:
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-4">
-   Exercise 4:
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-2-span">
+     <span style="color:red">
+      Exercise 2
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-3-span">
+     <span style="color:red">
+      Exercise 3
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-4-span">
+     <span style="color:red">
+      Exercise 4
+     </span>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#span-style-color-orange-2-toy-example-of-signal-analysis-span">
@@ -670,28 +728,38 @@ title="Print to PDF"
     2. Toy Example of Signal Analysis
    </span>
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-5-span">
+     <span style="color:red">
+      Exercise 5
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-6-span">
+     <span style="color:red">
+      Exercise 6
+     </span>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-5">
-   Exercise 5:
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-6">
-   Exercise 6:
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-3-another-toy-example-with-aliasing-span">
+  <a class="reference internal nav-link" href="#span-style-color-orange-3-another-toy-example-of-signal-analysis-with-aliasing-span">
    <span style="color:orange;">
-    3. Another Toy Example - with Aliasing
+    3. Another Toy Example of Signal Analysis- with Aliasing
    </span>
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-7">
-   Exercise 7:
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-8-span">
+     <span style="color:red">
+      Exercise 8
+     </span>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#span-style-color-orange-4-the-theory-span">
@@ -709,20 +777,44 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#special-case">
    Special case
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-9-span">
+     <span style="color:red">
+      Exercise 9
+     </span>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-8">
-   Exercise 8:
+  <a class="reference internal nav-link" href="#span-style-color-orange-5-using-the-dft-to-find-dominant-frequencies-in-a-signal-span">
+   <span style="color:orange;">
+    5. Using the DFT to Find Dominant Frequencies in a Signal
+   </span>
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     <span style="color:red">
+      Exercise 9
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-10-span">
+     <span style="color:red">
+      Exercise 10
+     </span>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-9">
-   Exercise 9:
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-10">
-   Exercise 10:
+  <a class="reference internal nav-link" href="#span-style-color-green-reflection-span">
+   <span style="color:green;">
+    Reflection
+   </span>
   </a>
  </li>
 </ul>
@@ -735,10 +827,10 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="week-9-sampled-signal-analysis-with-the-dft">
-<h1>Week 9: Sampled Signal Analysis with the DFT<a class="headerlink" href="#week-9-sampled-signal-analysis-with-the-dft" title="Permalink to this headline">#</a></h1>
-<p><font size="6"> Laboratory ? </font> <br>
-<font size="3"> Last updated August 10, 2022 </font></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="week-8-sampled-signal-analysis-with-the-dft">
+<h1>Week 8: Sampled Signal Analysis with the DFT<a class="headerlink" href="#week-8-sampled-signal-analysis-with-the-dft" title="Permalink to this headline">#</a></h1>
+<p><font size="6"> Laboratory 7 </font> <br>
+<font size="3"> Last updated February 15, 2023 </font></p>
 <section id="span-style-color-orange-00-content-span">
 <h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this headline">#</a></h2>
 <section id="mathematics">
@@ -784,16 +876,20 @@ title="Print to PDF"
 <section id="span-style-color-orange-1-intro-span">
 <h2><span style="color:orange;"> 1. Intro </span><a class="headerlink" href="#span-style-color-orange-1-intro-span" title="Permalink to this headline">#</a></h2>
 <p>The signals we acquire in real-life have a finite duration. We typically assume that they “start at zero,” meaning that they are equal to zero until <span class="math notranslate nohighlight">\(t=0\)</span>. After the signal duration is passed, i.e. when <span class="math notranslate nohighlight">\(t\)</span> is greater than the duration of the signal, then we also assume that the signal is equal to zero.</p>
-<p>Mathematically, a finite duration signal <span class="math notranslate nohighlight">\(x(t)\)</span> takes the form $<span class="math notranslate nohighlight">\( x(t)=\left\{ \begin{array}{ll} x(t), &amp; 0\leq t &lt; \text{signal duration}, \\ 0, &amp; \text{ else.}\end{array}  \right. \)</span>$</p>
+<p>Putting this in mathematical terms: a finite duration signal <span class="math notranslate nohighlight">\(x(t)\)</span> takes the form $<span class="math notranslate nohighlight">\( x(t)=\left\{ \begin{array}{ll} x(t), &amp; 0\leq t &lt; \text{signal duration}, \\ 0, &amp; \text{ else.}\end{array}  \right. \)</span>$</p>
 <p>In order to analyze a finite duration signal, we repeat it periodically with a period <span class="math notranslate nohighlight">\(P\)</span> that is at least as long as the duration of the signal. When <span class="math notranslate nohighlight">\(P\)</span> is strictly greater than the duraction, we say that the signal has been “zero padded” between the repetitions.</p>
 <p>We assume that the repeated signal is such that it is equal to its Fourier series $<span class="math notranslate nohighlight">\(f(t)= \frac{a_0}{2}+ \sum_{k=1}^\infty a_k \cos \left(\frac{2 \pi}{P} k t \right) + b_k \sin \left(\frac{2 \pi}{P} k t  \right).\)</span>$</p>
-<p>We are interested in analyzing the signal <span class="math notranslate nohighlight">\(f(t)\)</span> given a digital recording of the signal. In particular, we would like to be able to find the values of the coefficients <span class="math notranslate nohighlight">\(a_k,b_k\)</span> using the uniform sampling <span class="math notranslate nohighlight">\( f_d[n]=f(nT)\)</span>, for some <span class="math notranslate nohighlight">\(T&gt;0\)</span>. The parameter <span class="math notranslate nohighlight">\(T\)</span> is called the sampling period. A uniform sampling means that the samples are equally spread out within a period. The sampling period <span class="math notranslate nohighlight">\(T\)</span> is the time difference between two sample points. The quantity <span class="math notranslate nohighlight">\(\frac{1}{T}\)</span> is called the sampling “frequency.”</p>
+<p>We are interested in analyzing the signal <span class="math notranslate nohighlight">\(f(t)\)</span>. In real-life, we cannot do this directly by manipulating the function <span class="math notranslate nohighlight">\(f(t)\)</span>, as we typically only have access to a digital recording of <span class="math notranslate nohighlight">\(f(t)\)</span>. So computing the Fourier transform of <span class="math notranslate nohighlight">\(f(t)\)</span> (by integration) is not possible. So we would like to be able to perform the analysis of <span class="math notranslate nohighlight">\(f(t)\)</span> by analysing its digital recording instead.</p>
+<p>One important analysis to be performed is the estimations of the coefficients  <span class="math notranslate nohighlight">\(a_k,b_k\)</span> from the digital recording.</p>
+<p>We assume that the digital recording takes the form of a discrete-time signal <span class="math notranslate nohighlight">\(f_d[n]\)</span>, with <span class="math notranslate nohighlight">\(n\in {\mathbb N}\)</span>, obtained by sampling the original signal <span class="math notranslate nohighlight">\(f(t)\)</span>. More specifically, we assume that <span class="math notranslate nohighlight">\(f_d[n]\)</span> is a uniform sampling of <span class="math notranslate nohighlight">\(f(t)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[f_d[n]=f(nT), \text{ for some } T&gt;0.\]</div>
+<p>The parameter <span class="math notranslate nohighlight">\(T\)</span> is called the sampling period. A “uniform sampling” means that the samples are equally spaced; the spacing between the samples is the sampling period <span class="math notranslate nohighlight">\(T\)</span>. In other words, the sampling period <span class="math notranslate nohighlight">\(T\)</span> is the time difference between two sample points. The quantity <span class="math notranslate nohighlight">\(\frac{1}{T}\)</span> is called the sampling “frequency.”</p>
 <p>In order to simplify the math, we rewrite <span class="math notranslate nohighlight">\(f(t)\)</span> in terms of complex exponentials: $<span class="math notranslate nohighlight">\( f(t)=  \sum_{k=-\infty}^\infty c_n e^{i \frac{2\pi}{P}kt} \)</span><span class="math notranslate nohighlight">\( where \)</span> c_0=\frac{a_0}{2} <span class="math notranslate nohighlight">\( and \)</span>c_n=c_{-n}^*=\frac{1}{2} (a_n- i b_n)<span class="math notranslate nohighlight">\(,  for \)</span>n&gt;1$.</p>
-</section>
-<section id="exercise-1">
-<h2>Exercise 1:<a class="headerlink" href="#exercise-1" title="Permalink to this headline">#</a></h2>
+<section id="span-style-color-red-exercise-1-span">
+<h3><span style="color:red"> Exercise 1 </span><a class="headerlink" href="#span-style-color-red-exercise-1-span" title="Permalink to this headline">#</a></h3>
 <p>Derive the above formula. (Hint: replace each sine and cosine by a sum of complex exponentials. If you do not know the sums already, find them using Euler’s formula <span class="math notranslate nohighlight">\(e^{i\theta}=\cos \theta + i \sin \theta\)</span>. B’Euler up! )</p>
-<p>We will recover the coefficients <span class="math notranslate nohighlight">\(a_k,b_k\)</span> using the Discrete Fourier Transform, or “DFT” for short. The DFT transform a periodic signal with period <span class="math notranslate nohighlight">\(N\)</span> into a sequence of complex numbers that is also periodic with period <span class="math notranslate nohighlight">\(N\)</span>. The numbers in the sequence are called the “DFT coefficients.”</p>
+<p>In the following, we will show how to recover the coefficients <span class="math notranslate nohighlight">\(a_k,b_k\)</span> using the Discrete Fourier Transform, or “DFT” for short. The DFT transform a periodic signal with period <span class="math notranslate nohighlight">\(N\)</span> into a sequence of complex numbers that is also periodic with period <span class="math notranslate nohighlight">\(N\)</span>. The numbers in the sequence are called the “DFT coefficients.”</p>
 <p>Here is the formula for the <span class="math notranslate nohighlight">\(k^{th}\)</span> DFT coefficient of a sampled signal <span class="math notranslate nohighlight">\(f_d[n]\)</span> with period <span class="math notranslate nohighlight">\(N\)</span>:
 $<span class="math notranslate nohighlight">\( F[k]= \sum_{n=0}^{N-1} f_d[n] e^{-i \frac{2 \pi}{N} k n }.  \)</span>$</p>
 <p>As we will see later, in some circumstances, namely if</p>
@@ -806,25 +902,26 @@ $<span class="math notranslate nohighlight">\( F[k]= \sum_{n=0}^{N-1} f_d[n] e^{
 \[F[k]= N c_k, \text{ for all }0\leq k \leq N_0.\]</div>
 <p>Therefore, in those circumstances, one can recover the Fourier series coefficients <span class="math notranslate nohighlight">\(a_k=2 (c_k+c_k^*)\)</span>, <span class="math notranslate nohighlight">\(b_k=2(c_k-c_k^*)\)</span> of the signal <span class="math notranslate nohighlight">\(f(t)\)</span> from the DFT coefficients of the sampled signal. The rest of the lab explores and clarifies this.</p>
 </section>
+</section>
 <section id="span-style-color-orange-2-periodicity-of-the-sampling-span">
 <h2><span style="color:orange;"> 2. Periodicity of the Sampling </span><a class="headerlink" href="#span-style-color-orange-2-periodicity-of-the-sampling-span" title="Permalink to this headline">#</a></h2>
-<p>In order for the proposed analysis method to work, the sampled signal must be periodic. In order words, there must exist an integer <span class="math notranslate nohighlight">\(N\)</span> such that</p>
+<p>In order for the proposed analysis method to work, the sampled signal must be periodic. In other words, there must exist an integer <span class="math notranslate nohighlight">\(N\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[ f_d[n+N] = f_d[n], \forall n.\]</div>
 <p>Depending on the sampling period <span class="math notranslate nohighlight">\(T\)</span> chosen, the sampled signal may or may not be periodic.</p>
+<section id="span-style-color-red-exercise-2-span">
+<h3><span style="color:red"> Exercise 2 </span><a class="headerlink" href="#span-style-color-red-exercise-2-span" title="Permalink to this headline">#</a></h3>
+<p>If the signal <span class="math notranslate nohighlight">\(f(t)=e^{i \frac{2\pi}{10} t }\)</span> is sampled with a sampling period <span class="math notranslate nohighlight">\(T=2\)</span>, show that the resulting sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> is periodic with period <span class="math notranslate nohighlight">\(N=5\)</span>. Hint: Use code instead of mathematics!</p>
 </section>
-<section id="exercise-2">
-<h2>Exercise 2:<a class="headerlink" href="#exercise-2" title="Permalink to this headline">#</a></h2>
-<p>If the signal <span class="math notranslate nohighlight">\(f(t)=e^{i \frac{2\pi}{10} t }\)</span> is sampled with a sampling period <span class="math notranslate nohighlight">\(T=2\)</span>, show that the resulting sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> is periodic with period <span class="math notranslate nohighlight">\(N=5\)</span>.</p>
+<section id="span-style-color-red-exercise-3-span">
+<h3><span style="color:red"> Exercise 3 </span><a class="headerlink" href="#span-style-color-red-exercise-3-span" title="Permalink to this headline">#</a></h3>
+<p>If the signal <span class="math notranslate nohighlight">\(f(t)=e^{i \frac{2\pi}{10} t }\)</span> is sampled with a sampling period <span class="math notranslate nohighlight">\(T=3\)</span>, show that the resulting sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> is periodic with period <span class="math notranslate nohighlight">\(N=10\)</span>. Hint: Use code instead of mathematics!</p>
 </section>
-<section id="exercise-3">
-<h2>Exercise 3:<a class="headerlink" href="#exercise-3" title="Permalink to this headline">#</a></h2>
-<p>If the signal <span class="math notranslate nohighlight">\(f(t)=e^{i \frac{2\pi}{10} t }\)</span> is sampled with a sampling period <span class="math notranslate nohighlight">\(T=3\)</span>, show that the resulting sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> is periodic with period <span class="math notranslate nohighlight">\(N=10\)</span>.</p>
-</section>
-<section id="exercise-4">
-<h2>Exercise 4:<a class="headerlink" href="#exercise-4" title="Permalink to this headline">#</a></h2>
+<section id="span-style-color-red-exercise-4-span">
+<h3><span style="color:red"> Exercise 4 </span><a class="headerlink" href="#span-style-color-red-exercise-4-span" title="Permalink to this headline">#</a></h3>
 <p>If the signal <span class="math notranslate nohighlight">\(f(t)=e^{i \frac{2\pi}{10} t }\)</span> is sampled with a sampling period <span class="math notranslate nohighlight">\(T=\sqrt{2}\)</span>, show that the resulting sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> is not periodic</p>
 <p>In general, <span class="math notranslate nohighlight">\(f_d[n]= f(n T)\)</span> is periodic with (integer) period <span class="math notranslate nohighlight">\(N\)</span> if an only if <span class="math notranslate nohighlight">\(\frac{P}{T}=\frac{N}{K}\)</span> is a rational number. For example, if <span class="math notranslate nohighlight">\(T=\frac{P}{N}\)</span>, then we acquire <span class="math notranslate nohighlight">\(N\)</span> samples per period, and <span class="math notranslate nohighlight">\(f_d[n]\)</span> is periodic with period <span class="math notranslate nohighlight">\(N\)</span>. Similarly, if <span class="math notranslate nohighlight">\(T=\frac{2 P}{N}\)</span>, then we acquire <span class="math notranslate nohighlight">\(N\)</span> samples per two periods, and so <span class="math notranslate nohighlight">\(\frac{N}{2}\)</span> samples per period. If <span class="math notranslate nohighlight">\(N\)</span> is odd, then the period of  <span class="math notranslate nohighlight">\(f_d[n]\)</span> is <span class="math notranslate nohighlight">\(N\)</span> (it has to be an integer). If <span class="math notranslate nohighlight">\(N\)</span> is even, then the period of <span class="math notranslate nohighlight">\(f_d[n]\)</span> is <span class="math notranslate nohighlight">\(\frac{N}{2}\)</span>.</p>
+</section>
 </section>
 <section id="span-style-color-orange-2-toy-example-of-signal-analysis-span">
 <h2><span style="color:orange;"> 2. Toy Example of Signal Analysis </span><a class="headerlink" href="#span-style-color-orange-2-toy-example-of-signal-analysis-span" title="Permalink to this headline">#</a></h2>
@@ -856,10 +953,17 @@ where we used the fact that
 \end{array}
 \right.\)</span><span class="math notranslate nohighlight">\(
 Therefore, \)</span>a_1=2 \frac{F[1]}{10}<span class="math notranslate nohighlight">\(. So we are able to obtain the value of \)</span>a_1<span class="math notranslate nohighlight">\( from the value of \)</span>F[1]$.</p>
-</section>
-<section id="exercise-5">
-<h2>Exercise 5:<a class="headerlink" href="#exercise-5" title="Permalink to this headline">#</a></h2>
-<p>Give them a prerecorded signal of this form, and ask them to write code to find what is the value of <span class="math notranslate nohighlight">\(a_1\)</span>.</p>
+<section id="span-style-color-red-exercise-5-span">
+<h3><span style="color:red"> Exercise 5 </span><a class="headerlink" href="#span-style-color-red-exercise-5-span" title="Permalink to this headline">#</a></h3>
+<p>Test the formula <span class="math notranslate nohighlight">\(a_1=2 \frac{ F[1]}{10}\)</span> as follows:</p>
+<ul class="simple">
+<li><p>pick the values of <span class="math notranslate nohighlight">\(a_1\)</span> and <span class="math notranslate nohighlight">\(a_4\)</span>.</p></li>
+<li><p>replace the chosen values in the function <span class="math notranslate nohighlight">\(  f(t)= a_1 \cos \left(2 \pi 100 t \right) + a_4 \cos \left(2 \pi 400 k t  \right)\)</span>.</p></li>
+<li><p>Sample the function <span class="math notranslate nohighlight">\(f(t)\)</span> with a sampling period <span class="math notranslate nohighlight">\(T=100\)</span> to obtain the sampling <span class="math notranslate nohighlight">\( f_d[n]\)</span>.</p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(F[1]\)</span> using the formula  <span class="math notranslate nohighlight">\(F[1]=\sum_{n=0}^{9} f_d[n]  e^{-i \frac{2\pi}{10} n}\)</span>.</p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(a_1\)</span> using the formula <span class="math notranslate nohighlight">\(a_1=2 \frac{ F[1]}{10}\)</span>.</p></li>
+<li><p>Compare the value of <span class="math notranslate nohighlight">\(a_1\)</span> you obtained to the original value of <span class="math notranslate nohighlight">\(a_1\)</span> you had chosen. Is it the same?</p></li>
+</ul>
 <p>Similarly, we can recover <span class="math notranslate nohighlight">\(a_4\)</span> from <span class="math notranslate nohighlight">\(F[4]\)</span>. Indeed, we have
 $<span class="math notranslate nohighlight">\( \begin{aligned}
 F[4]&amp;= \sum_{n=0}^{9} f_d[n]  e^{-i \frac{2\pi}{10} 4 n} \\
@@ -876,14 +980,15 @@ again by using the fact that</p>
    0  &amp;, \text{ else}. 
 \end{array}
 \right.\end{split}\]</div>
-<p>Therefore, <span class="math notranslate nohighlight">\(a_4=2 \frac{F[4]}{5}\)</span>. So we are able to obtain the value of <span class="math notranslate nohighlight">\(a_4\)</span> from the value of <span class="math notranslate nohighlight">\(F[4]\)</span>.</p>
+<p>Therefore, <span class="math notranslate nohighlight">\(a_4=2 \frac{F[4]}{10}\)</span>. So we are able to obtain the value of <span class="math notranslate nohighlight">\(a_4\)</span> from the value of <span class="math notranslate nohighlight">\(F[4]\)</span>.</p>
 </section>
-<section id="exercise-6">
-<h2>Exercise 6:<a class="headerlink" href="#exercise-6" title="Permalink to this headline">#</a></h2>
-<p>Give students the same signal as before (of the given form) and ask them to obtain the value of <span class="math notranslate nohighlight">\(a_4\)</span>.</p>
+<section id="span-style-color-red-exercise-6-span">
+<h3><span style="color:red"> Exercise 6 </span><a class="headerlink" href="#span-style-color-red-exercise-6-span" title="Permalink to this headline">#</a></h3>
+<p>Test the formula <span class="math notranslate nohighlight">\(a_4=2 \frac{F[4]}{10}\)</span> in the same was as you did for Exercise 5.</p>
 </section>
-<section id="span-style-color-orange-3-another-toy-example-with-aliasing-span">
-<h2><span style="color:orange;"> 3. Another Toy Example - with Aliasing </span><a class="headerlink" href="#span-style-color-orange-3-another-toy-example-with-aliasing-span" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="span-style-color-orange-3-another-toy-example-of-signal-analysis-with-aliasing-span">
+<h2><span style="color:orange;"> 3. Another Toy Example of Signal Analysis- with Aliasing </span><a class="headerlink" href="#span-style-color-orange-3-another-toy-example-of-signal-analysis-with-aliasing-span" title="Permalink to this headline">#</a></h2>
 <p>Again, we assume thay the signal recorded is known to be of the form
 $<span class="math notranslate nohighlight">\(  f(t)= a_1 \cos \left(2 \pi 100 t \right) + a_4 \cos \left(2 \pi 400 k t  \right). \)</span><span class="math notranslate nohighlight">\(
 So the signal has period \)</span>P=\frac{1}{100}$.</p>
@@ -924,14 +1029,14 @@ f_d[n]&amp;= a_1 \cos \left(2 \pi  \frac{n}{5} \right) + a_4 \cos \left(2 \pi 4 
 &amp;= (a_1+a_4) \cos \left(2 \pi  \frac{n}{5} \right).
 \end{aligned} \)</span>$
 This phenomenon is called “aliasing.”</p>
+<section id="span-style-color-red-exercise-8-span">
+<h3><span style="color:red"> Exercise 8 </span><a class="headerlink" href="#span-style-color-red-exercise-8-span" title="Permalink to this headline">#</a></h3>
+<p>Check, numerically, that sampling <span class="math notranslate nohighlight">\(\cos (2\pi 100 t)\)</span> or <span class="math notranslate nohighlight">\(\cos (2\pi 100 t)\)</span>  with a period <span class="math notranslate nohighlight">\(T=\frac{1}{500}\)</span> in either cases yield the same discrete-time signal <span class="math notranslate nohighlight">\(f_d[n]\)</span>.</p>
 </section>
-<section id="exercise-7">
-<h2>Exercise 7:<a class="headerlink" href="#exercise-7" title="Permalink to this headline">#</a></h2>
-<p>Check, numerically, that sampling <span class="math notranslate nohighlight">\(\cos (2\pi 100 t)\)</span> or <span class="math notranslate nohighlight">\(\cos (2\pi 100 t)\)</span>  with a period <span class="math notranslate nohighlight">\(T=\frac{1}{500}\)</span> yields the same sampled signal.</p>
 </section>
 <section id="span-style-color-orange-4-the-theory-span">
 <h2><span style="color:orange;"> 4. The Theory </span><a class="headerlink" href="#span-style-color-orange-4-the-theory-span" title="Permalink to this headline">#</a></h2>
-<p>The aliasing phenomenon is well understood. In fact, you may have heard about the Nyquist criterion: is a condition that, if satisfied, guarantees that aliasing will not uccur. In this lab, we will not dwelve further into this criterion per say but, instead, jump directly to the topic of interest, which is to analyze a signal <span class="math notranslate nohighlight">\(f(t)\)</span> from a sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span>. By “analysing,” we mean recovering the Fourier series coefficients <span class="math notranslate nohighlight">\(c_k\)</span>.</p>
+<p>The aliasing phenomenon is well understood. In fact, you may have heard about the Nyquist criterion: is a condition that, if satisfied, guarantees that aliasing will not uccur. In this lab, we will not dwelve further into this criterion per say but, instead, jump directly to the topic of interest, which is to analyze a signal <span class="math notranslate nohighlight">\(f(t)\)</span> from a sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span>. By “analysing” we mean recovering the Fourier series coefficients <span class="math notranslate nohighlight">\(c_k\)</span>.</p>
 <p>The theory tells us that the DFT coefficients give us the value of the Fourier series coefficients of <span class="math notranslate nohighlight">\(f(t)\)</span> provided that we have taken “enough” samples considering the number of non-zero coefficients in the Fourier series of <span class="math notranslate nohighlight">\(f(t)\)</span>. More specifically, we have the following theorem.</p>
 </section>
 <section id="theorem">
@@ -944,15 +1049,15 @@ This phenomenon is called “aliasing.”</p>
 \[\frac{1}{T} &gt; 2 K\frac{1}{P}\]</div>
 <p>then the DFT of <span class="math notranslate nohighlight">\(f_d[n]\)</span> gives us the coefficients <span class="math notranslate nohighlight">\(c_k\)</span> of the Fourier series of <span class="math notranslate nohighlight">\(f(t)\)</span>.</p>
 <p>More specifically, we have</p>
-<p>$<span class="math notranslate nohighlight">\(F[k]= N c_k= N\frac{1}{2}(a_k-ib_k), \text{ for all }  0\leq k \leq K\)</span>$.</p>
+<div class="math notranslate nohighlight">
+\[F[k]= N c_k= N\frac{1}{2}(a_k-ib_k), \text{ for all }  0\leq k \leq K.\]</div>
 </section>
 <section id="special-case">
 <h2>Special case<a class="headerlink" href="#special-case" title="Permalink to this headline">#</a></h2>
 <p>If <span class="math notranslate nohighlight">\(\frac{P}{T}=N\)</span> is an integer (i.e., we take exactly N samples per period), and <span class="math notranslate nohighlight">\(N&gt;2K\)</span>, then we are guaranteed that no aliasing will occur and we can recover the coefficients <span class="math notranslate nohighlight">\(c_k\)</span> from the DFT coefficients <span class="math notranslate nohighlight">\(F[k]\)</span> as</p>
 <p>$<span class="math notranslate nohighlight">\(F[k]= N c_k= N\frac{1}{2}(a_k-ib_k), \text{ for all } 0\leq k \leq K\)</span>$.</p>
-</section>
-<section id="exercise-8">
-<h2>Exercise 8:<a class="headerlink" href="#exercise-8" title="Permalink to this headline">#</a></h2>
+<section id="span-style-color-red-exercise-9-span">
+<h3><span style="color:red"> Exercise 9 </span><a class="headerlink" href="#span-style-color-red-exercise-9-span" title="Permalink to this headline">#</a></h3>
 <p>Show that, under the hypothesis of the theorem, we have  <span class="math notranslate nohighlight">\(F[k]= N c_k\)</span> for all <span class="math notranslate nohighlight">\(0\leq k \leq K\)</span>.</p>
 <p>Hint: Use the fact that $<span class="math notranslate nohighlight">\( \sum_{n=0}^{N-1} e^{j \frac{2\pi}{N} k_1 n } e^{j \frac{2\pi}{N} k_2 n } = \left\{ 
 \begin{array}{cc}
@@ -960,23 +1065,35 @@ This phenomenon is called “aliasing.”</p>
    0  &amp;, \text{ else}. 
 \end{array}
 \right.\)</span>$</p>
-<p>The DFT coefficients are complex numbers. Under the hypothesis of the above theorem, their magnitude <span class="math notranslate nohighlight">\(|F[k]|=N |c_k|=N \sqrt{a^2+b^2}\)</span> tells  us how much of the frequency <span class="math notranslate nohighlight">\(k \frac{2\pi}{P}\)</span> is in the signal, up to a constant factor <span class="math notranslate nohighlight">\(N\)</span>. In particular, the DFT coefficient with the largest magnitude indicates the largest frequency contained in the signal.</p>
 </section>
-<section id="exercise-9">
-<h2>Exercise 9:<a class="headerlink" href="#exercise-9" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="span-style-color-orange-5-using-the-dft-to-find-dominant-frequencies-in-a-signal-span">
+<h2><span style="color:orange;"> 5. Using the DFT to Find Dominant Frequencies in a Signal </span><a class="headerlink" href="#span-style-color-orange-5-using-the-dft-to-find-dominant-frequencies-in-a-signal-span" title="Permalink to this headline">#</a></h2>
+<p>The DFT coefficients are complex numbers. Under the hypothesis of the above theorem, their magnitude <span class="math notranslate nohighlight">\(|F[k]|=N |c_k|=N \sqrt{a^2+b^2}\)</span> tells  us how much of the frequency <span class="math notranslate nohighlight">\(k \frac{2\pi}{P}\)</span> is in the signal, up to a constant factor <span class="math notranslate nohighlight">\(N\)</span>. In particular, the DFT coefficient with the largest magnitude indicates the largest frequency contained in the signal.</p>
+<section id="id1">
+<h3><span style="color:red"> Exercise 9 </span><a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
-<li><p>Build a signal that is a sum of sine and cosine. Vary the magnitude of the coefficients, so that one is very large compared to the other.</p></li>
-<li><p>Play the sound corresponding to the signal your build.</p></li>
-<li><p>Write a function to compute the DFT of your signal and plot its magnitude. For what value of <span class="math notranslate nohighlight">\(k_0\)</span> does is the magnitude of <span class="math notranslate nohighlight">\(F[k]\)</span> the largest?</p></li>
-<li><p>What frequency does the <span class="math notranslate nohighlight">\(k_0\)</span> you identified correspond to?</p></li>
-<li><p>Play a sound which only has the frequency <span class="math notranslate nohighlight">\(k_0\)</span> (i.e., set all coefficients to zero, except <span class="math notranslate nohighlight">\(a_{k_0}\)</span> and <span class="math notranslate nohighlight">\(b_{k_0}\)</span>. How does it compare to the original sound?</p></li>
+<li><p>Build a signal that is a sum of sine and cosine. Vary the magnitude of the coefficients so that one is very large compared to the other.</p></li>
+<li><p>Play the sound corresponding to the signal your built.</p></li>
+<li><p>Write a function to compute the DFT of your signal and plot its magnitude. For what value of <span class="math notranslate nohighlight">\(k\)</span> is the magnitude of <span class="math notranslate nohighlight">\(F[k]\)</span> the largest? Denote this value of <span class="math notranslate nohighlight">\(k\)</span> by <span class="math notranslate nohighlight">\(k_0\)</span>.</p></li>
+<li><p>What frequency does the <span class="math notranslate nohighlight">\(k_0\)</span> you identified correspond to? Denote that frequency by <span class="math notranslate nohighlight">\(f_0\)</span>.</p></li>
+<li><p>Play a sound which only has the frequency <span class="math notranslate nohighlight">\(f_0\)</span> (i.e., set all coefficients to zero, except <span class="math notranslate nohighlight">\(a_{k_0}\)</span> and <span class="math notranslate nohighlight">\(b_{k_0}\)</span>. How does it compare to the original sound?</p></li>
 </ul>
 <p>In the previous exercise, you had to write your own function to compute a DFT. Python has a quick command to do so: Here is the synthax.</p>
 </section>
-<section id="exercise-10">
-<h2>Exercise 10:<a class="headerlink" href="#exercise-10" title="Permalink to this headline">#</a></h2>
-<p>Use the FFT command to compute the DFT of the sound you build in Exercise 9, and use it to find <span class="math notranslate nohighlight">\(k_0\)</span>.</p>
+<section id="span-style-color-red-exercise-10-span">
+<h3><span style="color:red"> Exercise 10 </span><a class="headerlink" href="#span-style-color-red-exercise-10-span" title="Permalink to this headline">#</a></h3>
+<p>Use the FFT command to compute the DFT of the sound you built in Exercise 9, and use it to find <span class="math notranslate nohighlight">\(k_0\)</span>.</p>
 </section>
+</section>
+<section id="span-style-color-green-reflection-span">
+<h2><span style="color:green;"> Reflection </span><a class="headerlink" href="#span-style-color-green-reflection-span" title="Permalink to this headline">#</a></h2>
+<p>Do not skip this section! It will be graded but only on completion.</p>
+<p><strong>1. What parts of the lab, if any, do you feel you did well? <br>
+2. What are some things you learned today? <br>
+3. Are there any topics that could use more clarification? <br>
+4. Do you have any suggestions on parts of the lab to improve?</strong></p>
+<h3 style="background-color:lightblue"> Write Answers for the Reflection Below </h3></section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1010,7 +1127,7 @@ This phenomenon is called “aliasing.”</p>
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Week 8: Finding the components of a measured signal</p>
+            <p class="prev-next-title">Week – : Finding the components of a measured signal</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="pedometer/pedometer_project.html" title="next page">
