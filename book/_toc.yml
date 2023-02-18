@@ -17,9 +17,10 @@ parts:
 
 - caption: Modulation
   chapters:
-  - file: labs/modulation/am.ipynb
+  - file: labs/modulation/tremolo_beats/tremolo_beats_1.ipynb
+  - file: labs/modulation/tremolo_beats/tremolo_beats_2.ipynb
   - file: labs/modulation/voice_changer/voice_changer_project.ipynb
-  - file: labs/modulation/chirp.ipynb
+  - file: labs/modulation/chirp/chirp.ipynb
 
 - caption: Analysis
   chapters:
