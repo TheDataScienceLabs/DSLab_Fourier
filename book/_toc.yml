@@ -18,7 +18,7 @@ parts:
 - caption: Modulation
   chapters:
   - file: labs/modulation/am.ipynb
-  - file: labs/modulation/voice_changer_project.ipynb
+  - file: labs/modulation/voice_changer/voice_changer_project.ipynb
   - file: labs/modulation/chirp.ipynb
 
 - caption: Analysis
