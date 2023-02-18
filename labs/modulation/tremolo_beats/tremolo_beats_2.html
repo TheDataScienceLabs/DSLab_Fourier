@@ -828,7 +828,7 @@ title="Print to PDF"
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-orange-3-building-a-voice-recorder-span">
 <h1><span style="color:orange;">  3. Building a Voice Recorder </span><a class="headerlink" href="#span-style-color-orange-3-building-a-voice-recorder-span" title="Permalink to this headline">#</a></h1>
-<p>Before we begin, we will need to install the library which will help us in manipulating audio with python.
+<p>Before we begin, we need to install a library which will help us in manipulating audio with python.
 We will be using PyAudio for this purpose as it is easy to use and works on a variety of different environments.</p>
 <p>Installation instructions for PyAudio on Linux Machines</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python3</span><span class="o">-</span><span class="n">pyaudio</span>
@@ -842,18 +842,18 @@ We will be using PyAudio for this purpose as it is easy to use and works on a va
 <li><p>Stop and close the data stream.</p></li>
 <li><p>Save the data frames as a .wave file.</p></li>
 </ol>
-<p><span class="xref myst">voice_recorder.py</span> is implemented following the above pseudo code. It records 5s of mono channel audio and saves it as my_recording.wave</p>
+<p><a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/modulation/tremolo_beats/voice_recorder.py">voice_recorder.py</a> is implemented following the above pseudo code. It records 5s of mono channel audio and saves it as my_recording.wave</p>
 <section id="span-style-color-red-exercise-6-span">
 <h2><span style="color:red"> Exercise 6</span><a class="headerlink" href="#span-style-color-red-exercise-6-span" title="Permalink to this headline">#</a></h2>
 <p>Run voice_recorder.py and report your observations.</p>
 </section>
 <section id="span-style-color-red-exercise-7-span">
 <h2><span style="color:red"> Exercise 7</span><a class="headerlink" href="#span-style-color-red-exercise-7-span" title="Permalink to this headline">#</a></h2>
-<p>Modify the voice_recorder.py to recorder a 10s audio recording of yourself and save it as &lt;yourname&gt;_voice_clip.wave</p>
+<p>Modify the voice_recorder.py to record a 10s audio recording of yourself and save it as &lt;yourname&gt;_voice_clip.wave</p>
 </section>
 <section id="span-style-color-red-exercise-8-span">
 <h2><span style="color:red"> Exercise 8</span><a class="headerlink" href="#span-style-color-red-exercise-8-span" title="Permalink to this headline">#</a></h2>
-<p>Write a Python code to play the recorded audio using PyAudio. Hint: set output mode in stream.</p>
+<p>Write a Python code to play the recorded audio using PyAudio. Hint: set mode as output while creating the stream object.</p>
 </section>
 <section id="span-style-color-green-reflection-span">
 <h2><span style="color:green;"> Reflection </span><a class="headerlink" href="#span-style-color-green-reflection-span" title="Permalink to this headline">#</a></h2>
