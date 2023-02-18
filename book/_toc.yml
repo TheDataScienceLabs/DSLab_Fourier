@@ -6,14 +6,14 @@ root: index
 parts:
 - caption: Preliminaries
   chapters:
-  - file: labs/Intro/intro_lab.ipynb
+  - file: labs/introduction/intro_lab.ipynb
 
 - caption: Synthesis
   chapters:
-  - file: labs/Playing_sound/1_play_sounds.ipynb
-  - file: labs/build_a_synthesizer/build_a_synthesizer.ipynb
-  - file: labs/build_a_theremin/build_a_theremin.ipynb
-  - file: labs/2_experiencing_sound.ipynb
+  - file: labs/synthesis/playing_sound/play_sounds.ipynb
+  - file: labs/synthesis/build_a_synthesizer/build_a_synthesizer.ipynb
+  - file: labs/synthesis/build_a_theremin/build_a_theremin.ipynb
+  - file: labs/synthesis/experiencing_sound/experiencing_sound.ipynb
 
 - caption: Modulation
   chapters:
@@ -23,20 +23,20 @@ parts:
 
 - caption: Analysis
   chapters:
-  - file: labs/dft.ipynb
-  - file: labs/Signal_analysis_with_DFT.ipynb
-  - file: labs/pedometer/pedometer_project.ipynb
-  - file: labs/pedometer/pedo_frequency_project.ipynb
-  - file: labs/tuning.ipynb
-  - file: labs/instruments.ipynb
+  - file: labs/analysis/dft/dft.ipynb
+  - file: labs/analysis/signal_analysis/signal_analysis_with_dft.ipynb
+  - file: labs/analysis/pedometer/pedometer_project.ipynb
+  - file: labs/analysis/pedometer/pedo_frequency_project.ipynb
+  - file: labs/analysis/instrument_tuning/tuning.ipynb
+  - file: labs/analysis/identifying_instrument/instruments.ipynb
 
 - caption: Processing
   chapters:
-  - file: labs/filtering.ipynb
+  - file: labs/processing/filtering.ipynb
 
 - caption: Design a project of your own
   chapters:
-  - file: labs/final_project.ipynb
+  - file: labs/final_project/final_project.ipynb
 
 - caption: Extra Materials
   chapters:
