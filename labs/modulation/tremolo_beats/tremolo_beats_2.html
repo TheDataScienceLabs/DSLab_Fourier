@@ -827,7 +827,7 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="week-7-tremolo-beats-effects-2">
 <h1>Week 7: Tremolo/Beats Effects 2<a class="headerlink" href="#week-7-tremolo-beats-effects-2" title="Permalink to this headline">#</a></h1>
 <p><font size="6"> Laboratory 6 </font> <br>
-<font size="3"> Last updated February 17, 2023 </font></p>
+<font size="3"> Last updated February 25, 2023 </font></p>
 <section id="span-style-color-orange-00-content-span">
 <h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this headline">#</a></h2>
 <section id="mathematics">
@@ -867,6 +867,7 @@ We will be using PyAudio for this purpose as it is easy to use and works on a va
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python3</span><span class="o">-</span><span class="n">pyaudio</span>
 </pre></div>
 </div>
+<p>For other operating systems, you could use the instructions from <a class="reference external" href="https://pypi.org/project/PyAudio/">here</a>.</p>
 <p>To explore more in detail about PyAudio and its features, you could refer the <a class="reference external" href="https://people.csail.mit.edu/hubert/pyaudio/docs/">API docementation for PyAudio</a></p>
 <p>For Recording Audio with Python, we have to do the following:</p>
 <ol class="simple">
@@ -898,18 +899,17 @@ We will be using PyAudio for this purpose as it is easy to use and works on a va
 </section>
 <section id="create-your-own-modulation-effect">
 <h2>Create your own modulation effect<a class="headerlink" href="#create-your-own-modulation-effect" title="Permalink to this headline">#</a></h2>
-<p>Now we will explore what happens when two periodic signals with a similar frequency are added together (right-hand-side of the equation), and use the formula above to interpret the result as an amplitude modulation.</p>
 <section id="span-style-color-red-exercise-6-span">
 <h3><span style="color:red"> Exercise 6 </span><a class="headerlink" href="#span-style-color-red-exercise-6-span" title="Permalink to this headline">#</a></h3>
 <p>Create the signal <span class="math notranslate nohighlight">\(x(t)\)</span> a recording of you saying “B’Euler up!”.</p>
 </section>
 <section id="span-style-color-red-exercise-7-span">
 <h3><span style="color:red"> Exercise 7 </span><a class="headerlink" href="#span-style-color-red-exercise-7-span" title="Permalink to this headline">#</a></h3>
-<p>Create an original periodic signal <span class="math notranslate nohighlight">\(c_1(t)\)</span>. Use it to modulate <span class="math notranslate nohighlight">\(x(t\)</span> and play the resulting modulated signal.</p>
+<p>Create an original periodic signal <span class="math notranslate nohighlight">\(c_1(t)\)</span>. Use it to modulate <span class="math notranslate nohighlight">\(x(t)\)</span> and play the resulting modulated signal.</p>
 </section>
 <section id="span-style-color-red-exercise-8-span">
 <h3><span style="color:red"> Exercise 8 </span><a class="headerlink" href="#span-style-color-red-exercise-8-span" title="Permalink to this headline">#</a></h3>
-<p>Create another original periodic signal  <span class="math notranslate nohighlight">\(c_2(t)\)</span> with the same frequency as  <span class="math notranslate nohighlight">\(c_1(t)\)</span>. Use it to modulate <span class="math notranslate nohighlight">\(x(t\)</span> and play the resulting modulated signal.</p>
+<p>Create another original periodic signal  <span class="math notranslate nohighlight">\(c_2(t)\)</span> with the same frequency as  <span class="math notranslate nohighlight">\(c_1(t)\)</span>. Use it to modulate <span class="math notranslate nohighlight">\(x(t)\)</span> and play the resulting modulated signal.</p>
 </section>
 <section id="span-style-color-red-exercise-9-span">
 <h3><span style="color:red"> Exercise 9 </span><a class="headerlink" href="#span-style-color-red-exercise-9-span" title="Permalink to this headline">#</a></h3>
