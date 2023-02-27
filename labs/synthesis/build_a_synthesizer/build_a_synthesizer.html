@@ -815,7 +815,7 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="week-3-build-a-synthesizer">
 <h1>Week 3: Build a synthesizer<a class="headerlink" href="#week-3-build-a-synthesizer" title="Permalink to this headline">#</a></h1>
 <p><font size="6"> Laboratory 2 </font> <br>
-<font size="3"> Last updated January 29, 2023 </font></p>
+<font size="3"> Last updated February 27, 2023 </font></p>
 <section id="span-style-color-orange-00-content-span">
 <h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this headline">#</a></h2>
 <section id="mathematics">
@@ -927,7 +927,7 @@ title="Print to PDF"
 <p>Your breadboard should look something like the picture above.</p>
 <section id="test-your-circuit">
 <h3>Test your circuit<a class="headerlink" href="#test-your-circuit" title="Permalink to this headline">#</a></h3>
-<p>Once you are sure that your circuit is wired safely, open up Thonny and run the script <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/build_a_synthesizer/circuit_test.py">circuittest.py</a> on your Pico. You should hear a simple tone play for two seconds, and then it should stop. If your circuit does not do this, figure out what is going wrong before you continue. Your instructor may be able to help you narrow down the problem.</p>
+<p>Once you are sure that your circuit is wired safely, open up Thonny and run the script <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/synthesis/build_a_synthesizer/circuit_test.py">circuittest.py</a> on your Pico. You should hear a simple tone play for two seconds, and then it should stop. If your circuit does not do this, figure out what is going wrong before you continue. Your instructor may be able to help you narrow down the problem.</p>
 <p>Let’s understand what is happening in this file, line by line.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">This code plays a simple tone to a connected I2S speaker</span>
@@ -1366,7 +1366,7 @@ n=1200\log_2 \frac{b}{a}.
 <p>Now that we know how many samples to use for each note, we can have the microcontroller play them when we press buttons. In order to make it easier to wire up a keypad worth of buttons, a module has been provided which simply connects 12 buttons to 12 GPIO pins on the Pico, connecting the pins to ground whenever the corresponding button is pressed. You could just as well have wired up 12 buttons individually yourself, but this module makes it all tidier.</p>
 <p>Connect the module to GPIO pins 4-15, as in the picture below.</p>
 <p><img alt="a picture showing how to connect the keypad module" src="../../../_images/with_keypad_module_small.jpg" /></p>
-<p>Then, load up the script <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/build_a_synthesizer/synth.py">synth.py</a> and load it in Thonny. When running it, you should find that you have a synthesizer, though it only plays the notes F and B.</p>
+<p>Then, load up the script <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/synthesis/build_a_synthesizer/synth.py">synth.py</a> and load it in Thonny. When running it, you should find that you have a synthesizer, though it only plays the notes F and B.</p>
 <p>Those are also the only two entries in the dictionary <code class="docutils literal notranslate"><span class="pre">tones</span></code> which are not <code class="docutils literal notranslate"><span class="pre">silence</span></code>. In Exercise 3 you will have to create audio clips to fill in the other entries. First, let’s see how the rest of the script works, and how the example tones were generated.</p>
 <section id="the-script">
 <h3>The script<a class="headerlink" href="#the-script" title="Permalink to this headline">#</a></h3>
@@ -1434,7 +1434,7 @@ n=1200\log_2 \frac{b}{a}.
 </section>
 <section id="making-the-clips">
 <h3>Making the clips<a class="headerlink" href="#making-the-clips" title="Permalink to this headline">#</a></h3>
-<p>The byte strings in the <code class="docutils literal notranslate"><span class="pre">tones</span></code> dictionary were made using the following code, then copy/pasted into <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/build_a_synthesizer/synth.py">synth.py</a>.</p>
+<p>The byte strings in the <code class="docutils literal notranslate"><span class="pre">tones</span></code> dictionary were made using the following code, then copy/pasted into <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/synthesis/build_a_synthesizer/synth.py">synth.py</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">14</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">63</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
@@ -1476,7 +1476,7 @@ n=1200\log_2 \frac{b}{a}.
 </section>
 <section id="span-style-color-red-exercise-3-span-30-pts">
 <h3><span style="color:red"> Exercise 3 </span> (30 pts)<a class="headerlink" href="#span-style-color-red-exercise-3-span-30-pts" title="Permalink to this headline">#</a></h3>
-<p>Use the sample counts you found in exercise 2 to make byte strings for the other notes. Copy them into <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/build_a_synthesizer/synth.py">synth.py</a>, and enjoy your completed synthesizer!</p>
+<p>Use the sample counts you found in exercise 2 to make byte strings for the other notes. Copy them into <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/synthesis/build_a_synthesizer/synth.py">synth.py</a>, and enjoy your completed synthesizer!</p>
 <h3 style="background-color:lightblue"> Write Answers for Exercise 3 Below </h3></section>
 <section id="span-style-color-red-exercise-4-span-20-pts">
 <h3><span style="color:red"> Exercise 4 </span> (20 pts)<a class="headerlink" href="#span-style-color-red-exercise-4-span-20-pts" title="Permalink to this headline">#</a></h3>
