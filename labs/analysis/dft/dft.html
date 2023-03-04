@@ -1,48 +1,56 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Week 9: The Discrete Fourier Transform (DFT) &#8212; The Data Science Labs on Fourier Analysis</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
 
-    
-  <link rel="stylesheet"
-    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,61 +60,480 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'labs/analysis/dft/dft';</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Week 10: Frequency Analysis with the DFT" href="../signal_analysis/signal_analysis_with_dft.html" />
     <link rel="prev" title="Week 9: Chirps and Bells" href="../../modulation/chirp/chirp.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../../index.html">
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
         
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../introduction/intro_lab.html">
+                        Week 1: Introduction
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../synthesis/playing_sound/play_sounds.html">
+                        Week 2: Playing Sound
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../synthesis/build_a_synthesizer/build_a_synthesizer.html">
+                        Week 3: Build a synthesizer
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../synthesis/build_a_theremin/build_a_theremin.html">
+                        Week 4: Build a theremin
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../synthesis/experiencing_sound/experiencing_sound.html">
+                        Week 5: The human experience of sound
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../modulation/tremolo_beats/tremolo_beats_1.html">
+                        Week 6: Tremolo/Beats Effects 1
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../modulation/tremolo_beats/tremolo_beats_2.html">
+                        Week 7: Tremolo/Beats Effects 2
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../modulation/voice_changer/voice_changer_project.html">
+                        Week 8: Build a Voice Changer/Voice Shield
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../modulation/chirp/chirp.html">
+                        Week 9: Chirps and Bells
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Week 9: The Discrete Fourier Transform (DFT)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../signal_analysis/signal_analysis_with_dft.html">
+                        Week 10: Frequency Analysis with the DFT
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../pedometer/pedometer_project.html">
+                        Week 10: Build a Pedometer
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../pedometer/pedo_frequency_project.html">
+                        Week 11: Step Detection versus Frequency Analysis
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../instrument_tuning/tuning.html">
+                        Week 12: Tuning an instrument
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../identifying_instrument/instruments.html">
+                        Week 13: Identifying Music Instruments
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../processing/filtering.html">
+                        Week ?: Sampled Signal Filtering with the Circular Convolution
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../final_project/final_project.html">
+                        Week 14-15: Final Project
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../extra_materials/intro_to_breadboards/intro_to_breadboards.html">
+                        Introduction to Breadboards
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
       
       
-      <img src="../../../_static/logo.png" class="logo" alt="logo">
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
       
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
       
-      <h1 class="site-logo" id="site-title">The Data Science Labs on Fourier Analysis</h1>
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../introduction/intro_lab.html">
+                        Week 1: Introduction
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../synthesis/playing_sound/play_sounds.html">
+                        Week 2: Playing Sound
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../synthesis/build_a_synthesizer/build_a_synthesizer.html">
+                        Week 3: Build a synthesizer
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../synthesis/build_a_theremin/build_a_theremin.html">
+                        Week 4: Build a theremin
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../synthesis/experiencing_sound/experiencing_sound.html">
+                        Week 5: The human experience of sound
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../modulation/tremolo_beats/tremolo_beats_1.html">
+                        Week 6: Tremolo/Beats Effects 1
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../modulation/tremolo_beats/tremolo_beats_2.html">
+                        Week 7: Tremolo/Beats Effects 2
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../modulation/voice_changer/voice_changer_project.html">
+                        Week 8: Build a Voice Changer/Voice Shield
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../modulation/chirp/chirp.html">
+                        Week 9: Chirps and Bells
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Week 9: The Discrete Fourier Transform (DFT)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../signal_analysis/signal_analysis_with_dft.html">
+                        Week 10: Frequency Analysis with the DFT
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../pedometer/pedometer_project.html">
+                        Week 10: Build a Pedometer
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../pedometer/pedo_frequency_project.html">
+                        Week 11: Step Detection versus Frequency Analysis
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../instrument_tuning/tuning.html">
+                        Week 12: Tuning an instrument
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../identifying_instrument/instruments.html">
+                        Week 13: Identifying Music Instruments
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../processing/filtering.html">
+                        Week ?: Sampled Signal Filtering with the Circular Convolution
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../final_project/final_project.html">
+                        Week 14-15: Final Project
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../extra_materials/intro_to_breadboards/intro_to_breadboards.html">
+                        Introduction to Breadboards
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -115,731 +542,411 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Preliminaries
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preliminaries</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../introduction/intro_lab.html">
-   Week 1: Introduction
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/intro_lab.html">Week 1: Introduction</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Synthesis
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Synthesis</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../synthesis/playing_sound/play_sounds.html">
-   Week 2: Playing Sound
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../synthesis/build_a_synthesizer/build_a_synthesizer.html">
-   Week 3: Build a synthesizer
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../synthesis/build_a_theremin/build_a_theremin.html">
-   Week 4: Build a theremin
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../synthesis/experiencing_sound/experiencing_sound.html">
-   Week 5: The human experience of sound
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../synthesis/playing_sound/play_sounds.html">Week 2: Playing Sound</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../synthesis/build_a_synthesizer/build_a_synthesizer.html">Week 3: Build a synthesizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../synthesis/build_a_theremin/build_a_theremin.html">Week 4: Build a theremin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../synthesis/experiencing_sound/experiencing_sound.html">Week 5: The human experience of sound</a></li>
+
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Modulation
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modulation</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulation/tremolo_beats/tremolo_beats_1.html">
-   Week 6: Tremolo/Beats Effects 1
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulation/tremolo_beats/tremolo_beats_2.html">
-   Week 7: Tremolo/Beats Effects 2
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulation/voice_changer/voice_changer_project.html">
-   Week 8: Build a Voice Changer/Voice Shield
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulation/chirp/chirp.html">
-   Week 9: Chirps and Bells
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulation/tremolo_beats/tremolo_beats_1.html">Week 6: Tremolo/Beats Effects 1</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../modulation/tremolo_beats/tremolo_beats_2.html">Week 7: Tremolo/Beats Effects 2</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../modulation/voice_changer/voice_changer_project.html">Week 8: Build a Voice Changer/Voice Shield</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulation/chirp/chirp.html">Week 9: Chirps and Bells</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Analysis
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analysis</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Week 9: The Discrete Fourier Transform (DFT)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../signal_analysis/signal_analysis_with_dft.html">
-   Week 10: Frequency Analysis with the DFT
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../pedometer/pedometer_project.html">
-   Week 10: Build a Pedometer
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../pedometer/pedo_frequency_project.html">
-   Week 11: Step Detection versus Frequency Analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../instrument_tuning/tuning.html">
-   Week 12: Tuning an instrument
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../identifying_instrument/instruments.html">
-   Week 13: Identifying Music Instruments
-  </a>
- </li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 9: The Discrete Fourier Transform (DFT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../signal_analysis/signal_analysis_with_dft.html">Week 10: Frequency Analysis with the DFT</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../pedometer/pedometer_project.html">Week 10: Build a Pedometer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pedometer/pedo_frequency_project.html">Week 11: Step Detection versus Frequency Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../instrument_tuning/tuning.html">Week 12: Tuning an instrument</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../identifying_instrument/instruments.html">Week 13: Identifying Music Instruments</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Processing
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Processing</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../processing/filtering.html">
-   Week ?: Sampled Signal Filtering with the Circular Convolution
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../processing/filtering.html">Week ?: Sampled Signal Filtering with the Circular Convolution</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Design a project of your own
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Design a project of your own</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../final_project/final_project.html">
-   Week 14-15: Final Project
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../final_project/final_project.html">Week 14-15: Final Project</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Extra Materials
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra Materials</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../extra_materials/intro_to_breadboards/intro_to_breadboards.html">
-   Introduction to Breadboards
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extra_materials/intro_to_breadboards/intro_to_breadboards.html">Introduction to Breadboards</a></li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
+</nav>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  </div>
+  
 
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
 
-          
+  
+  <div id="rtd-footer-container"></div>
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
+      </div>
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
 
 
 
 <div class="col py-1 d-flex header-article-main">
     <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
     </div>
     <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/AldenMB/DSLab_Fourier/main?urlpath=tree/book/labs/analysis/dft/dft.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../../../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
+  <ul class="dropdown-menu">
+  </ul>
 </div>
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
+  class="btn btn-sm"
   data-toggle="tooltip"
 data-placement="bottom"
 title="Fullscreen mode"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/AldenMB/DSLab_Fourier"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/AldenMB/DSLab_Fourier" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Source repository"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fab fa-github"></i>
   </span>
-<span class="headerbtn__text-container">repository</span>
+<span class="btn__text-container">repository</span>
 </a>
-
-      </li>
+</a>
       
-      <li>
-        <a href="https://github.com/AldenMB/DSLab_Fourier/issues/new?title=Issue%20on%20page%20%2Flabs/analysis/dft/dft.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
+      <li><a href="https://github.com/AldenMB/DSLab_Fourier/issues/new?title=Issue%20on%20page%20%2Flabs/analysis/dft/dft.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Open an issue"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-lightbulb"></i>
   </span>
-<span class="headerbtn__text-container">open issue</span>
+<span class="btn__text-container">open issue</span>
 </a>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../../_sources/labs/analysis/dft/dft.ipynb"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="../../../_sources/labs/analysis/dft/dft.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Download source file"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.ipynb</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-
-      </li>
+</a>
       
       <li>
-        
 <button onclick="printPdf(this)"
-  class="headerbtn"
+  class="btn btn-sm dropdown-item"
   data-toggle="tooltip"
 data-placement="left"
 title="Print to PDF"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file-pdf"></i>
   </span>
-<span class="headerbtn__text-container">.pdf</span>
+<span class="btn__text-container">.pdf</span>
 </button>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-00-content-span">
-   <span style="color:orange;">
-    00. Content
-   </span>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mathematics">
-     Mathematics
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#programming-skills">
-     Programming Skills
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#embedded-systems">
-     Embedded Systems
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span">
-   <span style="color:orange;">
-    0. Required Hardware
-   </span>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-1-intro-span">
-   <span style="color:orange;">
-    1. Intro
-   </span>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span">
-     <span style="color:red">
-      Exercise 1
-     </span>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-2-periodicity-of-the-sampling-span">
-   <span style="color:orange;">
-    2. Periodicity of the Sampling
-   </span>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-red-exercise-2-span">
-     <span style="color:red">
-      Exercise 2
-     </span>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-red-exercise-3-span">
-     <span style="color:red">
-      Exercise 3
-     </span>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-red-exercise-4-span">
-     <span style="color:red">
-      Exercise 4
-     </span>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-2-toy-example-of-signal-analysis-span">
-   <span style="color:orange;">
-    2. Toy Example of Signal Analysis
-   </span>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-red-exercise-5-span">
-     <span style="color:red">
-      Exercise 5
-     </span>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-red-exercise-6-span">
-     <span style="color:red">
-      Exercise 6
-     </span>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-3-another-toy-example-of-signal-analysis-with-aliasing-span">
-   <span style="color:orange;">
-    3. Another Toy Example of Signal Analysis- with Aliasing
-   </span>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-red-exercise-7-span">
-     <span style="color:red">
-      Exercise 7
-     </span>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-red-exercise-8-span">
-     <span style="color:red">
-      Exercise 8
-     </span>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-4-the-theory-span">
-   <span style="color:orange;">
-    4. The Theory
-   </span>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sampling-theorem">
-   Sampling Theorem
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#proof-of-the-sampling-theorem">
-   Proof of the Sampling Theorem
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-red-exercise-9-span">
-     <span style="color:red">
-      Exercise 9
-     </span>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-5-the-fft-command-span">
-   <span style="color:orange;">
-    5. The FFT Command
-   </span>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-red-exercise-10-span">
-     <span style="color:red">
-      Exercise 10
-     </span>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-green-reflection-span">
-   <span style="color:green;">
-    Reflection
-   </span>
-  </a>
- </li>
-</ul>
-
-    </nav>
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Week 9: The Discrete Fourier Transform (DFT)</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-00-content-span">
-   <span style="color:orange;">
-    00. Content
-   </span>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mathematics">
-     Mathematics
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#programming-skills">
-     Programming Skills
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#embedded-systems">
-     Embedded Systems
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span">
-   <span style="color:orange;">
-    0. Required Hardware
-   </span>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-1-intro-span">
-   <span style="color:orange;">
-    1. Intro
-   </span>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span">
-     <span style="color:red">
-      Exercise 1
-     </span>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-2-periodicity-of-the-sampling-span">
-   <span style="color:orange;">
-    2. Periodicity of the Sampling
-   </span>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-red-exercise-2-span">
-     <span style="color:red">
-      Exercise 2
-     </span>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-red-exercise-3-span">
-     <span style="color:red">
-      Exercise 3
-     </span>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-red-exercise-4-span">
-     <span style="color:red">
-      Exercise 4
-     </span>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-2-toy-example-of-signal-analysis-span">
-   <span style="color:orange;">
-    2. Toy Example of Signal Analysis
-   </span>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-red-exercise-5-span">
-     <span style="color:red">
-      Exercise 5
-     </span>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-red-exercise-6-span">
-     <span style="color:red">
-      Exercise 6
-     </span>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-3-another-toy-example-of-signal-analysis-with-aliasing-span">
-   <span style="color:orange;">
-    3. Another Toy Example of Signal Analysis- with Aliasing
-   </span>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-red-exercise-7-span">
-     <span style="color:red">
-      Exercise 7
-     </span>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-red-exercise-8-span">
-     <span style="color:red">
-      Exercise 8
-     </span>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-4-the-theory-span">
-   <span style="color:orange;">
-    4. The Theory
-   </span>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sampling-theorem">
-   Sampling Theorem
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#proof-of-the-sampling-theorem">
-   Proof of the Sampling Theorem
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-red-exercise-9-span">
-     <span style="color:red">
-      Exercise 9
-     </span>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-orange-5-the-fft-command-span">
-   <span style="color:orange;">
-    5. The FFT Command
-   </span>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-red-exercise-10-span">
-     <span style="color:red">
-      Exercise 10
-     </span>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-green-reflection-span">
-   <span style="color:green;">
-    Reflection
-   </span>
-  </a>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
             </div>
-            <main id="main-content" role="main">
-                
-              <div>
-                
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 9: The Discrete Fourier Transform (DFT)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-00-content-span">
+   <span style="color:orange;">
+    00. Content
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mathematics">
+     Mathematics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#programming-skills">
+     Programming Skills
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#embedded-systems">
+     Embedded Systems
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span">
+   <span style="color:orange;">
+    0. Required Hardware
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-1-intro-span">
+   <span style="color:orange;">
+    1. Intro
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span">
+     <span style="color:red">
+      Exercise 1
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-2-periodicity-of-the-sampling-span">
+   <span style="color:orange;">
+    2. Periodicity of the Sampling
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-2-span">
+     <span style="color:red">
+      Exercise 2
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-3-span">
+     <span style="color:red">
+      Exercise 3
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-4-span">
+     <span style="color:red">
+      Exercise 4
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-2-toy-example-of-signal-analysis-span">
+   <span style="color:orange;">
+    2. Toy Example of Signal Analysis
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-5-span">
+     <span style="color:red">
+      Exercise 5
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-6-span">
+     <span style="color:red">
+      Exercise 6
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-3-another-toy-example-of-signal-analysis-with-aliasing-span">
+   <span style="color:orange;">
+    3. Another Toy Example of Signal Analysis- with Aliasing
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-7-span">
+     <span style="color:red">
+      Exercise 7
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-8-span">
+     <span style="color:red">
+      Exercise 8
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-4-the-theory-span">
+   <span style="color:orange;">
+    4. The Theory
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sampling-theorem">
+   Sampling Theorem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#proof-of-the-sampling-theorem">
+   Proof of the Sampling Theorem
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-9-span">
+     <span style="color:red">
+      Exercise 9
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-5-the-fft-command-span">
+   <span style="color:orange;">
+    5. The FFT Command
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-10-span">
+     <span style="color:red">
+      Exercise 10
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-green-reflection-span">
+   <span style="color:green;">
+    Reflection
+   </span>
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
   <section class="tex2jax_ignore mathjax_ignore" id="week-9-the-discrete-fourier-transform-dft">
-<h1>Week 9: The Discrete Fourier Transform (DFT)<a class="headerlink" href="#week-9-the-discrete-fourier-transform-dft" title="Permalink to this headline">#</a></h1>
+<h1>Week 9: The Discrete Fourier Transform (DFT)<a class="headerlink" href="#week-9-the-discrete-fourier-transform-dft" title="Permalink to this heading">#</a></h1>
 <p><font size="6"> Laboratory 8 </font> <br>
 <font size="3"> Last updated February 17, 2023 </font></p>
 <section id="span-style-color-orange-00-content-span">
-<h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this headline">#</a></h2>
+<h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this heading">#</a></h2>
 <section id="mathematics">
-<h3>Mathematics<a class="headerlink" href="#mathematics" title="Permalink to this headline">#</a></h3>
+<h3>Mathematics<a class="headerlink" href="#mathematics" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Fourier series</p></li>
 <li><p>Euler’s formula</p></li>
@@ -850,20 +957,20 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="programming-skills">
-<h3>Programming Skills<a class="headerlink" href="#programming-skills" title="Permalink to this headline">#</a></h3>
+<h3>Programming Skills<a class="headerlink" href="#programming-skills" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>FFT function</p></li>
 </ul>
 </section>
 <section id="embedded-systems">
-<h3>Embedded Systems<a class="headerlink" href="#embedded-systems" title="Permalink to this headline">#</a></h3>
+<h3>Embedded Systems<a class="headerlink" href="#embedded-systems" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>N/A</p></li>
 </ul>
 </section>
 </section>
 <section id="span-style-color-orange-0-required-hardware-span">
-<h2><span style="color:orange;"> 0. Required Hardware </span><a class="headerlink" href="#span-style-color-orange-0-required-hardware-span" title="Permalink to this headline">#</a></h2>
+<h2><span style="color:orange;"> 0. Required Hardware </span><a class="headerlink" href="#span-style-color-orange-0-required-hardware-span" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>N/A</p></li>
 </ul>
@@ -880,7 +987,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="span-style-color-orange-1-intro-span">
-<h2><span style="color:orange;"> 1. Intro </span><a class="headerlink" href="#span-style-color-orange-1-intro-span" title="Permalink to this headline">#</a></h2>
+<h2><span style="color:orange;"> 1. Intro </span><a class="headerlink" href="#span-style-color-orange-1-intro-span" title="Permalink to this heading">#</a></h2>
 <p>The signals we acquire in real-life have a finite duration. We typically assume that they “start at zero,” meaning that they are equal to zero until <span class="math notranslate nohighlight">\(t=0\)</span>. After the signal duration is passed, i.e. when <span class="math notranslate nohighlight">\(t\)</span> is greater than the duration of the signal, then we also assume that the signal is equal to zero.</p>
 <p>Putting this in mathematical terms: a finite duration signal <span class="math notranslate nohighlight">\(f(t)\)</span> takes the form $<span class="math notranslate nohighlight">\( f(t)=\left\{ \begin{array}{ll} f(t), &amp; 0\leq t &lt; \text{signal duration}, \\ 0, &amp; \text{ else.}\end{array}  \right. \)</span>$</p>
 <p>In order to analyze a finite duration signal, we repeat it periodically with a period <span class="math notranslate nohighlight">\(P\)</span> that is at least as long as the duration of the signal. When <span class="math notranslate nohighlight">\(P\)</span> is strictly greater than the duration, we say that the signal has been “zero padded” between the repetitions.</p>
@@ -893,7 +1000,7 @@ title="Print to PDF"
 <p>The parameter <span class="math notranslate nohighlight">\(T\)</span> is called the <strong>sampling period</strong>. The quantity <span class="math notranslate nohighlight">\(\frac{1}{T}\)</span> is called the <strong>sampling frequency</strong>.   The sampling period <span class="math notranslate nohighlight">\(T\)</span> is the time difference between two sample points, and the sampling frequency represent how many samples are acquired per time unit.</p>
 <p>In order to simplify the math, we rewrite <span class="math notranslate nohighlight">\(f(t)\)</span> in terms of complex exponentials: $<span class="math notranslate nohighlight">\( f(t)=  \sum_{k=-\infty}^\infty c_n e^{i \frac{2\pi}{P}kt} \)</span><span class="math notranslate nohighlight">\( where \)</span> c_0=\frac{a_0}{2} <span class="math notranslate nohighlight">\( and \)</span>c_n=\frac{1}{2} (a_n- i b_n)=c_{-n}^*<span class="math notranslate nohighlight">\(,  for \)</span>n&gt;1$.</p>
 <section id="span-style-color-red-exercise-1-span">
-<h3><span style="color:red"> Exercise 1 </span><a class="headerlink" href="#span-style-color-red-exercise-1-span" title="Permalink to this headline">#</a></h3>
+<h3><span style="color:red"> Exercise 1 </span><a class="headerlink" href="#span-style-color-red-exercise-1-span" title="Permalink to this heading">#</a></h3>
 <p>Derive the above formula. (Hint: replace each sine and cosine by sums of complex exponentials. If you do not know the sums already, find them using Euler’s formula <span class="math notranslate nohighlight">\(e^{i\theta}=\cos \theta + i \sin \theta\)</span>. B’Euler up! )</p>
 <p>In the following, we will show how to recover the coefficients <span class="math notranslate nohighlight">\(a_k,b_k\)</span> using the <strong>Discrete Fourier Transform (DFT)</strong> of the sampling <span class="math notranslate nohighlight">\(f_n[n]\)</span>. The DFT transforms a discrete-time periodic signal with period <span class="math notranslate nohighlight">\(N\)</span> into a sequence of complex numbers that is also periodic with period <span class="math notranslate nohighlight">\(N\)</span>. The numbers in the sequence are called the <strong>DFT coefficients.</strong></p>
 <p>The formula for the <span class="math notranslate nohighlight">\(k^{th}\)</span> DFT coefficient of a sampled signal <span class="math notranslate nohighlight">\(f_d[n]\)</span> with period <span class="math notranslate nohighlight">\(N\)</span> is</p>
@@ -911,21 +1018,21 @@ title="Print to PDF"
 </section>
 </section>
 <section id="span-style-color-orange-2-periodicity-of-the-sampling-span">
-<h2><span style="color:orange;"> 2. Periodicity of the Sampling </span><a class="headerlink" href="#span-style-color-orange-2-periodicity-of-the-sampling-span" title="Permalink to this headline">#</a></h2>
+<h2><span style="color:orange;"> 2. Periodicity of the Sampling </span><a class="headerlink" href="#span-style-color-orange-2-periodicity-of-the-sampling-span" title="Permalink to this heading">#</a></h2>
 <p>In order for the proposed analysis method to work, the sampled signal must be periodic. In other words, there must exist an integer <span class="math notranslate nohighlight">\(N\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[ f_d[n+N] = f_d[n], \forall n.\]</div>
 <p>Depending on the sampling period <span class="math notranslate nohighlight">\(T\)</span> chosen, the sampled signal may or may not be periodic.</p>
 <section id="span-style-color-red-exercise-2-span">
-<h3><span style="color:red"> Exercise 2 </span><a class="headerlink" href="#span-style-color-red-exercise-2-span" title="Permalink to this headline">#</a></h3>
+<h3><span style="color:red"> Exercise 2 </span><a class="headerlink" href="#span-style-color-red-exercise-2-span" title="Permalink to this heading">#</a></h3>
 <p>If the signal <span class="math notranslate nohighlight">\(f(t)=e^{i \frac{2\pi}{10} t }\)</span> is sampled with a sampling period <span class="math notranslate nohighlight">\(T=2\)</span>, show that the resulting sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> is periodic with period <span class="math notranslate nohighlight">\(N=5\)</span>. (Use either code or mathematics.)</p>
 </section>
 <section id="span-style-color-red-exercise-3-span">
-<h3><span style="color:red"> Exercise 3 </span><a class="headerlink" href="#span-style-color-red-exercise-3-span" title="Permalink to this headline">#</a></h3>
+<h3><span style="color:red"> Exercise 3 </span><a class="headerlink" href="#span-style-color-red-exercise-3-span" title="Permalink to this heading">#</a></h3>
 <p>If the signal <span class="math notranslate nohighlight">\(f(t)=e^{i \frac{2\pi}{10} t }\)</span> is sampled with a sampling period <span class="math notranslate nohighlight">\(T=3\)</span>, show that the resulting sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> is periodic with period <span class="math notranslate nohighlight">\(N=10\)</span>. (Use either code or mathematics.)</p>
 </section>
 <section id="span-style-color-red-exercise-4-span">
-<h3><span style="color:red"> Exercise 4 </span><a class="headerlink" href="#span-style-color-red-exercise-4-span" title="Permalink to this headline">#</a></h3>
+<h3><span style="color:red"> Exercise 4 </span><a class="headerlink" href="#span-style-color-red-exercise-4-span" title="Permalink to this heading">#</a></h3>
 <p>If the signal <span class="math notranslate nohighlight">\(f(t)=e^{i \frac{2\pi}{10} t }\)</span> is sampled with a sampling period <span class="math notranslate nohighlight">\(T=\sqrt{2}\)</span>, show that the resulting sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> is not periodic. (Here you must use mathematics.)</p>
 <p>In general, <span class="math notranslate nohighlight">\(f_d[n]= f(n T)\)</span> is periodic  if an only if <span class="math notranslate nohighlight">\(\frac{P}{T}\)</span> is a rational number. That means that we can write <span class="math notranslate nohighlight">\(\frac{P}{T}\)</span> as a ratio of two integers:
 $<span class="math notranslate nohighlight">\(\frac{P}{T}=\frac{N}{K}.\)</span><span class="math notranslate nohighlight">\( 
@@ -934,7 +1041,7 @@ If \)</span>N<span class="math notranslate nohighlight">\( and \)</span>K<span c
 </section>
 </section>
 <section id="span-style-color-orange-2-toy-example-of-signal-analysis-span">
-<h2><span style="color:orange;"> 2. Toy Example of Signal Analysis </span><a class="headerlink" href="#span-style-color-orange-2-toy-example-of-signal-analysis-span" title="Permalink to this headline">#</a></h2>
+<h2><span style="color:orange;"> 2. Toy Example of Signal Analysis </span><a class="headerlink" href="#span-style-color-orange-2-toy-example-of-signal-analysis-span" title="Permalink to this heading">#</a></h2>
 <p>Suppose the signal recorded, once repeated periorically, is of the form $<span class="math notranslate nohighlight">\(  f(t)= a_1 \cos \left(2 \pi 100 t \right) + a_4 \cos \left(2 \pi 400 t  \right). \)</span><span class="math notranslate nohighlight">\(
 So the signal has period \)</span>P=\frac{1}{100}$.</p>
 <p>Given is a recording with 1000 samples per unit of time (so the sampling period is <span class="math notranslate nohighlight">\(T=\frac{1}{1000}\)</span>): $<span class="math notranslate nohighlight">\( f_d[n] = f( n \frac{1} {1000}).\)</span>$
@@ -966,7 +1073,7 @@ since complex exponentials have the following orthogonality property:
 \right.\)</span><span class="math notranslate nohighlight">\(
 Therefore, \)</span>a_1=2 \frac{F[1]}{10}<span class="math notranslate nohighlight">\(. So we are able to obtain the value of \)</span>a_1<span class="math notranslate nohighlight">\( from the value of \)</span>F[1]$.</p>
 <section id="span-style-color-red-exercise-5-span">
-<h3><span style="color:red"> Exercise 5 </span><a class="headerlink" href="#span-style-color-red-exercise-5-span" title="Permalink to this headline">#</a></h3>
+<h3><span style="color:red"> Exercise 5 </span><a class="headerlink" href="#span-style-color-red-exercise-5-span" title="Permalink to this heading">#</a></h3>
 <p>Test the formula <span class="math notranslate nohighlight">\(a_1=2 \frac{ F[1]}{10}\)</span> as follows:</p>
 <ul class="simple">
 <li><p>pick the values of <span class="math notranslate nohighlight">\(a_1\)</span> and <span class="math notranslate nohighlight">\(a_4\)</span>. (Do not pick the same value for both.)</p></li>
@@ -995,12 +1102,12 @@ again by using the fact that</p>
 <p>Therefore, <span class="math notranslate nohighlight">\(a_4=2 \frac{F[4]}{10}\)</span>. So we are able to obtain the value of <span class="math notranslate nohighlight">\(a_4\)</span> from the value of <span class="math notranslate nohighlight">\(F[4]\)</span>.</p>
 </section>
 <section id="span-style-color-red-exercise-6-span">
-<h3><span style="color:red"> Exercise 6 </span><a class="headerlink" href="#span-style-color-red-exercise-6-span" title="Permalink to this headline">#</a></h3>
+<h3><span style="color:red"> Exercise 6 </span><a class="headerlink" href="#span-style-color-red-exercise-6-span" title="Permalink to this heading">#</a></h3>
 <p>Test the formula <span class="math notranslate nohighlight">\(a_4=2 \frac{F[4]}{10}\)</span> in the same was as you did for Exercise 5.</p>
 </section>
 </section>
 <section id="span-style-color-orange-3-another-toy-example-of-signal-analysis-with-aliasing-span">
-<h2><span style="color:orange;"> 3. Another Toy Example of Signal Analysis- with Aliasing </span><a class="headerlink" href="#span-style-color-orange-3-another-toy-example-of-signal-analysis-with-aliasing-span" title="Permalink to this headline">#</a></h2>
+<h2><span style="color:orange;"> 3. Another Toy Example of Signal Analysis- with Aliasing </span><a class="headerlink" href="#span-style-color-orange-3-another-toy-example-of-signal-analysis-with-aliasing-span" title="Permalink to this heading">#</a></h2>
 <p>Again, we assume thay the signal recorded is known to be of the form
 $<span class="math notranslate nohighlight">\(  f(t)= a_1 \cos \left(2 \pi 100 t \right) + a_4 \cos \left(2 \pi 400  t  \right). \)</span><span class="math notranslate nohighlight">\(
 So the signal has period \)</span>P=\frac{1}{100}$.</p>
@@ -1045,16 +1152,16 @@ f_d[n]&amp;= a_1 \cos \left(2 \pi  \frac{n}{5} \right) + a_4 \cos \left(2 \pi 4 
 \end{aligned} \)</span>$
 This phenomenon is called <strong>aliasing</strong>.</p>
 <section id="span-style-color-red-exercise-7-span">
-<h3><span style="color:red"> Exercise 7 </span><a class="headerlink" href="#span-style-color-red-exercise-7-span" title="Permalink to this headline">#</a></h3>
+<h3><span style="color:red"> Exercise 7 </span><a class="headerlink" href="#span-style-color-red-exercise-7-span" title="Permalink to this heading">#</a></h3>
 <p>Check, numerically, that sampling <span class="math notranslate nohighlight">\(\cos (2\pi 100 t)\)</span> or <span class="math notranslate nohighlight">\(\cos (2\pi 400 t)\)</span>  with a period <span class="math notranslate nohighlight">\(T=\frac{1}{500}\)</span> in either cases yield the same discrete-time signal <span class="math notranslate nohighlight">\(f_d[n]\)</span>.</p>
 </section>
 <section id="span-style-color-red-exercise-8-span">
-<h3><span style="color:red"> Exercise 8 </span><a class="headerlink" href="#span-style-color-red-exercise-8-span" title="Permalink to this headline">#</a></h3>
+<h3><span style="color:red"> Exercise 8 </span><a class="headerlink" href="#span-style-color-red-exercise-8-span" title="Permalink to this heading">#</a></h3>
 <p>Use an approach similar to that of Exercise 5 to show, numerically, that in the toy example with aliasing above, we have <span class="math notranslate nohighlight">\(\frac{2}{5} F[1]= a_1+a_4\)</span> (as opposed to <span class="math notranslate nohighlight">\(\frac{2}{5} F[1]= a_1\)</span>).</p>
 </section>
 </section>
 <section id="span-style-color-orange-4-the-theory-span">
-<h2><span style="color:orange;"> 4. The Theory </span><a class="headerlink" href="#span-style-color-orange-4-the-theory-span" title="Permalink to this headline">#</a></h2>
+<h2><span style="color:orange;"> 4. The Theory </span><a class="headerlink" href="#span-style-color-orange-4-the-theory-span" title="Permalink to this heading">#</a></h2>
 <p>The aliasing phenomenon is well understood. In fact, you may have heard about the <strong>Nyquist criterion</strong>: a condition that, if satisfied, guarantees that aliasing will not occur. In this lab, we will not dwelve further into this criterion per say. Instead, we will jump directly to the topic of interest, which is to analyze a signal <span class="math notranslate nohighlight">\(f(t)\)</span> from a sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span>. By “analysing” we mean recovering the Fourier series coefficients <span class="math notranslate nohighlight">\(c_k\)</span> of <span class="math notranslate nohighlight">\(f(t)\)</span>.</p>
 <p>Recall that the ** DFT** of a signal <span class="math notranslate nohighlight">\(f_d[n]\)</span> with period <span class="math notranslate nohighlight">\(N\)</span> is defined as the discrete-time signal</p>
 <div class="math notranslate nohighlight">
@@ -1063,7 +1170,7 @@ This phenomenon is called <strong>aliasing</strong>.</p>
 <p>It turns out that the DFT coefficients give us the value of the Fourier series coefficients of <span class="math notranslate nohighlight">\(f(t)\)</span>, provided that we have taken “enough” samples considering the number of non-zero coefficients in the Fourier series of <span class="math notranslate nohighlight">\(f(t)\)</span>. More specifically, we have the following theorem.</p>
 </section>
 <section id="sampling-theorem">
-<h2>Sampling Theorem<a class="headerlink" href="#sampling-theorem" title="Permalink to this headline">#</a></h2>
+<h2>Sampling Theorem<a class="headerlink" href="#sampling-theorem" title="Permalink to this heading">#</a></h2>
 <p>If f(t) has a finite Fourier series with <span class="math notranslate nohighlight">\(2K+1\)</span> terms</p>
 <div class="math notranslate nohighlight">
 \[f(t)=\sum_{k=-K}^K c_k e^{i \frac{2\pi}{P} k t} = \frac{a_0}{2}+ \sum_{k=1}^K a_k \cos \left(\frac{2 \pi}{P} k t \right) + b_k \sin \left(\frac{2 \pi}{P} k t  \right). \]</div>
@@ -1080,7 +1187,7 @@ F[k]&amp; = N c_k= N\frac{1}{2}(a_k-ib_k), \text{ for all }  1\leq k \leq K.
 \end{split}\]</div>
 </section>
 <section id="proof-of-the-sampling-theorem">
-<h2>Proof of the Sampling Theorem<a class="headerlink" href="#proof-of-the-sampling-theorem" title="Permalink to this headline">#</a></h2>
+<h2>Proof of the Sampling Theorem<a class="headerlink" href="#proof-of-the-sampling-theorem" title="Permalink to this heading">#</a></h2>
 <p>The proof of the sampling theorem follows the same model as the computation performed in the toy examples.</p>
 <p>We start from the formula for the DFT coefficients and replace <span class="math notranslate nohighlight">\(f_d[n]\)</span> by its expression in terms of complex exponentials.</p>
 <div class="math notranslate nohighlight">
@@ -1122,7 +1229,7 @@ F[k] &amp;=   N c_{k}, \text{ for } k=0,1,2,\ldots,K \\
 \end{aligned} \end{split}\]</div>
 <p><span class="math notranslate nohighlight">\(\square\)</span></p>
 <section id="span-style-color-red-exercise-9-span">
-<h3><span style="color:red"> Exercise 9 </span><a class="headerlink" href="#span-style-color-red-exercise-9-span" title="Permalink to this headline">#</a></h3>
+<h3><span style="color:red"> Exercise 9 </span><a class="headerlink" href="#span-style-color-red-exercise-9-span" title="Permalink to this heading">#</a></h3>
 <p>Illustrate the Sampling Theorem with a numerical example:</p>
 <ul class="simple">
 <li><p>Write a  periodic signal <span class="math notranslate nohighlight">\(f(t)\)</span> as as a linear combination of  sines and cosines.</p></li>
@@ -1133,15 +1240,15 @@ F[k] &amp;=   N c_{k}, \text{ for } k=0,1,2,\ldots,K \\
 </section>
 </section>
 <section id="span-style-color-orange-5-the-fft-command-span">
-<h2><span style="color:orange;"> 5. The FFT Command </span><a class="headerlink" href="#span-style-color-orange-5-the-fft-command-span" title="Permalink to this headline">#</a></h2>
+<h2><span style="color:orange;"> 5. The FFT Command </span><a class="headerlink" href="#span-style-color-orange-5-the-fft-command-span" title="Permalink to this heading">#</a></h2>
 <p>In the previous exercise, you had to write your own function to compute a DFT. Running your function may have taken a long time, especially if you used loops. Python has a quick command to compute a DFT. The command uses a fast algorithm called a Fast Fourier Transform (FFT) to compute the DFT.  Here is the synthax. CODE NEEDS TO BE ADDED HERE.</p>
 <section id="span-style-color-red-exercise-10-span">
-<h3><span style="color:red"> Exercise 10 </span><a class="headerlink" href="#span-style-color-red-exercise-10-span" title="Permalink to this headline">#</a></h3>
+<h3><span style="color:red"> Exercise 10 </span><a class="headerlink" href="#span-style-color-red-exercise-10-span" title="Permalink to this heading">#</a></h3>
 <p>Repeat exercise 10 with a different signal <span class="math notranslate nohighlight">\(f(t)\)</span>. This time, use the FFT command.</p>
 </section>
 </section>
 <section id="span-style-color-green-reflection-span">
-<h2><span style="color:green;"> Reflection </span><a class="headerlink" href="#span-style-color-green-reflection-span" title="Permalink to this headline">#</a></h2>
+<h2><span style="color:green;"> Reflection </span><a class="headerlink" href="#span-style-color-green-reflection-span" title="Permalink to this heading">#</a></h2>
 <p>Do not skip this section! It will be graded but only on completion.</p>
 <p><strong>1. What parts of the lab, if any, do you feel you did well? <br>
 2. What are some things you learned today? <br>
@@ -1170,50 +1277,272 @@ F[k] &amp;=   N c_{k}, \text{ for } k=0,1,2,\ldots,K \\
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
-              
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../../modulation/chirp/chirp.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Week 9: Chirps and Bells</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="../signal_analysis/signal_analysis_with_dft.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Week 10: Frequency Analysis with the DFT</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+  <a class='left-prev' id="prev-link" href="../../modulation/chirp/chirp.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Week 9: Chirps and Bells</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="../signal_analysis/signal_analysis_with_dft.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Week 10: Frequency Analysis with the DFT</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
 </div>
             </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
   
-    By Mireille Boutin, Alden Bradford<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-00-content-span">
+   <span style="color:orange;">
+    00. Content
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mathematics">
+     Mathematics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#programming-skills">
+     Programming Skills
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#embedded-systems">
+     Embedded Systems
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span">
+   <span style="color:orange;">
+    0. Required Hardware
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-1-intro-span">
+   <span style="color:orange;">
+    1. Intro
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span">
+     <span style="color:red">
+      Exercise 1
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-2-periodicity-of-the-sampling-span">
+   <span style="color:orange;">
+    2. Periodicity of the Sampling
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-2-span">
+     <span style="color:red">
+      Exercise 2
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-3-span">
+     <span style="color:red">
+      Exercise 3
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-4-span">
+     <span style="color:red">
+      Exercise 4
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-2-toy-example-of-signal-analysis-span">
+   <span style="color:orange;">
+    2. Toy Example of Signal Analysis
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-5-span">
+     <span style="color:red">
+      Exercise 5
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-6-span">
+     <span style="color:red">
+      Exercise 6
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-3-another-toy-example-of-signal-analysis-with-aliasing-span">
+   <span style="color:orange;">
+    3. Another Toy Example of Signal Analysis- with Aliasing
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-7-span">
+     <span style="color:red">
+      Exercise 7
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-8-span">
+     <span style="color:red">
+      Exercise 8
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-4-the-theory-span">
+   <span style="color:orange;">
+    4. The Theory
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sampling-theorem">
+   Sampling Theorem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#proof-of-the-sampling-theorem">
+   Proof of the Sampling Theorem
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-9-span">
+     <span style="color:red">
+      Exercise 9
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-orange-5-the-fft-command-span">
+   <span style="color:orange;">
+    5. The FFT Command
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-red-exercise-10-span">
+     <span style="color:red">
+      Exercise 10
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-green-reflection-span">
+   <span style="color:green;">
+    Reflection
+   </span>
+  </a>
+ </li>
+</ul>
+
+</nav>
 </div>
 
-
-      </div>
-    </div>
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mireille Boutin, Alden Bradford
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2022.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
 
   </body>
 </html>
