@@ -1,7 +1,7 @@
 
 #!/usr/bin/env python
 
-"""wire_real_time.py: Captures audio using microphone and outputs through a speaker in almost real time.
+"""megaphone.py: Captures audio using microphone and outputs through a speaker in almost real time.
 This code illustrates how to gather audio data as chunk and to act on it."""
 
 __author__      = "Adharsh Sabukumar"
