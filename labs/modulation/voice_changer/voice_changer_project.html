@@ -983,25 +983,26 @@ Since we have the audio file saved in some format, a naive approach would be to 
 <li><p>Write the data frames to the output stream.</p></li>
 <li><p>Close and terminate the audio stream.</p></li>
 </ol>
+<p><a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/modulation/voice_changer/audio_player.py">Audio_player.py</a> is implemented following the above pseudo code.</p>
 <section id="span-style-color-red-exercise-2-span">
 <h3><span style="color:red"> Exercise 2</span><a class="headerlink" href="#span-style-color-red-exercise-2-span" title="Permalink to this heading">#</a></h3>
-<p>Record a 10s audio clip using <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/modulation/tremolo_beats/voice_recorder.py">voice_recorder.py</a> and then play the 10s audio using <span class="xref myst">audio_player.py</span>. Report your observations.</p>
+<p>Record a 10s audio clip using <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/modulation/tremolo_beats/voice_recorder.py">voice_recorder.py</a> and then play the 10s audio using <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/modulation/voice_changer/audio_player.py">audio_player.py</a>. Report your observations.</p>
 </section>
 </section>
 <section id="span-style-color-orange-3-megaphone-a-pythonic-approach-span">
 <h2><span style="color:orange;"> 3. Megaphone - a Pythonic Approach </span><a class="headerlink" href="#span-style-color-orange-3-megaphone-a-pythonic-approach-span" title="Permalink to this heading">#</a></h2>
 <p>A megaphone is a portable, cone-shaped device used to amplify a person’s voice. It is a simple device to amplify input sounds in realtime. In this exercise we will be using python to implememt a Megahorn in realtime.</p>
-<p>To implement such a device, we need the following:</p>
+<p>To implement such a device, we follow these steps:</p>
 <ol class="arabic simple">
 <li><p>Initialize and open an input and output stream.</p></li>
 <li><p>Read frames from the input stream.</p></li>
 <li><p>Write the frames from the input stream to the output stream.</p></li>
 <li><p>Close and terminate the data streams.</p></li>
 </ol>
-<p><span class="xref myst">Megaphone.py</span> is implemented following the steps above.</p>
+<p><a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/modulation/voice_changer/megaphone.py">Megaphone.py</a> is implemented following the steps above.</p>
 <section id="span-style-color-red-exercise-3-span">
 <h3><span style="color:red"> Exercise 3</span><a class="headerlink" href="#span-style-color-red-exercise-3-span" title="Permalink to this heading">#</a></h3>
-<p>Run <span class="xref myst">Megaphone.py</span> and report your observations. How well does this program perform when you are not using headphones? Report your observations.</p>
+<p>Run <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/modulation/voice_changer/megaphone.py">Megaphone.py</a> and report your observations. How well does this program perform when you are not using headphones? Report your observations.</p>
 </section>
 </section>
 <section id="span-style-color-orange-4-voice-changer-span">
@@ -1010,10 +1011,19 @@ Since we have the audio file saved in some format, a naive approach would be to 
 <p>When you speak, your throat produces a vibration which travels as a wave. Essentially,
 your voice is a sound wave. A voice changer, changes the shape of this sound wave by altering it. This can be done in multiple ways.</p>
 <p>One of the ways to implement a voice changer is to find out the frequency components of your voice and replace those frequency components with another frequency. However this is computationally expensive and will require specialized hardware to run the operation in realtime.</p>
-<p>A simple way to do this is to multiply the received audio signal with a wave of known frequency. This will shift the frequency components of the signal altering your voice. <span class="xref myst">Real_time_voice_changer.py</span> was written using this approach.</p>
+<p>A simple way to do this is to multiply the received audio signal with a wave of known frequency. This will shift the frequency components of the signal altering your voice. [</p>
+<p>To implement such a device, we will do the following:</p>
+<ol class="arabic simple">
+<li><p>Initialize and open an input and output stream.</p></li>
+<li><p>Read frames from the input stream.</p></li>
+<li><p>Multiply each such audio frames with a wave of known frequency.</p></li>
+<li><p>Write these modified audio frames to the output stream.</p></li>
+<li><p>Close and terminate the data streams.</p></li>
+</ol>
+<p><a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/modulation/voice_changer/real_time_voice_changer.py">Real_time_voice_changer.py</a> is implemented using this approach.</p>
 <section id="span-style-color-red-exercise-4-span">
 <h3><span style="color:red"> Exercise 4</span><a class="headerlink" href="#span-style-color-red-exercise-4-span" title="Permalink to this heading">#</a></h3>
-<p>Run <span class="xref myst">Real_time_voice_changer.py</span> and report your observations.
+<p>Run <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/modulation/voice_changer/real_time_voice_changer.py">Real_time_voice_changer.py</a> and report your observations.
 Identify the frequency of the wave used in altering the input.</p>
 </section>
 </section>
