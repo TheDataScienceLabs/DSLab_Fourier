@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Week 11: Frequency Analysis with the DFT" href="../signal_analysis/signal_analysis_with_dft.html" />
-    <link rel="prev" title="Week 9: Chirps and Bells" href="../../modulation/chirp/chirp.html" />
+    <link rel="prev" title="00. Content" href="../../modulation/chirp/chirp.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -201,7 +201,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../../modulation/chirp/chirp.html">
-                        Week 9: Chirps and Bells
+                        <span style="color:orange;"> 00. Content </span>
                       </a>
                     </li>
                 
@@ -404,7 +404,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../../modulation/chirp/chirp.html">
-                        Week 9: Chirps and Bells
+                        <span style="color:orange;"> 00. Content </span>
                       </a>
                     </li>
                 
@@ -570,7 +570,8 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <li class="toctree-l1"><a class="reference internal" href="../../modulation/voice_changer/voice_changer_project.html">Week 8: Build a Voice Changer/Voice Shield</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../modulation/chirp/chirp.html">Week 9: Chirps and Bells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulation/chirp/chirp.html"><span style="color:orange;"> 00. Content </span></a></li>
+
 
 
 
@@ -898,8 +899,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#proof-of-the-sampling-theorem">
-   Proof of the Sampling Theorem
+  <a class="reference internal nav-link" href="#proof-of-sampling-theorem">
+   Proof of Sampling Theorem
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -1012,7 +1013,7 @@ title="Print to PDF"
 \[ F[k]= \sum_{n=0}^{N-1} f_d[n] e^{-i \frac{2 \pi}{N} k n }.  \]</div>
 <p>As we will see later, in some circumstances, namely if</p>
 <ul class="simple">
-<li><p>the Fourier series of <span class="math notranslate nohighlight">\(f(t)\)</span> is finite, that is to say if <span class="math notranslate nohighlight">\(c_k=0\)</span> for all <span class="math notranslate nohighlight">\(|k|&gt;K\)</span>, and</p></li>
+<li><p>the Fourier series of <span class="math notranslate nohighlight">\(f(t)\)</span> is finite, that is to say if <span class="math notranslate nohighlight">\(c_k=0\)</span> for all <span class="math notranslate nohighlight">\(|k|&gt;K\)</span>, (i.e., a band-limited signal) and</p></li>
 <li><p><span class="math notranslate nohighlight">\(N\)</span> is large enough,</p></li>
 </ul>
 <p>then we have</p>
@@ -1178,7 +1179,7 @@ This phenomenon is called <strong>aliasing</strong>.</p>
 <p>If f(t) has a finite Fourier series with <span class="math notranslate nohighlight">\(2K+1\)</span> terms</p>
 <div class="math notranslate nohighlight">
 \[f(t)=\sum_{k=-K}^K c_k e^{i \frac{2\pi}{P} k t} = \frac{a_0}{2}+ \sum_{k=1}^K a_k \cos \left(\frac{2 \pi}{P} k t \right) + b_k \sin \left(\frac{2 \pi}{P} k t  \right). \]</div>
-<p>(so its maximum frequency is <span class="math notranslate nohighlight">\(K\frac{1}{P}\)</span>), and if we sample <span class="math notranslate nohighlight">\(f(t)\)</span> with a sampling frequency <span class="math notranslate nohighlight">\(\frac{1}{T}\)</span> such that <span class="math notranslate nohighlight">\(\frac{P}{T}=N\)</span> is an integer, and</p>
+<p>(so band-limited, with maximum frequency <span class="math notranslate nohighlight">\(K\frac{1}{P}\)</span>), and if we sample <span class="math notranslate nohighlight">\(f(t)\)</span> with a sampling frequency <span class="math notranslate nohighlight">\(\frac{1}{T}\)</span> such that <span class="math notranslate nohighlight">\(\frac{P}{T}=N\)</span> is an integer (i.e., an integer number of points per period), and</p>
 <div class="math notranslate nohighlight">
 \[\frac{1}{T} &gt; 2 K\frac{1}{P}\]</div>
 <p>(i.e., more than <span class="math notranslate nohighlight">\(2K\)</span> points per period). Then <span class="math notranslate nohighlight">\(f_d[n]\)</span> is periodic, with period <span class="math notranslate nohighlight">\(N\)</span>, and the DFT of <span class="math notranslate nohighlight">\(f_d[n]\)</span> gives the values of coefficients <span class="math notranslate nohighlight">\(c_k\)</span> of the Fourier series of <span class="math notranslate nohighlight">\(f(t)\)</span> as follows:</p>
@@ -1190,8 +1191,8 @@ F[k]&amp; = N c_k= N\frac{1}{2}(a_k-ib_k), \text{ for all }  1\leq k \leq K.
 \end{align}
 \end{split}\]</div>
 </section>
-<section id="proof-of-the-sampling-theorem">
-<h2>Proof of the Sampling Theorem<a class="headerlink" href="#proof-of-the-sampling-theorem" title="Permalink to this heading">#</a></h2>
+<section id="proof-of-sampling-theorem">
+<h2>Proof of Sampling Theorem<a class="headerlink" href="#proof-of-sampling-theorem" title="Permalink to this heading">#</a></h2>
 <p>The proof of the sampling theorem follows the same model as the computation performed in the toy examples.</p>
 <p>We start from the formula for the DFT coefficients and replace <span class="math notranslate nohighlight">\(f_d[n]\)</span> by its expression in terms of complex exponentials.</p>
 <div class="math notranslate nohighlight">
@@ -1293,7 +1294,7 @@ F[k] &amp;=   N c_{k}, \text{ for } k=0,1,2,\ldots,K \\
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">Week 9: Chirps and Bells</p>
+          <p class="prev-next-title"><span style="color:orange;"> 00. Content </span></p>
       </div>
   </a>
   <a class='right-next' id="next-link" href="../signal_analysis/signal_analysis_with_dft.html" title="next page">
@@ -1455,8 +1456,8 @@ F[k] &amp;=   N c_{k}, \text{ for } k=0,1,2,\ldots,K \\
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#proof-of-the-sampling-theorem">
-   Proof of the Sampling Theorem
+  <a class="reference internal nav-link" href="#proof-of-sampling-theorem">
+   Proof of Sampling Theorem
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
