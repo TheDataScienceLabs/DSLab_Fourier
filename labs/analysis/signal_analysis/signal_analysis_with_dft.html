@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Week 10: Frequency Analysis with the DFT &#8212; The Data Science Labs on Fourier Analysis</title>
+    <title>Week 11: Frequency Analysis with the DFT &#8212; The Data Science Labs on Fourier Analysis</title>
   
   
   
@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Week 10: Build a Pedometer" href="../pedometer/pedometer_project.html" />
-    <link rel="prev" title="Week 9: The Discrete Fourier Transform (DFT)" href="../dft/dft.html" />
+    <link rel="prev" title="Week 10: The Discrete Fourier Transform (DFT)" href="../dft/dft.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -208,14 +208,14 @@ const thebe_selector_output = ".output, .cell_output"
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../dft/dft.html">
-                        Week 9: The Discrete Fourier Transform (DFT)
+                        Week 10: The Discrete Fourier Transform (DFT)
                       </a>
                     </li>
                 
 
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="#">
-                        Week 10: Frequency Analysis with the DFT
+                        Week 11: Frequency Analysis with the DFT
                       </a>
                     </li>
                 
@@ -411,14 +411,14 @@ const thebe_selector_output = ".output, .cell_output"
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../dft/dft.html">
-                        Week 9: The Discrete Fourier Transform (DFT)
+                        Week 10: The Discrete Fourier Transform (DFT)
                       </a>
                     </li>
                 
 
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="#">
-                        Week 10: Frequency Analysis with the DFT
+                        Week 11: Frequency Analysis with the DFT
                       </a>
                     </li>
                 
@@ -571,11 +571,15 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l1"><a class="reference internal" href="../../modulation/voice_changer/voice_changer_project.html">Week 8: Build a Voice Changer/Voice Shield</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../modulation/chirp/chirp.html">Week 9: Chirps and Bells</a></li>
+
+
+
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Analysis</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../dft/dft.html">Week 9: The Discrete Fourier Transform (DFT)</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 10: Frequency Analysis with the DFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dft/dft.html">Week 10: The Discrete Fourier Transform (DFT)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 11: Frequency Analysis with the DFT</a></li>
 
 
 
@@ -748,7 +752,7 @@ title="Print to PDF"
             
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Week 10: Frequency Analysis with the DFT</h1>
+    <h1>Week 11: Frequency Analysis with the DFT</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -760,7 +764,7 @@ title="Print to PDF"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Week 10: Frequency Analysis with the DFT
+   Week 11: Frequency Analysis with the DFT
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -891,9 +895,9 @@ title="Print to PDF"
 
             <article class="bd-article" role="main">
               
-  <section class="tex2jax_ignore mathjax_ignore" id="week-10-frequency-analysis-with-the-dft">
-<h1>Week 10: Frequency Analysis with the DFT<a class="headerlink" href="#week-10-frequency-analysis-with-the-dft" title="Permalink to this heading">#</a></h1>
-<p><font size="6"> Laboratory 9 </font> <br>
+  <section class="tex2jax_ignore mathjax_ignore" id="week-11-frequency-analysis-with-the-dft">
+<h1>Week 11: Frequency Analysis with the DFT<a class="headerlink" href="#week-11-frequency-analysis-with-the-dft" title="Permalink to this heading">#</a></h1>
+<p><font size="6"> Laboratory 10 </font> <br>
 <font size="3"> Last updated February 16, 2023 </font></p>
 <section id="span-style-color-orange-00-content-span">
 <h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this heading">#</a></h2>
@@ -932,6 +936,7 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+<p>Go back to AM labs (esp, chiprs, bell, synthesized instruments) and analyze to get coefficients</p>
 </section>
 <section id="span-style-color-orange-1-using-the-dft-to-find-dominant-frequencies-in-a-signal-span">
 <h2><span style="color:orange;"> 1. Using the DFT to Find Dominant Frequencies in a Signal </span><a class="headerlink" href="#span-style-color-orange-1-using-the-dft-to-find-dominant-frequencies-in-a-signal-span" title="Permalink to this heading">#</a></h2>
@@ -1349,7 +1354,7 @@ f(t) = \sum_{k=100}^{20,000} A_k \sin(2\pi k t+a_k).
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">Week 9: The Discrete Fourier Transform (DFT)</p>
+          <p class="prev-next-title">Week 10: The Discrete Fourier Transform (DFT)</p>
       </div>
   </a>
   <a class='right-next' id="next-link" href="../pedometer/pedometer_project.html" title="next page">
@@ -1377,7 +1382,7 @@ f(t) = \sum_{k=100}^{20,000} A_k \sin(2\pi k t+a_k).
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Week 10: Frequency Analysis with the DFT
+   Week 11: Frequency Analysis with the DFT
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
