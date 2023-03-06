@@ -6,7 +6,7 @@
 #######################################################################################
 # Book settings
 title                       : The Data Science Labs on Fourier Analysis  # The title of the book. Will be placed in the left navbar.
-author                      : Mireille Boutin, Alden Bradford  # The author of the book
+author                      : Mireille Boutin, Alden Bradford, and Adharsh Sabukumar  # The author of the book
 copyright                   : "2022"  # Copyright year to be placed in the footer
 logo                        : logo.png  # A path to the book logo
 

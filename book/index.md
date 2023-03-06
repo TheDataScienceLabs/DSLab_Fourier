@@ -1,6 +1,6 @@
 # About This Course
 ## The Data Science Labs on Fourier Analysis
-**Alden Bradford and Mireille Boutin**
+**Mireille Boutin, Alden Bradford, and Adharsh Sabukumar**
 
 Welcome to The Data Science Labs on Fourier Analysis! This is a one credit course to accompany signals and systems courses (ECE301 and AAE301) or any other course covering Fourier analysis (e.g., MA428). In this course, you will explore applications of Fourier analysis to problems in data science. You will also practice programming in Python and using Arduino sensors and microprocessors. 
 
