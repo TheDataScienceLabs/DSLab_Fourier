@@ -24,7 +24,7 @@ data = wf.readframes(chunk)
 print("*************************************")
 print("*******   playback started!   *******")
 
-while data != '':
+while data != b'':
     stream.write(data)
     data = wf.readframes(chunk)
 
