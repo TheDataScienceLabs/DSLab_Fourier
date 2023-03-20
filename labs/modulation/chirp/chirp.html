@@ -502,7 +502,7 @@ document.write(`
 <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-orange-1-more-on-amplitude-modulation-bell-envelopes-span">
 <h1><span style="color:orange;"> 1. More on Amplitude Modulation: bell envelopes </span><a class="headerlink" href="#span-style-color-orange-1-more-on-amplitude-modulation-bell-envelopes-span" title="Permalink to this heading">#</a></h1>
 <p>In the last couple of labs, we have explored the modulation of a signal by multiplying it with a periodic signal, such as a sine wave or a triangular wave. We have explored how this changes the sound by listening to it. It was observed that, when the frequency of the carrier is low compared to that of the sound, modulating a sound is perceived as a periodical increase/decrease of the volume of the sound. Mathematically, we say that such modulation modifies the “envelop” of the signal. The envelop of a signal represents the maximal/minimal values between which the signal oscillates over time. (Yeah, his is not very precise, but giving a precise mathematical definition would just be sonfusing at this point. -pm) So amplitude modulation, which as the name indicates changes the amplitude of the signal, naturally changes the envelop of the signal. When the carrier value is very small at some point in time, the amplitude of the modulated signal is decreased, thus making the sound less loud at that moment. Conversely, if the carrier value is very large at some point in time, the amplitude of the modulated signal is decreased, thus making the sound louder at that moment.</p>
-<p>This visualization can inspire some more creative ways to modify sound. A fun example is created using “bell envelops” <span class="math notranslate nohighlight">\( c(t) = e^{-t/\lambda}\)</span>, <span class="math notranslate nohighlight">\(\lambda &gt; 0\)</span>, which decays the amplitude of the sound in an interesting fashion. The parameter <span class="math notranslate nohighlight">\(\lambda\)</span> is called the “time constant” and controls the speed of the decay - larger the <span class="math notranslate nohighlight">\(\lambda\)</span>, faster the decay. So to recap, when a signal <span class="math notranslate nohighlight">\(x(t)\)</span> is modulated by a bell envelop, the modulated signal <span class="math notranslate nohighlight">\(y(t)\)</span> is given by:</p>
+<p>This visualization can inspire some more creative ways to modify sound. A fun example is created using “bell envelops” <span class="math notranslate nohighlight">\( c(t) = e^{-t/\lambda}\)</span>, <span class="math notranslate nohighlight">\(\lambda &gt; 0\)</span>, which decays the amplitude of the sound in an interesting fashion. The parameter <span class="math notranslate nohighlight">\(\lambda\)</span> is called the “time constant” and controls the speed of the decay - smaller the <span class="math notranslate nohighlight">\(\lambda\)</span>, faster the decay. So to recap, when a signal <span class="math notranslate nohighlight">\(x(t)\)</span> is modulated by a bell envelop, the modulated signal <span class="math notranslate nohighlight">\(y(t)\)</span> is given by:</p>
 <div class="math notranslate nohighlight">
 \[  y(t)= e^{-t/\lambda} x(t), \text{ for some } \lambda &gt;0. \]</div>
 <section id="span-style-color-red-exercise-1-span">
@@ -540,7 +540,7 @@ document.write(`
 </section>
 <section id="span-style-color-red-exercise-4-span">
 <h2><span style="color:red"> Exercise 4 </span><a class="headerlink" href="#span-style-color-red-exercise-4-span" title="Permalink to this heading">#</a></h2>
-<p>Repeat Exercise 3, but this time begin your chirp at <span class="math notranslate nohighlight">\(t=-0.25\)</span> and end it at <span class="math notranslate nohighlight">\(1=-.25\)</span>. What difference do you notice?</p>
+<p>Repeat Exercise 3, but this time begin your chirp at <span class="math notranslate nohighlight">\(t=-0.25\)</span> and end it at <span class="math notranslate nohighlight">\(t=0.25\)</span>. What difference do you notice?</p>
 </section>
 <section id="span-style-color-red-exercise-5-span">
 <h2><span style="color:red"> Exercise 5 </span><a class="headerlink" href="#span-style-color-red-exercise-5-span" title="Permalink to this heading">#</a></h2>
@@ -564,8 +564,8 @@ document.write(`
 \[y(t)= A(t) \cos \left[ 2 \pi f_0 t + B(t) \cos \left( 2\pi f_1 t + \psi_1 \right)+\psi_0  \right].  \]</div>
 <p>The function A(t) modifies the envelop of x(t), and as we have seen previously, can take on different forms (e.g. periodic, exponential, etc.).
 To understand the rest of the expression, we compute the instantenous frequency of <span class="math notranslate nohighlight">\(y(t)\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0aa656dc-2d66-428f-9d75-36b5fe235d11">
-<span class="eqno">(1)<a class="headerlink" href="#equation-0aa656dc-2d66-428f-9d75-36b5fe235d11" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-30712cb0-f641-42a2-bcbf-2b3d220bd994">
+<span class="eqno">(1)<a class="headerlink" href="#equation-30712cb0-f641-42a2-bcbf-2b3d220bd994" title="Permalink to this equation">#</a></span>\[\begin{align}
 f(t) &amp; = \frac{1}{2\pi}\frac{d}{dt} \left(  2 \pi f_0 t + B(t) \cos \left( 2\pi f_1 t + \psi_1 \right)+\psi_0\right),\\
 &amp; =  f_0 - B(t) f_1 \sin \left( 2 \pi f_1 t + \psi_1 \right) + \frac{1}{2\pi} B'(t) \cos \left( 2\pi f_1 t + \psi_1 \right).
 \end{align}\]</div>
