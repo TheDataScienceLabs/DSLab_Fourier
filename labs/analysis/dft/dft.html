@@ -523,8 +523,16 @@ document.write(`
 <p>The parameter <span class="math notranslate nohighlight">\(T\)</span> is called the <strong>sampling period</strong>. The quantity <span class="math notranslate nohighlight">\(\frac{1}{T}\)</span> is called the <strong>sampling frequency</strong>.   The sampling period <span class="math notranslate nohighlight">\(T\)</span> is the time difference between two sample points, and the sampling frequency represent how many samples are acquired per time unit.</p>
 <p>In order to simplify the math, we rewrite <span class="math notranslate nohighlight">\(f(t)\)</span> in terms of complex exponentials:</p>
 <div class="math notranslate nohighlight">
-\[ f(t)=  \sum_{k=-\infty}^\infty c_n e^{i \frac{2\pi}{P}kt} \]</div>
-<p>where <span class="math notranslate nohighlight">\( c_0=\frac{a_0}{2} \)</span> and <span class="math notranslate nohighlight">\(c_n=\frac{1}{2} (a_n- i b_n)=c_{-n}^*\)</span>,  for <span class="math notranslate nohighlight">\(n&gt;1\)</span>.</p>
+\[ f(t)=  \sum_{k=-\infty}^\infty c_n e^{i \frac{2\pi}{P}nt} \]</div>
+<p>where <span class="math notranslate nohighlight">\( c_0=\frac{a_0}{2}\)</span> and</p>
+<div class="amsmath math notranslate nohighlight" id="equation-60771487-f397-465c-940b-f0e631f74a40">
+<span class="eqno">(2)<a class="headerlink" href="#equation-60771487-f397-465c-940b-f0e631f74a40" title="Permalink to this equation">#</a></span>\[\begin{equation}
+c_n=
+    \begin{cases}
+        \frac{1}{2} (a_n- i b_n) &amp; \text{for } n &lt; 0\\
+        \frac{1}{2} (a_n+ i b_n) &amp; \text{for } n&gt;1
+    \end{cases}
+\end{equation}\]</div>
 <section id="span-style-color-red-exercise-1-span">
 <h3><span style="color:red"> Exercise 1 </span><a class="headerlink" href="#span-style-color-red-exercise-1-span" title="Permalink to this heading">#</a></h3>
 <p>Derive the above formula. (Hint: replace each sine and cosine by sums of complex exponentials. If you do not know the sums already, find them using Euler’s formula <span class="math notranslate nohighlight">\(e^{i\theta}=\cos \theta + i \sin \theta\)</span>. B’Euler up! )</p>
