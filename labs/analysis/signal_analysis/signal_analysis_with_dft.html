@@ -480,11 +480,11 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[ F[k]= \sum_{n=0}^{N-1} f_d[n] e^{-i \frac{2 \pi}{N} k n },  \]</div>
 <p>and the specific value of entry <span class="math notranslate nohighlight">\(F[k]\)</span>  is called the <strong>k-th coefficients of the DFT</strong> of the signal and the  DFT coefficient with the largest magnitude indicates the largest frequency contained in the signal.</p>
-<p>DFT is a prowerful tool in signal analysis with widw]e applications like reconstruction of medical images, computational photography, digital compression, noise cancellation in headphones, telecommunication and many more.</p>
+<p>DFT is a powerful tool in signal analysis with wide applications like reconstruction of medical images, computational photography, digital compression, noise cancellation in headphones, telecommunication and many more.</p>
 </section>
 <section id="span-style-color-orange-2-denoising-a-signal-span">
 <h2><span style="color:orange;"> 2. Denoising a Signal </span><a class="headerlink" href="#span-style-color-orange-2-denoising-a-signal-span" title="Permalink to this heading">#</a></h2>
-<p>Let us consider that you are recording a person playing a piano in a mall using a basic audio recorder. Even if you are standing close to the audio source it is wise to assume that the audio recorder will pick up the ambient noise and sound of other people in the busy mall. In such a case, we need a way to seperate the background noise and the original sound.</p>
+<p>Let us consider that you are recording a person playing a piano in a mall using a basic audio recorder. Even if you are standing close to the audio source, it is wise to assume that the audio recorder will pick up the ambient noise and sound of other people in the busy mall. In such a case, we need a way to seperate the background noise from the music in the recording.</p>
 <p>Let us consider a 1 second clip of the performance where the pianist played an <span class="math notranslate nohighlight">\(A_1\)</span> (55Hz) and <span class="math notranslate nohighlight">\(B_2\)</span> (123Hz) notes. Let us look at what the signal looks like in a perfect environment without any noise by loading <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/signal_analysis/ideal_piano_recording_example.npy">ideal_piano_recording_example.npy</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -563,7 +563,7 @@ document.write(`
 </div>
 </div>
 <p>We can see that the time domain plots of both the signals are not distinguishable. So it is safe to assume that we cannot approximate the original signal from this time domain plot alone.</p>
-<p>Let us see the dominant frequencies contained in the recording by plotting its dft.</p>
+<p>Let us see the frequencies contained in the recording by plotting its dft.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">actual_recording</span><span class="p">)</span>
@@ -585,7 +585,7 @@ document.write(`
 <img alt="../../../_images/8e7c10d2e32ec57d2c0d041d84e9417e286aff033b682948ffb1dd22aeb2d82d.png" src="../../../_images/8e7c10d2e32ec57d2c0d041d84e9417e286aff033b682948ffb1dd22aeb2d82d.png" />
 </div>
 </div>
-<p>This DFT plot gives us an idea about the dominant frequencies in the signal. Looking at the amplitudes, we can identify that the dominant frequencies in the recording are 55Hz and 123Hz. So we can conclude with sufficient confidence that the other frequencies may likely be due to the noisy environment as the amplitudes are low for those frequencies. But it may not always be the case.</p>
+<p>This DFT plot gives us an idea about the dominant frequencies in the signal. By looking at the amplitudes, we can identify that the dominant frequencies in the recording are 55Hz and 123Hz. We can conclude with sufficient confidence that the other frequencies may likely be due to the noisy environment as the amplitudes are low for those frequencies. But it may not always be the case.</p>
 <p>Now let us filter the noise from our recording and plot its dft.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -615,7 +615,7 @@ document.write(`
 <img alt="../../../_images/eda1b1cd0e82e6b3b19d6b30a9a0e1ee22dfb1eb192fc7277cfe258d8b86a1a6.png" src="../../../_images/eda1b1cd0e82e6b3b19d6b30a9a0e1ee22dfb1eb192fc7277cfe258d8b86a1a6.png" />
 </div>
 </div>
-<p>Let us compare this plot with the DFT of the original ideal recording without any noise.</p>
+<p>Let us compare this plot with the DFT of the ideal recording without any noise.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
@@ -696,12 +696,18 @@ document.write(`
 </section>
 <section id="span-style-color-red-exercise-4-span">
 <h3><span style="color:red"> Exercise 4 </span><a class="headerlink" href="#span-style-color-red-exercise-4-span" title="Permalink to this heading">#</a></h3>
-<p>Load up a recording of the ukulele <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/signal_analysis/uke_recording.wav">uke_recording.wav</a>. What are the dominant frequencies in the recording?</p>
+<p>Load up a recording of the ukulele, <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/signal_analysis/uke_recording.wav">uke_recording.wav</a>.</p>
+<ul class="simple">
+<li><p>What are the dominant frequencies in this recording?</p></li>
+<li><p>Remove frequencies with magnitude less than 500 from the recording.</p></li>
+<li><p>Play the new sound and plot its DFT.</p></li>
+<li><p>How does the new sound compare to the original?</p></li>
+</ul>
 </section>
 <section id="span-style-color-red-exercise-5-span">
 <h3><span style="color:red"> Exercise 5 </span><a class="headerlink" href="#span-style-color-red-exercise-5-span" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Use the voice recorder code from week 8 to record any song.</p></li>
+<li><p>Use the voice recorder code from week 8 to record any song for a duration of 2 seconds.</p></li>
 <li><p>Suppress the background noise in the recording.</p></li>
 <li><p>Plot the amplitude and dft of the signals before and after denoising.</p></li>
 <li><p>Play the modified signal.</p></li>
