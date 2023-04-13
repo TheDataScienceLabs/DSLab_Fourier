@@ -31,10 +31,6 @@ parts:
   - file: labs/analysis/instrument_tuning/tuning.ipynb
   - file: labs/analysis/identifying_instrument/instruments.ipynb
 
-- caption: Processing
-  chapters:
-  - file: labs/processing/filtering.ipynb
-
 - caption: Design a project of your own
   chapters:
   - file: labs/final_project/final_project.ipynb
