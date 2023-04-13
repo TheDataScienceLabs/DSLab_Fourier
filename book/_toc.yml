@@ -27,7 +27,6 @@ parts:
   - file: labs/analysis/dft/dft.ipynb
   - file: labs/analysis/signal_analysis/signal_analysis_with_dft.ipynb
   - file: labs/analysis/pedometer/pedometer_project.ipynb
-  - file: labs/analysis/pedometer/pedo_frequency_project.ipynb
   - file: labs/analysis/instrument_tuning/tuning.ipynb
   - file: labs/analysis/identifying_instrument/instruments.ipynb
 
