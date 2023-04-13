@@ -201,10 +201,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../analysis/instrument_tuning/tuning.html">Week 12: Tuning an instrument</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../analysis/identifying_instrument/instruments.html">Week 13: Identifying Music Instruments</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Processing</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../processing/filtering.html">Week ?: Sampled Signal Filtering with the Circular Convolution</a></li>
-</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Design a project of your own</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../final_project/final_project.html">Week 14-15: Final Project</a></li>
@@ -561,8 +557,8 @@ document.write(`
 \[y(t)= A(t) \cos \left[ 2 \pi f_0 t + B(t) \cos \left( 2\pi f_1 t + \psi_1 \right)+\psi_0  \right].  \]</div>
 <p>The function A(t) modifies the envelop of x(t), and as we have seen previously, can take on different forms (e.g. periodic, exponential, etc.).
 To understand the rest of the expression, we compute the instantenous frequency of <span class="math notranslate nohighlight">\(y(t)\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-905b0fe5-3b27-4b00-9174-0ebea64160c6">
-<span class="eqno">(1)<a class="headerlink" href="#equation-905b0fe5-3b27-4b00-9174-0ebea64160c6" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a9beb970-75ad-409f-920d-cc97eaf792f8">
+<span class="eqno">(1)<a class="headerlink" href="#equation-a9beb970-75ad-409f-920d-cc97eaf792f8" title="Permalink to this equation">#</a></span>\[\begin{align}
 f(t) &amp; = \frac{1}{2\pi}\frac{d}{dt} \left(  2 \pi f_0 t + B(t) \cos \left( 2\pi f_1 t + \psi_1 \right)+\psi_0\right),\\
 &amp; =  f_0 - B(t) f_1 \sin \left( 2 \pi f_1 t + \psi_1 \right) + \frac{1}{2\pi} B'(t) \cos \left( 2\pi f_1 t + \psi_1 \right).
 \end{align}\]</div>
