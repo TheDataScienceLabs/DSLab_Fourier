@@ -402,19 +402,26 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span"><span style="color:orange;"> 0. Required Hardware </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storing-data">Storing Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-span"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-1-introduction-span"><span style="color:orange;"> 1. Introduction </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-2-storing-data-in-a-raspberry-pi-pico-span"><span style="color:orange;"> 2. Storing Data in a Raspberry Pi Pico </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span"><span style="color:red"> Exercise 1</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-2-span"><span style="color:red"> Exercise 2</span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-components">The Components</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-detection">Step Detection</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><span style="color:red"> Exercise </span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><span style="color:red"> Exercise </span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-3-building-the-pedometer-span"><span style="color:orange;"> 3. Building the Pedometer </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lsm9ds0-sensor">The LSM9DS0 sensor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i2c-communication-protocol">I2C Communication Protocol</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wiring-up-the-circuit">Wiring Up the Circuit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-3-span"><span style="color:red"> Exercise 3</span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-a-pedometer">Make a Pedometer</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-it-on-batteries">Run it on batteries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-py">main.py</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-7805-voltage-regulator">The 7805 voltage regulator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-4-span"><span style="color:red"> Exercise 4</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-5-span"><span style="color:red"> Exercise 5</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-6-span"><span style="color:red"> Exercise 6</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-7-span"><span style="color:red"> Exercise 7</span></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-green-reflection-span"><span style="color:green"> Reflection </span></a></li>
@@ -432,7 +439,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="week-12-build-a-pedometer">
 <h1>Week 12: Build a Pedometer<a class="headerlink" href="#week-12-build-a-pedometer" title="Permalink to this heading">#</a></h1>
 <p><font size="6"> Laboratory 11 </font> <br>
-<font size="3"> Last updated July 26, 2022 </font></p>
+<font size="3"> Last updated April 5, 2023 </font></p>
 <section id="span-style-color-orange-00-content-span">
 <h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this heading">#</a></h2>
 <p><font size="5"> Mathematics </font></p>
@@ -441,11 +448,7 @@ document.write(`
 </ul>
 <p><font size="5"> Programming Skills </font></p>
 <ul class="simple">
-<li><p>Modules</p></li>
-</ul>
-<p><font size="5"> Embedded Systems </font></p>
-<ul class="simple">
-<li><p>Thonny and MicroPython</p></li>
+<li><p>Working with Functions and Classes</p></li>
 </ul>
 </section>
 <section id="span-style-color-orange-0-required-hardware-span">
@@ -453,113 +456,199 @@ document.write(`
 <ul class="simple">
 <li><p>Microcontroller: Raspberry Pi Pico</p></li>
 <li><p>Breadboard</p></li>
-<li><p>USB connector</p></li>
-<li><p>LSM9DS0 accelerometer</p></li>
-<li><p>OLED display</p></li>
-<li><p>TL1105 tactile switch</p></li>
+<li><p>Micro-USB connector</p></li>
+<li><p>LSM9DS0 sensor module</p></li>
 <li><p>9-volt battery</p></li>
-<li><p>7805 voltage regulator</p></li>
+<li><p>LM7805 IC (voltage regulator IC)</p></li>
 </ul>
 <h3 style="background-color:lightblue"> Write your name and email below: </h3>
 <p><strong>Name:</strong> me</p>
 <p><strong>Email:</strong> me &#64;purdue.edu</p>
 </section>
-<section id="storing-data">
-<h2>Storing Data<a class="headerlink" href="#storing-data" title="Permalink to this heading">#</a></h2>
-<p>The Pico has 2MB onboard memory or flash storage, so we can save some small files of sensor data directly on the Pico.</p>
-<p>Take a look at the file <code class="docutils literal notranslate"><span class="pre">temperature.py</span></code>, which records the Pico’s internal temperature in degrees Celcius and writes these temperature values to the file <code class="docutils literal notranslate"><span class="pre">temp.txt</span></code>.  Using Thonny, run <code class="docutils literal notranslate"><span class="pre">temperature.py</span></code> on your Pico. After the script is done running, move the <code class="docutils literal notranslate"><span class="pre">temp.txt</span></code> file that is stored on the Pico into the folder you are currently working in, delete <code class="docutils literal notranslate"><span class="pre">temp.txt</span></code> from the Pico’s storage, and then execute the following cell.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;temp.txt&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<section id="span-style-color-red-exercise-span">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#span-style-color-red-exercise-span" title="Permalink to this heading">#</a></h3>
-<p>Plot the values from <code class="docutils literal notranslate"><span class="pre">temp.txt</span></code> so that the x-axis is the time of each measurement and the y-axis is degrees Fahrenheit. Include appropriate x-axis and y-axis labels.</p>
-<h3 style="background-color:lightblue"> Write Answers for Exercise Below </h3></section>
+<section id="span-style-color-orange-1-introduction-span">
+<h2><span style="color:orange;"> 1. Introduction </span><a class="headerlink" href="#span-style-color-orange-1-introduction-span" title="Permalink to this heading">#</a></h2>
+<p>A pedometer is a small electronic gadget that counts the number of steps taken by a person throughout the day. It is often worn on the waistline or fastened into clothing and detects motion and activity using a sensor. Pedometers are popular among health and fitness enthusiasts because they can provide a good measure of daily physical activity and help people track their progress toward fitness goals. Many current pedometers now include calorie counts, distance measurements, and heart rate monitors, making them much more useful for tracking general health and fitness.</p>
+<p>Today we will work on building our own pedometer using a raspberry pi pico and some sensors.</p>
+<p>But before we begin let us explore how to store and retrieve data in pico.</p>
 </section>
-<section id="the-components">
-<h2>The Components<a class="headerlink" href="#the-components" title="Permalink to this heading">#</a></h2>
+<section id="span-style-color-orange-2-storing-data-in-a-raspberry-pi-pico-span">
+<h2><span style="color:orange;"> 2. Storing Data in a Raspberry Pi Pico </span><a class="headerlink" href="#span-style-color-orange-2-storing-data-in-a-raspberry-pi-pico-span" title="Permalink to this heading">#</a></h2>
+<p>The Pico has 2MB of onboard memory or flash storage, so we can save some small files of sensor data directly on the Pico as a text or csv file. For applications which need more than 2MB of storage, we could always use connect an SD card module to our raspberry pi pico.</p>
+<p>Let us look at an example program to see how to save data to the onboard flash memory in our pico.
+Take a look at the file <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/pedometer/temperature.py">temperature.py</a>, which records the Pico’s internal temperature in degrees Celcius and writes these temperature values to the file <code class="docutils literal notranslate"><span class="pre">temp.txt</span></code>. In this example, we are saving the temperature value at each instant on a new line in a text file.</p>
+<section id="span-style-color-red-exercise-1-span">
+<h3><span style="color:red"> Exercise 1</span><a class="headerlink" href="#span-style-color-red-exercise-1-span" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>the button</p></li>
-<li><p>the screen</p></li>
-<li><p>the accelerometer</p></li>
-<li><p>the battery &amp; voltage regulator</p></li>
+<li><p>Using Thonny, run <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/pedometer/temperature.py">temperature.py</a> on your Pico.</p></li>
+<li><p>After the script is done running, move the <code class="docutils literal notranslate"><span class="pre">temp.txt</span></code> file that is stored on the Pico into your computer.</p></li>
+<li><p>Delete <code class="docutils literal notranslate"><span class="pre">temp.txt</span></code> from the Pico’s storage.</p></li>
+<li><p>Plot and visualize the temperature readings. Include appropriate x-axis and y-axis labels</p></li>
 </ul>
-<p><strong>TODO:</strong> add instructions from calc 2 labs on how to connect everything</p>
 </section>
-<section id="step-detection">
-<h2>Step Detection<a class="headerlink" href="#step-detection" title="Permalink to this heading">#</a></h2>
+<section id="span-style-color-red-exercise-2-span">
+<h3><span style="color:red"> Exercise 2</span><a class="headerlink" href="#span-style-color-red-exercise-2-span" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Modify <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/pedometer/temperature.py">temperature.py</a> to record the temperature values in degrees Fahrenheit.</p></li>
+<li><p>After the script is done running, move the <code class="docutils literal notranslate"><span class="pre">temp.txt</span></code> file that is stored on the Pico into your computer.</p></li>
+<li><p>Delete <code class="docutils literal notranslate"><span class="pre">temp.txt</span></code> from the Pico’s storage.</p></li>
+<li><p>Plot and visualize the temperature readings.Include appropriate x-axis and y-axis labels.</p></li>
+<li><p>Attach the modified code along with your answers.</p></li>
+</ul>
+</section>
+</section>
+<section id="span-style-color-orange-3-building-the-pedometer-span">
+<h2><span style="color:orange;"> 3. Building the Pedometer </span><a class="headerlink" href="#span-style-color-orange-3-building-the-pedometer-span" title="Permalink to this heading">#</a></h2>
 <p>Gait is a person’s pattern of walking. Most wearable activity monitors like the FitBit or Apple Watch contain an internal accelerometer to track movement and estimate the user’s number of steps. In today’s lab, our goal is to build a pedometer in a similar way.</p>
-<section id="id1">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
-<p>For this exercise you will only need the accelerometer hooked up to the Pico connected to your computer with the USB connector.</p>
-<ol class="arabic simple">
-<li><p>Take 10 ‘fake’ steps while holding the breadboard with everything secured in your hand, swinging your arms as naturally as possible.</p></li>
-<li><p>Store the <span class="math notranslate nohighlight">\(x,y,\)</span> and <span class="math notranslate nohighlight">\(z\)</span> components of acceleration to a .txt file named <code class="docutils literal notranslate"><span class="pre">teststeps.txt</span></code>.</p></li>
-<li><p>Plot the <span class="math notranslate nohighlight">\(x,y,\)</span> and <span class="math notranslate nohighlight">\(z\)</span> components of acceleration with detailed titles and axis labels.</p></li>
-</ol>
-<h3 style="background-color:lightblue"> Write Answers for Exercise Below </h3><div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># solution</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;teststeps.txt&#39;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">50</span> <span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;ax(t)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;ay(t)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;az(t)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;ax(t)&#39;</span><span class="p">,</span><span class="s1">&#39;ay(t)&#39;</span><span class="p">,</span><span class="s1">&#39;az(t)&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>In order to detect when a step has occured, we will look at the magnitude of the acceleration vector <span class="math notranslate nohighlight">\(\langle a_x,a_y,a_z \rangle\)</span>, where <span class="math notranslate nohighlight">\(a_x,a_y,\)</span> and <span class="math notranslate nohighlight">\(a_z\)</span> are the <span class="math notranslate nohighlight">\(x,y\)</span> and <span class="math notranslate nohighlight">\(z\)</span> components of acceleration respectively.</p>
 </section>
-<section id="id2">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
-<p>Using the data you collected in <code class="docutils literal notranslate"><span class="pre">teststeps.txt</span></code>, plot the magnitute of the acceleration vector vs time. Make sure your graph has appropriate labels.</p>
-<h3 style="background-color:lightblue"> Write Answers for Exercise Below </h3><div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># solution</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
+<section id="the-lsm9ds0-sensor">
+<h2>The LSM9DS0 sensor<a class="headerlink" href="#the-lsm9ds0-sensor" title="Permalink to this heading">#</a></h2>
+<p>The LSM9DS0 is a system in a chip which packages three sensors, a 3-axis accelerometer, 3-axis gyroscope, and 3-axis magnetometer. Thats 9 sensor readings from a single chip! In addition to that it has both SPI and I2C serial interfaces for communication.</p>
+<p>For building our pedometer we will be reading the accelerometer values along all 3 axes from the sensor using the I2C protocol.</p>
 </section>
-<section id="id3">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
-<p>The class <code class="docutils literal notranslate"><span class="pre">Averager</span></code> allows us to reduce error by averaging across multiple acceleration measurements.
-How does the length of the averager affect the graph of the magnitude of the acceleration vectors?</p>
-<h3 style="background-color:lightblue"> Write Answers for Exercise Below </h3></section>
+<section id="i2c-communication-protocol">
+<h2>I2C Communication Protocol<a class="headerlink" href="#i2c-communication-protocol" title="Permalink to this heading">#</a></h2>
+<p>Inter-Integrated Circuit or I2C is a serial communication protocol used to share data between multiple sensors and a micro-controller or between micro-controllers using the same bus. It requires only two wires for communication, a clock line (SCL) and a data line (SDA). I2C allows multiple devices to share the same communication bus. The devices are given a unique address which allows the devices in the network to be referred individually.</p>
+<p>Raspberry Pi Pico has two I2C controllers which you can access through these GPIO pins:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>I2C Controller</p></th>
+<th class="head text-center"><p>GPIO Pins</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>I2C0 – SDA</p></td>
+<td class="text-center"><p>GP0,GP4,GP8,GP12,GP16,GP20</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>I2C0 – SDA</p></td>
+<td class="text-center"><p>GP1,GP5,GP9,GP13,GP17,GP21</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>I2C1 – SCL</p></td>
+<td class="text-center"><p>GP2,GP6,GP10,GP14,GP18,GP26</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>I2C1 – SCL</p></td>
+<td class="text-center"><p>GP3,GP7,GP11,GP15,GP19,GP27</p></td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="make-a-pedometer">
-<h2>Make a Pedometer<a class="headerlink" href="#make-a-pedometer" title="Permalink to this heading">#</a></h2>
-<section id="id4">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
-<p>Let’s combine all the components into a useful tool. Make a pedometer with the following features:</p>
+<section id="wiring-up-the-circuit">
+<h2>Wiring Up the Circuit<a class="headerlink" href="#wiring-up-the-circuit" title="Permalink to this heading">#</a></h2>
+<p>Wiring up the circuit for the pedometer is pretty simple.
+We will be using Pico pins GP18(Pin No. 24) and GP19(Pin No. 25) for our I2C communication.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>LSM9DS0 Pin</p></th>
+<th class="head text-center"><p>Raspberry Pico Pin</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>SDA</p></td>
+<td class="text-center"><p>GP18</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>SCL</p></td>
+<td class="text-center"><p>GP19</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>GND</p></td>
+<td class="text-center"><p>GND</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>VIN</p></td>
+<td class="text-center"><p>3V3</p></td>
+</tr>
+</tbody>
+</table>
+<p>The circuit once completely wired will look something like this:</p>
+<p><img alt="circuit diagram" src="../../../_images/pico_pedometer_circuit_bb.png" /></p>
+<p>Now that we have wired the circuit, let us test it out.
+Run <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/pedometer/test_accelerometer.py">test_accelerometer.py</a> on thonny with pico connected to your computer. If everything is connected properly you should start seeing the 3 components of acceleration from the accelerometer on the output.</p>
+<section id="span-style-color-red-exercise-3-span">
+<h3><span style="color:red"> Exercise 3</span><a class="headerlink" href="#span-style-color-red-exercise-3-span" title="Permalink to this heading">#</a></h3>
+<p>For this exercise you will only need the accelerometer hooked up to the Pico connected to your laptop with the USB connector.</p>
 <ul class="simple">
-<li><p>display the number of steps taken</p></li>
-<li><p>have a “reset” button which starts the step counting back at 0 on the display</p></li>
-<li><p>it should run on battery power alone</p></li>
+<li><p>Modify <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/pedometer/test_accelerometer.py">test_accelerometer.py</a> to store the <span class="math notranslate nohighlight">\(x,y,\)</span> and <span class="math notranslate nohighlight">\(z\)</span> components of acceleration to a .txt file named <code class="docutils literal notranslate"><span class="pre">teststeps.txt</span></code> in the pico.</p></li>
+<li><p>Take 10 ‘fake’ steps while holding the breadboard close to your leg with everything else secured in your hand.</p></li>
+<li><p>Plot the <span class="math notranslate nohighlight">\(x,y,\)</span> and <span class="math notranslate nohighlight">\(z\)</span> components of acceleration with detailed titles and axis labels.</p></li>
 </ul>
-<p>Include a description of your pedometer.</p>
-<h3 style="background-color:lightblue"> Write Answers for Exercise Below </h3><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># copy and paste your code here</span>
-</pre></div>
-</div>
+<h3 style="background-color:lightblue"> Write Answers for Exercise 3 Below </h3></section>
 </section>
+<section id="run-it-on-batteries">
+<h2>Run it on batteries<a class="headerlink" href="#run-it-on-batteries" title="Permalink to this heading">#</a></h2>
+<p>We will power the Pico from a 9-volt battery. Here are a few important cautions:</p>
+<p>9 volts is more than any part of the Pico can handle. If you connect the battery directly you will damage the microcontroller. We need to use another component to convert the voltage to a range which the Pico can handle.</p>
+<p>It is not safe to power the Pico from more than one source at a time. That means you must not connect the Pico to a computer while it is powered by a battery, and you must not connect a battery while it is connected to a computer.</p>
+</section>
+<section id="main-py">
+<h2><a class="reference external" href="http://main.py">main.py</a><a class="headerlink" href="#main-py" title="Permalink to this heading">#</a></h2>
+<p>Before running your pico from a battery, here is a question: how will we start the program without using Thonny? The pico needs to run without being connected to a computer.</p>
+<p>Here is the trick we will use: when the Pico powers on, the first thing it does is check its memory for a file called <a class="reference external" href="http://main.py">main.py</a>. If there is a file with that name, it runs the file. So there is our solution: make a file called <a class="reference external" href="http://main.py">main.py</a> which starts the accelerometer program. Or just rename the file we already have. The important thing is that the file is called <a class="reference external" href="http://main.py">main.py</a>, and it’s actually stored on the pico.</p>
+<p>Before continuing make sure you have your code starting whenever it gets connected to power. You should be able to plug the the microcontroller into any USB port and watch it start up automatically without doing anything on the computer. Once you have this, you can move on to powering it by battery.</p>
+</section>
+<section id="the-7805-voltage-regulator">
+<h2>The 7805 voltage regulator<a class="headerlink" href="#the-7805-voltage-regulator" title="Permalink to this heading">#</a></h2>
+<p>Since 9V is more than what the Pico can handle, we will be using a 7805 voltage regulator IC to step down the voltage to around 5V. The pinout for wiring the circuit is given below.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Battery</p></th>
+<th class="head text-center"><p>7805 IC</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>black</p></td>
+<td class="text-center"><p>GND</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>RED</p></td>
+<td class="text-center"><p>INPUT</p></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Raspberry Pi Pico</p></th>
+<th class="head text-center"><p>7805 IC</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>VSYS</p></td>
+<td class="text-center"><p>OUTPUT</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>GND</p></td>
+<td class="text-center"><p>GND</p></td>
+</tr>
+</tbody>
+</table>
+<p>The pins on the 7805 are not labeled. You will have to check the data sheet. Do not connect the battery until you have had your circuit checked by an instructor. The correctly wired voltage regulator should look as shown in the image below.</p>
+<p><img alt="battery powered circuit diagram" src="../../../_images/pico_pedometer_circuit_battery_bb.png" /></p>
+<p>In order to detect when a step has occured, we will look at the magnitude of the acceleration vector, <span class="math notranslate nohighlight">\(G_a\)</span> from <span class="math notranslate nohighlight">\(\langle a_x,a_y,a_z \rangle\)</span>, where <span class="math notranslate nohighlight">\(a_x,a_y,\)</span> and <span class="math notranslate nohighlight">\(a_z\)</span> are the <span class="math notranslate nohighlight">\(x,y\)</span> and <span class="math notranslate nohighlight">\(z\)</span> components of acceleration respectively.</p>
+<section id="span-style-color-red-exercise-4-span">
+<h3><span style="color:red"> Exercise 4</span><a class="headerlink" href="#span-style-color-red-exercise-4-span" title="Permalink to this heading">#</a></h3>
+<p>Using the data you collected in Exercise 3, plot the magnitute of the acceleration vector vs time. Make sure your graph has appropriate labels. Include your code with the answers.</p>
+<h3 style="background-color:lightblue"> Write Answers for Exercise 4 Below </h3><p>You might have observed that the plot is erratic and noisy at times. This may be due to multiple factors like small vibrations due to the sensor not being fixed to a board, small movements of the hand while holding the breadboard close to the leg etc.</p>
+<p>Let us average the sensor readings over 50 samples to get a less noisy data.</p>
+</section>
+<section id="span-style-color-red-exercise-5-span">
+<h3><span style="color:red"> Exercise 5</span><a class="headerlink" href="#span-style-color-red-exercise-5-span" title="Permalink to this heading">#</a></h3>
+<p>The class <code class="docutils literal notranslate"><span class="pre">Averager</span></code> allows us to reduce error by averaging across multiple acceleration measurements.</p>
+<ul class="simple">
+<li><p>Run <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/pedometer/accelerometer_averaged.py">accelerometer_averaged.py</a> using the main method on Pico.</p></li>
+<li><p>Take 10 ‘fake’ steps while holding the battery powered breadboard circuit close to your leg with everything else secured in your hand.</p></li>
+<li><p>Using the data you collected in <code class="docutils literal notranslate"><span class="pre">test_accel.txt</span></code>, plot the magnitute of the acceleration vector, <span class="math notranslate nohighlight">\(G_a\)</span> vs time. Make sure your graph has appropriate labels.</p></li>
+<li><p>How does the length of the averager affect the graph of the magnitude of the acceleration vectors?</p></li>
+</ul>
+<h3 style="background-color:lightblue"> Write Answers for Exercise 5 Below </h3><p>The plot shows that the graph is not centered around 0. Subtracting mean of <span class="math notranslate nohighlight">\(G_a\)</span> from <span class="math notranslate nohighlight">\(G_a\)</span> will remove constants like gravity from the sensor data.</p>
+</section>
+<section id="span-style-color-red-exercise-6-span">
+<h3><span style="color:red"> Exercise 6</span><a class="headerlink" href="#span-style-color-red-exercise-6-span" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Compute and plot the magnitute of the acceleration vector, <span class="math notranslate nohighlight">\(G_a\)</span>.</p></li>
+<li><p>Calculate mean of <span class="math notranslate nohighlight">\(G_a\)</span>, <span class="math notranslate nohighlight">\(\hat{G_a}\)</span>.</p></li>
+<li><p>Subtract <span class="math notranslate nohighlight">\(\hat{G_a}\)</span> from <span class="math notranslate nohighlight">\(G_a\)</span>.</p></li>
+<li><p>Plot <span class="math notranslate nohighlight">\(G_a\)</span> - <span class="math notranslate nohighlight">\(\hat{G_a}\)</span>. Make sure your graph has appropriate labels.</p></li>
+</ul>
+<h3 style="background-color:lightblue"> Write Answers for Exercise 6 Below </h3><p>The plotted data is now centered about zero, and clearly shows peaks in acceleration magnitude. Each peak corresponds to a step being taken while walking. Count the number of peaks to get the approximate number of steps. It is good to count the number of peaks greater than a minimum threshold to get a better result.</p>
+</section>
+<section id="span-style-color-red-exercise-7-span">
+<h3><span style="color:red"> Exercise 7</span><a class="headerlink" href="#span-style-color-red-exercise-7-span" title="Permalink to this heading">#</a></h3>
+<p>Calculate the number of steps from the accelerometer readings. Include the code along with your submission.</p>
+<h3 style="background-color:lightblue"> Write Answers for Exercise 7 Below </h3></section>
 </section>
 <section id="span-style-color-green-reflection-span">
 <h2><span style="color:green"> Reflection </span><a class="headerlink" href="#span-style-color-green-reflection-span" title="Permalink to this heading">#</a></h2>
@@ -639,19 +728,26 @@ How does the length of the averager affect the graph of the magnitude of the acc
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span"><span style="color:orange;"> 0. Required Hardware </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storing-data">Storing Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-span"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-1-introduction-span"><span style="color:orange;"> 1. Introduction </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-2-storing-data-in-a-raspberry-pi-pico-span"><span style="color:orange;"> 2. Storing Data in a Raspberry Pi Pico </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span"><span style="color:red"> Exercise 1</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-2-span"><span style="color:red"> Exercise 2</span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-components">The Components</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-detection">Step Detection</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><span style="color:red"> Exercise </span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><span style="color:red"> Exercise </span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-3-building-the-pedometer-span"><span style="color:orange;"> 3. Building the Pedometer </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lsm9ds0-sensor">The LSM9DS0 sensor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i2c-communication-protocol">I2C Communication Protocol</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wiring-up-the-circuit">Wiring Up the Circuit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-3-span"><span style="color:red"> Exercise 3</span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-a-pedometer">Make a Pedometer</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-it-on-batteries">Run it on batteries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-py">main.py</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-7805-voltage-regulator">The 7805 voltage regulator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-4-span"><span style="color:red"> Exercise 4</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-5-span"><span style="color:red"> Exercise 5</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-6-span"><span style="color:red"> Exercise 6</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-7-span"><span style="color:red"> Exercise 7</span></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-green-reflection-span"><span style="color:green"> Reflection </span></a></li>
