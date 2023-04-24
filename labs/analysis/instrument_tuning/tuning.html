@@ -375,7 +375,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -391,6 +393,37 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span"><span style="color:orange;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-1-introduction-span"><span style="color:orange;"> 1. Introduction </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-2-functions-in-python-span"><span style="color:orange;"> 2. Functions in Python</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span"><span style="color:red"> Exercise 1</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-2-components-of-an-instrument-tuner-span"><span style="color:orange;"> 2. Components of an Instrument Tuner </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-blue-2-1-audio-input-span"><span style="color:blue"> 2.1. Audio Input</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-2-span"><span style="color:red"> Exercise 2</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-blue-2-2-display-span"><span style="color:blue"> 2.2. Display</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-blue-2-3-mode-selectors-and-other-inputs-span"><span style="color:blue"> 2.3. Mode Selectors and Other Inputs</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-blue-2-4-identifying-the-frequency-and-note-for-tuning-span"><span style="color:blue"> 2.4. Identifying the frequency and Note for tuning</span></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-3-span"><span style="color:red"> Exercise 3</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-3-instrument-tuner-span"><span style="color:orange;"> 3. Instrument Tuner </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-4-span"><span style="color:red"> Exercise 4</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-5-span"><span style="color:red"> Exercise 5</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-green-reflection-span"><span style="color:green;"> Reflection </span></a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -403,7 +436,279 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="week-13-tuning-an-instrument">
 <h1>Week 13: Tuning an instrument<a class="headerlink" href="#week-13-tuning-an-instrument" title="Permalink to this heading">#</a></h1>
 <p><font size="6"> Laboratory 12 </font> <br>
-<font size="3"> Last updated August 22, 2022 </font></p>
+<font size="3"> Last updated April 23, 2023 </font></p>
+<section id="span-style-color-orange-00-content-span">
+<h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this heading">#</a></h2>
+<p><font size="5"> Mathematics </font></p>
+<ul class="simple">
+<li><p>N/A</p></li>
+</ul>
+<p><font size="5"> Programming Skills </font></p>
+<ul class="simple">
+<li><p>Working with Functions and Classes</p></li>
+<li><p>Loops</p></li>
+<li><p>FFT function from numpy</p></li>
+</ul>
+</section>
+<section id="span-style-color-orange-0-required-hardware-span">
+<h2><span style="color:orange;"> 0. Required Hardware </span><a class="headerlink" href="#span-style-color-orange-0-required-hardware-span" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>N/A</p></li>
+</ul>
+<h3 style="background-color:lightblue"> Write your name and email below: </h3>
+<p><strong>Name:</strong> me</p>
+<p><strong>Email:</strong> me &#64;purdue.edu</p>
+</section>
+<section id="span-style-color-orange-1-introduction-span">
+<h2><span style="color:orange;"> 1. Introduction </span><a class="headerlink" href="#span-style-color-orange-1-introduction-span" title="Permalink to this heading">#</a></h2>
+<p>An instrument tuner is a device that helps musicians and music enthusiasts tune their musical instruments accurately. It helps the user identify the precise pitch of each note to make sure the music being played is in tune.</p>
+<p>It can be a standalone device, an app on a phone or tablet, or built into an instrument. The tuner works by detecting the frequency of a note and indicating whether it is too high, too low, or in tune. This is commonly done through a display that shows a needle or lights that move to indicate the correct pitch.</p>
+<p>For example, If a guitarist wants to tune their guitar using a tuner, they would play each string, one at a time, while looking at the tuner screen. The tuner would display the note being played, and the musician would tweak the tuning pegs on their guitar until the note displayed on the tuner matches the correct note for that string.</p>
+<p>Today we will work on building our own instrument tuner using Python.</p>
+<p>But before we begin, let us explore the concept of functions in python.</p>
+</section>
+<section id="span-style-color-orange-2-functions-in-python-span">
+<h2><span style="color:orange;"> 2. Functions in Python</span><a class="headerlink" href="#span-style-color-orange-2-functions-in-python-span" title="Permalink to this heading">#</a></h2>
+<p>Throughout the duration of the course, we have written a couple of hundred lines of code. In the last couple of labs, you might have copy pasted or rewrote several lines repeatedly for plotting and labeling ffts of different signals. Using functions is a clever way to reuse parts of code and to avoid code repetition.</p>
+<p>Now let us look at an example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note imports of a function need not be called repeatedly and as such are written at the top outside of the function</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">sine_wave_generator</span><span class="p">(</span><span class="n">frequency</span><span class="p">,</span> <span class="n">sampling_rate</span> <span class="o">=</span> <span class="mi">2100</span><span class="p">,</span> <span class="n">duration</span> <span class="o">=</span> <span class="mi">2</span><span class="p">):</span>
+    
+    <span class="n">sampling_period</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">sampling_rate</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">sampling_period</span><span class="p">)</span> 
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">frequency</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Signal&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;f(t)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+
+<span class="n">sine_wave_generator</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/4fff2c9e6d1ec2ffc997f3d2096254f64de0d31467cb3e40e8790dfe574fe361.png" src="../../../_images/4fff2c9e6d1ec2ffc997f3d2096254f64de0d31467cb3e40e8790dfe574fe361.png" />
+</div>
+</div>
+<p>In the code snippet above, we are using <code class="docutils literal notranslate"><span class="pre">sine_wave_generator</span></code> function to generate different sinewaves without repeating that particular code block. Now I can just use this one line of code to generate and plot the sinewaves of different frequencies and sampling rates instead of the original 8 lines.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sine_wave_generator</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">#here 5 is the frequency.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/6af57f210e14e54f4cde79b943fe4b9054b211ad95f24a35ee0a03c14f5b6d8e.png" src="../../../_images/6af57f210e14e54f4cde79b943fe4b9054b211ad95f24a35ee0a03c14f5b6d8e.png" />
+</div>
+</div>
+<p>The first line of the function is called function definition.
+If you look at the function definition of our sine-wave generator,
+<code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">sine_wave_generator(frequency,</span> <span class="pre">t,</span> <span class="pre">sampling_rate</span> <span class="pre">=</span> <span class="pre">2100,</span> <span class="pre">duration</span> <span class="pre">=</span> <span class="pre">2)</span></code> it is taking 3 values as input -frequency, duration and sampling_rate. As you can see we have have only used one parameter in the function call. This is because we have given the default values of those arguments inside the function call. If we have default values specified, python will use these default values in the absence of corresponding arguments in the function call.</p>
+<section id="span-style-color-red-exercise-1-span">
+<h3><span style="color:red"> Exercise 1</span><a class="headerlink" href="#span-style-color-red-exercise-1-span" title="Permalink to this heading">#</a></h3>
+<p>Plot a sine-wave with frequency 10Hz of duration 1 second with a sampling rate of 5000 samples/sec using <code class="docutils literal notranslate"><span class="pre">sine_wave_generator</span></code></p>
+</section>
+</section>
+<section id="span-style-color-orange-2-components-of-an-instrument-tuner-span">
+<h2><span style="color:orange;"> 2. Components of an Instrument Tuner </span><a class="headerlink" href="#span-style-color-orange-2-components-of-an-instrument-tuner-span" title="Permalink to this heading">#</a></h2>
+<p>An instrument tuner typically consists of the following components:</p>
+<ol class="arabic simple">
+<li><p>Audio Input: This is the part of the tuner used to gather the sound played by the source. It can be a built-in microphone or an input jack for connecting an instrument cable.</p></li>
+<li><p>Display screen: This is where the tuner displays information about the note being played, such as whether it’s sharp or flat.</p></li>
+<li><p>Tuning mode selector: This allows the user to select the tuning mode they want to use, such as standard tuning for guitar or chromatic tuning for any instrument.</p></li>
+<li><p>Calibration knob: This allows the user to adjust the tuning of the tuner to match other tuning sources, such as a piano or another instrument.</p></li>
+<li><p>LEDs or meters: These provide visual feedback to indicate whether a note is in tune or not. LEDs may light up green when a note is in tune, while meters may show a centered needle or a digital readout.</p></li>
+</ol>
+<p>Overall, the components of an instrument tuner work together to accurately measure the pitch of a note played on an instrument and visually display whether it’s in tune or not.</p>
+<p>Now lets us work on building each individual components of the the tuner using python.</p>
+<section id="span-style-color-blue-2-1-audio-input-span">
+<h3><span style="color:blue"> 2.1. Audio Input</span><a class="headerlink" href="#span-style-color-blue-2-1-audio-input-span" title="Permalink to this heading">#</a></h3>
+<p>We have already worked on an building an <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/modulation/tremolo_beats/voice_recorder.py">voice_recorder.py</a> using <a class="reference external" href="https://people.csail.mit.edu/hubert/pyaudio/docs/">PyAudio</a> and Python which can be used as our Audio Input. Since we will be using the audio recorder repeatedly, it is wise to rewrite it as a function, so that it can be reused easily as and when required. However we need to make several changes to the voice recorder to adapt it as the input to our instrument tuner.</p>
+</section>
+<section id="span-style-color-red-exercise-2-span">
+<h3><span style="color:red"> Exercise 2</span><a class="headerlink" href="#span-style-color-red-exercise-2-span" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The current implementation of <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/modulation/tremolo_beats/voice_recorder.py">voice_recorder.py</a> saves the recording as a wav file. Rewrite <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/modulation/tremolo_beats/voice_recorder.py">voice_recorder.py</a> as a function which returns the recording as a numpy array or a list.</p></li>
+<li><p>Name the function as <code class="docutils literal notranslate"><span class="pre">get_recordings()</span></code></p></li>
+</ul>
+<section id="span-style-color-blue-2-2-display-span">
+<h4><span style="color:blue"> 2.2. Display</span><a class="headerlink" href="#span-style-color-blue-2-2-display-span" title="Permalink to this heading">#</a></h4>
+<p>Since we are using Python to make our instrument tuner, we can use our output console as a display.</p>
+</section>
+<section id="span-style-color-blue-2-3-mode-selectors-and-other-inputs-span">
+<h4><span style="color:blue"> 2.3. Mode Selectors and Other Inputs</span><a class="headerlink" href="#span-style-color-blue-2-3-mode-selectors-and-other-inputs-span" title="Permalink to this heading">#</a></h4>
+<p>We could use some keyboard inputs to give inputs to our instrument tuner.
+<code class="docutils literal notranslate"><span class="pre">input()</span></code> function is used to give user inputs to a python program.</p>
+</section>
+<section id="span-style-color-blue-2-4-identifying-the-frequency-and-note-for-tuning-span">
+<h4><span style="color:blue"> 2.4. Identifying the frequency and Note for tuning</span><a class="headerlink" href="#span-style-color-blue-2-4-identifying-the-frequency-and-note-for-tuning-span" title="Permalink to this heading">#</a></h4>
+<p>One of the important pieces required to build an instrument tuner is a module which identifies the frequency from the input.
+As we have learned in the last lab few labs, we could use an fft to analyze the frequencies in an input signal.</p>
+</section>
+</section>
+<section id="span-style-color-red-exercise-3-span">
+<h3><span style="color:red"> Exercise 3</span><a class="headerlink" href="#span-style-color-red-exercise-3-span" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Write a function <code class="docutils literal notranslate"><span class="pre">get_frequency(input_audio)</span></code> which returns the most dominant frequency in input_audio.</p></li>
+</ul>
+</section>
+</section>
+<section id="span-style-color-orange-3-instrument-tuner-span">
+<h2><span style="color:orange;"> 3. Instrument Tuner </span><a class="headerlink" href="#span-style-color-orange-3-instrument-tuner-span" title="Permalink to this heading">#</a></h2>
+<p>Combining the different modules explained above, I have implemented a sample instrument tuner, <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/instrument_tuning/tuner.py">tuner.py</a>.</p>
+<p>Let us go through the implementation.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">open_stream_for_tuning</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+        <span class="n">p</span> <span class="o">=</span> <span class="n">pyaudio</span><span class="o">.</span><span class="n">PyAudio</span><span class="p">()</span>
+
+        <span class="n">stream</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="nb">format</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FORMAT</span><span class="p">,</span>
+                    <span class="n">channels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CHANNELS</span><span class="p">,</span>
+                    <span class="n">rate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">RATE</span><span class="p">,</span>
+                    <span class="nb">input</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                    <span class="n">frames_per_buffer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chunk</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">p</span><span class="p">,</span> <span class="n">stream</span>
+
+</pre></div>
+</div>
+<p>The function <code class="docutils literal notranslate"><span class="pre">open_stream_for_tuning(self)</span></code> is used for opening an input audio stream using <a class="reference external" href="https://people.csail.mit.edu/hubert/pyaudio/docs/">PyAudio</a>. This function returns the pyaudio object and the newly opened audio stream.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">close_audio_stream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">stream</span><span class="p">):</span>
+
+            <span class="n">stream</span><span class="o">.</span><span class="n">stop_stream</span><span class="p">()</span>
+            <span class="n">stream</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">p</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+
+</pre></div>
+</div>
+<p>As the name indicates <code class="docutils literal notranslate"><span class="pre">close_audio_stream(self,</span> <span class="pre">p,</span> <span class="pre">stream)</span></code> is used for closing and terminating the stream as soon as the tuning process ends.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">program_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+
+        <span class="n">info</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;This is a simple program used for tuning an instrument.&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="s2">&quot;Usage:&quot;</span><span class="p">,</span> <span class="s2">&quot;Play a note on seeing a prompt.&quot;</span><span class="p">]</span>
+        <span class="n">info</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;The program will analyze the note played and display the frequency of the note.&quot;</span><span class="p">)</span>
+        <span class="n">info</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Follow the promts to redo the tuning or to exit the program&quot;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">info</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<p>The function <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">program_info(self)</span></code> is used to give some useful information about the function and usage instructions to the users upon program startup.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">get_recorded_frames</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">):</span>
+
+        <span class="n">frames</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">RATE</span><span class="o">//</span><span class="bp">self</span><span class="o">.</span><span class="n">chunk</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">RECORD_SECONDS</span><span class="p">):</span>
+
+            <span class="n">data</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chunk</span><span class="p">,</span> <span class="n">exception_on_overflow</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+            <span class="n">data_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">//</span><span class="bp">self</span><span class="o">.</span><span class="n">swidth</span>
+
+            <span class="n">frame</span> <span class="o">=</span> <span class="n">wave</span><span class="o">.</span><span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">h&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">data_length</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
+            <span class="n">frames</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">frame</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">frames</span>
+</pre></div>
+</div>
+<p>The function <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">get_recorded_frames(self,</span> <span class="pre">stream)</span></code> is a clean implementation of the voice recorder, which takes in a stream object. This input audio stream object is used to record frames of audio. The recorded audio is then converted to integers and appended to a list which is then returned back.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">find_max_freq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames</span><span class="p">):</span>
+
+        <span class="n">fft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span>
+        <span class="n">xf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">frames</span><span class="p">),</span> <span class="mi">1</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">RATE</span><span class="p">)</span>
+        <span class="n">mag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">)</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">mag</span><span class="p">)</span>
+        <span class="n">freq</span> <span class="o">=</span> <span class="n">xf</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The function <code class="docutils literal notranslate"><span class="pre">ind_max_freq(self,</span> <span class="pre">frames)</span></code> is used to find the dominant frequency in the input signal - frames.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tune</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        
+        <span class="n">user_input</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+        <span class="k">while</span> <span class="n">user_input</span> <span class="o">!=</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tuner starts in 3 seconds! Get ready to play the note.&quot;</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="n">p</span><span class="p">,</span> <span class="n">stream</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">open_stream_for_tuning</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*************************************&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*******    tuning started!    *******&quot;</span><span class="p">)</span>
+
+
+            <span class="c1">#get recordings as a numpy array</span>
+            <span class="n">frames</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_recorded_frames</span><span class="p">(</span><span class="n">stream</span><span class="p">))</span>
+
+            <span class="c1"># identify dominant frequency for tuning.</span>
+            <span class="n">freq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_max_freq</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*************************************&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Frequency: &quot;</span><span class="p">,</span> <span class="n">freq</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*************************************&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">close_audio_stream</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">stream</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">show_menu</span><span class="p">()</span>
+            <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter your choice: &quot;</span><span class="p">)</span>
+
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">user_input</span> <span class="o">==</span> <span class="s1">&#39;q&#39;</span> <span class="ow">or</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s1">&#39;Q&#39;</span><span class="p">):</span>
+                <span class="k">break</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*******    tuning stopped!    *******&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*************************************&quot;</span><span class="p">)</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">close_audio_stream</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">stream</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<p>Finally the tune function combines the individual building blocks explained above to make our instrument tuner.
+It creates an audio stream using the <code class="docutils literal notranslate"><span class="pre">open_stream_for_tuning(self)</span></code> function, gets the recording from <code class="docutils literal notranslate"><span class="pre">get_recorded_frames(stream)</span></code>, finds and displays the <code class="docutils literal notranslate"><span class="pre">find_max_freq(self,</span> <span class="pre">frames)</span></code> the dominant frequency in the instrument for tuning and finally terminates the stream on completing the tuning process.</p>
+<p>The individual functions of the instrument tuner are encapsulated inside a class-Tuner.</p>
+<section id="span-style-color-red-exercise-4-span">
+<h3><span style="color:red"> Exercise 4</span><a class="headerlink" href="#span-style-color-red-exercise-4-span" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Run <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/instrument_tuning/tuner.py">tuner.py</a>.</p></li>
+<li><p>You can use a audio tune generator app in your mobile or a even play a tone using Audio function to test the tuner.</p></li>
+<li><p>Report your observations.</p></li>
+</ul>
+</section>
+<section id="span-style-color-red-exercise-5-span">
+<h3><span style="color:red"> Exercise 5</span><a class="headerlink" href="#span-style-color-red-exercise-5-span" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The program <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/instrument_tuning/tuner.py">tuner.py</a> returns the frequencies.</p></li>
+<li><p>Modify the program to receive a target note as an input eg. ‘C’ or ‘C#’</p></li>
+<li><p>Instead of frequencies, it should return the frequency difference between target note and actual freqeuncy.</p></li>
+<li><p>Add the modified code along with your submission.</p></li>
+</ul>
+</section>
+</section>
+<section id="span-style-color-green-reflection-span">
+<h2><span style="color:green;"> Reflection </span><a class="headerlink" href="#span-style-color-green-reflection-span" title="Permalink to this heading">#</a></h2>
+<p>Do not skip this section! Lab will be graded only on completing this section.</p>
+<ol class="arabic simple">
+<li><p>What parts of the lab, if any, do you feel you did well? <br></p></li>
+<li><p>What are some things you learned today? <br></p></li>
+<li><p>Are there any topics that could use more clarification? <br></p></li>
+<li><p>Do you have any suggestions on parts of the lab to improve?</p></li>
+</ol>
+<h3 style="background-color:lightblue"> Write Answers for the Reflection Below </h3></section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -464,6 +769,43 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span"><span style="color:orange;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-1-introduction-span"><span style="color:orange;"> 1. Introduction </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-2-functions-in-python-span"><span style="color:orange;"> 2. Functions in Python</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span"><span style="color:red"> Exercise 1</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-2-components-of-an-instrument-tuner-span"><span style="color:orange;"> 2. Components of an Instrument Tuner </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-blue-2-1-audio-input-span"><span style="color:blue"> 2.1. Audio Input</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-2-span"><span style="color:red"> Exercise 2</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-blue-2-2-display-span"><span style="color:blue"> 2.2. Display</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-blue-2-3-mode-selectors-and-other-inputs-span"><span style="color:blue"> 2.3. Mode Selectors and Other Inputs</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-blue-2-4-identifying-the-frequency-and-note-for-tuning-span"><span style="color:blue"> 2.4. Identifying the frequency and Note for tuning</span></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-3-span"><span style="color:red"> Exercise 3</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-3-instrument-tuner-span"><span style="color:orange;"> 3. Instrument Tuner </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-4-span"><span style="color:red"> Exercise 4</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-5-span"><span style="color:red"> Exercise 5</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-green-reflection-span"><span style="color:green;"> Reflection </span></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
