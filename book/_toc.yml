@@ -28,11 +28,6 @@ parts:
   - file: labs/analysis/signal_analysis/signal_analysis_with_dft.ipynb
   - file: labs/analysis/pedometer/pedometer_project.ipynb
   - file: labs/analysis/instrument_tuning/tuning.ipynb
-  - file: labs/analysis/identifying_instrument/instruments.ipynb
-
-- caption: Design a project of your own
-  chapters:
-  - file: labs/final_project/final_project.ipynb
 
 - caption: Extra Materials
   chapters:
