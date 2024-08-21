@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Week 12: Build a Pedometer &#8212; The Data Science Labs on Fourier Analysis</title>
+    <title>Lab 11: Build a Pedometer &#8212; The Data Science Labs on Fourier Analysis</title>
   
   
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,8 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -66,8 +67,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'labs/analysis/pedometer/pedometer_project';</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Week 13: Tuning an instrument" href="../instrument_tuning/tuning.html" />
-    <link rel="prev" title="Week 11: Frequency Analysis with the DFT" href="../signal_analysis/signal_analysis_with_dft.html" />
+    <link rel="next" title="Lab 12: Tuning an instrument" href="../instrument_tuning/tuning.html" />
+    <link rel="prev" title="Lab 10: Frequency Analysis with the DFT" href="../signal_analysis/signal_analysis_with_dft.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -78,6 +79,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -131,9 +141,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../../../index.html">
+  
   
   
   
@@ -143,8 +155,8 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="The Data Science Labs on Fourier Analysis - Home"/>
+    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="The Data Science Labs on Fourier Analysis - Home"/>`);</script>
   
   
 </a></div>
@@ -160,17 +172,17 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preliminaries</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../introduction/intro_lab.html">Week 1: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/intro_lab.html">Lab 0: Introduction</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Synthesis</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../synthesis/playing_sound/play_sounds.html">Week 2: Playing Sound</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../synthesis/playing_sound/play_sounds.html">Lab 1: Playing Sound</a></li>
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="../../synthesis/build_a_synthesizer/build_a_synthesizer.html">Week 3: Build a synthesizer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../synthesis/build_a_theremin/build_a_theremin.html">Week 4: Build a theremin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../synthesis/experiencing_sound/experiencing_sound.html">Week 5: The human experience of sound</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../synthesis/build_a_synthesizer/build_a_synthesizer.html">Lab 2: Build a synthesizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../synthesis/build_a_theremin/build_a_theremin.html">Lab 3: Build a theremin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../synthesis/experiencing_sound/experiencing_sound.html">Lab 4: The human experience of sound</a></li>
 
 
 
@@ -178,15 +190,15 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modulation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../modulation/tremolo_beats/tremolo_beats_1.html">Week 6: Tremolo/Beats Effects 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulation/tremolo_beats/tremolo_beats_1.html">Lab 5: Tremolo/Beats Effects 1</a></li>
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="../../modulation/tremolo_beats/tremolo_beats_2.html">Week 7: Tremolo/Beats Effects 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulation/tremolo_beats/tremolo_beats_2.html">Lab 6: Tremolo/Beats Effects 2</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="../../modulation/voice_changer/voice_changer_project.html">Week 8: Build a Voice Changer/Voice Shield</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../modulation/chirp/chirp.html">Week 9: Chirps, Bells, and other Instruments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulation/voice_changer/voice_changer_project.html">Lab 7: Build a Voice Changer/Voice Shield</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulation/chirp/chirp.html">Lab 8: Chirps, Bells, and other Instruments</a></li>
 
 
 
@@ -194,10 +206,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Analysis</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../dft/dft.html">Week 10: The Discrete Fourier Transform (DFT)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../signal_analysis/signal_analysis_with_dft.html">Week 11: Frequency Analysis with the DFT</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 12: Build a Pedometer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../instrument_tuning/tuning.html">Week 13: Tuning an instrument</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dft/dft.html">Lab 9: The Discrete Fourier Transform (DFT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../signal_analysis/signal_analysis_with_dft.html">Lab 10: Frequency Analysis with the DFT</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab 11: Build a Pedometer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../instrument_tuning/tuning.html">Lab 12: Tuning an instrument</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra Materials</span></p>
 <ul class="nav bd-sidenav">
@@ -355,20 +367,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -385,7 +399,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Week 12: Build a Pedometer</h1>
+    <h1>Lab 11: Build a Pedometer</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -406,14 +420,15 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-3-building-the-pedometer-span"><span style="color:orange;"> 3. Building the Pedometer </span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lsm9ds0-sensor">The LSM9DS0 sensor</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i2c-communication-protocol">I2C Communication Protocol</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wiring-up-the-circuit">Wiring Up the Circuit</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wiring-up-the-circuit">Wiring Up the Circuit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accelerometer-driver">Accelerometer Driver</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-3-span"><span style="color:red"> Exercise 3</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-4-span"><span style="color:red"> Exercise 4</span></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-it-on-batteries">Run it on batteries</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-py">main.py</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-7805-voltage-regulator">The 7805 voltage regulator</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-4-span"><span style="color:red"> Exercise 4</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-5-span"><span style="color:red"> Exercise 5</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-6-span"><span style="color:red"> Exercise 6</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-7-span"><span style="color:red"> Exercise 7</span></a></li>
@@ -431,10 +446,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="week-12-build-a-pedometer">
-<h1>Week 12: Build a Pedometer<a class="headerlink" href="#week-12-build-a-pedometer" title="Permalink to this heading">#</a></h1>
-<p><font size="6"> Laboratory 11 </font> <br>
-<font size="3"> Last updated April 5, 2023 </font></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-11-build-a-pedometer">
+<h1>Lab 11: Build a Pedometer<a class="headerlink" href="#lab-11-build-a-pedometer" title="Permalink to this heading">#</a></h1>
+<p><font size="3"> Last updated 8/13/24 </font></p>
 <section id="span-style-color-orange-00-content-span">
 <h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this heading">#</a></h2>
 <p><font size="5"> Mathematics </font></p>
@@ -475,7 +489,11 @@ Take a look at the file <a class="reference external" href="https://github.com/T
 <h3><span style="color:red"> Exercise 1</span><a class="headerlink" href="#span-style-color-red-exercise-1-span" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Using Thonny, run <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/pedometer/temperature.py">temperature.py</a> on your Pico.</p></li>
-<li><p>After the script is done running, move the <code class="docutils literal notranslate"><span class="pre">temp.txt</span></code> file that is stored on the Pico into your computer.</p></li>
+<li><p>After the script is done running, move the <code class="docutils literal notranslate"><span class="pre">temp.txt</span></code> file that is stored on the Pico into your computer.</p>
+<ul>
+<li><p>(In thonny - go to open-&gt; pico-&gt; save as onto the computer)</p></li>
+</ul>
+</li>
 <li><p>Delete <code class="docutils literal notranslate"><span class="pre">temp.txt</span></code> from the Pico’s storage.</p></li>
 <li><p>Plot and visualize the temperature readings. Include appropriate x-axis and y-axis labels</p></li>
 </ul>
@@ -553,17 +571,29 @@ We will be using Pico pins GP18(Pin No. 24) and GP19(Pin No. 25) for our I2C com
 </table>
 <p>The circuit once completely wired will look something like this:</p>
 <p><img alt="circuit diagram" src="../../../_images/pico_pedometer_circuit_bb.png" /></p>
-<p>Now that we have wired the circuit, let us test it out.
-Run <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/pedometer/test_accelerometer.py">test_accelerometer.py</a> on thonny with pico connected to your computer. If everything is connected properly you should start seeing the 3 components of acceleration from the accelerometer on the output.</p>
+</section>
+<section id="accelerometer-driver">
+<h2>Accelerometer Driver<a class="headerlink" href="#accelerometer-driver" title="Permalink to this heading">#</a></h2>
+<p>Before testing the circuit, the lsm9ds0 driver needs to be put on the pico:</p>
+<ol class="arabic simple">
+<li><p>Dowload the <a class="reference external" href="http://lsm9ds0.py">lsm9ds0.py</a> file from <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/pedometer/lsm9ds0.py">here</a></p></li>
+<li><p>Open the file in thonny, save as onto the pico.</p></li>
+</ol>
+<p>Run <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/pedometer/test_accelerometer.py">test_accelerometer.py</a> on thonny with pico connected to your computer. If everything is connected properly you should start seeing the 3 components of acceleration from the accelerometer on the output.</p>
 <section id="span-style-color-red-exercise-3-span">
 <h3><span style="color:red"> Exercise 3</span><a class="headerlink" href="#span-style-color-red-exercise-3-span" title="Permalink to this heading">#</a></h3>
 <p>For this exercise you will only need the accelerometer hooked up to the Pico connected to your laptop with the USB connector.</p>
 <ul class="simple">
-<li><p>Modify <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/pedometer/test_accelerometer.py">test_accelerometer.py</a> to store the <span class="math notranslate nohighlight">\(x,y,\)</span> and <span class="math notranslate nohighlight">\(z\)</span> components of acceleration to a .txt file named <code class="docutils literal notranslate"><span class="pre">teststeps.txt</span></code> in the pico.</p></li>
+<li><p>Modify <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/pedometer/test_accelerometer.py">test_accelerometer.py</a> to store the <span class="math notranslate nohighlight">\(x,y,\)</span> and <span class="math notranslate nohighlight">\(z\)</span> components of acceleration to a .txt file named <code class="docutils literal notranslate"><span class="pre">teststeps.txt</span></code> in the pico. Paste in modified code.</p></li>
 <li><p>Take 10 ‘fake’ steps while holding the breadboard close to your leg with everything else secured in your hand.</p></li>
 <li><p>Plot the <span class="math notranslate nohighlight">\(x,y,\)</span> and <span class="math notranslate nohighlight">\(z\)</span> components of acceleration with detailed titles and axis labels.</p></li>
 </ul>
-<h3 style="background-color:lightblue"> Write Answers for Exercise 3 Below </h3></section>
+<h3 style="background-color:lightblue"> Write Answers for Exercise 3 Below </h3><p>In order to detect when a step has occured, we will look at the magnitude of the acceleration vector, <span class="math notranslate nohighlight">\(G_a\)</span> from <span class="math notranslate nohighlight">\(\langle a_x,a_y,a_z \rangle\)</span>, where <span class="math notranslate nohighlight">\(a_x,a_y,\)</span> and <span class="math notranslate nohighlight">\(a_z\)</span> are the <span class="math notranslate nohighlight">\(x,y\)</span> and <span class="math notranslate nohighlight">\(z\)</span> components of acceleration respectively.</p>
+</section>
+<section id="span-style-color-red-exercise-4-span">
+<h3><span style="color:red"> Exercise 4</span><a class="headerlink" href="#span-style-color-red-exercise-4-span" title="Permalink to this heading">#</a></h3>
+<p>Using the data you collected in Exercise 3, plot the magnitute of the acceleration vector vs time. Make sure your graph has appropriate labels. Include your code with the answers.</p>
+<h3 style="background-color:lightblue"> Write Answers for Exercise 4 Below </h3></section>
 </section>
 <section id="run-it-on-batteries">
 <h2>Run it on batteries<a class="headerlink" href="#run-it-on-batteries" title="Permalink to this heading">#</a></h2>
@@ -612,16 +642,15 @@ Run <a class="reference external" href="https://github.com/TheDataScienceLabs/DS
 </table>
 <p>The pins on the 7805 are not labeled. You will have to check the data sheet. Do not connect the battery until you have had your circuit checked by an instructor. The correctly wired voltage regulator should look as shown in the image below.</p>
 <p><img alt="battery powered circuit diagram" src="../../../_images/pico_pedometer_circuit_battery_bb.png" /></p>
-<p>In order to detect when a step has occured, we will look at the magnitude of the acceleration vector, <span class="math notranslate nohighlight">\(G_a\)</span> from <span class="math notranslate nohighlight">\(\langle a_x,a_y,a_z \rangle\)</span>, where <span class="math notranslate nohighlight">\(a_x,a_y,\)</span> and <span class="math notranslate nohighlight">\(a_z\)</span> are the <span class="math notranslate nohighlight">\(x,y\)</span> and <span class="math notranslate nohighlight">\(z\)</span> components of acceleration respectively.</p>
-<section id="span-style-color-red-exercise-4-span">
-<h3><span style="color:red"> Exercise 4</span><a class="headerlink" href="#span-style-color-red-exercise-4-span" title="Permalink to this heading">#</a></h3>
-<p>Using the data you collected in Exercise 3, plot the magnitute of the acceleration vector vs time. Make sure your graph has appropriate labels. Include your code with the answers.</p>
-<h3 style="background-color:lightblue"> Write Answers for Exercise 4 Below </h3><p>You might have observed that the plot is erratic and noisy at times. This may be due to multiple factors like small vibrations due to the sensor not being fixed to a board, small movements of the hand while holding the breadboard close to the leg etc.</p>
-<p>Let us average the sensor readings over 50 samples to get a less noisy data.</p>
-</section>
+<p>You might have observed that the plot is erratic and noisy at times. This may be due to multiple factors like small vibrations due to the sensor not being fixed to a board, small movements of the hand while holding the breadboard close to the leg etc.</p>
+<p>Let us average the sensor readings over 50 samples to get a less noisy data. The class <code class="docutils literal notranslate"><span class="pre">Averager</span></code> allows us to reduce error by averaging across multiple acceleration measurements.</p>
+<p>To use this class in accelerometer_averaged in Exercise 5, first put averager_solution.py on the pico:</p>
+<ol class="arabic simple">
+<li><p>Dowload the averager_solution.py file from <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/pedometer/averager_solution.py">here</a></p></li>
+<li><p>Open the file in thonny, save as onto the pico.</p></li>
+</ol>
 <section id="span-style-color-red-exercise-5-span">
 <h3><span style="color:red"> Exercise 5</span><a class="headerlink" href="#span-style-color-red-exercise-5-span" title="Permalink to this heading">#</a></h3>
-<p>The class <code class="docutils literal notranslate"><span class="pre">Averager</span></code> allows us to reduce error by averaging across multiple acceleration measurements.</p>
 <ul class="simple">
 <li><p>Run <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/pedometer/accelerometer_averaged.py">accelerometer_averaged.py</a> using the main method on Pico.</p></li>
 <li><p>Take 10 ‘fake’ steps while holding the battery powered breadboard circuit close to your leg with everything else secured in your hand.</p></li>
@@ -634,7 +663,7 @@ Run <a class="reference external" href="https://github.com/TheDataScienceLabs/DS
 <h3><span style="color:red"> Exercise 6</span><a class="headerlink" href="#span-style-color-red-exercise-6-span" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Compute and plot the magnitute of the acceleration vector, <span class="math notranslate nohighlight">\(G_a\)</span>.</p></li>
-<li><p>Calculate mean of <span class="math notranslate nohighlight">\(G_a\)</span>, <span class="math notranslate nohighlight">\(\hat{G_a}\)</span>.</p></li>
+<li><p>Calculate mean of <span class="math notranslate nohighlight">\(G_a\)</span>: <span class="math notranslate nohighlight">\(\hat{G_a}\)</span>.</p></li>
 <li><p>Subtract <span class="math notranslate nohighlight">\(\hat{G_a}\)</span> from <span class="math notranslate nohighlight">\(G_a\)</span>.</p></li>
 <li><p>Plot <span class="math notranslate nohighlight">\(G_a\)</span> - <span class="math notranslate nohighlight">\(\hat{G_a}\)</span>. Make sure your graph has appropriate labels.</p></li>
 </ul>
@@ -679,11 +708,10 @@ Run <a class="reference external" href="https://github.com/TheDataScienceLabs/DS
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="../signal_analysis/signal_analysis_with_dft.html"
@@ -691,7 +719,7 @@ Run <a class="reference external" href="https://github.com/TheDataScienceLabs/DS
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Week 11: Frequency Analysis with the DFT</p>
+        <p class="prev-next-title">Lab 10: Frequency Analysis with the DFT</p>
       </div>
     </a>
     <a class="right-next"
@@ -699,14 +727,11 @@ Run <a class="reference external" href="https://github.com/TheDataScienceLabs/DS
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Week 13: Tuning an instrument</p>
+        <p class="prev-next-title">Lab 12: Tuning an instrument</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -732,14 +757,15 @@ Run <a class="reference external" href="https://github.com/TheDataScienceLabs/DS
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-3-building-the-pedometer-span"><span style="color:orange;"> 3. Building the Pedometer </span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lsm9ds0-sensor">The LSM9DS0 sensor</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i2c-communication-protocol">I2C Communication Protocol</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wiring-up-the-circuit">Wiring Up the Circuit</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wiring-up-the-circuit">Wiring Up the Circuit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accelerometer-driver">Accelerometer Driver</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-3-span"><span style="color:red"> Exercise 3</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-4-span"><span style="color:red"> Exercise 4</span></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-it-on-batteries">Run it on batteries</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-py">main.py</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-7805-voltage-regulator">The 7805 voltage regulator</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-4-span"><span style="color:red"> Exercise 4</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-5-span"><span style="color:red"> Exercise 5</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-6-span"><span style="color:red"> Exercise 6</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-7-span"><span style="color:red"> Exercise 7</span></a></li>
@@ -767,6 +793,7 @@ By Mireille Boutin, Alden Bradford, and Adharsh Sabukumar
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2022.
@@ -793,8 +820,8 @@ By Mireille Boutin, Alden Bradford, and Adharsh Sabukumar
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
   </footer>

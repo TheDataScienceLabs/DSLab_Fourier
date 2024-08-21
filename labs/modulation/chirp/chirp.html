@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Week 9: Chirps, Bells, and other Instruments &#8212; The Data Science Labs on Fourier Analysis</title>
+    <title>Lab 8: Chirps, Bells, and other Instruments &#8212; The Data Science Labs on Fourier Analysis</title>
   
   
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,8 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -66,8 +67,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'labs/modulation/chirp/chirp';</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Week 10: The Discrete Fourier Transform (DFT)" href="../../analysis/dft/dft.html" />
-    <link rel="prev" title="Week 8: Build a Voice Changer/Voice Shield" href="../voice_changer/voice_changer_project.html" />
+    <link rel="next" title="Lab 9: The Discrete Fourier Transform (DFT)" href="../../analysis/dft/dft.html" />
+    <link rel="prev" title="Lab 7: Build a Voice Changer/Voice Shield" href="../voice_changer/voice_changer_project.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -78,6 +79,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -131,9 +141,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../../../index.html">
+  
   
   
   
@@ -143,8 +155,8 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="The Data Science Labs on Fourier Analysis - Home"/>
+    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="The Data Science Labs on Fourier Analysis - Home"/>`);</script>
   
   
 </a></div>
@@ -160,17 +172,17 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preliminaries</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../introduction/intro_lab.html">Week 1: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/intro_lab.html">Lab 0: Introduction</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Synthesis</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../synthesis/playing_sound/play_sounds.html">Week 2: Playing Sound</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../synthesis/playing_sound/play_sounds.html">Lab 1: Playing Sound</a></li>
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="../../synthesis/build_a_synthesizer/build_a_synthesizer.html">Week 3: Build a synthesizer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../synthesis/build_a_theremin/build_a_theremin.html">Week 4: Build a theremin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../synthesis/experiencing_sound/experiencing_sound.html">Week 5: The human experience of sound</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../synthesis/build_a_synthesizer/build_a_synthesizer.html">Lab 2: Build a synthesizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../synthesis/build_a_theremin/build_a_theremin.html">Lab 3: Build a theremin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../synthesis/experiencing_sound/experiencing_sound.html">Lab 4: The human experience of sound</a></li>
 
 
 
@@ -178,15 +190,15 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modulation</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../tremolo_beats/tremolo_beats_1.html">Week 6: Tremolo/Beats Effects 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tremolo_beats/tremolo_beats_1.html">Lab 5: Tremolo/Beats Effects 1</a></li>
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="../tremolo_beats/tremolo_beats_2.html">Week 7: Tremolo/Beats Effects 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tremolo_beats/tremolo_beats_2.html">Lab 6: Tremolo/Beats Effects 2</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="../voice_changer/voice_changer_project.html">Week 8: Build a Voice Changer/Voice Shield</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 9: Chirps, Bells, and other Instruments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../voice_changer/voice_changer_project.html">Lab 7: Build a Voice Changer/Voice Shield</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab 8: Chirps, Bells, and other Instruments</a></li>
 
 
 
@@ -194,10 +206,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Analysis</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../analysis/dft/dft.html">Week 10: The Discrete Fourier Transform (DFT)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analysis/signal_analysis/signal_analysis_with_dft.html">Week 11: Frequency Analysis with the DFT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analysis/pedometer/pedometer_project.html">Week 12: Build a Pedometer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analysis/instrument_tuning/tuning.html">Week 13: Tuning an instrument</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analysis/dft/dft.html">Lab 9: The Discrete Fourier Transform (DFT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analysis/signal_analysis/signal_analysis_with_dft.html">Lab 10: Frequency Analysis with the DFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analysis/pedometer/pedometer_project.html">Lab 11: Build a Pedometer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analysis/instrument_tuning/tuning.html">Lab 12: Tuning an instrument</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra Materials</span></p>
 <ul class="nav bd-sidenav">
@@ -355,20 +367,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -385,7 +399,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Week 9: Chirps, Bells, and other Instruments</h1>
+    <h1>Lab 8: Chirps, Bells, and other Instruments</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -395,7 +409,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Week 9: Chirps, Bells, and other Instruments</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lab 8: Chirps, Bells, and other Instruments</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematics">Mathematics</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-skills">Programming Skills</a></li>
@@ -437,10 +451,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="week-9-chirps-bells-and-other-instruments">
-<h1>Week 9: Chirps, Bells, and other Instruments<a class="headerlink" href="#week-9-chirps-bells-and-other-instruments" title="Permalink to this heading">#</a></h1>
-<p><font size="6"> Laboratory 8 </font> <br>
-<font size="3"> Last updated March 6, 2023 </font></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-8-chirps-bells-and-other-instruments">
+<h1>Lab 8: Chirps, Bells, and other Instruments<a class="headerlink" href="#lab-8-chirps-bells-and-other-instruments" title="Permalink to this heading">#</a></h1>
+<p><font size="3"> Last updated 8/12/24 </font></p>
 <section id="span-style-color-orange-00-content-span">
 <h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this heading">#</a></h2>
 <section id="mathematics">
@@ -494,7 +507,7 @@ document.write(`
 \[  y(t)= e^{-t/\lambda} x(t), \text{ for some } \lambda &gt;0. \]</div>
 <section id="span-style-color-red-exercise-1-span">
 <h2><span style="color:red"> Exercise 1 </span><a class="headerlink" href="#span-style-color-red-exercise-1-span" title="Permalink to this heading">#</a></h2>
-<p>Create a middle C sound that lasts one second. You can use your prefered waveform (sine, triangular, square, etc.) to first create a middle C. Then modulate your middle C using a bell envelop. Experiment with different values of <span class="math notranslate nohighlight">\(\lambda\)</span> and notice how this affects the final sound.</p>
+<p>Create a middle C sound that lasts one second. You can use your prefered waveform (sine, triangular, square, etc.) to first create a middle C. Then modulate your middle C using a bell envelop. Plot and play audio with different values of <span class="math notranslate nohighlight">\(\lambda\)</span> and describe how this affects the final sound.</p>
 </section>
 <section id="span-style-color-red-exercise-2-span">
 <h2><span style="color:red"> Exercise 2 </span><a class="headerlink" href="#span-style-color-red-exercise-2-span" title="Permalink to this heading">#</a></h2>
@@ -523,7 +536,7 @@ document.write(`
 <p>So the frequency of the modulated signal begins at <span class="math notranslate nohighlight">\(f_0\)</span> at time <span class="math notranslate nohighlight">\(t=0\)</span>, and increases/decreases linearly at a rate (slope) of <span class="math notranslate nohighlight">\(2a\)</span> per time unit. The sound produced by such a signal is similar to a bird chirp, hence the name “chirp”.</p>
 <section id="span-style-color-red-exercise-3-span">
 <h2><span style="color:red"> Exercise 3 </span><a class="headerlink" href="#span-style-color-red-exercise-3-span" title="Permalink to this heading">#</a></h2>
-<p>Create a chirp lasting 0.5 seconds with parameters <span class="math notranslate nohighlight">\(f_0=252\)</span> and <span class="math notranslate nohighlight">\(\phi=0\)</span>. Experiment with different values of <span class="math notranslate nohighlight">\(a\)</span>.</p>
+<p>Create a chirp lasting 0.5 seconds with parameters <span class="math notranslate nohighlight">\(f_0=252\)</span> and <span class="math notranslate nohighlight">\(\phi=0\)</span>. Play audio with different values of <span class="math notranslate nohighlight">\(a\)</span>.</p>
 </section>
 <section id="span-style-color-red-exercise-4-span">
 <h2><span style="color:red"> Exercise 4 </span><a class="headerlink" href="#span-style-color-red-exercise-4-span" title="Permalink to this heading">#</a></h2>
@@ -551,8 +564,8 @@ document.write(`
 \[y(t)= A(t) \cos \left[ 2 \pi f_0 t + B(t) \cos \left( 2\pi f_1 t + \psi_1 \right)+\psi_0  \right].  \]</div>
 <p>The function A(t) modifies the envelop of x(t), and as we have seen previously, can take on different forms (e.g. periodic, exponential, etc.).
 To understand the rest of the expression, we compute the instantenous frequency of <span class="math notranslate nohighlight">\(y(t)\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8d1d72d5-9b1c-444d-a82f-1af9b3e457e9">
-<span class="eqno">(1)<a class="headerlink" href="#equation-8d1d72d5-9b1c-444d-a82f-1af9b3e457e9" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-715051cc-9387-4bad-a0a8-a34d71f59a4a">
+<span class="eqno">(1)<a class="headerlink" href="#equation-715051cc-9387-4bad-a0a8-a34d71f59a4a" title="Permalink to this equation">#</a></span>\[\begin{align}
 f(t) &amp; = \frac{1}{2\pi}\frac{d}{dt} \left(  2 \pi f_0 t + B(t) \cos \left( 2\pi f_1 t + \psi_1 \right)+\psi_0\right),\\
 &amp; =  f_0 - B(t) f_1 \sin \left( 2 \pi f_1 t + \psi_1 \right) + \frac{1}{2\pi} B'(t) \cos \left( 2\pi f_1 t + \psi_1 \right).
 \end{align}\]</div>
@@ -577,8 +590,7 @@ f(t) &amp; = \frac{1}{2\pi}\frac{d}{dt} \left(  2 \pi f_0 t + B(t) \cos \left( 2
 <h1><span style="color:orange;"> 4. Update your synthesizer </span><a class="headerlink" href="#span-style-color-orange-4-update-your-synthesizer-span" title="Permalink to this heading">#</a></h1>
 <section id="span-style-color-red-exercise-8-span">
 <h2><span style="color:red"> Exercise 8 </span><a class="headerlink" href="#span-style-color-red-exercise-8-span" title="Permalink to this heading">#</a></h2>
-<p>Now that you know how to create cool sounds, modify the synthesizer you built in Lab 2, and make it play your own unique notes. You can use the previously synthesized bells or chirps, or create your own personal combination of parameters.</p>
-<p>When you are done, show it to your instructor.</p>
+<p>Now that you know how to create cool sounds, modify the synthesizer you built in Lab 2, and make it play your own unique notes. You can use the previously synthesized bells or chirps, or create your own personal combination of parameters. Include code below and a description of what was changed.</p>
 </section>
 <section id="span-style-color-green-reflection-span">
 <h2><span style="color:green;"> Reflection </span><a class="headerlink" href="#span-style-color-green-reflection-span" title="Permalink to this heading">#</a></h2>
@@ -615,11 +627,10 @@ f(t) &amp; = \frac{1}{2\pi}\frac{d}{dt} \left(  2 \pi f_0 t + B(t) \cos \left( 2
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="../voice_changer/voice_changer_project.html"
@@ -627,7 +638,7 @@ f(t) &amp; = \frac{1}{2\pi}\frac{d}{dt} \left(  2 \pi f_0 t + B(t) \cos \left( 2
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Week 8: Build a Voice Changer/Voice Shield</p>
+        <p class="prev-next-title">Lab 7: Build a Voice Changer/Voice Shield</p>
       </div>
     </a>
     <a class="right-next"
@@ -635,14 +646,11 @@ f(t) &amp; = \frac{1}{2\pi}\frac{d}{dt} \left(  2 \pi f_0 t + B(t) \cos \left( 2
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Week 10: The Discrete Fourier Transform (DFT)</p>
+        <p class="prev-next-title">Lab 9: The Discrete Fourier Transform (DFT)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -657,7 +665,7 @@ f(t) &amp; = \frac{1}{2\pi}\frac{d}{dt} \left(  2 \pi f_0 t + B(t) \cos \left( 2
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Week 9: Chirps, Bells, and other Instruments</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lab 8: Chirps, Bells, and other Instruments</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematics">Mathematics</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-skills">Programming Skills</a></li>
@@ -709,6 +717,7 @@ By Mireille Boutin, Alden Bradford, and Adharsh Sabukumar
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2022.
@@ -735,8 +744,8 @@ By Mireille Boutin, Alden Bradford, and Adharsh Sabukumar
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
   </footer>
