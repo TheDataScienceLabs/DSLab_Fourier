@@ -2,6 +2,8 @@
 
 """voice_recorder.py: A simple script to record audio using SoundDevice and save it using SoundFile."""
 
+# Last updated 25/02/2025
+
 __author__ = "Mo Chen"
 
 import sounddevice as sd

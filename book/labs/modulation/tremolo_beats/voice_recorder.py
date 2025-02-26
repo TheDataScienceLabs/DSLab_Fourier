@@ -9,7 +9,7 @@ import wave
 
 # Parameters for audio recording
 chunk = 1024  # Number of frames per buffer (chunk size)
-FORMAT = pyaudio.paInt16  # Format for the audio (16-bit PCM)
+FORMAT = pyaudio.paInt16  # Format for the audio (16-bit PCM) 
 CHANNELS = 1  # Number of audio channels 
 RATE = 44100  # Sampling rate (samples per second)
 RECORD_SECONDS = 5  # Duration of the recording in seconds
