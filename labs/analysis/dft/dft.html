@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Lab 9: The Discrete Fourier Transform (DFT) &#8212; The Data Science Labs on Fourier Analysis</title>
   
@@ -15,53 +14,49 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'labs/analysis/dft/dft';</script>
@@ -78,28 +73,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -121,12 +111,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -142,6 +140,8 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
 
+  
+    
   
 
 <a class="navbar-brand logo" href="../../../index.html">
@@ -160,7 +160,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -229,7 +240,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -238,14 +249,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -370,10 +381,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
@@ -381,14 +392,14 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -409,44 +420,44 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content"><span style="color:orange;"> 00. Content </span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematics">Mathematics</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-skills">Programming Skills</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embedded-systems">Embedded Systems</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span"><span style="color:orange;"> 0. Required Hardware </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-1-intro-span"><span style="color:orange;"> 1. Intro </span></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span"><span style="color:red"> Exercise 1 </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-hardware"><span style="color:orange;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intro"><span style="color:orange;"> 1. Intro </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1"><span style="color:red"> Exercise 1 </span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-2-periodicity-of-the-sampling-span"><span style="color:orange;"> 2. Periodicity of the Sampling </span></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-2-span"><span style="color:red"> Exercise 2 </span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-3-span"><span style="color:red"> Exercise 3 </span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-4-span"><span style="color:red"> Exercise 4 </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#periodicity-of-the-sampling"><span style="color:orange;"> 2. Periodicity of the Sampling </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2"><span style="color:red"> Exercise 2 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3"><span style="color:red"> Exercise 3 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4"><span style="color:red"> Exercise 4 </span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-2-toy-example-of-signal-analysis-span"><span style="color:orange;"> 2. Toy Example of Signal Analysis </span></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-5-span"><span style="color:red"> Exercise 5 </span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-6-span"><span style="color:red"> Exercise 6 </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#toy-example-of-signal-analysis"><span style="color:orange;"> 2. Toy Example of Signal Analysis </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5"><span style="color:red"> Exercise 5 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-6"><span style="color:red"> Exercise 6 </span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-3-another-toy-example-of-signal-analysis-with-aliasing-span"><span style="color:orange;"> 3. Another Toy Example of Signal Analysis- with Aliasing </span></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-7-span"><span style="color:red"> Exercise 7 </span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-8-span"><span style="color:red"> Exercise 8 </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#another-toy-example-of-signal-analysis-with-aliasing"><span style="color:orange;"> 3. Another Toy Example of Signal Analysis- with Aliasing </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-7"><span style="color:red"> Exercise 7 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-8"><span style="color:red"> Exercise 8 </span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-4-the-theory-span"><span style="color:orange;"> 4. The Theory </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-theory"><span style="color:orange;"> 4. The Theory </span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-theorem">Sampling Theorem</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proof-of-sampling-theorem">Proof of Sampling Theorem</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-9-span"><span style="color:red"> Exercise 9 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-9"><span style="color:red"> Exercise 9 </span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-5-the-fft-command-span"><span style="color:orange;"> 5. The FFT Command </span></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-10-span"><span style="color:red"> Exercise 10 </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-fft-command"><span style="color:orange;"> 5. The FFT Command </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-10"><span style="color:red"> Exercise 10 </span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-green-reflection-span"><span style="color:green;"> Reflection </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection"><span style="color:green;"> Reflection </span></a></li>
 </ul>
             </nav>
         </div>
@@ -456,15 +467,15 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lab-9-the-discrete-fourier-transform-dft">
-<h1>Lab 9: The Discrete Fourier Transform (DFT)<a class="headerlink" href="#lab-9-the-discrete-fourier-transform-dft" title="Permalink to this heading">#</a></h1>
+<h1>Lab 9: The Discrete Fourier Transform (DFT)<a class="headerlink" href="#lab-9-the-discrete-fourier-transform-dft" title="Link to this heading">#</a></h1>
 <p><font size="3"> Last updated 8/13/24 </font></p>
-<section id="span-style-color-orange-00-content-span">
-<h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this heading">#</a></h2>
+<section id="content">
+<h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#content" title="Link to this heading">#</a></h2>
 <section id="mathematics">
-<h3>Mathematics<a class="headerlink" href="#mathematics" title="Permalink to this heading">#</a></h3>
+<h3>Mathematics<a class="headerlink" href="#mathematics" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Fourier series</p></li>
 <li><p>Euler’s formula</p></li>
@@ -475,21 +486,21 @@ document.write(`
 </ul>
 </section>
 <section id="programming-skills">
-<h3>Programming Skills<a class="headerlink" href="#programming-skills" title="Permalink to this heading">#</a></h3>
+<h3>Programming Skills<a class="headerlink" href="#programming-skills" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Loops</p></li>
 <li><p>FFT function from numpy</p></li>
 </ul>
 </section>
 <section id="embedded-systems">
-<h3>Embedded Systems<a class="headerlink" href="#embedded-systems" title="Permalink to this heading">#</a></h3>
+<h3>Embedded Systems<a class="headerlink" href="#embedded-systems" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>N/A</p></li>
 </ul>
 </section>
 </section>
-<section id="span-style-color-orange-0-required-hardware-span">
-<h2><span style="color:orange;"> 0. Required Hardware </span><a class="headerlink" href="#span-style-color-orange-0-required-hardware-span" title="Permalink to this heading">#</a></h2>
+<section id="required-hardware">
+<h2><span style="color:orange;"> 0. Required Hardware </span><a class="headerlink" href="#required-hardware" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>N/A</p></li>
 </ul>
@@ -498,15 +509,15 @@ document.write(`
 <p><strong>Email:</strong> me &#64;purdue.edu</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="span-style-color-orange-1-intro-span">
-<h2><span style="color:orange;"> 1. Intro </span><a class="headerlink" href="#span-style-color-orange-1-intro-span" title="Permalink to this heading">#</a></h2>
+<section id="intro">
+<h2><span style="color:orange;"> 1. Intro </span><a class="headerlink" href="#intro" title="Link to this heading">#</a></h2>
 <p>The signals we acquire in real-life have a finite duration. We typically assume that they “start at zero”, meaning that they are equal to zero until <span class="math notranslate nohighlight">\(t=0\)</span>. After the signal duration is passed, i.e. when <span class="math notranslate nohighlight">\(t\)</span> is greater than the duration of the signal, then we also assume that the signal is equal to zero.</p>
 <p>Putting this in mathematical terms: a finite duration signal <span class="math notranslate nohighlight">\(f(t)\)</span> takes the form</p>
 <div class="math notranslate nohighlight">
@@ -525,16 +536,16 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[ f(t)=  \sum_{k=-\infty}^\infty c_n e^{-i \frac{2\pi}{P}nt} \]</div>
 <p>where <span class="math notranslate nohighlight">\( c_0=\frac{a_0}{2}\)</span> and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a59868f9-64ff-47dd-83ff-72e53b010bdb">
-<span class="eqno">(2)<a class="headerlink" href="#equation-a59868f9-64ff-47dd-83ff-72e53b010bdb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2ef8b586-5181-422c-a774-e53f9be00b43">
+<span class="eqno">(2)<a class="headerlink" href="#equation-2ef8b586-5181-422c-a774-e53f9be00b43" title="Permalink to this equation">#</a></span>\[\begin{equation}
 c_n=
     \begin{cases}
         \frac{1}{2} (a_n- i b_n) &amp; \text{for } n &lt; 0\\
         \frac{1}{2} (a_n+ i b_n) &amp; \text{for } n&gt;1
     \end{cases}
 \end{equation}\]</div>
-<section id="span-style-color-red-exercise-1-span">
-<h3><span style="color:red"> Exercise 1 </span><a class="headerlink" href="#span-style-color-red-exercise-1-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-1">
+<h3><span style="color:red"> Exercise 1 </span><a class="headerlink" href="#exercise-1" title="Link to this heading">#</a></h3>
 <p>Derive the above formula. (Hint: replace each sine and cosine by sums of complex exponentials. If you do not know the sums already, find them using Euler’s formula <span class="math notranslate nohighlight">\(e^{i\theta}=\cos \theta + i \sin \theta\)</span>. B’Euler up! )</p>
 <p>In the following, we will show how to recover the coefficients <span class="math notranslate nohighlight">\(a_k,b_k\)</span> using the <strong>Discrete Fourier Transform (DFT)</strong> of the sampling <span class="math notranslate nohighlight">\(f_n[n]\)</span>. The DFT transforms a discrete-time periodic signal with period <span class="math notranslate nohighlight">\(N\)</span> into a sequence of complex numbers that is also periodic with period <span class="math notranslate nohighlight">\(N\)</span>. The numbers in the sequence are called the <strong>DFT coefficients.</strong></p>
 <p>The formula for the <span class="math notranslate nohighlight">\(k^{th}\)</span> DFT coefficient of a sampled signal <span class="math notranslate nohighlight">\(f_d[n]\)</span> with period <span class="math notranslate nohighlight">\(N\)</span> is</p>
@@ -551,22 +562,22 @@ c_n=
 <p>Therefore, in those circumstances, one can recover the Fourier series coefficients <span class="math notranslate nohighlight">\(a_k=2 (c_k+c_k^*)\)</span>, <span class="math notranslate nohighlight">\(b_k=2(c_k-c_k^*)\)</span> of the signal <span class="math notranslate nohighlight">\(f(t)\)</span> from the DFT coefficients of the sampled signal. The rest of the lab explores and clarifies this.</p>
 </section>
 </section>
-<section id="span-style-color-orange-2-periodicity-of-the-sampling-span">
-<h2><span style="color:orange;"> 2. Periodicity of the Sampling </span><a class="headerlink" href="#span-style-color-orange-2-periodicity-of-the-sampling-span" title="Permalink to this heading">#</a></h2>
+<section id="periodicity-of-the-sampling">
+<h2><span style="color:orange;"> 2. Periodicity of the Sampling </span><a class="headerlink" href="#periodicity-of-the-sampling" title="Link to this heading">#</a></h2>
 <p>In order for the proposed analysis method to work, the sampled signal must be periodic. In other words, there must exist an integer <span class="math notranslate nohighlight">\(N\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[ f_d[n+N] = f_d[n], \forall n.\]</div>
 <p>Depending on the sampling period <span class="math notranslate nohighlight">\(T\)</span> chosen, the sampled signal may or may not be periodic.</p>
-<section id="span-style-color-red-exercise-2-span">
-<h3><span style="color:red"> Exercise 2 </span><a class="headerlink" href="#span-style-color-red-exercise-2-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-2">
+<h3><span style="color:red"> Exercise 2 </span><a class="headerlink" href="#exercise-2" title="Link to this heading">#</a></h3>
 <p>If the signal <span class="math notranslate nohighlight">\(f(t)=e^{i \frac{2\pi}{10} t }\)</span> is sampled with a sampling period <span class="math notranslate nohighlight">\(T=2\)</span>, show that the resulting sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> is periodic with period <span class="math notranslate nohighlight">\(N=5\)</span>. (Use either code or mathematics.)</p>
 </section>
-<section id="span-style-color-red-exercise-3-span">
-<h3><span style="color:red"> Exercise 3 </span><a class="headerlink" href="#span-style-color-red-exercise-3-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-3">
+<h3><span style="color:red"> Exercise 3 </span><a class="headerlink" href="#exercise-3" title="Link to this heading">#</a></h3>
 <p>If the signal <span class="math notranslate nohighlight">\(f(t)=e^{i \frac{2\pi}{10} t }\)</span> is sampled with a sampling period <span class="math notranslate nohighlight">\(T=3\)</span>, show that the resulting sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> is periodic with period <span class="math notranslate nohighlight">\(N=10\)</span>. (Use either code or mathematics.)</p>
 </section>
-<section id="span-style-color-red-exercise-4-span">
-<h3><span style="color:red"> Exercise 4 </span><a class="headerlink" href="#span-style-color-red-exercise-4-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-4">
+<h3><span style="color:red"> Exercise 4 </span><a class="headerlink" href="#exercise-4" title="Link to this heading">#</a></h3>
 <p>If the signal <span class="math notranslate nohighlight">\(f(t)=e^{i \frac{2\pi}{10} t }\)</span> is sampled with a sampling period <span class="math notranslate nohighlight">\(T=\sqrt{2}\)</span>, show that the resulting sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> is not periodic. (Here you must use mathematics.)</p>
 <p>In general, <span class="math notranslate nohighlight">\(f_d[n]= f(n T)\)</span> is periodic  if an only if <span class="math notranslate nohighlight">\(\frac{P}{T}\)</span> is a rational number. That means that we can write <span class="math notranslate nohighlight">\(\frac{P}{T}\)</span> as a ratio of two integers:</p>
 <div class="math notranslate nohighlight">
@@ -575,8 +586,8 @@ c_n=
 <p>For example, if <span class="math notranslate nohighlight">\(T=\frac{P}{N}\)</span>, then we acquire <span class="math notranslate nohighlight">\(N\)</span> samples per period, and <span class="math notranslate nohighlight">\(f_d[n]\)</span> is periodic with period <span class="math notranslate nohighlight">\(N\)</span>. Similarly, if <span class="math notranslate nohighlight">\(T=\frac{2 P}{N}\)</span>, then we acquire <span class="math notranslate nohighlight">\(N\)</span> samples per two periods, which corresponds to <span class="math notranslate nohighlight">\(\frac{N}{2}\)</span> samples per period. If <span class="math notranslate nohighlight">\(N\)</span> is odd, then <span class="math notranslate nohighlight">\(f_d[n]\)</span> has period <span class="math notranslate nohighlight">\(N\)</span> (it has to be an integer). If <span class="math notranslate nohighlight">\(N\)</span> is even, <span class="math notranslate nohighlight">\(f_d[n]\)</span> has period <span class="math notranslate nohighlight">\(\frac{N}{2}\)</span>.</p>
 </section>
 </section>
-<section id="span-style-color-orange-2-toy-example-of-signal-analysis-span">
-<h2><span style="color:orange;"> 2. Toy Example of Signal Analysis </span><a class="headerlink" href="#span-style-color-orange-2-toy-example-of-signal-analysis-span" title="Permalink to this heading">#</a></h2>
+<section id="toy-example-of-signal-analysis">
+<h2><span style="color:orange;"> 2. Toy Example of Signal Analysis </span><a class="headerlink" href="#toy-example-of-signal-analysis" title="Link to this heading">#</a></h2>
 <p>Suppose the signal recorded, once repeated periorically, is of the form</p>
 <div class="math notranslate nohighlight">
 \[  f(t)= a_1 \cos \left(2 \pi 100 t \right) + a_4 \cos \left(2 \pi 400 t  \right). \]</div>
@@ -619,8 +630,8 @@ F[1]&amp;= \sum_{n=0}^{9} f_d[n]  e^{-i \frac{2\pi}{10} n} \\
 \right.
 \end{split}\]</div>
 <p>Therefore, <span class="math notranslate nohighlight">\(a_1=2 \frac{F[1]}{10}\)</span>. So we are able to obtain the value of <span class="math notranslate nohighlight">\(a_1\)</span> from the value of <span class="math notranslate nohighlight">\(F[1]\)</span>.</p>
-<section id="span-style-color-red-exercise-5-span">
-<h3><span style="color:red"> Exercise 5 </span><a class="headerlink" href="#span-style-color-red-exercise-5-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-5">
+<h3><span style="color:red"> Exercise 5 </span><a class="headerlink" href="#exercise-5" title="Link to this heading">#</a></h3>
 <p>Using code, test the formula <span class="math notranslate nohighlight">\(a_1=2 \frac{ F[1]}{10}\)</span> as follows:</p>
 <ul class="simple">
 <li><p>Pick values of <span class="math notranslate nohighlight">\(a_1\)</span> and <span class="math notranslate nohighlight">\(a_4\)</span>. (Do not pick the same value for both.)</p></li>
@@ -653,13 +664,13 @@ F[4]&amp;= \sum_{n=0}^{9} f_d[n]  e^{-i \frac{2\pi}{10} 4 n} \\
 \end{split}\]</div>
 <p>Therefore, <span class="math notranslate nohighlight">\(a_4=2 \frac{F[4]}{10}\)</span>. So we are able to obtain the value of <span class="math notranslate nohighlight">\(a_4\)</span> from the value of <span class="math notranslate nohighlight">\(F[4]\)</span>.</p>
 </section>
-<section id="span-style-color-red-exercise-6-span">
-<h3><span style="color:red"> Exercise 6 </span><a class="headerlink" href="#span-style-color-red-exercise-6-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-6">
+<h3><span style="color:red"> Exercise 6 </span><a class="headerlink" href="#exercise-6" title="Link to this heading">#</a></h3>
 <p>Using code, test the formula <span class="math notranslate nohighlight">\(a_4=2 \frac{F[4]}{10}\)</span> in the same was as you did for Exercise 5.</p>
 </section>
 </section>
-<section id="span-style-color-orange-3-another-toy-example-of-signal-analysis-with-aliasing-span">
-<h2><span style="color:orange;"> 3. Another Toy Example of Signal Analysis- with Aliasing </span><a class="headerlink" href="#span-style-color-orange-3-another-toy-example-of-signal-analysis-with-aliasing-span" title="Permalink to this heading">#</a></h2>
+<section id="another-toy-example-of-signal-analysis-with-aliasing">
+<h2><span style="color:orange;"> 3. Another Toy Example of Signal Analysis- with Aliasing </span><a class="headerlink" href="#another-toy-example-of-signal-analysis-with-aliasing" title="Link to this heading">#</a></h2>
 <p>Again, we assume thay the signal recorded is known to be of the form</p>
 <div class="math notranslate nohighlight">
 \[  f(t)= a_1 \cos \left(2 \pi 100 t \right) + a_4 \cos \left(2 \pi 400  t  \right). \]</div>
@@ -724,17 +735,17 @@ f_d[n]&amp;= a_1 \cos \left(2 \pi  \frac{n}{5} \right) + a_4 \cos \left(2 \pi 4 
 \end{aligned}
 \end{split}\]</div>
 <p>This phenomenon is called <strong>aliasing</strong>.</p>
-<section id="span-style-color-red-exercise-7-span">
-<h3><span style="color:red"> Exercise 7 </span><a class="headerlink" href="#span-style-color-red-exercise-7-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-7">
+<h3><span style="color:red"> Exercise 7 </span><a class="headerlink" href="#exercise-7" title="Link to this heading">#</a></h3>
 <p>Check, numerically, that sampling <span class="math notranslate nohighlight">\(\cos (2\pi 100 t)\)</span> or <span class="math notranslate nohighlight">\(\cos (2\pi 400 t)\)</span>  with a period <span class="math notranslate nohighlight">\(T=\frac{1}{500}\)</span> in either cases yield the same discrete-time signal <span class="math notranslate nohighlight">\(f_d[n]\)</span>.</p>
 </section>
-<section id="span-style-color-red-exercise-8-span">
-<h3><span style="color:red"> Exercise 8 </span><a class="headerlink" href="#span-style-color-red-exercise-8-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-8">
+<h3><span style="color:red"> Exercise 8 </span><a class="headerlink" href="#exercise-8" title="Link to this heading">#</a></h3>
 <p>Use an approach similar to that of Exercise 5 to show, numerically, that in the toy example with aliasing above, we have <span class="math notranslate nohighlight">\(\frac{2}{5} F[1]= a_1+a_4\)</span> (as opposed to <span class="math notranslate nohighlight">\(\frac{2}{5} F[1]= a_1\)</span>).</p>
 </section>
 </section>
-<section id="span-style-color-orange-4-the-theory-span">
-<h2><span style="color:orange;"> 4. The Theory </span><a class="headerlink" href="#span-style-color-orange-4-the-theory-span" title="Permalink to this heading">#</a></h2>
+<section id="the-theory">
+<h2><span style="color:orange;"> 4. The Theory </span><a class="headerlink" href="#the-theory" title="Link to this heading">#</a></h2>
 <p>The aliasing phenomenon is well understood. In fact, you may have heard about the <strong>Nyquist criterion</strong>: a condition that, if satisfied, guarantees that aliasing will not occur. In this lab, we will not dwelve further into this criterion per say. Instead, we will jump directly to the topic of interest, which is to analyze a signal <span class="math notranslate nohighlight">\(f(t)\)</span> from a sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span>. By “analysing” we mean recovering the Fourier series coefficients <span class="math notranslate nohighlight">\(c_k\)</span> of <span class="math notranslate nohighlight">\(f(t)\)</span>.</p>
 <p>Recall that the <strong>DFT</strong> of a signal <span class="math notranslate nohighlight">\(f_d[n]\)</span> with period <span class="math notranslate nohighlight">\(N\)</span> is defined as the discrete-time signal</p>
 <div class="math notranslate nohighlight">
@@ -743,7 +754,7 @@ f_d[n]&amp;= a_1 \cos \left(2 \pi  \frac{n}{5} \right) + a_4 \cos \left(2 \pi 4 
 <p>It turns out that the DFT coefficients give us the value of the Fourier series coefficients of <span class="math notranslate nohighlight">\(f(t)\)</span>, provided that we have taken “enough” samples considering the number of non-zero coefficients in the Fourier series of <span class="math notranslate nohighlight">\(f(t)\)</span>. More specifically, we have the following theorem.</p>
 </section>
 <section id="sampling-theorem">
-<h2>Sampling Theorem<a class="headerlink" href="#sampling-theorem" title="Permalink to this heading">#</a></h2>
+<h2>Sampling Theorem<a class="headerlink" href="#sampling-theorem" title="Link to this heading">#</a></h2>
 <p>If f(t) has a finite Fourier series with <span class="math notranslate nohighlight">\(2K+1\)</span> terms</p>
 <div class="math notranslate nohighlight">
 \[
@@ -762,7 +773,7 @@ F[k]&amp; = N c_k= N\frac{1}{2}(a_k-ib_k), \text{ for all }  1\leq k \leq K.
 \end{split}\]</div>
 </section>
 <section id="proof-of-sampling-theorem">
-<h2>Proof of Sampling Theorem<a class="headerlink" href="#proof-of-sampling-theorem" title="Permalink to this heading">#</a></h2>
+<h2>Proof of Sampling Theorem<a class="headerlink" href="#proof-of-sampling-theorem" title="Link to this heading">#</a></h2>
 <p>The proof of the sampling theorem follows the same model as the computation performed in the toy examples.</p>
 <p>We start from the formula for the DFT coefficients and replace <span class="math notranslate nohighlight">\(f_d[n]\)</span> by its expression in terms of complex exponentials.</p>
 <div class="math notranslate nohighlight">
@@ -802,8 +813,8 @@ F[k] &amp;=  \sum_{k'=-K}^K \sum_{n=0}^{N-1}  c_{k'} e^{i \frac{2\pi}{N} k'  n  
 \[\begin{split} \begin{aligned}
 F[k] &amp;=   N c_{k}, \text{ for } k=0,1,2,\ldots,K \\
 \end{aligned} \end{split}\]</div>
-<section id="span-style-color-red-exercise-9-span">
-<h3><span style="color:red"> Exercise 9 </span><a class="headerlink" href="#span-style-color-red-exercise-9-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-9">
+<h3><span style="color:red"> Exercise 9 </span><a class="headerlink" href="#exercise-9" title="Link to this heading">#</a></h3>
 <p>Illustrate the Sampling Theorem with a numerical example:</p>
 <ul class="simple">
 <li><p>Write a  periodic signal <span class="math notranslate nohighlight">\(f(t)\)</span> as a linear combination of  sines and cosines.</p></li>
@@ -813,17 +824,17 @@ F[k] &amp;=   N c_{k}, \text{ for } k=0,1,2,\ldots,K \\
 </ul>
 </section>
 </section>
-<section id="span-style-color-orange-5-the-fft-command-span">
-<h2><span style="color:orange;"> 5. The FFT Command </span><a class="headerlink" href="#span-style-color-orange-5-the-fft-command-span" title="Permalink to this heading">#</a></h2>
+<section id="the-fft-command">
+<h2><span style="color:orange;"> 5. The FFT Command </span><a class="headerlink" href="#the-fft-command" title="Link to this heading">#</a></h2>
 <p>In the previous exercise, you had to write your own function to compute a DFT. Running your function may have taken a long time, especially if you used loops. Python has a quick command to compute a DFT. The command uses a fast algorithm called a Fast Fourier Transform (FFT) to compute the DFT.</p>
 <p>Numpy and Scipy python libraries have an fft function which can be used for computing discrete fourier transforms.</p>
 <p>An example is provided to demonstrate computing and plotting of the DFT of a signal using numpy.fft.fft function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="k">def</span> <span class="nf">sine_wave_generator</span><span class="p">(</span><span class="n">frequency</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sine_wave_generator</span><span class="p">(</span><span class="n">frequency</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
 
     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">frequency</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
     
@@ -870,13 +881,13 @@ F[k] &amp;=   N c_{k}, \text{ for } k=0,1,2,\ldots,K \\
 <img alt="../../../_images/3d6b92278c3b961523cf61aadd05841a6e0121a544d1e09b7fbde08858d6c670.png" src="../../../_images/3d6b92278c3b961523cf61aadd05841a6e0121a544d1e09b7fbde08858d6c670.png" />
 </div>
 </div>
-<section id="span-style-color-red-exercise-10-span">
-<h3><span style="color:red"> Exercise 10 </span><a class="headerlink" href="#span-style-color-red-exercise-10-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-10">
+<h3><span style="color:red"> Exercise 10 </span><a class="headerlink" href="#exercise-10" title="Link to this heading">#</a></h3>
 <p>Repeat exercise 9 with a different signal <span class="math notranslate nohighlight">\(f(t)\)</span>. This time, use the FFT command.</p>
 </section>
 </section>
-<section id="span-style-color-green-reflection-span">
-<h2><span style="color:green;"> Reflection </span><a class="headerlink" href="#span-style-color-green-reflection-span" title="Permalink to this heading">#</a></h2>
+<section id="reflection">
+<h2><span style="color:green;"> Reflection </span><a class="headerlink" href="#reflection" title="Link to this heading">#</a></h2>
 <p>Do not skip this section! Assignment will be graded only on completing this section.</p>
 <p><strong>1. What parts of the lab, if any, do you feel you did well? <br>
 2. What are some things you learned today? <br>
@@ -912,7 +923,7 @@ F[k] &amp;=   N c_{k}, \text{ for } k=0,1,2,\ldots,K \\
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -942,50 +953,51 @@ F[k] &amp;=   N c_{k}, \text{ for } k=0,1,2,\ldots,K \\
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content"><span style="color:orange;"> 00. Content </span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematics">Mathematics</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-skills">Programming Skills</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embedded-systems">Embedded Systems</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span"><span style="color:orange;"> 0. Required Hardware </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-1-intro-span"><span style="color:orange;"> 1. Intro </span></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span"><span style="color:red"> Exercise 1 </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-hardware"><span style="color:orange;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intro"><span style="color:orange;"> 1. Intro </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1"><span style="color:red"> Exercise 1 </span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-2-periodicity-of-the-sampling-span"><span style="color:orange;"> 2. Periodicity of the Sampling </span></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-2-span"><span style="color:red"> Exercise 2 </span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-3-span"><span style="color:red"> Exercise 3 </span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-4-span"><span style="color:red"> Exercise 4 </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#periodicity-of-the-sampling"><span style="color:orange;"> 2. Periodicity of the Sampling </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2"><span style="color:red"> Exercise 2 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3"><span style="color:red"> Exercise 3 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4"><span style="color:red"> Exercise 4 </span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-2-toy-example-of-signal-analysis-span"><span style="color:orange;"> 2. Toy Example of Signal Analysis </span></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-5-span"><span style="color:red"> Exercise 5 </span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-6-span"><span style="color:red"> Exercise 6 </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#toy-example-of-signal-analysis"><span style="color:orange;"> 2. Toy Example of Signal Analysis </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5"><span style="color:red"> Exercise 5 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-6"><span style="color:red"> Exercise 6 </span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-3-another-toy-example-of-signal-analysis-with-aliasing-span"><span style="color:orange;"> 3. Another Toy Example of Signal Analysis- with Aliasing </span></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-7-span"><span style="color:red"> Exercise 7 </span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-8-span"><span style="color:red"> Exercise 8 </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#another-toy-example-of-signal-analysis-with-aliasing"><span style="color:orange;"> 3. Another Toy Example of Signal Analysis- with Aliasing </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-7"><span style="color:red"> Exercise 7 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-8"><span style="color:red"> Exercise 8 </span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-4-the-theory-span"><span style="color:orange;"> 4. The Theory </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-theory"><span style="color:orange;"> 4. The Theory </span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-theorem">Sampling Theorem</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proof-of-sampling-theorem">Proof of Sampling Theorem</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-9-span"><span style="color:red"> Exercise 9 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-9"><span style="color:red"> Exercise 9 </span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-5-the-fft-command-span"><span style="color:orange;"> 5. The FFT Command </span></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-10-span"><span style="color:red"> Exercise 10 </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-fft-command"><span style="color:orange;"> 5. The FFT Command </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-10"><span style="color:red"> Exercise 10 </span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-green-reflection-span"><span style="color:green;"> Reflection </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection"><span style="color:green;"> Reflection </span></a></li>
 </ul>
   </nav></div>
 
@@ -1034,8 +1046,8 @@ By Mireille Boutin, Alden Bradford, and Adharsh Sabukumar
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

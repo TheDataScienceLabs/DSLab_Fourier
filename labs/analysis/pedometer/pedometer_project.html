@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Lab 11: Build a Pedometer &#8212; The Data Science Labs on Fourier Analysis</title>
   
@@ -15,53 +14,49 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'labs/analysis/pedometer/pedometer_project';</script>
@@ -78,28 +73,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -121,12 +111,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -142,6 +140,8 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
 
+  
+    
   
 
 <a class="navbar-brand logo" href="../../../index.html">
@@ -160,7 +160,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -229,7 +240,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -238,14 +249,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -370,10 +381,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
@@ -381,14 +392,14 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -409,32 +420,32 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span"><span style="color:orange;"> 0. Required Hardware </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-1-introduction-span"><span style="color:orange;"> 1. Introduction </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-2-storing-data-in-a-raspberry-pi-pico-span"><span style="color:orange;"> 2. Storing Data in a Raspberry Pi Pico </span></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span"><span style="color:red"> Exercise 1</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-2-span"><span style="color:red"> Exercise 2</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content"><span style="color:orange;"> 00. Content </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-hardware"><span style="color:orange;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction"><span style="color:orange;"> 1. Introduction </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storing-data-in-a-raspberry-pi-pico"><span style="color:orange;"> 2. Storing Data in a Raspberry Pi Pico </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1"><span style="color:red"> Exercise 1</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2"><span style="color:red"> Exercise 2</span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-3-building-the-pedometer-span"><span style="color:orange;"> 3. Building the Pedometer </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-pedometer"><span style="color:orange;"> 3. Building the Pedometer </span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lsm9ds0-sensor">The LSM9DS0 sensor</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i2c-communication-protocol">I2C Communication Protocol</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wiring-up-the-circuit">Wiring Up the Circuit</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accelerometer-driver">Accelerometer Driver</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-3-span"><span style="color:red"> Exercise 3</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-4-span"><span style="color:red"> Exercise 4</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3"><span style="color:red"> Exercise 3</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4"><span style="color:red"> Exercise 4</span></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-it-on-batteries">Run it on batteries</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-py">main.py</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-7805-voltage-regulator">The 7805 voltage regulator</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-5-span"><span style="color:red"> Exercise 5</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-6-span"><span style="color:red"> Exercise 6</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-7-span"><span style="color:red"> Exercise 7</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5"><span style="color:red"> Exercise 5</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-6"><span style="color:red"> Exercise 6</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-7"><span style="color:red"> Exercise 7</span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-green-reflection-span"><span style="color:green"> Reflection </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection"><span style="color:green"> Reflection </span></a></li>
 </ul>
             </nav>
         </div>
@@ -444,13 +455,13 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lab-11-build-a-pedometer">
-<h1>Lab 11: Build a Pedometer<a class="headerlink" href="#lab-11-build-a-pedometer" title="Permalink to this heading">#</a></h1>
+<h1>Lab 11: Build a Pedometer<a class="headerlink" href="#lab-11-build-a-pedometer" title="Link to this heading">#</a></h1>
 <p><font size="3"> Last updated 8/13/24 </font></p>
-<section id="span-style-color-orange-00-content-span">
-<h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this heading">#</a></h2>
+<section id="content">
+<h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#content" title="Link to this heading">#</a></h2>
 <p><font size="5"> Mathematics </font></p>
 <ul class="simple">
 <li><p>3 dimensional vectors</p></li>
@@ -460,8 +471,8 @@ document.write(`
 <li><p>Working with Functions and Classes</p></li>
 </ul>
 </section>
-<section id="span-style-color-orange-0-required-hardware-span">
-<h2><span style="color:orange;"> 0. Required Hardware </span><a class="headerlink" href="#span-style-color-orange-0-required-hardware-span" title="Permalink to this heading">#</a></h2>
+<section id="required-hardware">
+<h2><span style="color:orange;"> 0. Required Hardware </span><a class="headerlink" href="#required-hardware" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Microcontroller: Raspberry Pi Pico</p></li>
 <li><p>Breadboard</p></li>
@@ -474,19 +485,19 @@ document.write(`
 <p><strong>Name:</strong> me</p>
 <p><strong>Email:</strong> me &#64;purdue.edu</p>
 </section>
-<section id="span-style-color-orange-1-introduction-span">
-<h2><span style="color:orange;"> 1. Introduction </span><a class="headerlink" href="#span-style-color-orange-1-introduction-span" title="Permalink to this heading">#</a></h2>
+<section id="introduction">
+<h2><span style="color:orange;"> 1. Introduction </span><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>A pedometer is a small electronic gadget that counts the number of steps taken by a person throughout the day. It is often worn on the waistline or fastened into clothing and detects motion and activity using a sensor. Pedometers are popular among health and fitness enthusiasts because they can provide a good measure of daily physical activity and help people track their progress toward fitness goals. Many current pedometers now include calorie counts, distance measurements, and heart rate monitors, making them much more useful for tracking general health and fitness.</p>
 <p>Today we will work on building our own pedometer using a raspberry pi pico and some sensors.</p>
 <p>But before we begin let us explore how to store and retrieve data in pico.</p>
 </section>
-<section id="span-style-color-orange-2-storing-data-in-a-raspberry-pi-pico-span">
-<h2><span style="color:orange;"> 2. Storing Data in a Raspberry Pi Pico </span><a class="headerlink" href="#span-style-color-orange-2-storing-data-in-a-raspberry-pi-pico-span" title="Permalink to this heading">#</a></h2>
+<section id="storing-data-in-a-raspberry-pi-pico">
+<h2><span style="color:orange;"> 2. Storing Data in a Raspberry Pi Pico </span><a class="headerlink" href="#storing-data-in-a-raspberry-pi-pico" title="Link to this heading">#</a></h2>
 <p>The Pico has 2MB of onboard memory or flash storage, so we can save some small files of sensor data directly on the Pico as a text or csv file. For applications which need more than 2MB of storage, we could always use connect an SD card module to our raspberry pi pico.</p>
 <p>Let us look at an example program to see how to save data to the onboard flash memory in our pico.
 Take a look at the file <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/pedometer/temperature.py">temperature.py</a>, which records the Pico’s internal temperature in degrees Celcius and writes these temperature values to the file <code class="docutils literal notranslate"><span class="pre">temp.txt</span></code>. In this example, we are saving the temperature value at each instant on a new line in a text file.</p>
-<section id="span-style-color-red-exercise-1-span">
-<h3><span style="color:red"> Exercise 1</span><a class="headerlink" href="#span-style-color-red-exercise-1-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-1">
+<h3><span style="color:red"> Exercise 1</span><a class="headerlink" href="#exercise-1" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Using Thonny, run <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/pedometer/temperature.py">temperature.py</a> on your Pico.</p></li>
 <li><p>After the script is done running, move the <code class="docutils literal notranslate"><span class="pre">temp.txt</span></code> file that is stored on the Pico into your computer.</p>
@@ -498,8 +509,8 @@ Take a look at the file <a class="reference external" href="https://github.com/T
 <li><p>Plot and visualize the temperature readings. Include appropriate x-axis and y-axis labels</p></li>
 </ul>
 </section>
-<section id="span-style-color-red-exercise-2-span">
-<h3><span style="color:red"> Exercise 2</span><a class="headerlink" href="#span-style-color-red-exercise-2-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-2">
+<h3><span style="color:red"> Exercise 2</span><a class="headerlink" href="#exercise-2" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Modify <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/pedometer/temperature.py">temperature.py</a> to record the temperature values in degrees Fahrenheit.</p></li>
 <li><p>After the script is done running, move the <code class="docutils literal notranslate"><span class="pre">temp.txt</span></code> file that is stored on the Pico into your computer.</p></li>
@@ -509,20 +520,20 @@ Take a look at the file <a class="reference external" href="https://github.com/T
 </ul>
 </section>
 </section>
-<section id="span-style-color-orange-3-building-the-pedometer-span">
-<h2><span style="color:orange;"> 3. Building the Pedometer </span><a class="headerlink" href="#span-style-color-orange-3-building-the-pedometer-span" title="Permalink to this heading">#</a></h2>
+<section id="building-the-pedometer">
+<h2><span style="color:orange;"> 3. Building the Pedometer </span><a class="headerlink" href="#building-the-pedometer" title="Link to this heading">#</a></h2>
 <p>Gait is a person’s pattern of walking. Most wearable activity monitors like the FitBit or Apple Watch contain an internal accelerometer to track movement and estimate the user’s number of steps. In today’s lab, our goal is to build a pedometer in a similar way.</p>
 </section>
 <section id="the-lsm9ds0-sensor">
-<h2>The LSM9DS0 sensor<a class="headerlink" href="#the-lsm9ds0-sensor" title="Permalink to this heading">#</a></h2>
+<h2>The LSM9DS0 sensor<a class="headerlink" href="#the-lsm9ds0-sensor" title="Link to this heading">#</a></h2>
 <p>The LSM9DS0 is a system in a chip which packages three sensors, a 3-axis accelerometer, 3-axis gyroscope, and 3-axis magnetometer. Thats 9 sensor readings from a single chip! In addition to that it has both SPI and I2C serial interfaces for communication.</p>
 <p>For building our pedometer we will be reading the accelerometer values along all 3 axes from the sensor using the I2C protocol.</p>
 </section>
 <section id="i2c-communication-protocol">
-<h2>I2C Communication Protocol<a class="headerlink" href="#i2c-communication-protocol" title="Permalink to this heading">#</a></h2>
+<h2>I2C Communication Protocol<a class="headerlink" href="#i2c-communication-protocol" title="Link to this heading">#</a></h2>
 <p>Inter-Integrated Circuit or I2C is a serial communication protocol used to share data between multiple sensors and a micro-controller or between micro-controllers using the same bus. It requires only two wires for communication, a clock line (SCL) and a data line (SDA). I2C allows multiple devices to share the same communication bus. The devices are given a unique address which allows the devices in the network to be referred individually.</p>
 <p>Raspberry Pi Pico has two I2C controllers which you can access through these GPIO pins:</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p>I2C Controller</p></th>
 <th class="head text-center"><p>GPIO Pins</p></th>
@@ -543,12 +554,13 @@ Take a look at the file <a class="reference external" href="https://github.com/T
 </tr>
 </tbody>
 </table>
+</div>
 </section>
 <section id="wiring-up-the-circuit">
-<h2>Wiring Up the Circuit<a class="headerlink" href="#wiring-up-the-circuit" title="Permalink to this heading">#</a></h2>
+<h2>Wiring Up the Circuit<a class="headerlink" href="#wiring-up-the-circuit" title="Link to this heading">#</a></h2>
 <p>Wiring up the circuit for the pedometer is pretty simple.
 We will be using Pico pins GP18(Pin No. 24) and GP19(Pin No. 25) for our I2C communication.</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p>LSM9DS0 Pin</p></th>
 <th class="head text-center"><p>Raspberry Pico Pin</p></th>
@@ -569,19 +581,20 @@ We will be using Pico pins GP18(Pin No. 24) and GP19(Pin No. 25) for our I2C com
 </tr>
 </tbody>
 </table>
+</div>
 <p>The circuit once completely wired will look something like this:</p>
 <p><img alt="circuit diagram" src="../../../_images/pico_pedometer_circuit_bb.png" /></p>
 </section>
 <section id="accelerometer-driver">
-<h2>Accelerometer Driver<a class="headerlink" href="#accelerometer-driver" title="Permalink to this heading">#</a></h2>
+<h2>Accelerometer Driver<a class="headerlink" href="#accelerometer-driver" title="Link to this heading">#</a></h2>
 <p>Before testing the circuit, the lsm9ds0 driver needs to be put on the pico:</p>
 <ol class="arabic simple">
 <li><p>Dowload the <a class="reference external" href="http://lsm9ds0.py">lsm9ds0.py</a> file from <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/pedometer/lsm9ds0.py">here</a></p></li>
 <li><p>Open the file in thonny, save as onto the pico.</p></li>
 </ol>
 <p>Run <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/pedometer/test_accelerometer.py">test_accelerometer.py</a> on thonny with pico connected to your computer. If everything is connected properly you should start seeing the 3 components of acceleration from the accelerometer on the output.</p>
-<section id="span-style-color-red-exercise-3-span">
-<h3><span style="color:red"> Exercise 3</span><a class="headerlink" href="#span-style-color-red-exercise-3-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-3">
+<h3><span style="color:red"> Exercise 3</span><a class="headerlink" href="#exercise-3" title="Link to this heading">#</a></h3>
 <p>For this exercise you will only need the accelerometer hooked up to the Pico connected to your laptop with the USB connector.</p>
 <ul class="simple">
 <li><p>Modify <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/pedometer/test_accelerometer.py">test_accelerometer.py</a> to store the <span class="math notranslate nohighlight">\(x,y,\)</span> and <span class="math notranslate nohighlight">\(z\)</span> components of acceleration to a .txt file named <code class="docutils literal notranslate"><span class="pre">teststeps.txt</span></code> in the pico. Paste in modified code.</p></li>
@@ -590,27 +603,27 @@ We will be using Pico pins GP18(Pin No. 24) and GP19(Pin No. 25) for our I2C com
 </ul>
 <h3 style="background-color:lightblue"> Write Answers for Exercise 3 Below </h3><p>In order to detect when a step has occured, we will look at the magnitude of the acceleration vector, <span class="math notranslate nohighlight">\(G_a\)</span> from <span class="math notranslate nohighlight">\(\langle a_x,a_y,a_z \rangle\)</span>, where <span class="math notranslate nohighlight">\(a_x,a_y,\)</span> and <span class="math notranslate nohighlight">\(a_z\)</span> are the <span class="math notranslate nohighlight">\(x,y\)</span> and <span class="math notranslate nohighlight">\(z\)</span> components of acceleration respectively.</p>
 </section>
-<section id="span-style-color-red-exercise-4-span">
-<h3><span style="color:red"> Exercise 4</span><a class="headerlink" href="#span-style-color-red-exercise-4-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-4">
+<h3><span style="color:red"> Exercise 4</span><a class="headerlink" href="#exercise-4" title="Link to this heading">#</a></h3>
 <p>Using the data you collected in Exercise 3, plot the magnitute of the acceleration vector vs time. Make sure your graph has appropriate labels. Include your code with the answers.</p>
 <h3 style="background-color:lightblue"> Write Answers for Exercise 4 Below </h3></section>
 </section>
 <section id="run-it-on-batteries">
-<h2>Run it on batteries<a class="headerlink" href="#run-it-on-batteries" title="Permalink to this heading">#</a></h2>
+<h2>Run it on batteries<a class="headerlink" href="#run-it-on-batteries" title="Link to this heading">#</a></h2>
 <p>We will power the Pico from a 9-volt battery. Here are a few important cautions:</p>
 <p>9 volts is more than any part of the Pico can handle. If you connect the battery directly you will damage the microcontroller. We need to use another component to convert the voltage to a range which the Pico can handle.</p>
 <p>It is not safe to power the Pico from more than one source at a time. That means you must not connect the Pico to a computer while it is powered by a battery, and you must not connect a battery while it is connected to a computer.</p>
 </section>
 <section id="main-py">
-<h2><a class="reference external" href="http://main.py">main.py</a><a class="headerlink" href="#main-py" title="Permalink to this heading">#</a></h2>
+<h2><a class="reference external" href="http://main.py">main.py</a><a class="headerlink" href="#main-py" title="Link to this heading">#</a></h2>
 <p>Before running your pico from a battery, here is a question: how will we start the program without using Thonny? The pico needs to run without being connected to a computer.</p>
 <p>Here is the trick we will use: when the Pico powers on, the first thing it does is check its memory for a file called <a class="reference external" href="http://main.py">main.py</a>. If there is a file with that name, it runs the file. So there is our solution: make a file called <a class="reference external" href="http://main.py">main.py</a> which starts the accelerometer program. Or just rename the file we already have. The important thing is that the file is called <a class="reference external" href="http://main.py">main.py</a>, and it’s actually stored on the pico.</p>
 <p>Before continuing make sure you have your code starting whenever it gets connected to power. You should be able to plug the the microcontroller into any USB port and watch it start up automatically without doing anything on the computer. Once you have this, you can move on to powering it by battery.</p>
 </section>
 <section id="the-7805-voltage-regulator">
-<h2>The 7805 voltage regulator<a class="headerlink" href="#the-7805-voltage-regulator" title="Permalink to this heading">#</a></h2>
+<h2>The 7805 voltage regulator<a class="headerlink" href="#the-7805-voltage-regulator" title="Link to this heading">#</a></h2>
 <p>Since 9V is more than what the Pico can handle, we will be using a 7805 voltage regulator IC to step down the voltage to around 5V. The pinout for wiring the circuit is given below.</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p>Battery</p></th>
 <th class="head text-center"><p>7805 IC</p></th>
@@ -625,7 +638,8 @@ We will be using Pico pins GP18(Pin No. 24) and GP19(Pin No. 25) for our I2C com
 </tr>
 </tbody>
 </table>
-<table class="table">
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p>Raspberry Pi Pico</p></th>
 <th class="head text-center"><p>7805 IC</p></th>
@@ -640,6 +654,7 @@ We will be using Pico pins GP18(Pin No. 24) and GP19(Pin No. 25) for our I2C com
 </tr>
 </tbody>
 </table>
+</div>
 <p>The pins on the 7805 are not labeled. You will have to check the data sheet. Do not connect the battery until you have had your circuit checked by an instructor. The correctly wired voltage regulator should look as shown in the image below.</p>
 <p><img alt="battery powered circuit diagram" src="../../../_images/pico_pedometer_circuit_battery_bb.png" /></p>
 <p>You might have observed that the plot is erratic and noisy at times. This may be due to multiple factors like small vibrations due to the sensor not being fixed to a board, small movements of the hand while holding the breadboard close to the leg etc.</p>
@@ -649,8 +664,8 @@ We will be using Pico pins GP18(Pin No. 24) and GP19(Pin No. 25) for our I2C com
 <li><p>Dowload the averager_solution.py file from <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/pedometer/averager_solution.py">here</a></p></li>
 <li><p>Open the file in thonny, save as onto the pico.</p></li>
 </ol>
-<section id="span-style-color-red-exercise-5-span">
-<h3><span style="color:red"> Exercise 5</span><a class="headerlink" href="#span-style-color-red-exercise-5-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-5">
+<h3><span style="color:red"> Exercise 5</span><a class="headerlink" href="#exercise-5" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Run <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/pedometer/accelerometer_averaged.py">accelerometer_averaged.py</a> using the main method on Pico.</p></li>
 <li><p>Take 10 ‘fake’ steps while holding the battery powered breadboard circuit close to your leg with everything else secured in your hand.</p></li>
@@ -659,8 +674,8 @@ We will be using Pico pins GP18(Pin No. 24) and GP19(Pin No. 25) for our I2C com
 </ul>
 <h3 style="background-color:lightblue"> Write Answers for Exercise 5 Below </h3><p>The plot shows that the graph is not centered around 0. Subtracting mean of <span class="math notranslate nohighlight">\(G_a\)</span> from <span class="math notranslate nohighlight">\(G_a\)</span> will remove constants like gravity from the sensor data.</p>
 </section>
-<section id="span-style-color-red-exercise-6-span">
-<h3><span style="color:red"> Exercise 6</span><a class="headerlink" href="#span-style-color-red-exercise-6-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-6">
+<h3><span style="color:red"> Exercise 6</span><a class="headerlink" href="#exercise-6" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Compute and plot the magnitute of the acceleration vector, <span class="math notranslate nohighlight">\(G_a\)</span>.</p></li>
 <li><p>Calculate mean of <span class="math notranslate nohighlight">\(G_a\)</span>: <span class="math notranslate nohighlight">\(\hat{G_a}\)</span>.</p></li>
@@ -669,13 +684,13 @@ We will be using Pico pins GP18(Pin No. 24) and GP19(Pin No. 25) for our I2C com
 </ul>
 <h3 style="background-color:lightblue"> Write Answers for Exercise 6 Below </h3><p>The plotted data is now centered about zero, and clearly shows peaks in acceleration magnitude. Each peak corresponds to a step being taken while walking. Count the number of peaks to get the approximate number of steps. It is good to count the number of peaks greater than a minimum threshold to get a better result.</p>
 </section>
-<section id="span-style-color-red-exercise-7-span">
-<h3><span style="color:red"> Exercise 7</span><a class="headerlink" href="#span-style-color-red-exercise-7-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-7">
+<h3><span style="color:red"> Exercise 7</span><a class="headerlink" href="#exercise-7" title="Link to this heading">#</a></h3>
 <p>Calculate the number of steps from the accelerometer readings. Include the code along with your submission.</p>
 <h3 style="background-color:lightblue"> Write Answers for Exercise 7 Below </h3></section>
 </section>
-<section id="span-style-color-green-reflection-span">
-<h2><span style="color:green"> Reflection </span><a class="headerlink" href="#span-style-color-green-reflection-span" title="Permalink to this heading">#</a></h2>
+<section id="reflection">
+<h2><span style="color:green"> Reflection </span><a class="headerlink" href="#reflection" title="Link to this heading">#</a></h2>
 <p><strong>1. What parts of the lab, if any, do you feel you did well? <br>
 2. What are some things you learned today? <br>
 3. Are there any topics that could use more clarification? <br>
@@ -710,7 +725,7 @@ We will be using Pico pins GP18(Pin No. 24) and GP19(Pin No. 25) for our I2C com
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -740,38 +755,39 @@ We will be using Pico pins GP18(Pin No. 24) and GP19(Pin No. 25) for our I2C com
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span"><span style="color:orange;"> 0. Required Hardware </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-1-introduction-span"><span style="color:orange;"> 1. Introduction </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-2-storing-data-in-a-raspberry-pi-pico-span"><span style="color:orange;"> 2. Storing Data in a Raspberry Pi Pico </span></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span"><span style="color:red"> Exercise 1</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-2-span"><span style="color:red"> Exercise 2</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content"><span style="color:orange;"> 00. Content </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-hardware"><span style="color:orange;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction"><span style="color:orange;"> 1. Introduction </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storing-data-in-a-raspberry-pi-pico"><span style="color:orange;"> 2. Storing Data in a Raspberry Pi Pico </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1"><span style="color:red"> Exercise 1</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2"><span style="color:red"> Exercise 2</span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-3-building-the-pedometer-span"><span style="color:orange;"> 3. Building the Pedometer </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-pedometer"><span style="color:orange;"> 3. Building the Pedometer </span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lsm9ds0-sensor">The LSM9DS0 sensor</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i2c-communication-protocol">I2C Communication Protocol</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wiring-up-the-circuit">Wiring Up the Circuit</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accelerometer-driver">Accelerometer Driver</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-3-span"><span style="color:red"> Exercise 3</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-4-span"><span style="color:red"> Exercise 4</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3"><span style="color:red"> Exercise 3</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4"><span style="color:red"> Exercise 4</span></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-it-on-batteries">Run it on batteries</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-py">main.py</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-7805-voltage-regulator">The 7805 voltage regulator</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-5-span"><span style="color:red"> Exercise 5</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-6-span"><span style="color:red"> Exercise 6</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-7-span"><span style="color:red"> Exercise 7</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5"><span style="color:red"> Exercise 5</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-6"><span style="color:red"> Exercise 6</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-7"><span style="color:red"> Exercise 7</span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-green-reflection-span"><span style="color:green"> Reflection </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection"><span style="color:green"> Reflection </span></a></li>
 </ul>
   </nav></div>
 
@@ -820,8 +836,8 @@ By Mireille Boutin, Alden Bradford, and Adharsh Sabukumar
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

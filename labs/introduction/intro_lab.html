@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Lab 0: Introduction &#8212; The Data Science Labs on Fourier Analysis</title>
   
@@ -15,53 +14,49 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'labs/introduction/intro_lab';</script>
@@ -78,28 +73,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -121,12 +111,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -142,6 +140,8 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
 
+  
+    
   
 
 <a class="navbar-brand logo" href="../../index.html">
@@ -160,7 +160,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -229,7 +240,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -238,14 +249,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -370,10 +381,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
@@ -381,14 +392,14 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -409,23 +420,23 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content"><span style="color:orange;"> 00. Content </span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematics">Mathematics</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-skills">Programming Skills</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embedded-systems">Embedded Systems</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span"><span style="color:orange;"> 0. Required Hardware </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-1-before-starting-span"><span style="color:orange;"> 1. Before Starting </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-hardware"><span style="color:orange;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#before-starting"><span style="color:orange;"> 1. Before Starting </span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#laboratory-ethics">Laboratory ethics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-2-toy-lab-span"><span style="color:orange;"> 2. Toy Lab </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#toy-lab"><span style="color:orange;"> 2. Toy Lab </span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skill-checks">Skill Checks</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span"><span style="color:red"> Exercise 1: </span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-2-span"><span style="color:red"> Exercise 2 </span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-3-span"><span style="color:red"> Exercise 3 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1"><span style="color:red"> Exercise 1: </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2"><span style="color:red"> Exercise 2 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3"><span style="color:red"> Exercise 3 </span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-3-submitting-the-lab-span"><span style="color:orange;"> 3. Submitting the Lab </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submitting-the-lab"><span style="color:orange;"> 3. Submitting the Lab </span></a></li>
 </ul>
             </nav>
         </div>
@@ -435,21 +446,21 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lab-0-introduction">
-<h1>Lab 0: Introduction<a class="headerlink" href="#lab-0-introduction" title="Permalink to this heading">#</a></h1>
+<h1>Lab 0: Introduction<a class="headerlink" href="#lab-0-introduction" title="Link to this heading">#</a></h1>
 <p><font size="3"> Last updated January 8, 2023 </font></p>
-<section id="span-style-color-orange-00-content-span">
-<h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this heading">#</a></h2>
+<section id="content">
+<h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#content" title="Link to this heading">#</a></h2>
 <section id="mathematics">
-<h3>Mathematics<a class="headerlink" href="#mathematics" title="Permalink to this heading">#</a></h3>
+<h3>Mathematics<a class="headerlink" href="#mathematics" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>N/A</p></li>
 </ul>
 </section>
 <section id="programming-skills">
-<h3>Programming Skills<a class="headerlink" href="#programming-skills" title="Permalink to this heading">#</a></h3>
+<h3>Programming Skills<a class="headerlink" href="#programming-skills" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Importing Libraries</p></li>
 <li><p>Functions</p></li>
@@ -457,46 +468,46 @@ document.write(`
 </ul>
 </section>
 <section id="embedded-systems">
-<h3>Embedded Systems<a class="headerlink" href="#embedded-systems" title="Permalink to this heading">#</a></h3>
+<h3>Embedded Systems<a class="headerlink" href="#embedded-systems" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>N/A</p></li>
 </ul>
 </section>
 </section>
-<section id="span-style-color-orange-0-required-hardware-span">
-<h2><span style="color:orange;"> 0. Required Hardware </span><a class="headerlink" href="#span-style-color-orange-0-required-hardware-span" title="Permalink to this heading">#</a></h2>
+<section id="required-hardware">
+<h2><span style="color:orange;"> 0. Required Hardware </span><a class="headerlink" href="#required-hardware" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>N/A</p></li>
 </ul>
 </section>
-<section id="span-style-color-orange-1-before-starting-span">
-<h2><span style="color:orange;"> 1. Before Starting </span><a class="headerlink" href="#span-style-color-orange-1-before-starting-span" title="Permalink to this heading">#</a></h2>
+<section id="before-starting">
+<h2><span style="color:orange;"> 1. Before Starting </span><a class="headerlink" href="#before-starting" title="Link to this heading">#</a></h2>
 <p>Before really getting started with this course, navigate to the Brightspace and read through the Syllabus.</p>
 <p>After this is completed, we will be setting up a file for organizational purposes that will be used to store all files throughout this course. To do this, navigate to the <em>Home</em> directory and add a new folder by right-clicking. Name the folder something that will be easy to find, such as “DSLab_Calc3.” If you’d like to put it at the top of the list of folders and make it even easier to find, add a tilde (~) at the beginning of the name you chose.</p>
 <p>Save this and all other files going forward to this folder. It’ll make everything much easier to find and will especially come in handy when submitting the labs at the end of each class. This includes files that are downloaded through links during labs. When you click on a file link, it’ll send you to the GitHub page for that file. To download and save it to your folder, click on the button that says “Raw” on the top right of the file preview (unless it’s a PDF, then just click “Download”). This will take you to a white page with the information in black text. To see the file in the proper environment, right-click the screen and click “Save as…” and once you open it after this, it should appear in the correct environment!</p>
 </section>
 <section id="laboratory-ethics">
-<h2>Laboratory ethics<a class="headerlink" href="#laboratory-ethics" title="Permalink to this heading">#</a></h2>
+<h2>Laboratory ethics<a class="headerlink" href="#laboratory-ethics" title="Link to this heading">#</a></h2>
 <p>“I pledge to behave ethically and with honesty in this course. I may discuss approaches for a solution with others, but my submitted lab report will be my own work, including all code. I will not make my finished reports available to other students, even after the semester is over. In particular, I will not post my labs on the Internet or make my files available to other people. I will not be a cheater.”</p>
 </section>
-<section id="span-style-color-orange-2-toy-lab-span">
-<h2><span style="color:orange;"> 2. Toy Lab </span><a class="headerlink" href="#span-style-color-orange-2-toy-lab-span" title="Permalink to this heading">#</a></h2>
+<section id="toy-lab">
+<h2><span style="color:orange;"> 2. Toy Lab </span><a class="headerlink" href="#toy-lab" title="Link to this heading">#</a></h2>
 <h3 style="background-color:lightblue"> Write your name and email below: </h3>
 <p>First Name, Last Name, Email</p>
 </section>
 <section id="skill-checks">
-<h2>Skill Checks<a class="headerlink" href="#skill-checks" title="Permalink to this heading">#</a></h2>
-<section id="span-style-color-red-exercise-1-span">
-<h3><span style="color:red"> Exercise 1: </span><a class="headerlink" href="#span-style-color-red-exercise-1-span" title="Permalink to this heading">#</a></h3>
+<h2>Skill Checks<a class="headerlink" href="#skill-checks" title="Link to this heading">#</a></h2>
+<section id="exercise-1">
+<h3><span style="color:red"> Exercise 1: </span><a class="headerlink" href="#exercise-1" title="Link to this heading">#</a></h3>
 <p>Use Euler’s formula to write <span class="math notranslate nohighlight">\(\cos \theta\)</span> in terms of complex exponentials. Write the steps of your derivation using Latex code.</p>
 <p>Note: If you are new to Latex, see the [first week lab of the Data Science Labs on Differential and Integral Calculus].(<a class="reference external" href="https://thedatasciencelabs.github.io/DSLab_Calculus/labs/1_intro_to_notebooks/lab0.html">https://thedatasciencelabs.github.io/DSLab_Calculus/labs/1_intro_to_notebooks/lab0.html</a>)</p>
 </section>
-<section id="span-style-color-red-exercise-2-span">
-<h3><span style="color:red"> Exercise 2 </span><a class="headerlink" href="#span-style-color-red-exercise-2-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-2">
+<h3><span style="color:red"> Exercise 2 </span><a class="headerlink" href="#exercise-2" title="Link to this heading">#</a></h3>
 <p>Simplify the expression <span class="math notranslate nohighlight">\(e^{i 2 \pi k}-1\)</span>, where <span class="math notranslate nohighlight">\(k\)</span> is an integer. How different would the answer be is <span class="math notranslate nohighlight">\(k\)</span> was not an integer?</p>
 </section>
-<section id="span-style-color-red-exercise-3-span">
-<h3><span style="color:red"> Exercise 3 </span><a class="headerlink" href="#span-style-color-red-exercise-3-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-3">
+<h3><span style="color:red"> Exercise 3 </span><a class="headerlink" href="#exercise-3" title="Link to this heading">#</a></h3>
 <p>a) Write a function that computes the sum <span class="math notranslate nohighlight">\(\sum_{n=0}^N e^{i \frac{2 \pi}{10} n }\)</span>.</p>
 <p>b) Use your function to evaluate the sum for <span class="math notranslate nohighlight">\(N=7\)</span>.</p>
 <p>Hint: Don’t forget to load the relevant library.</p>
@@ -510,8 +521,8 @@ Example 1:
     Explanation: The longest consecutive elements sequence is [4, 5]. 
                 Therefore its length is 2.  --></section>
 </section>
-<section id="span-style-color-orange-3-submitting-the-lab-span">
-<h2><span style="color:orange;"> 3. Submitting the Lab </span><a class="headerlink" href="#span-style-color-orange-3-submitting-the-lab-span" title="Permalink to this heading">#</a></h2>
+<section id="submitting-the-lab">
+<h2><span style="color:orange;"> 3. Submitting the Lab </span><a class="headerlink" href="#submitting-the-lab" title="Link to this heading">#</a></h2>
 <p>Once you have finished the first lab, you will need to submit it. Recall that you are expected to submit the lab before the end of class everyweek.</p>
 <p>Before you submit, make sure that everything is completely filled out and saved (either by typing Ctrl+S or by clicking the floppy disk icon in the top left of this application). Then:</p>
 <ol class="arabic simple">
@@ -553,7 +564,7 @@ Example 1:
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -583,29 +594,30 @@ Example 1:
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content"><span style="color:orange;"> 00. Content </span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematics">Mathematics</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-skills">Programming Skills</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embedded-systems">Embedded Systems</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span"><span style="color:orange;"> 0. Required Hardware </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-1-before-starting-span"><span style="color:orange;"> 1. Before Starting </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-hardware"><span style="color:orange;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#before-starting"><span style="color:orange;"> 1. Before Starting </span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#laboratory-ethics">Laboratory ethics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-2-toy-lab-span"><span style="color:orange;"> 2. Toy Lab </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#toy-lab"><span style="color:orange;"> 2. Toy Lab </span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skill-checks">Skill Checks</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span"><span style="color:red"> Exercise 1: </span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-2-span"><span style="color:red"> Exercise 2 </span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-3-span"><span style="color:red"> Exercise 3 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1"><span style="color:red"> Exercise 1: </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2"><span style="color:red"> Exercise 2 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3"><span style="color:red"> Exercise 3 </span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-3-submitting-the-lab-span"><span style="color:orange;"> 3. Submitting the Lab </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submitting-the-lab"><span style="color:orange;"> 3. Submitting the Lab </span></a></li>
 </ul>
   </nav></div>
 
@@ -654,8 +666,8 @@ By Mireille Boutin, Alden Bradford, and Adharsh Sabukumar
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

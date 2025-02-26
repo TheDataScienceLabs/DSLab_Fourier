@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Lab 2: Build a synthesizer &#8212; The Data Science Labs on Fourier Analysis</title>
   
@@ -15,53 +14,49 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'labs/synthesis/build_a_synthesizer/build_a_synthesizer';</script>
@@ -78,28 +73,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -121,12 +111,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -142,6 +140,8 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
 
+  
+    
   
 
 <a class="navbar-brand logo" href="../../../index.html">
@@ -160,7 +160,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -229,7 +240,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -238,14 +249,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -370,10 +381,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
@@ -381,14 +392,14 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -409,36 +420,36 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content"><span style="color:orange;"> 00. Content </span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematics">Mathematics</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-skills">Programming Skills</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embedded-systems">Embedded Systems</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span"><span style="color:orange;"> 0. Required Hardware </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-1-intro-span"><span style="color:orange;"> 1. Intro </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-2-the-i2s-protocol-span"><span style="color:orange;"> 2. The I2S protocol </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-hardware"><span style="color:orange;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intro"><span style="color:orange;"> 1. Intro </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-i2s-protocol"><span style="color:orange;"> 2. The I2S protocol </span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-your-circuit">Test your circuit</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-i2s-object">Understanding the I2S object</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span-20-pts"><span style="color:red"> Exercise 1 </span> (20 pts)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-20-pts"><span style="color:red"> Exercise 1 </span> (20 pts)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-3-designing-good-samples-span"><span style="color:orange;"> 3. Designing good samples </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#designing-good-samples"><span style="color:orange;"> 3. Designing good samples </span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cents-for-errors-in-frequency">Cents for errors in frequency</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-thus-far">Summary thus far</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#troublesome-notes">Troublesome notes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-rest-of-them">The rest of them</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-2-span-30-pts"><span style="color:red"> Exercise 2 </span> (30 pts)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-30-pts"><span style="color:red"> Exercise 2 </span> (30 pts)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-4-the-completed-synthesizer-span"><span style="color:orange;"> 4. The completed synthesizer </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-completed-synthesizer"><span style="color:orange;"> 4. The completed synthesizer </span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-script">The script</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-the-clips">Making the clips</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-3-span-30-pts"><span style="color:red"> Exercise 3 </span> (30 pts)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-4-span-20-pts"><span style="color:red"> Exercise 4 </span> (20 pts)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-30-pts"><span style="color:red"> Exercise 3 </span> (30 pts)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-20-pts"><span style="color:red"> Exercise 4 </span> (20 pts)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-advanced-exercises-span-optional"><span style="color:red"> Advanced exercises </span> (Optional)</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-exercises-optional"><span style="color:red"> Advanced exercises </span> (Optional)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pick-the-best-sample-count">Pick the best sample count</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#include-different-waveforms-and-octaves">Include different waveforms and octaves</a></li>
 </ul>
@@ -453,15 +464,15 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lab-2-build-a-synthesizer">
-<h1>Lab 2: Build a synthesizer<a class="headerlink" href="#lab-2-build-a-synthesizer" title="Permalink to this heading">#</a></h1>
+<h1>Lab 2: Build a synthesizer<a class="headerlink" href="#lab-2-build-a-synthesizer" title="Link to this heading">#</a></h1>
 <p><font size="3"> Last updated May 7, 2024 </font></p>
-<section id="span-style-color-orange-00-content-span">
-<h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this heading">#</a></h2>
+<section id="content">
+<h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#content" title="Link to this heading">#</a></h2>
 <section id="mathematics">
-<h3>Mathematics<a class="headerlink" href="#mathematics" title="Permalink to this heading">#</a></h3>
+<h3>Mathematics<a class="headerlink" href="#mathematics" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>quantifying rounding error</p></li>
 <li><p>definition of the cent</p></li>
@@ -469,22 +480,22 @@ document.write(`
 </ul>
 </section>
 <section id="programming-skills">
-<h3>Programming Skills<a class="headerlink" href="#programming-skills" title="Permalink to this heading">#</a></h3>
+<h3>Programming Skills<a class="headerlink" href="#programming-skills" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>specialized flow structures (<code class="docutils literal notranslate"><span class="pre">try</span></code>/<code class="docutils literal notranslate"><span class="pre">finally</span></code>, <code class="docutils literal notranslate"><span class="pre">for</span></code>/<code class="docutils literal notranslate"><span class="pre">else</span></code>)</p></li>
 <li><p>buffers</p></li>
 </ul>
 </section>
 <section id="embedded-systems">
-<h3>Embedded Systems<a class="headerlink" href="#embedded-systems" title="Permalink to this heading">#</a></h3>
+<h3>Embedded Systems<a class="headerlink" href="#embedded-systems" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>the I2S protocol</p></li>
 <li><p>blocking code</p></li>
 </ul>
 </section>
 </section>
-<section id="span-style-color-orange-0-required-hardware-span">
-<h2><span style="color:orange;"> 0. Required Hardware </span><a class="headerlink" href="#span-style-color-orange-0-required-hardware-span" title="Permalink to this heading">#</a></h2>
+<section id="required-hardware">
+<h2><span style="color:orange;"> 0. Required Hardware </span><a class="headerlink" href="#required-hardware" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Raspberry Pi Pico</p></li>
 <li><p>MicroUSB cable</p></li>
@@ -503,24 +514,24 @@ document.write(`
 <p><strong>Email:</strong> me &#64;purdue.edu</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="span-style-color-orange-1-intro-span">
-<h2><span style="color:orange;"> 1. Intro </span><a class="headerlink" href="#span-style-color-orange-1-intro-span" title="Permalink to this heading">#</a></h2>
+<section id="intro">
+<h2><span style="color:orange;"> 1. Intro </span><a class="headerlink" href="#intro" title="Link to this heading">#</a></h2>
 <p>One of the fundamental things about sounds is the timing. People are very sensitive to small differences in timing of audio signals. That is a big problem if you want to use a general-purpose computer to create or process sounds in real time, since a computer has many tasks to keep track of like monitoring network connections, checking for user input, managing file systems, moving programs into and out of working memory, health check to name a few. And those are just the things it does in the background, let alone if you ask it to do something as well! Most computers you can buy, and the smart phones today, contain specialized electronic chips for processing audio, freeing up the general-purpose parts to do other things.</p>
 <p>Most of the complex algorithms that are performed on audio are done on DSP chips. They perform complex computations in a short amout of time. But most of them are very expensive This is where a microcontroller is an ideal choice: we get some of the flexibility of a general-purpose computer, while still being cheaper and keeping tight control over the timing of the program.</p>
 <p>As an introduction to the tools of working with sound in real time, we will build a simple synthesizer – that is, an electronic piano.</p>
 </section>
-<section id="span-style-color-orange-2-the-i2s-protocol-span">
-<h2><span style="color:orange;"> 2. The I2S protocol </span><a class="headerlink" href="#span-style-color-orange-2-the-i2s-protocol-span" title="Permalink to this heading">#</a></h2>
+<section id="the-i2s-protocol">
+<h2><span style="color:orange;"> 2. The I2S protocol </span><a class="headerlink" href="#the-i2s-protocol" title="Link to this heading">#</a></h2>
 <p>It should be no surprise that there is a special digital protocol used for audio signals. Other protocols, like I2C or SPI, simply add too much latency. The I2S protocol is much simpler than either I2C or SPI, and therefore can get much lower latency and higher data throughput. It consists of just three wires: one for a clock, one for data, and one for indicating whether the data should go to the left or right audio channel.</p>
 <p>Today, we are going to use a module which accepts I2S input and drives a speaker directly. Wire it up as indicated in the following tables. If you are not sure you have done it correctly, then ask an instructor to verify your wiring is correct before plugging your circuit into the USB port.</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>MAX 98357</p></th>
 <th class="head"><p>Speaker</p></th>
@@ -535,7 +546,8 @@ document.write(`
 </tr>
 </tbody>
 </table>
-<table class="table">
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>MAX 98357</p></th>
 <th class="head"><p>Pico</p></th>
@@ -565,10 +577,11 @@ document.write(`
 </tr>
 </tbody>
 </table>
+</div>
 <p><img alt="an image of the wiring described above" src="../../../_images/max_wiring_example_small.jpg" /></p>
 <p>Your breadboard should look something like the picture above.</p>
 <section id="test-your-circuit">
-<h3>Test your circuit<a class="headerlink" href="#test-your-circuit" title="Permalink to this heading">#</a></h3>
+<h3>Test your circuit<a class="headerlink" href="#test-your-circuit" title="Link to this heading">#</a></h3>
 <p>Once you are sure that your circuit is wired safely, open up Thonny and run the script <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/synthesis/build_a_synthesizer/circuit_test.py">circuittest.py</a> on your Pico. You should hear a simple tone play for two seconds, and then it should stop. If your circuit does not do this, figure out what is going wrong before you continue. Your instructor may be able to help you narrow down the problem.</p>
 <p>Let’s understand what is happening in this file, line by line.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -578,8 +591,8 @@ document.write(`
 </pre></div>
 </div>
 <p>Every good Python program should have a docstring which summarizes what the program is for.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">I2S</span><span class="p">,</span> <span class="n">Pin</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">I2S</span><span class="p">,</span> <span class="n">Pin</span>
 </pre></div>
 </div>
 <p>This script only uses built-in modules, the <code class="docutils literal notranslate"><span class="pre">time</span></code> module to count out two seconds and the <code class="docutils literal notranslate"><span class="pre">machine</span></code> module to interface with hardware.</p>
@@ -617,7 +630,7 @@ document.write(`
 <p>By using built in Micropython modules, we were able to get sound with not-too-many-lines of code.</p>
 </section>
 <section id="understanding-the-i2s-object">
-<h3>Understanding the I2S object<a class="headerlink" href="#understanding-the-i2s-object" title="Permalink to this heading">#</a></h3>
+<h3>Understanding the I2S object<a class="headerlink" href="#understanding-the-i2s-object" title="Link to this heading">#</a></h3>
 <p>When we made the <code class="docutils literal notranslate"><span class="pre">I2S</span></code> object in the example code, we told it a few things. We told it to transmit (<code class="docutils literal notranslate"><span class="pre">mode=I2S.TX</span></code>), we told it to use 16 bits for each sample (<code class="docutils literal notranslate"><span class="pre">bits=16</span></code>), we told it to use mono rather than stereo sound (<code class="docutils literal notranslate"><span class="pre">format=I2S.MONO</span></code>), and we told it to use a sample rate of 22,050 Hz (<code class="docutils literal notranslate"><span class="pre">rate=22_050</span></code>). You likely remember that most audio equipment uses a sample rate of 44,100 Hz. We use a lower sample rate because our speaker is not sensitive enough to reproduce the higher frequencies 44,100 Hz would give us, and a lower sampling rate means less work for the microcontroller. Finally, we tell the <code class="docutils literal notranslate"><span class="pre">I2S</span></code> object to make a buffer of 2000 bytes (<code class="docutils literal notranslate"><span class="pre">ibuf=2000</span></code>) to hold audio in a queue, sent out at a controlled rate of 22,050 samples (44,100 bytes) per second. In effect, that means the buffer holds</p>
 <div class="math notranslate nohighlight">
 \[
@@ -669,8 +682,8 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="span-style-color-red-exercise-1-span-20-pts">
-<h3><span style="color:red"> Exercise 1 </span> (20 pts)<a class="headerlink" href="#span-style-color-red-exercise-1-span-20-pts" title="Permalink to this heading">#</a></h3>
+<section id="exercise-1-20-pts">
+<h3><span style="color:red"> Exercise 1 </span> (20 pts)<a class="headerlink" href="#exercise-1-20-pts" title="Link to this heading">#</a></h3>
 <p>You know that each number in <code class="docutils literal notranslate"><span class="pre">tone</span></code> is one sample, and you know the sample rate. Use this information to plot tone object given below with units of milliseconds on the x-axis. Be sure to label the x-axis in your plot with the correct units.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -682,8 +695,8 @@ document.write(`
 <p>What is the frequency of this sine wave? Explain in 2-3 sentences how to compute it.</p>
 <h3 style="background-color:lightblue"> Write Answers for Exercise 1 Below </h3></section>
 </section>
-<section id="span-style-color-orange-3-designing-good-samples-span">
-<h2><span style="color:orange;"> 3. Designing good samples </span><a class="headerlink" href="#span-style-color-orange-3-designing-good-samples-span" title="Permalink to this heading">#</a></h2>
+<section id="designing-good-samples">
+<h2><span style="color:orange;"> 3. Designing good samples </span><a class="headerlink" href="#designing-good-samples" title="Link to this heading">#</a></h2>
 <p>Remember that our goal is to make a synthesizer, so we should figure out how to make sounds of any frequency. We already know the data format we need – just a bunch of 16 bit integers. However, there are some subtleties which we need to address. In order to make them clear, let’s see what happens if we use a naive approach.</p>
 <p>Let’s make some data which gives precisely a middle F, so <span class="math notranslate nohighlight">\(440\times 2^{-1/3}\)</span> Hz. We will start by doing an arbitrary number of samples, say, 200.</p>
 <div class="cell docutils container">
@@ -720,7 +733,7 @@ document.write(`
 <p>As you can see, that makes a nasty jump at every repeat. When we play this as audio, it makes a nasty buzz.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Audio</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Audio</span>
 
 <span class="n">Audio</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">middle_f</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span> <span class="n">rate</span><span class="o">=</span><span class="mi">22050</span><span class="p">)</span>
 </pre></div>
@@ -802,7 +815,7 @@ document.write(`
               </div></div>
 </div>
 <section id="cents-for-errors-in-frequency">
-<h3>Cents for errors in frequency<a class="headerlink" href="#cents-for-errors-in-frequency" title="Permalink to this heading">#</a></h3>
+<h3>Cents for errors in frequency<a class="headerlink" href="#cents-for-errors-in-frequency" title="Link to this heading">#</a></h3>
 <p>We found the 63-sample approximation is off by 0.8 Hz from the true frequency. How big of a deal is that? For discussing small differences in frequency, we usually use the unit called the <strong>cent</strong>. Each note on the keyboard is separated by 100 cents, hence the name. Since the notes are defined by ratios, so are cents.</p>
 <p>The difference in frequency between two frequencies <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> is defined to be</p>
 <div class="math notranslate nohighlight">
@@ -817,11 +830,11 @@ n=1200\log_2 \frac{b}{a}.
 <p>higher than a true middle F. People generally have a hard time distinguishing between notes which are within about 10 cents, though some people can notice differences of about 5 cents. That tells us that our approximation is certainly good enough.</p>
 </section>
 <section id="summary-thus-far">
-<h3>Summary thus far<a class="headerlink" href="#summary-thus-far" title="Permalink to this heading">#</a></h3>
+<h3>Summary thus far<a class="headerlink" href="#summary-thus-far" title="Link to this heading">#</a></h3>
 <p>We noticed that, in order to have a repeating audio clip which gives the exactly correct frequency for a given note, we would have jumps in between repeats which make a nasty buzzing sound. In order to get rid of the buzzing, we can change the frequency a little bit to make an audio clip with a nearby frequency which does not buzz but is off by a little bit. In the case of middle F, the true note has a frequency of 349.2 Hz, which we can approximate with a clip of 63 samples which has a frequency of 350 Hz.</p>
 </section>
 <section id="troublesome-notes">
-<h3>Troublesome notes<a class="headerlink" href="#troublesome-notes" title="Permalink to this heading">#</a></h3>
+<h3>Troublesome notes<a class="headerlink" href="#troublesome-notes" title="Link to this heading">#</a></h3>
 <p>In a way we got lucky with middle F, because we found a true F has 63.14 samples/cycle which is very close to 63 samples/cycle. With some notes we are not so lucky. Consider, for example, middle B. This has a frequency of <span class="math notranslate nohighlight">\(440\times 2^{1/6}=493.9\)</span> Hz. That means having</p>
 <div class="math notranslate nohighlight">
 \[
@@ -846,11 +859,11 @@ n=1200\log_2 \frac{b}{a}.
 <p>That is much closer to the true value, only off by 0.79 cents.</p>
 </section>
 <section id="the-rest-of-them">
-<h3>The rest of them<a class="headerlink" href="#the-rest-of-them" title="Permalink to this heading">#</a></h3>
+<h3>The rest of them<a class="headerlink" href="#the-rest-of-them" title="Link to this heading">#</a></h3>
 <p>We can use <code class="docutils literal notranslate"><span class="pre">pandas</span></code> to easily make a table of the frequencies from middle B to middle C. We can see just how good (or how bad) the simplest approximation (rounding to the nearest number of samples per audio clip) is.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">notes</span> <span class="o">=</span> <span class="s2">&quot;C C# D D# E F F# G G# A A# B&quot;</span>
 <span class="n">scale</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="mi">440</span><span class="o">*</span><span class="mi">2</span><span class="o">**</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">-</span><span class="mi">9</span><span class="p">)</span><span class="o">/</span><span class="mi">12</span><span class="p">),</span> <span class="n">index</span> <span class="o">=</span> <span class="n">notes</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
@@ -998,25 +1011,25 @@ n=1200\log_2 \frac{b}{a}.
 </div></div></div>
 </div>
 </section>
-<section id="span-style-color-red-exercise-2-span-30-pts">
-<h3><span style="color:red"> Exercise 2 </span> (30 pts)<a class="headerlink" href="#span-style-color-red-exercise-2-span-30-pts" title="Permalink to this heading">#</a></h3>
+<section id="exercise-2-30-pts">
+<h3><span style="color:red"> Exercise 2 </span> (30 pts)<a class="headerlink" href="#exercise-2-30-pts" title="Link to this heading">#</a></h3>
 <p>Six of the notes above are off by more than 5 cents from the correct frequency, when you just round to the nearest number of samples per cycle. We showed how you can make an audio clip with more cycles to get a better approximation. Use that same strategy to find a number of samples which approximates every note above, with an error of less than 5 cents.</p>
 <h3 style="background-color:lightblue"> Write Answers for Exercise 2 Below </h3></section>
 </section>
-<section id="span-style-color-orange-4-the-completed-synthesizer-span">
-<h2><span style="color:orange;"> 4. The completed synthesizer </span><a class="headerlink" href="#span-style-color-orange-4-the-completed-synthesizer-span" title="Permalink to this heading">#</a></h2>
+<section id="the-completed-synthesizer">
+<h2><span style="color:orange;"> 4. The completed synthesizer </span><a class="headerlink" href="#the-completed-synthesizer" title="Link to this heading">#</a></h2>
 <p>Now that we know how many samples to use for each note, we can have the microcontroller play them when we press buttons. In order to make it easier to wire up a keypad worth of buttons, a module has been provided which simply connects 12 buttons to 12 GPIO pins on the Pico, connecting the pins to ground whenever the corresponding button is pressed. You could just as well have wired up 12 buttons individually yourself, but this module makes it all tidier.</p>
 <p>Connect the module to GPIO pins 4-15, as in the picture below.</p>
 <p><img alt="a picture showing how to connect the keypad module" src="../../../_images/with_keypad_module_small.jpg" /></p>
 <p>Then, load up the script <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/synthesis/build_a_synthesizer/synth.py">synth.py</a> and load it in Thonny. When running it, you should find that you have a synthesizer, though it only plays the notes F and B.</p>
 <p>Those are also the only two entries in the dictionary <code class="docutils literal notranslate"><span class="pre">tones</span></code> which are not <code class="docutils literal notranslate"><span class="pre">silence</span></code>. In Exercise 3 you will have to create audio clips to fill in the other entries. First, let’s see how the rest of the script works, and how the example tones were generated.</p>
 <section id="the-script">
-<h3>The script<a class="headerlink" href="#the-script" title="Permalink to this heading">#</a></h3>
+<h3>The script<a class="headerlink" href="#the-script" title="Link to this heading">#</a></h3>
 <p>Let’s go through this script line by line.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">This is the driver code for a synthsizer.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">I2S</span><span class="p">,</span> <span class="n">Pin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">I2S</span><span class="p">,</span> <span class="n">Pin</span>
 </pre></div>
 </div>
 <p>Every good Python file has a docstring. The only modules we are using are built in.</p>
@@ -1075,7 +1088,7 @@ n=1200\log_2 \frac{b}{a}.
 <p>Since this is in a loop, it will immediately run again and again, so we get a near-instant response when the buttons change.</p>
 </section>
 <section id="making-the-clips">
-<h3>Making the clips<a class="headerlink" href="#making-the-clips" title="Permalink to this heading">#</a></h3>
+<h3>Making the clips<a class="headerlink" href="#making-the-clips" title="Link to this heading">#</a></h3>
 <p>The byte strings in the <code class="docutils literal notranslate"><span class="pre">tones</span></code> dictionary were made using the following code, then copy/pasted into <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/synthesis/build_a_synthesizer/synth.py">synth.py</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1116,25 +1129,25 @@ n=1200\log_2 \frac{b}{a}.
 <li><p>By using the flag <code class="docutils literal notranslate"><span class="pre">endpoint=False</span></code> we ensure that the signal will repeat nicely. In effect, the endpoint for one cycle is the start of the next cycle – there is no reason to include it twice.</p></li>
 </ol>
 </section>
-<section id="span-style-color-red-exercise-3-span-30-pts">
-<h3><span style="color:red"> Exercise 3 </span> (30 pts)<a class="headerlink" href="#span-style-color-red-exercise-3-span-30-pts" title="Permalink to this heading">#</a></h3>
+<section id="exercise-3-30-pts">
+<h3><span style="color:red"> Exercise 3 </span> (30 pts)<a class="headerlink" href="#exercise-3-30-pts" title="Link to this heading">#</a></h3>
 <p>Use the sample counts you found in exercise 2 to make byte strings for the other notes. Copy them into <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/synthesis/build_a_synthesizer/synth.py">synth.py</a>, and enjoy your completed synthesizer!</p>
 <h3 style="background-color:lightblue"> Write Answers for Exercise 3 Below </h3></section>
-<section id="span-style-color-red-exercise-4-span-20-pts">
-<h3><span style="color:red"> Exercise 4 </span> (20 pts)<a class="headerlink" href="#span-style-color-red-exercise-4-span-20-pts" title="Permalink to this heading">#</a></h3>
+<section id="exercise-4-20-pts">
+<h3><span style="color:red"> Exercise 4 </span> (20 pts)<a class="headerlink" href="#exercise-4-20-pts" title="Link to this heading">#</a></h3>
 <p>What do you think of this synthesizer so far? What are some things it does well? What are some of the limitations of this design? How would you improve on it? Answer in two paragraphs.</p>
 <h3 style="background-color:lightblue"> Write Answers for Exercise 4 Below </h3></section>
 </section>
-<section id="span-style-color-red-advanced-exercises-span-optional">
-<h2><span style="color:red"> Advanced exercises </span> (Optional)<a class="headerlink" href="#span-style-color-red-advanced-exercises-span-optional" title="Permalink to this heading">#</a></h2>
+<section id="advanced-exercises-optional">
+<h2><span style="color:red"> Advanced exercises </span> (Optional)<a class="headerlink" href="#advanced-exercises-optional" title="Link to this heading">#</a></h2>
 <p>The following exercises are an opportunity to explore beyond the basic material presented above. There is not time to do all of them. Instead, pick just one of them to do for a grade. The rest can be treated as practice problems. These questions are intentionally open-ended, so you have some freedom in how you approach them. You are also welcome to work in teams of 2-3 for this exercise.</p>
 <section id="pick-the-best-sample-count">
-<h3>Pick the best sample count<a class="headerlink" href="#pick-the-best-sample-count" title="Permalink to this heading">#</a></h3>
+<h3>Pick the best sample count<a class="headerlink" href="#pick-the-best-sample-count" title="Link to this heading">#</a></h3>
 <p>In order to approximate middle B, we found a rational number <span class="math notranslate nohighlight">\(\frac{134}{3}\)</span> which was close to the desired number of samples per cycle, <span class="math notranslate nohighlight">\(\frac{22050}{440\times 2^{1/6}}\)</span>. The continued fraction expansion allows you to find a sequence of “best possible” rational approximations to any number, in the sense that each approximation is closer than any approximation with a smaller denominator. For example, we can use Sympy to generate the first several approximations to middle B.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span>
-<span class="kn">import</span> <span class="nn">itertools</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sympy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
 
 <span class="n">middle_b</span> <span class="o">=</span> <span class="mi">22050</span><span class="o">/</span><span class="p">(</span><span class="mi">440</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">sympy</span><span class="o">.</span><span class="n">S</span><span class="p">(</span><span class="mi">6</span><span class="p">))))</span>
 <span class="n">display</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">middle_b</span><span class="p">,</span> <span class="n">middle_b</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
@@ -1171,13 +1184,13 @@ n=1200\log_2 \frac{b}{a}.
 </ol>
 </section>
 <section id="include-different-waveforms-and-octaves">
-<h3>Include different waveforms and octaves<a class="headerlink" href="#include-different-waveforms-and-octaves" title="Permalink to this heading">#</a></h3>
+<h3>Include different waveforms and octaves<a class="headerlink" href="#include-different-waveforms-and-octaves" title="Link to this heading">#</a></h3>
 <p>Most synthesizers not only let you choose the frequency of the note you play, they also allow you to select from several waveforms. Also, synthesizers with few keys will typically provide a way to shift between octaves.</p>
 <p>Connect some additional buttons to the Pico, and write a script to have one of them cycle between modes for different waveforms and the other cycle between modes for different octaves. When it switches modes, have the Pico print the current selection on the serial console.</p>
 </section>
 </section>
 <section id="polyphony">
-<h2>Polyphony<a class="headerlink" href="#polyphony" title="Permalink to this heading">#</a></h2>
+<h2>Polyphony<a class="headerlink" href="#polyphony" title="Link to this heading">#</a></h2>
 <p>One unfortunate property of most synthesizers is that you can’t press every key at once. That is definitely the case here, since the basic synthesizer we made only supports pressing one note at a time.</p>
 <p>You have already designed clips for each note playing independently. Your task is to make audio clips for each pair of notes, and modify the synthesizer code so that if exactly two buttons are pressed then your two-note clip plays.</p>
 </section>
@@ -1210,7 +1223,7 @@ n=1200\log_2 \frac{b}{a}.
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -1240,42 +1253,43 @@ n=1200\log_2 \frac{b}{a}.
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content"><span style="color:orange;"> 00. Content </span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematics">Mathematics</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-skills">Programming Skills</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embedded-systems">Embedded Systems</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span"><span style="color:orange;"> 0. Required Hardware </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-1-intro-span"><span style="color:orange;"> 1. Intro </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-2-the-i2s-protocol-span"><span style="color:orange;"> 2. The I2S protocol </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-hardware"><span style="color:orange;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intro"><span style="color:orange;"> 1. Intro </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-i2s-protocol"><span style="color:orange;"> 2. The I2S protocol </span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-your-circuit">Test your circuit</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-i2s-object">Understanding the I2S object</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span-20-pts"><span style="color:red"> Exercise 1 </span> (20 pts)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-20-pts"><span style="color:red"> Exercise 1 </span> (20 pts)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-3-designing-good-samples-span"><span style="color:orange;"> 3. Designing good samples </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#designing-good-samples"><span style="color:orange;"> 3. Designing good samples </span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cents-for-errors-in-frequency">Cents for errors in frequency</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-thus-far">Summary thus far</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#troublesome-notes">Troublesome notes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-rest-of-them">The rest of them</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-2-span-30-pts"><span style="color:red"> Exercise 2 </span> (30 pts)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-30-pts"><span style="color:red"> Exercise 2 </span> (30 pts)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-4-the-completed-synthesizer-span"><span style="color:orange;"> 4. The completed synthesizer </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-completed-synthesizer"><span style="color:orange;"> 4. The completed synthesizer </span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-script">The script</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-the-clips">Making the clips</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-3-span-30-pts"><span style="color:red"> Exercise 3 </span> (30 pts)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-4-span-20-pts"><span style="color:red"> Exercise 4 </span> (20 pts)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-30-pts"><span style="color:red"> Exercise 3 </span> (30 pts)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-20-pts"><span style="color:red"> Exercise 4 </span> (20 pts)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-advanced-exercises-span-optional"><span style="color:red"> Advanced exercises </span> (Optional)</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-exercises-optional"><span style="color:red"> Advanced exercises </span> (Optional)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pick-the-best-sample-count">Pick the best sample count</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#include-different-waveforms-and-octaves">Include different waveforms and octaves</a></li>
 </ul>
@@ -1329,8 +1343,8 @@ By Mireille Boutin, Alden Bradford, and Adharsh Sabukumar
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
