@@ -13,9 +13,9 @@ We are still polishing the last details of the course. Thank you for your patien
 ## More Information and Contact
 
 For more information regarding this and the other available Data Science Labs, visit the following link: 
-https://engineering.purdue.edu/~mboutin/Data_Science_labs.html
+https://www.math.purdue.edu/~kthood/DSLabs.html
 
-Contact Professor Boutin at mboutin@purdue.edu if you have any more questions regarding this course.
+Contact Professor Hood at kthood@purdue.edu if you have any more questions regarding this course.
 <br>
 ## How to Get Started
 
@@ -30,4 +30,11 @@ To begin editing this lab, click on the download icon in the top right of the sc
 To turn in the labs in Gradescope, you will have to export the file as a PDF. To do this, navigate to *File*, *Save and Export Notebook as*, and then click on *PDF*. This will be further explained in Laboratory 0.
 
 If you have any questions or are experiencing any difficulties during these labs, please ask your instructor for assistance.
+
+---
+**License**  
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).  
+![CC BY 4.0](https://licensebuttons.net/l/by/4.0/88x31.png)
+
 
