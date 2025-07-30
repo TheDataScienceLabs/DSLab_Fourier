@@ -35,6 +35,9 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+  extra_footer: |
+    <p>This work is licensed under a 
+    <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
   
 parse:
   myst_enable_extensions:  # default extensions to enable in the myst parser. See https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html
