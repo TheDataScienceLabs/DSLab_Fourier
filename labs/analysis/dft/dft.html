@@ -1,0 +1,1061 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Lab 9: The Discrete Fourier Transform (DFT) &#8212; The Data Science Labs on Fourier Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=4bca2e18" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'labs/analysis/dft/dft';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Lab 10: Frequency Analysis with the DFT" href="../signal_analysis/signal_analysis_with_dft.html" />
+    <link rel="prev" title="Lab 8: Chirps, Bells, and other Instruments" href="../../modulation/chirp/chirp.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="The Data Science Labs on Fourier Analysis - Home"/>
+    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="The Data Science Labs on Fourier Analysis - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../index.html">
+                    About This Course
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preliminaries</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/intro_lab.html">Lab 0: Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Synthesis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../synthesis/playing_sound/play_sounds.html">Lab 1: Playing Sound</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../synthesis/build_a_synthesizer/build_a_synthesizer.html">Lab 2: Build a synthesizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../synthesis/build_a_theremin/build_a_theremin.html">Lab 3: Build a theremin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../synthesis/experiencing_sound/experiencing_sound.html">Lab 4: The human experience of sound</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modulation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../modulation/tremolo_beats/tremolo_beats_1.html">Lab 5: Tremolo/Beats Effects 1</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../modulation/tremolo_beats/tremolo_beats_2.html">Lab 6: Tremolo/Beats Effects 2</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../modulation/voice_changer/voice_changer_project.html">Lab 7: Build a Voice Changer/Voice Shield</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulation/chirp/chirp.html">Lab 8: Chirps, Bells, and other Instruments</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analysis</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab 9: The Discrete Fourier Transform (DFT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../signal_analysis/signal_analysis_with_dft.html">Lab 10: Frequency Analysis with the DFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pedometer/pedometer_project.html">Lab 11: Build a Pedometer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../instrument_tuning/tuning.html">Lab 12: Tuning an instrument</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra Materials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../extra_materials/intro_to_breadboards/intro_to_breadboards.html">Introduction to Breadboards</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/AldenMB/DSLab_Fourier" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/AldenMB/DSLab_Fourier/issues/new?title=Issue%20on%20page%20%2Flabs/analysis/dft/dft.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/labs/analysis/dft/dft.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lab 9: The Discrete Fourier Transform (DFT)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content"><span style="color:#d97f00;"> 00. Content </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematics">Mathematics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-skills">Programming Skills</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embedded-systems">Embedded Systems</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-hardware"><span style="color:#d97f00;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intro"><span style="color:#d97f00;"> 1. Intro </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1"><span style="color:red"> Exercise 1 </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#periodicity-of-the-sampling"><span style="color:#d97f00;"> 2. Periodicity of the Sampling </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2"><span style="color:red"> Exercise 2 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3"><span style="color:red"> Exercise 3 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4"><span style="color:red"> Exercise 4 </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#toy-example-of-signal-analysis"><span style="color:#d97f00;"> 2. Toy Example of Signal Analysis </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5"><span style="color:red"> Exercise 5 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-6"><span style="color:red"> Exercise 6 </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#another-toy-example-of-signal-analysis-with-aliasing"><span style="color:#d97f00;"> 3. Another Toy Example of Signal Analysis- with Aliasing </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-7"><span style="color:red"> Exercise 7 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-8"><span style="color:red"> Exercise 8 </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-theory"><span style="color:#d97f00;"> 4. The Theory </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-theorem">Sampling Theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proof-of-sampling-theorem">Proof of Sampling Theorem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-9"><span style="color:red"> Exercise 9 </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-fft-command"><span style="color:#d97f00;"> 5. The FFT Command </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-10"><span style="color:red"> Exercise 10 </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection"><span style="color:green;"> Reflection </span></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-9-the-discrete-fourier-transform-dft">
+<h1>Lab 9: The Discrete Fourier Transform (DFT)<a class="headerlink" href="#lab-9-the-discrete-fourier-transform-dft" title="Link to this heading">#</a></h1>
+<p><font size="3"> Last updated 8/13/24 </font></p>
+<section id="content">
+<h2><span style="color:#d97f00;"> 00. Content </span><a class="headerlink" href="#content" title="Link to this heading">#</a></h2>
+<section id="mathematics">
+<h3>Mathematics<a class="headerlink" href="#mathematics" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Fourier series</p></li>
+<li><p>Euler’s formula</p></li>
+<li><p>Sampling and Aliasing</p></li>
+<li><p>Periodicity of discrete-time complex exponentials</p></li>
+<li><p>Orthogonality of discrete complex harmonics exponentials</p></li>
+<li><p>Sampling theorem</p></li>
+</ul>
+</section>
+<section id="programming-skills">
+<h3>Programming Skills<a class="headerlink" href="#programming-skills" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Loops</p></li>
+<li><p>FFT function from numpy</p></li>
+</ul>
+</section>
+<section id="embedded-systems">
+<h3>Embedded Systems<a class="headerlink" href="#embedded-systems" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>N/A</p></li>
+</ul>
+</section>
+</section>
+<section id="required-hardware">
+<h2><span style="color:#d97f00;"> 0. Required Hardware </span><a class="headerlink" href="#required-hardware" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>N/A</p></li>
+</ul>
+<h3 style="background-color:#6994a2"> Write your name and email below: </h3>
+<p><strong>Name:</strong> me</p>
+<p><strong>Email:</strong> me &#64;purdue.edu</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="intro">
+<h2><span style="color:#d97f00;"> 1. Intro </span><a class="headerlink" href="#intro" title="Link to this heading">#</a></h2>
+<p>The signals we acquire in real-life have a finite duration. We typically assume that they “start at zero”, meaning that they are equal to zero until <span class="math notranslate nohighlight">\(t=0\)</span>. After the signal duration is passed, i.e. when <span class="math notranslate nohighlight">\(t\)</span> is greater than the duration of the signal, then we also assume that the signal is equal to zero.</p>
+<p>Putting this in mathematical terms: a finite duration signal <span class="math notranslate nohighlight">\(f(t)\)</span> takes the form</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} f(t)=\left\{ \begin{array}{ll} f(t), &amp; 0\leq t &lt; \text{signal duration}, \\ 0, &amp; \text{ else.}\end{array}  \right. \end{split}\]</div>
+<p>In order to analyze a finite duration signal, we repeat it periodically with a period <span class="math notranslate nohighlight">\(P\)</span> that is at least as long as the duration of the signal (otherwise, the copies will overlap with each other and mess up the signal). When <span class="math notranslate nohighlight">\(P\)</span> is strictly greater than the duration (so there is “space” in between the copies), we say that the signal has been “zero padded” between the repetitions.</p>
+<p>We assume that the repeated signal is such that it is equal to its Fourier series:</p>
+<div class="math notranslate nohighlight">
+\[f(t)= \frac{a_0}{2}+ \sum_{k=1}^\infty a_k \cos \left(\frac{2 \pi}{P} k t \right) + b_k \sin \left(\frac{2 \pi}{P} k t  \right).\]</div>
+<p>We are interested in analyzing the signal <span class="math notranslate nohighlight">\(f(t)\)</span>. In real-life, we cannot do this directly by manipulating the function <span class="math notranslate nohighlight">\(f(t)\)</span>, as we typically only have access to a digital recording of <span class="math notranslate nohighlight">\(f(t)\)</span>. So, for example, computing the Fourier transform of <span class="math notranslate nohighlight">\(f(t)\)</span> (by integration) is not possible. We would like to be able to perform the analysis of <span class="math notranslate nohighlight">\(f(t)\)</span> by analysing its digital recording instead.</p>
+<p>One important analysis to be performed is the recovery of the coefficients  <span class="math notranslate nohighlight">\(a_k,b_k\)</span> from the digital recording.</p>
+<p>We assume that the digital recording takes the form of a discrete-time signal <span class="math notranslate nohighlight">\(f_d[n]\)</span>, with <span class="math notranslate nohighlight">\(n\in {\mathbb N}\)</span>, obtained by sampling the original signal <span class="math notranslate nohighlight">\(f(t)\)</span>. More specifically, we assume that <span class="math notranslate nohighlight">\(f_d[n]\)</span> is a uniform sampling of <span class="math notranslate nohighlight">\(f(t)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[f_d[n]=f(nT), \text{ for some } T&gt;0.\]</div>
+<p>The parameter <span class="math notranslate nohighlight">\(T\)</span> is called the <strong>sampling period</strong>. The quantity <span class="math notranslate nohighlight">\(\frac{1}{T}\)</span> is called the <strong>sampling frequency</strong>.   The sampling period <span class="math notranslate nohighlight">\(T\)</span> is the time difference between two sample points, and the sampling frequency represent how many samples are acquired per time unit.</p>
+<p>In order to simplify the math, we rewrite <span class="math notranslate nohighlight">\(f(t)\)</span> in terms of complex exponentials:</p>
+<div class="math notranslate nohighlight">
+\[ f(t)=  \sum_{k=-\infty}^\infty c_n e^{-i \frac{2\pi}{P}nt} \]</div>
+<p>where <span class="math notranslate nohighlight">\( c_0=\frac{a_0}{2}\)</span> and</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e88fe623-c4bd-450d-88ae-8bb9bea5ecf5">
+<span class="eqno">(2)<a class="headerlink" href="#equation-e88fe623-c4bd-450d-88ae-8bb9bea5ecf5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+c_n=
+    \begin{cases}
+        \frac{1}{2} (a_n- i b_n) &amp; \text{for } n &lt; 0\\
+        \frac{1}{2} (a_n+ i b_n) &amp; \text{for } n&gt;1
+    \end{cases}
+\end{equation}\]</div>
+<section id="exercise-1">
+<h3><span style="color:red"> Exercise 1 </span><a class="headerlink" href="#exercise-1" title="Link to this heading">#</a></h3>
+<p>Derive the above formula. (Hint: replace each sine and cosine by sums of complex exponentials. If you do not know the sums already, find them using Euler’s formula <span class="math notranslate nohighlight">\(e^{i\theta}=\cos \theta + i \sin \theta\)</span>. B’Euler up! )</p>
+<p>In the following, we will show how to recover the coefficients <span class="math notranslate nohighlight">\(a_k,b_k\)</span> using the <strong>Discrete Fourier Transform (DFT)</strong> of the sampling <span class="math notranslate nohighlight">\(f_n[n]\)</span>. The DFT transforms a discrete-time periodic signal with period <span class="math notranslate nohighlight">\(N\)</span> into a sequence of complex numbers that is also periodic with period <span class="math notranslate nohighlight">\(N\)</span>. The numbers in the sequence are called the <strong>DFT coefficients.</strong></p>
+<p>The formula for the <span class="math notranslate nohighlight">\(k^{th}\)</span> DFT coefficient of a sampled signal <span class="math notranslate nohighlight">\(f_d[n]\)</span> with period <span class="math notranslate nohighlight">\(N\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[ F[k]= \sum_{n=0}^{N-1} f_d[n] e^{-i \frac{2 \pi}{N} k n }.  \]</div>
+<p>As we will see later, in some circumstances, namely if</p>
+<ul class="simple">
+<li><p>the Fourier series of <span class="math notranslate nohighlight">\(f(t)\)</span> is finite, that is to say if <span class="math notranslate nohighlight">\(c_k=0\)</span> for all <span class="math notranslate nohighlight">\(|k|&gt;K\)</span>, (i.e., a band-limited signal) and</p></li>
+<li><p><span class="math notranslate nohighlight">\(N\)</span> is large enough,</p></li>
+</ul>
+<p>then we have</p>
+<div class="math notranslate nohighlight">
+\[F[k]= N c_k, \text{ for all }0\leq k \leq K.\]</div>
+<p>Therefore, in those circumstances, one can recover the Fourier series coefficients <span class="math notranslate nohighlight">\(a_k=2 (c_k+c_k^*)\)</span>, <span class="math notranslate nohighlight">\(b_k=2(c_k-c_k^*)\)</span> of the signal <span class="math notranslate nohighlight">\(f(t)\)</span> from the DFT coefficients of the sampled signal. The rest of the lab explores and clarifies this.</p>
+</section>
+</section>
+<section id="periodicity-of-the-sampling">
+<h2><span style="color:#d97f00;"> 2. Periodicity of the Sampling </span><a class="headerlink" href="#periodicity-of-the-sampling" title="Link to this heading">#</a></h2>
+<p>In order for the proposed analysis method to work, the sampled signal must be periodic. In other words, there must exist an integer <span class="math notranslate nohighlight">\(N\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[ f_d[n+N] = f_d[n], \forall n.\]</div>
+<p>Depending on the sampling period <span class="math notranslate nohighlight">\(T\)</span> chosen, the sampled signal may or may not be periodic.</p>
+<section id="exercise-2">
+<h3><span style="color:red"> Exercise 2 </span><a class="headerlink" href="#exercise-2" title="Link to this heading">#</a></h3>
+<p>If the signal <span class="math notranslate nohighlight">\(f(t)=e^{i \frac{2\pi}{10} t }\)</span> is sampled with a sampling period <span class="math notranslate nohighlight">\(T=2\)</span>, show that the resulting sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> is periodic with period <span class="math notranslate nohighlight">\(N=5\)</span>. (Use either code or mathematics.)</p>
+</section>
+<section id="exercise-3">
+<h3><span style="color:red"> Exercise 3 </span><a class="headerlink" href="#exercise-3" title="Link to this heading">#</a></h3>
+<p>If the signal <span class="math notranslate nohighlight">\(f(t)=e^{i \frac{2\pi}{10} t }\)</span> is sampled with a sampling period <span class="math notranslate nohighlight">\(T=3\)</span>, show that the resulting sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> is periodic with period <span class="math notranslate nohighlight">\(N=10\)</span>. (Use either code or mathematics.)</p>
+</section>
+<section id="exercise-4">
+<h3><span style="color:red"> Exercise 4 </span><a class="headerlink" href="#exercise-4" title="Link to this heading">#</a></h3>
+<p>If the signal <span class="math notranslate nohighlight">\(f(t)=e^{i \frac{2\pi}{10} t }\)</span> is sampled with a sampling period <span class="math notranslate nohighlight">\(T=\sqrt{2}\)</span>, show that the resulting sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> is not periodic. (Here you must use mathematics.)</p>
+<p>In general, <span class="math notranslate nohighlight">\(f_d[n]= f(n T)\)</span> is periodic  if an only if <span class="math notranslate nohighlight">\(\frac{P}{T}\)</span> is a rational number. That means that we can write <span class="math notranslate nohighlight">\(\frac{P}{T}\)</span> as a ratio of two integers:</p>
+<div class="math notranslate nohighlight">
+\[\frac{P}{T}=\frac{N}{K}.\]</div>
+<p>If <span class="math notranslate nohighlight">\(N\)</span> and <span class="math notranslate nohighlight">\(K\)</span> have no common factor, then <span class="math notranslate nohighlight">\(N\)</span> is the fundamental period of <span class="math notranslate nohighlight">\(f_d[n]\)</span>.</p>
+<p>For example, if <span class="math notranslate nohighlight">\(T=\frac{P}{N}\)</span>, then we acquire <span class="math notranslate nohighlight">\(N\)</span> samples per period, and <span class="math notranslate nohighlight">\(f_d[n]\)</span> is periodic with period <span class="math notranslate nohighlight">\(N\)</span>. Similarly, if <span class="math notranslate nohighlight">\(T=\frac{2 P}{N}\)</span>, then we acquire <span class="math notranslate nohighlight">\(N\)</span> samples per two periods, which corresponds to <span class="math notranslate nohighlight">\(\frac{N}{2}\)</span> samples per period. If <span class="math notranslate nohighlight">\(N\)</span> is odd, then <span class="math notranslate nohighlight">\(f_d[n]\)</span> has period <span class="math notranslate nohighlight">\(N\)</span> (it has to be an integer). If <span class="math notranslate nohighlight">\(N\)</span> is even, <span class="math notranslate nohighlight">\(f_d[n]\)</span> has period <span class="math notranslate nohighlight">\(\frac{N}{2}\)</span>.</p>
+</section>
+</section>
+<section id="toy-example-of-signal-analysis">
+<h2><span style="color:#d97f00;"> 2. Toy Example of Signal Analysis </span><a class="headerlink" href="#toy-example-of-signal-analysis" title="Link to this heading">#</a></h2>
+<p>Suppose the signal recorded, once repeated periorically, is of the form</p>
+<div class="math notranslate nohighlight">
+\[  f(t)= a_1 \cos \left(2 \pi 100 t \right) + a_4 \cos \left(2 \pi 400 t  \right). \]</div>
+<p>So the signal has period <span class="math notranslate nohighlight">\( P=\frac{1}{100} \)</span>.</p>
+<p>Note: The Period of a linear combination of signals is the LCM of their individual periods.</p>
+<p>Let us write <span class="math notranslate nohighlight">\(f_d[n]\)</span> in terms of complex exponentials, using the formulas <span class="math notranslate nohighlight">\(\cos \theta = \frac{1}{2} (e^{i\theta}+e^{-i\theta})\)</span> and <span class="math notranslate nohighlight">\(\sin \theta = \frac{1}{2i} (e^{i\theta}-e^{-i\theta})\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ f_d[n]= \frac{a_1}{2} \left(e^{i  2 \pi \frac{n}{10}}+ e^{-i 2 \pi \frac{n}{10}}\right) + \frac{a_4}{2}\left(e^{i 2 \pi  4 \frac{n}{10}}+ e^{-i 2 \pi 4 \frac{n}{10}}\right). \]</div>
+<p>Given is a recording with 1000 samples per unit of time (so the sampling period is <span class="math notranslate nohighlight">\(T=\frac{1}{1000}\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[ f_d[n] = f( n \frac{1} {1000}).\]</div>
+<p>More specifically, the recorded signal is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{aligned}
+f_d[n]&amp;= a_1 \cos \left(2 \pi 100 \frac{n} {1000} \right) + a_4 \cos \left(2 \pi 400  \frac{n} {1000}  \right)\\
+&amp;= a_1 \cos \left(2 \pi \frac{n}{10} \right) + a_4 \cos \left(2 \pi 4 \frac{n}{10} \right). 
+\end{aligned} \end{split}\]</div>
+<p>Observe that <span class="math notranslate nohighlight">\(f_d[n]\)</span> is periodic, with period <span class="math notranslate nohighlight">\(N=10\)</span>. This is because we are taking <span class="math notranslate nohighlight">\(10\)</span> samples per period</p>
+<p>(since <span class="math notranslate nohighlight">\(\frac{P}{T}=\frac{1000}{100}=10\)</span>).</p>
+<p>Now let us compute the first coefficient <span class="math notranslate nohighlight">\(F[1]\)</span> of the 10-point DFT of <span class="math notranslate nohighlight">\(f_d[n]\)</span>.</p>
+<p>We have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+F[1]&amp;= \sum_{n=0}^{9} f_d[n]  e^{-i \frac{2\pi}{10} n} \\
+&amp;= \sum_{n=0}^{9} \left( \frac{a_1}{2} \left(e^{i 2 \pi \frac{n}{10}}+ e^{-i 2 \pi \frac{n}{10}}\right) 
++
+\frac{a_4}{2}\left(e^{i 2 \pi  4 \frac{n}{10}}+ e^{-i 2 \pi 4 \frac{n}{10}}\right)\right)  e^{-i \frac{2\pi}{10}  n} \\
+&amp;= 10 \frac{a_1}{2}
+\end{aligned}
+\end{split}\]</div>
+<p>since complex exponentials have the following orthogonality property:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\sum_{n=0}^{N-1} e^{j \frac{2\pi}{N} k_1 n } e^{j \frac{2\pi}{N} k_2 n } = \left\{ 
+\begin{array}{ll}
+    N &amp;, \text{ if } k_1+k_2  \text{ is a multiple of } N  \\
+   0  &amp;, \text{ else}. 
+\end{array}
+\right.
+\end{split}\]</div>
+<p>Therefore, <span class="math notranslate nohighlight">\(a_1=2 \frac{F[1]}{10}\)</span>. So we are able to obtain the value of <span class="math notranslate nohighlight">\(a_1\)</span> from the value of <span class="math notranslate nohighlight">\(F[1]\)</span>.</p>
+<section id="exercise-5">
+<h3><span style="color:red"> Exercise 5 </span><a class="headerlink" href="#exercise-5" title="Link to this heading">#</a></h3>
+<p>Using code, test the formula <span class="math notranslate nohighlight">\(a_1=2 \frac{ F[1]}{10}\)</span> as follows:</p>
+<ul class="simple">
+<li><p>Pick values of <span class="math notranslate nohighlight">\(a_1\)</span> and <span class="math notranslate nohighlight">\(a_4\)</span>. (Do not pick the same value for both.)</p></li>
+<li><p>Replace the chosen values in the function <span class="math notranslate nohighlight">\(  f(t)= a_1 \cos \left(2 \pi 100 t \right) + a_4 \cos \left(2 \pi 400 t  \right)\)</span>.</p></li>
+<li><p>Sample the function <span class="math notranslate nohighlight">\(f(t)\)</span> with a sampling period <span class="math notranslate nohighlight">\(T=1000^{-1}\)</span> to obtain the sampling <span class="math notranslate nohighlight">\( f_d[n]\)</span>.</p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(F[1]\)</span> using the formula  <span class="math notranslate nohighlight">\(F[1]=\sum_{n=0}^{9} f_d[n]  e^{-i \frac{2\pi}{10} n}\)</span>.</p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(a_1\)</span> using the formula <span class="math notranslate nohighlight">\(a_1=2 \frac{ F[1]}{10}\)</span>.</p></li>
+<li><p>Compare the value of <span class="math notranslate nohighlight">\(a_1\)</span> you obtained to the original value of <span class="math notranslate nohighlight">\(a_1\)</span> you had chosen. Is it the same?</p></li>
+</ul>
+<p>Similarly, we can recover <span class="math notranslate nohighlight">\(a_4\)</span> from <span class="math notranslate nohighlight">\(F[4]\)</span>. We have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+F[4]&amp;= \sum_{n=0}^{9} f_d[n]  e^{-i \frac{2\pi}{10} 4 n} \\
+&amp;= \sum_{n=0}^{4} \left( \frac{a_1}{2} \left(e^{i 2 \pi \frac{n}{10}}+ e^{-i 2 \pi  \frac{n}{10}}\right) 
++
+\frac{a_4}{2}\left(e^{i 2 \pi  4 \frac{n}{10}}+ e^{-i 2 \pi 4 \frac{n}{10}}\right)\right) e^{-i \frac{2\pi}{5} 4 n} \\
+&amp;= 10 \frac{a_4}{2},
+\end{aligned}
+\end{split}\]</div>
+<p>again by using the fact that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\sum_{n=0}^{N-1} e^{j \frac{2\pi}{N} k_1 n } e^{j \frac{2\pi}{N} k_2 n } = \left\{ 
+\begin{array}{ll}
+    N &amp;, \text{ if } k_1+k_2  \text{ is a multiple of } N  \\
+   0  &amp;, \text{ else}. 
+\end{array}
+\right.
+\end{split}\]</div>
+<p>Therefore, <span class="math notranslate nohighlight">\(a_4=2 \frac{F[4]}{10}\)</span>. So we are able to obtain the value of <span class="math notranslate nohighlight">\(a_4\)</span> from the value of <span class="math notranslate nohighlight">\(F[4]\)</span>.</p>
+</section>
+<section id="exercise-6">
+<h3><span style="color:red"> Exercise 6 </span><a class="headerlink" href="#exercise-6" title="Link to this heading">#</a></h3>
+<p>Using code, test the formula <span class="math notranslate nohighlight">\(a_4=2 \frac{F[4]}{10}\)</span> in the same was as you did for Exercise 5.</p>
+</section>
+</section>
+<section id="another-toy-example-of-signal-analysis-with-aliasing">
+<h2><span style="color:#d97f00;"> 3. Another Toy Example of Signal Analysis- with Aliasing </span><a class="headerlink" href="#another-toy-example-of-signal-analysis-with-aliasing" title="Link to this heading">#</a></h2>
+<p>Again, we assume thay the signal recorded is known to be of the form</p>
+<div class="math notranslate nohighlight">
+\[  f(t)= a_1 \cos \left(2 \pi 100 t \right) + a_4 \cos \left(2 \pi 400  t  \right). \]</div>
+<p>So the signal has a period <span class="math notranslate nohighlight">\(P=\frac{1}{100}\)</span>.</p>
+<p>But this time, we are given a recording with only 500 samples per unit of time (so the sampling period is <span class="math notranslate nohighlight">\(T=\frac{1}{500}\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[ f_d[n] = f( n \frac{1} {500}).\]</div>
+<p>More specifically, the recorded signal is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+f_d[n]&amp;= a_1 \cos \left(2 \pi 100 \frac{n} {500} \right) + a_4 \cos \left(2 \pi 400  \frac{n} {500}  \right)\\
+&amp;= a_1 \cos \left(2 \pi  \frac{n}{5} \right) + a_4 \cos \left(2 \pi 4 \frac{n}{5} \right). 
+\end{aligned}
+\end{split}\]</div>
+<p>Let us write <span class="math notranslate nohighlight">\(f_d[n]\)</span> in terms of complex exponentials:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{aligned}
+f_d[n]&amp;= \frac{a_1}{2} \left(e^{i 2 \pi  \frac{n}{5}}+ e^{-i 2 \pi  \frac{n}{5}}\right) 
++
+\frac{a_4}{2}\left(e^{i 2 \pi  4 \frac{n}{5}}+ e^{-i 2 \pi 4 \frac{n}{5}}\right).
+\end{aligned}
+\]</div>
+<p>Here <span class="math notranslate nohighlight">\(f_d[n]\)</span> is periodic with period <span class="math notranslate nohighlight">\(N=5\)</span>. This is because we are taking <span class="math notranslate nohighlight">\(5\)</span> samples per signal period (since <span class="math notranslate nohighlight">\(\frac{P}{T}=\frac{500}{100}=5\)</span>).</p>
+<p>Now let us compute the first coefficient <span class="math notranslate nohighlight">\(F[1]\)</span> of the 5-point DFT of <span class="math notranslate nohighlight">\(f_d[n]\)</span>.</p>
+<p>We have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+F[1]&amp;= \sum_{n=0}^{4} f_d[n]  e^{-i \frac{2\pi}{5} n} \\
+&amp;= \sum_{n=0}^{4} \left( \frac{a_1}{2} \left(e^{i 2 \pi \frac{n}{5}}+ e^{-i 2 \pi  \frac{n}{5}}\right) 
++
+\frac{a_4}{2}\left(e^{i 2 \pi  4 \frac{n}{5}}+ e^{-i 2 \pi 4 \frac{n}{5}}\right)\right) e^{-i \frac{2\pi}{5} 4 n} \\
+&amp;= 5 \frac{a_1}{2} + 5 \frac{a_4}{2},
+\end{aligned}
+\end{split}\]</div>
+<p>again since</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\sum_{n=0}^{N-1} e^{j \frac{2\pi}{N} k_1 n } e^{j \frac{2\pi}{N} k_2 n } = \left\{ 
+\begin{array}{ll}
+    N &amp;, \text{ if } k_1+k_2  \text{ is a multiple of } N  \\
+   0  &amp;, \text{ else}. 
+\end{array}
+\right.
+\end{split}\]</div>
+<p>Thus, in this case, <span class="math notranslate nohighlight">\(F[1]\)</span> does not give us the value of <span class="math notranslate nohighlight">\(a_1\)</span> anymore, but rather only the sum of <span class="math notranslate nohighlight">\(a_1\)</span> and <span class="math notranslate nohighlight">\(a_4\)</span>.</p>
+<p>The reason for this is fundamental: the function <span class="math notranslate nohighlight">\(e^{i 2 \pi  4 \frac{n}{5}}\)</span> is the same as the function <span class="math notranslate nohighlight">\(e^{-i 2 \pi   \frac{n}{5}}\)</span>. So we cannot recover the coefficients separately because the two exponential signals, once sampled, become the same signal. Indeed, the sampled signal can be written as</p>
+<div class="math notranslate nohighlight">
+\[
+f_d[n]= \left( \frac{a_1}{2} +  \frac{a_4}{2} \right) e^{i 2\pi  \frac{n}{5}}+ \left( \frac{a_1}{2} +  \frac{a_4}{2} \right) e^{-i 2\pi  \frac{n}{5}}.
+\]</div>
+<p>Another way to see this is to observe that <span class="math notranslate nohighlight">\(\cos (2 \pi 4 \frac{n}{5})= \cos(2 \pi 4 \frac{n}{5}- 2\pi n )= \cos (-2 \pi  \frac{n}{5})=  \cos (2 \pi  \frac{n}{5})\)</span>.</p>
+<p>So the signal <span class="math notranslate nohighlight">\(f_d[n]\)</span> can be written as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+f_d[n]&amp;= a_1 \cos \left(2 \pi  \frac{n}{5} \right) + a_4 \cos \left(2 \pi 4 \frac{n}{5} \right),\\
+&amp;= a_1 \cos \left(2 \pi  \frac{n}{5} \right)+ a_4 \cos \left(2 \pi \frac{n}{5} \right),\\
+&amp;= (a_1+a_4) \cos \left(2 \pi  \frac{n}{5} \right).
+\end{aligned}
+\end{split}\]</div>
+<p>This phenomenon is called <strong>aliasing</strong>.</p>
+<section id="exercise-7">
+<h3><span style="color:red"> Exercise 7 </span><a class="headerlink" href="#exercise-7" title="Link to this heading">#</a></h3>
+<p>Check, numerically, that sampling <span class="math notranslate nohighlight">\(\cos (2\pi 100 t)\)</span> or <span class="math notranslate nohighlight">\(\cos (2\pi 400 t)\)</span>  with a period <span class="math notranslate nohighlight">\(T=\frac{1}{500}\)</span> in either cases yield the same discrete-time signal <span class="math notranslate nohighlight">\(f_d[n]\)</span>.</p>
+</section>
+<section id="exercise-8">
+<h3><span style="color:red"> Exercise 8 </span><a class="headerlink" href="#exercise-8" title="Link to this heading">#</a></h3>
+<p>Use an approach similar to that of Exercise 5 to show, numerically, that in the toy example with aliasing above, we have <span class="math notranslate nohighlight">\(\frac{2}{5} F[1]= a_1+a_4\)</span> (as opposed to <span class="math notranslate nohighlight">\(\frac{2}{5} F[1]= a_1\)</span>).</p>
+</section>
+</section>
+<section id="the-theory">
+<h2><span style="color:#d97f00;"> 4. The Theory </span><a class="headerlink" href="#the-theory" title="Link to this heading">#</a></h2>
+<p>The aliasing phenomenon is well understood. In fact, you may have heard about the <strong>Nyquist criterion</strong>: a condition that, if satisfied, guarantees that aliasing will not occur. In this lab, we will not dwelve further into this criterion per say. Instead, we will jump directly to the topic of interest, which is to analyze a signal <span class="math notranslate nohighlight">\(f(t)\)</span> from a sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span>. By “analysing” we mean recovering the Fourier series coefficients <span class="math notranslate nohighlight">\(c_k\)</span> of <span class="math notranslate nohighlight">\(f(t)\)</span>.</p>
+<p>Recall that the <strong>DFT</strong> of a signal <span class="math notranslate nohighlight">\(f_d[n]\)</span> with period <span class="math notranslate nohighlight">\(N\)</span> is defined as the discrete-time signal</p>
+<div class="math notranslate nohighlight">
+\[ F[k]= \sum_{n=0}^{N-1} f_d[n] e^{-i \frac{2 \pi}{N} k n },  \]</div>
+<p>and the specific value of entry <span class="math notranslate nohighlight">\(F[k]\)</span>  is called the <strong>k-th coefficients of the DFT</strong> of the signal.</p>
+<p>It turns out that the DFT coefficients give us the value of the Fourier series coefficients of <span class="math notranslate nohighlight">\(f(t)\)</span>, provided that we have taken “enough” samples considering the number of non-zero coefficients in the Fourier series of <span class="math notranslate nohighlight">\(f(t)\)</span>. More specifically, we have the following theorem.</p>
+</section>
+<section id="sampling-theorem">
+<h2>Sampling Theorem<a class="headerlink" href="#sampling-theorem" title="Link to this heading">#</a></h2>
+<p>If f(t) has a finite Fourier series with <span class="math notranslate nohighlight">\(2K+1\)</span> terms</p>
+<div class="math notranslate nohighlight">
+\[
+f(t)=\sum_{k=-K}^K c_k e^{i \frac{2\pi}{P} k t} = \frac{a_0}{2}+ \sum_{k=1}^K a_k \cos \left(\frac{2 \pi}{P} k t \right) + b_k \sin \left(\frac{2 \pi}{P} k t  \right).
+\]</div>
+<p>(so band-limited, with maximum frequency <span class="math notranslate nohighlight">\(K\frac{1}{P}\)</span>), and if we sample <span class="math notranslate nohighlight">\(f(t)\)</span> with a sampling frequency <span class="math notranslate nohighlight">\(\frac{1}{T}\)</span> such that <span class="math notranslate nohighlight">\(\frac{P}{T}=N\)</span> is an integer (i.e., an integer number of points per period), and</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{T} &gt; 2 K\frac{1}{P}\]</div>
+<p>(i.e., more than <span class="math notranslate nohighlight">\(2K\)</span> points per period). Then <span class="math notranslate nohighlight">\(f_d[n]\)</span> is periodic, with period <span class="math notranslate nohighlight">\(N\)</span>, and the DFT of <span class="math notranslate nohighlight">\(f_d[n]\)</span> gives the values of coefficients <span class="math notranslate nohighlight">\(c_k\)</span> of the Fourier series of <span class="math notranslate nohighlight">\(f(t)\)</span> as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+F[0] &amp;= N c_0 = N a_0, \\
+F[k]&amp; = N c_k= N\frac{1}{2}(a_k-ib_k), \text{ for all }  1\leq k \leq K.
+\end{align}
+\end{split}\]</div>
+</section>
+<section id="proof-of-sampling-theorem">
+<h2>Proof of Sampling Theorem<a class="headerlink" href="#proof-of-sampling-theorem" title="Link to this heading">#</a></h2>
+<p>The proof of the sampling theorem follows the same model as the computation performed in the toy examples.</p>
+<p>We start from the formula for the DFT coefficients and replace <span class="math notranslate nohighlight">\(f_d[n]\)</span> by its expression in terms of complex exponentials.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{aligned}
+F[k]&amp;= \sum_{n=0}^{N-1} f_d[n]  e^{-i \frac{2\pi}{N} k n} \\
+&amp;=  \sum_{n=0}^{N-1} f(nT) e^{-i \frac{2\pi}{N} k n} \\
+&amp;=  \sum_{n=0}^{N-1} \sum_{k'=-K}^K c_{k'} e^{i \frac{2\pi}{P} k' n T } e^{-i \frac{2\pi}{N} k n}.
+\end{aligned} \end{split}\]</div>
+<p>Because of the choice of sampling period <span class="math notranslate nohighlight">\(T\)</span>, the sampling is periodic with period <span class="math notranslate nohighlight">\(N=\frac{P}{T}\)</span>. Thus we can replace
+the fraction <span class="math notranslate nohighlight">\(\frac{P}{T}\)</span> in the right-hand-side by <span class="math notranslate nohighlight">\(N\)</span> to obtain</p>
+<div class="math notranslate nohighlight">
+\[ \begin{aligned}
+F[k] &amp;=  \sum_{n=0}^{N-1} \sum_{k'=-K}^K c_{k'} e^{i \frac{2\pi}{N} k' n  } e^{-i \frac{2\pi}{N} k n}.
+\end{aligned} \]</div>
+<p>Next we will simplify the right-hand-side by permuting the two sums and using the orthogonality property of the complex exponentials:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \sum_{n=0}^{N-1} e^{j \frac{2\pi}{N} k_1 n } e^{j \frac{2\pi}{N} k_2 n } = \left\{ 
+\begin{array}{ll}
+    N &amp;, \text{ if } k_1+k_2  \text{ is a multiple of } N  \\
+   0  &amp;, \text{ else}. 
+\end{array}
+\right.  \end{split}\]</div>
+<p>Step-by-step, we have, for <span class="math notranslate nohighlight">\(k=0,1,2,\ldots, K\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{aligned}
+F[k] &amp;=  \sum_{k'=-K}^K \sum_{n=0}^{N-1}  c_{k'} e^{i \frac{2\pi}{N} k'  n  } e^{-i \frac{2\pi}{N} k n}\\
+&amp;= \sum_{k'=-K}^K  c_{k'} \sum_{n=0}^{N-1}  e^{i \frac{2\pi}{N} k'  n  } e^{-i \frac{2\pi}{N} k n} \\
+&amp;= \sum_{k'=-K}^K  c_{k'} \left\{ 
+\begin{array}{ll}
+    N &amp;, \text{ if } k'-k  \text{ is a multiple of } N  \\
+   0  &amp;, \text{ else}. 
+\end{array}
+\right.  \\
+\end{aligned} \end{split}\]</div>
+<p>Now if <span class="math notranslate nohighlight">\(\frac{1}{T} &gt; 2 K \frac{1}{P}\)</span>, we have <span class="math notranslate nohighlight">\(\frac{P}{T} &gt; 2 K\)</span> and thus  <span class="math notranslate nohighlight">\(N &gt; 2 K\)</span>. This implies that the only <span class="math notranslate nohighlight">\(k'\)</span> in the range <span class="math notranslate nohighlight">\(k'\in \{ -K, -K+1, \ldots, K \}\)</span> which is such that <span class="math notranslate nohighlight">\(k'\)</span> a multiple of <span class="math notranslate nohighlight">\(N\)</span> is <span class="math notranslate nohighlight">\(k'=0\)</span>. Likewise, the only <span class="math notranslate nohighlight">\(k'\)</span> in the range <span class="math notranslate nohighlight">\(k'\in \{ -K, -K+1, \ldots, K \}\)</span> which is such that <span class="math notranslate nohighlight">\(k'\)</span> a multiple of <span class="math notranslate nohighlight">\(N\)</span> plus <span class="math notranslate nohighlight">\(k\)</span> is <span class="math notranslate nohighlight">\(k'=k\)</span>. Thus the right-hand-side sum simplifies to</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{aligned}
+F[k] &amp;=   N c_{k}, \text{ for } k=0,1,2,\ldots,K \\
+\end{aligned} \end{split}\]</div>
+<section id="exercise-9">
+<h3><span style="color:red"> Exercise 9 </span><a class="headerlink" href="#exercise-9" title="Link to this heading">#</a></h3>
+<p>Illustrate the Sampling Theorem with a numerical example:</p>
+<ul class="simple">
+<li><p>Write a  periodic signal <span class="math notranslate nohighlight">\(f(t)\)</span> as a linear combination of  sines and cosines.</p></li>
+<li><p>Obtain a sampling <span class="math notranslate nohighlight">\(f_d[n]=f(nT)\)</span> of the signal <span class="math notranslate nohighlight">\(f(t)\)</span>, with an appropriate sampling period <span class="math notranslate nohighlight">\(T\)</span>.</p></li>
+<li><p>Compute the DFT coefficients of the sampling <span class="math notranslate nohighlight">\(f_d[n]\)</span>.</p></li>
+<li><p>Use the formula from the theorem to recover the coefficients <span class="math notranslate nohighlight">\(a_k\)</span>, <span class="math notranslate nohighlight">\(b_k\)</span> of the linear combination from the DFT coefficients.</p></li>
+</ul>
+</section>
+</section>
+<section id="the-fft-command">
+<h2><span style="color:#d97f00;"> 5. The FFT Command </span><a class="headerlink" href="#the-fft-command" title="Link to this heading">#</a></h2>
+<p>In the previous exercise, you had to write your own function to compute a DFT. Running your function may have taken a long time, especially if you used loops. Python has a quick command to compute a DFT. The command uses a fast algorithm called a Fast Fourier Transform (FFT) to compute the DFT.</p>
+<p>Numpy and Scipy python libraries have an fft function which can be used for computing discrete fourier transforms.</p>
+<p>An example is provided to demonstrate computing and plotting of the DFT of a signal using numpy.fft.fft function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">sine_wave_generator</span><span class="p">(</span><span class="n">frequency</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">frequency</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">y</span>
+
+<span class="n">sampling_rate</span> <span class="o">=</span> <span class="mi">2100</span>
+<span class="n">sampling_period</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">sampling_rate</span>
+<span class="n">duration</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">sampling_period</span><span class="p">)</span> 
+
+<span class="n">waveform</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">sine_wave_generator</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">sine_wave_generator</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">sine_wave_generator</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">waveform</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Signal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;f(t)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/5204c095e3634b11094e04ebe5f34525456b83f50ddc3a6062e4fdada3b97340.png" src="../../../_images/5204c095e3634b11094e04ebe5f34525456b83f50ddc3a6062e4fdada3b97340.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">waveform</span><span class="p">)</span>
+
+<span class="n">num_samples</span> <span class="o">=</span> <span class="n">sampling_rate</span> <span class="o">*</span> <span class="n">duration</span>
+<span class="n">xf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">num_samples</span><span class="p">,</span> <span class="n">sampling_period</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">dft</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Discrete Fourier Transform&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/3d6b92278c3b961523cf61aadd05841a6e0121a544d1e09b7fbde08858d6c670.png" src="../../../_images/3d6b92278c3b961523cf61aadd05841a6e0121a544d1e09b7fbde08858d6c670.png" />
+</div>
+</div>
+<section id="exercise-10">
+<h3><span style="color:red"> Exercise 10 </span><a class="headerlink" href="#exercise-10" title="Link to this heading">#</a></h3>
+<p>Repeat exercise 9 with a different signal <span class="math notranslate nohighlight">\(f(t)\)</span>. This time, use the FFT command.</p>
+</section>
+</section>
+<section id="reflection">
+<h2><span style="color:green;"> Reflection </span><a class="headerlink" href="#reflection" title="Link to this heading">#</a></h2>
+<p>Do not skip this section! Assignment will be graded only on completing this section.</p>
+<p><strong>1. What parts of the lab, if any, do you feel you did well? <br>
+2. What are some things you learned today? <br>
+3. Are there any topics that could use more clarification? <br>
+4. Do you have any suggestions on parts of the lab to improve?</strong></p>
+<h3 style="background-color:#6994a2"> Write Answers for the Reflection Below </h3></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./labs/analysis/dft"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../../modulation/chirp/chirp.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lab 8: Chirps, Bells, and other Instruments</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../signal_analysis/signal_analysis_with_dft.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lab 10: Frequency Analysis with the DFT</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content"><span style="color:#d97f00;"> 00. Content </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematics">Mathematics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-skills">Programming Skills</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embedded-systems">Embedded Systems</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-hardware"><span style="color:#d97f00;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intro"><span style="color:#d97f00;"> 1. Intro </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1"><span style="color:red"> Exercise 1 </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#periodicity-of-the-sampling"><span style="color:#d97f00;"> 2. Periodicity of the Sampling </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2"><span style="color:red"> Exercise 2 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3"><span style="color:red"> Exercise 3 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4"><span style="color:red"> Exercise 4 </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#toy-example-of-signal-analysis"><span style="color:#d97f00;"> 2. Toy Example of Signal Analysis </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5"><span style="color:red"> Exercise 5 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-6"><span style="color:red"> Exercise 6 </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#another-toy-example-of-signal-analysis-with-aliasing"><span style="color:#d97f00;"> 3. Another Toy Example of Signal Analysis- with Aliasing </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-7"><span style="color:red"> Exercise 7 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-8"><span style="color:red"> Exercise 8 </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-theory"><span style="color:#d97f00;"> 4. The Theory </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-theorem">Sampling Theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proof-of-sampling-theorem">Proof of Sampling Theorem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-9"><span style="color:red"> Exercise 9 </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-fft-command"><span style="color:#d97f00;"> 5. The FFT Command </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-10"><span style="color:red"> Exercise 10 </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection"><span style="color:green;"> Reflection </span></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mireille Boutin, Alden Bradford, and Adharsh Sabukumar
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>This work is licensed under a 
+<a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

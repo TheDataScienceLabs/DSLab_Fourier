@@ -1,0 +1,935 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Lab 10: Frequency Analysis with the DFT &#8212; The Data Science Labs on Fourier Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=4bca2e18" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'labs/analysis/signal_analysis/signal_analysis_with_dft';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Lab 11: Build a Pedometer" href="../pedometer/pedometer_project.html" />
+    <link rel="prev" title="Lab 9: The Discrete Fourier Transform (DFT)" href="../dft/dft.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="The Data Science Labs on Fourier Analysis - Home"/>
+    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="The Data Science Labs on Fourier Analysis - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../index.html">
+                    About This Course
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preliminaries</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/intro_lab.html">Lab 0: Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Synthesis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../synthesis/playing_sound/play_sounds.html">Lab 1: Playing Sound</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../synthesis/build_a_synthesizer/build_a_synthesizer.html">Lab 2: Build a synthesizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../synthesis/build_a_theremin/build_a_theremin.html">Lab 3: Build a theremin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../synthesis/experiencing_sound/experiencing_sound.html">Lab 4: The human experience of sound</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modulation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../modulation/tremolo_beats/tremolo_beats_1.html">Lab 5: Tremolo/Beats Effects 1</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../modulation/tremolo_beats/tremolo_beats_2.html">Lab 6: Tremolo/Beats Effects 2</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../modulation/voice_changer/voice_changer_project.html">Lab 7: Build a Voice Changer/Voice Shield</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulation/chirp/chirp.html">Lab 8: Chirps, Bells, and other Instruments</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analysis</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dft/dft.html">Lab 9: The Discrete Fourier Transform (DFT)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab 10: Frequency Analysis with the DFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pedometer/pedometer_project.html">Lab 11: Build a Pedometer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../instrument_tuning/tuning.html">Lab 12: Tuning an instrument</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra Materials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../extra_materials/intro_to_breadboards/intro_to_breadboards.html">Introduction to Breadboards</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/AldenMB/DSLab_Fourier" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/AldenMB/DSLab_Fourier/issues/new?title=Issue%20on%20page%20%2Flabs/analysis/signal_analysis/signal_analysis_with_dft.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/labs/analysis/signal_analysis/signal_analysis_with_dft.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lab 10: Frequency Analysis with the DFT</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content"><span style="color:#d97f00;"> 00. Content </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematics">Mathematics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-skills">Programming Skills</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embedded-systems">Embedded Systems</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-hardware"><span style="color:#d97f00;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction"><span style="color:#d97f00;"> 1. Introduction </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#denoising-a-signal"><span style="color:#d97f00;"> 2. Denoising a Signal </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1"><span style="color:red"> Exercise 1 </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#determining-the-dominant-frequency-components-of-a-signal"><span style="color:#d97f00;"> 3. Determining the Dominant Frequency Components of a Signal </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2"><span style="color:red"> Exercise 2 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3"><span style="color:red"> Exercise 3 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4"><span style="color:red"> Exercise 4 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5"><span style="color:red"> Exercise 5 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-6"><span style="color:red"> Exercise 6 </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection"><span style="color:green;"> Reflection </span></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-10-frequency-analysis-with-the-dft">
+<h1>Lab 10: Frequency Analysis with the DFT<a class="headerlink" href="#lab-10-frequency-analysis-with-the-dft" title="Link to this heading">#</a></h1>
+<p><font size="3"> Last updated 8/13/24 </font></p>
+<section id="content">
+<h2><span style="color:#d97f00;"> 00. Content </span><a class="headerlink" href="#content" title="Link to this heading">#</a></h2>
+<section id="mathematics">
+<h3>Mathematics<a class="headerlink" href="#mathematics" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>DFT</p></li>
+<li><p>IDFT</p></li>
+</ul>
+</section>
+<section id="programming-skills">
+<h3>Programming Skills<a class="headerlink" href="#programming-skills" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>FFT</p></li>
+<li><p>IFFT</p></li>
+</ul>
+</section>
+<section id="embedded-systems">
+<h3>Embedded Systems<a class="headerlink" href="#embedded-systems" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>N/A</p></li>
+</ul>
+</section>
+</section>
+<section id="required-hardware">
+<h2><span style="color:#d97f00;"> 0. Required Hardware </span><a class="headerlink" href="#required-hardware" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>N/A</p></li>
+</ul>
+<h3 style="background-color:#6994a2"> Write your name and email below: </h3>
+<p><strong>Name:</strong> me</p>
+<p><strong>Email:</strong> me &#64;purdue.edu</p>
+</section>
+<section id="introduction">
+<h2><span style="color:#d97f00;"> 1. Introduction </span><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>In a previous lab, we covered how to sample real-time signals and learn the frequency components of the signal using Discrete Fourier Transform (DFT).</p>
+<p>Recall that the <strong>DFT</strong> of a discrete-time signal with period <span class="math notranslate nohighlight">\(N\)</span>, <span class="math notranslate nohighlight">\(f_d[n]\)</span> is defined as:</p>
+<div class="math notranslate nohighlight">
+\[ F[k]= \sum_{n=0}^{N-1} f_d[n] e^{-i \frac{2 \pi}{N} k n },  \]</div>
+<p>and the specific value of entry <span class="math notranslate nohighlight">\(F[k]\)</span>  is called the <strong>k-th coefficients of the DFT</strong> of the signal and the  DFT coefficient with the largest magnitude indicates the largest frequency contained in the signal.</p>
+<p>DFT is a powerful tool in signal analysis with wide applications like reconstruction of medical images, computational photography, digital compression, noise cancellation in headphones, telecommunication and many more.</p>
+</section>
+<section id="denoising-a-signal">
+<h2><span style="color:#d97f00;"> 2. Denoising a Signal </span><a class="headerlink" href="#denoising-a-signal" title="Link to this heading">#</a></h2>
+<p>Let us consider that you are recording a person playing a piano in a mall using a basic audio recorder. Even if you are standing close to the audio source, it is wise to assume that the audio recorder will pick up the ambient noise and sound of other people in the busy mall. In such a case, we need a way to seperate the background noise from the music in the recording.</p>
+<p>Let us consider a 1 second clip of the performance where the pianist played an <span class="math notranslate nohighlight">\(A_1\)</span> (55Hz) and <span class="math notranslate nohighlight">\(B_2\)</span> (123Hz) notes. Let us look at what the signal looks like in a perfect environment without any noise by loading <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/signal_analysis/ideal_piano_recording_example.npy">ideal_piano_recording_example.npy</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Audio</span>
+
+<span class="c1"># the values used during the recording are provided</span>
+<span class="n">sampling_rate</span> <span class="o">=</span> <span class="mi">2100</span>
+<span class="n">sampling_period</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">sampling_rate</span>
+<span class="n">duration</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">sampling_period</span><span class="p">)</span> 
+
+
+<span class="n">ideal_recording</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;ideal_piano_recording_example.npy&#39;</span><span class="p">)</span>
+
+<span class="n">Audio</span><span class="p">(</span><span class="n">ideal_recording</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="n">sampling_rate</span><span class="p">)</span>
+<span class="c1"># NOTE: if this doesn&#39;t play, click the three dots to download and play the audio </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+                <audio  controls="controls" >
+                    <source src="data:audio/wav;base64,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" type="audio/wav" />
+                    Your browser does not support the audio element.
+                </audio>
+              </div></div>
+</div>
+<p>Now, let us plot and observe the ideal recording in time domain.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">ideal_recording</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Ideal Recording&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;f(t)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/91b03ca56833fa625f2b30948441aa1b2bb4a17302d68b1fa9c5418a1a15d298.png" src="../../../_images/91b03ca56833fa625f2b30948441aa1b2bb4a17302d68b1fa9c5418a1a15d298.png" />
+</div>
+</div>
+<p>Now let us look at our noisy recording, <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/signal_analysis/noisy_piano_recording_example.npy">noisy_piano_recording_example.npy</a> and try to recover the original sound from it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">actual_recording</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;noisy_piano_recording_example.npy&#39;</span><span class="p">)</span>
+<span class="n">Audio</span><span class="p">(</span><span class="n">actual_recording</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="n">sampling_rate</span><span class="p">)</span>
+<span class="c1"># NOTE: if this doesn&#39;t play, click the three dots to download and play the audio </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+                <audio  controls="controls" >
+                    <source src="data:audio/wav;base64,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" type="audio/wav" />
+                    Your browser does not support the audio element.
+                </audio>
+              </div></div>
+</div>
+<p>As expected, there is a discernible differnce between two audio samples. Now let us plot and visualize this recording.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">actual_recording</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Actual Recording&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;f(t)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/55a50cefed9b5eab796d89b7395c1986b3215d65e7e788f8b83aa35c6abcce45.png" src="../../../_images/55a50cefed9b5eab796d89b7395c1986b3215d65e7e788f8b83aa35c6abcce45.png" />
+</div>
+</div>
+<p>We can see that the time domain plots of both the signals are not distinguishable. So it is safe to assume that we cannot approximate the original signal from this time domain plot alone.</p>
+<p>Let us see the frequencies contained in the recording by plotting its dft.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">actual_recording</span><span class="p">)</span>
+<span class="n">abs_dft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">dft</span><span class="p">)</span>
+<span class="n">num_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">actual_recording</span><span class="p">)</span>
+<span class="n">xf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">num_samples</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">sampling_rate</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span> <span class="n">abs_dft</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;DFT of Actual Recording&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/97e38f35c07dfba3deac2356c47d7c7cbd8294b764d579b7309b78ceaab300f7.png" src="../../../_images/97e38f35c07dfba3deac2356c47d7c7cbd8294b764d579b7309b78ceaab300f7.png" />
+</div>
+</div>
+<p>This DFT plot gives us an idea about the dominant frequencies in the signal. By looking at the amplitudes, we can identify that the dominant frequencies in the recording are 55Hz and 123Hz. We can conclude with sufficient confidence that the other frequencies may likely be due to the noisy environment as the amplitudes are low for those frequencies. But it may not always be the case.</p>
+<p>Now let us filter the noise from our recording and plot its dft.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the above snippet will return a list, with 1s in indices </span>
+<span class="c1"># where amplitude &gt; 300 and 0s in other places.</span>
+<span class="n">noise_indices</span> <span class="o">=</span> <span class="n">abs_dft</span><span class="o">&gt;</span><span class="mi">300</span>
+
+<span class="c1"># filter out the amplitude values under 300</span>
+<span class="n">dft_clean</span> <span class="o">=</span> <span class="n">noise_indices</span> <span class="o">*</span> <span class="n">dft</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">dft_clean</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;DFT of Filtered Recording&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/c33d833d4a80488fede62971495f73f84fd5452cbfef9d878696816b664b7a33.png" src="../../../_images/c33d833d4a80488fede62971495f73f84fd5452cbfef9d878696816b664b7a33.png" />
+</div>
+</div>
+<p>Let us compare this plot with the DFT of the ideal recording without any noise.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">ideal_recording</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;DFT of Ideal Recording&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/671d248bcdace478c6bbde68c8d19634f0550bd21a1be178c145f63828f14701.png" src="../../../_images/671d248bcdace478c6bbde68c8d19634f0550bd21a1be178c145f63828f14701.png" />
+</div>
+</div>
+<p>The filtered signal is identical to the original signal. We can now convert the denoised signal to time domain.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filtered_recording</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">dft_clean</span><span class="p">)</span>
+<span class="n">Audio</span><span class="p">(</span><span class="n">filtered_recording</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="n">sampling_rate</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\elibo\anaconda3\lib\site-packages\IPython\lib\display.py:159: ComplexWarning: Casting complex values to real discards the imaginary part
+  data = np.array(data, dtype=float)
+</pre></div>
+</div>
+<div class="output text_html">
+                <audio  controls="controls" >
+                    <source src="data:audio/wav;base64,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" type="audio/wav" />
+                    Your browser does not support the audio element.
+                </audio>
+              </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># if getting: &quot;ComplexWarning: Casting complex values to real discards the imaginary part&quot;</span>
+<span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">actual_recording</span><span class="p">),</span> <span class="mi">0</span><span class="p">):</span> <span class="c1"># check if all imaginary components are close to zero</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The array is all real.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The array contains complex values.&quot;</span><span class="p">)</span>
+    
+<span class="c1"># The original signal is all real, so it is fine to discard the imaginary values. </span>
+<span class="c1"># You can explicitly do this with np.real() and not get the warning: </span>
+<span class="n">filtered_recording</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">dft_clean</span><span class="p">))</span>
+<span class="n">Audio</span><span class="p">(</span><span class="n">filtered_recording</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="n">sampling_rate</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The array is all real.
+</pre></div>
+</div>
+<div class="output text_html">
+                <audio  controls="controls" >
+                    <source src="data:audio/wav;base64,UklGRowQAABXQVZFZm10IBAAAAABAAEANAgAAGgQAAACABAAZGF0YWgQAACzApkjZUE7WfdocW+dbIZhKVApO3Ul5BHPAsr5Z/cy+7wD2w71GWEi0SWgIhoYmAZ97wvVHrrOoQePKYS3giKLt5y6tZTTL/NUERUrKT4wSd9L/kZEPBsuQB9jEsUJ5QZQCocTEiG3MMQ/dktVUZVPWkXZMl4ZJfsS22C8L6IljxqF2oQPjlKfVrY/0PrpqAAAEpAc7h+/HJcUvAnT/nb22vJ49dX+ag6wIlM5fE8yYsNuHXMabqxf40jOKz0LZep+zFm0DKStnDqem6fTtkLJDNx17Ej4Hf6J/S33mewU4EfU2csSyX7Ntdk97ZAGTyOEQAVb32+yfP9/XnmKaUhSLDZHGMP7duOQ0VTH8sSMyVvT9d+k7M72UvzY+wD1eOje15HFWrQKpxqgTaFwqze+Qdg+9zgY8DdBU4pnAHPfdIhtal7OSYgylhu6Bx75CPG973b0g/2MCOsSDBrQG9wW0Ape+DDhv8f7ru6ZVIs7hcOI7pWfq8DHe+ecB/ckyDwQTctUEFQFTKs+nS6oHmkR9AiEBlgKohOuIBcvJDwoReVH3UKTNZ4goAUX5wnIrav/lFuGOYH4hdWTCakAw7PeDflOD2gfOCivKcIkTRu/D8cE7vw1+tD97we/F3QrkEAwVHVj42u9a0Ri1U/iNckWjvVw1ZG5iKQVmOqUnJq0p+q5dc5s4ivzsP7aA5ICxftA8W7l/9qA1ADUvtr46Nn9kReKM7tOC2a5drZ+63xgcThdlEJFJHoFU+l70tvCW7vPuwDD4s7h3D3qdPSY+ZX4XvHq5BXVYsSdtXurNag6rfS6stC67HkM1yyWSrli53KzecZ27WryV2VAQCeCD877D+5C51TnL+3l9voBxAvLEScSyQuo/sPrC9Ugvf2mjpVTiwWKWJLioyK9r9uF/GAcLDheTUlaTl7nWZJOmT67LMsbTA4bBiwEawjDEUUebiuENvw81jzpNBUlTw6I8m/UI7fHnSOLQYEygeaKL53stU7SM++MCcoeHy3CM/wyGCwsIc0UrQk2AjQAjgQnD9sepjHpRMJVdGHGZVVhyVPnPXwhLAEa4IjBbqgel/iORpA0mvGq9b9T1iPr5fvRBhYL7QiMAf32xOuQ4svdRd/u56j3TQ3IJltB9lmfbdF52nwNduBl3U1zMKgQtvGm1uzBILXLsF+0U75azMDbxOkF9Mz4UvfY753jtdS5xXG5arKashW74svw4zUB6SDfP+paQ2/jesJ8+3TBZDVOIzScGZcBie4a4vLcqN7a5WDwpfsABR4KVAniARH0LuFky3C1SKK0lOuOSJIWn3+0p9Df8P0RwzBASjBcQWU7ZfxcWU7YO1UonhYTCVEBAAC8BCoOJxobJlQvcjO5MFYmhhSW/LngyMPoqB2T7IQGgA+Fh5PdqZ/FzOM1Aecagy6OOps+TTs9Mr0lehghDfYFhwRxCUQUmCM0NWRGUlRuXMlcXVQ7Q4kqaAyy657LXq+0maGMIIkNjy+dYrHlyLbg+fVaBlgQcRMwEBYIW/2b8nfqMOdU6n30OQUUG74zX0zsYZRxIHk6d6RrQFf3O3wc+vuo3WrEcbL8qC6oHK/quxbM0txp65/1APoR+GLwdeSL1lHJe79ou8K+QsqP3T73/hTfM69QYWhueC1/Anx1bx1ba0FZJQQKS/Js4MLVntI/1vreduoI9hj/eQPFAY35aevt2HTEzrDhoEKX25WlnX+uL8eD5ZUGKScORIhapWh1bSppBF0pS1E2ayE1D+ABx/o/+pf/Lgm5FI8fEycWKSMkwReGBA/syNCmtcWd/IuHgrKCsoycn3+5ptfs9iIUeizZPRxHMkgbQrw2lihpGtIO6Af4Bk0MLRfsJSo2JkUfUL1UYFFkRT0xbhZh9xbXy7iSn+2Nf4XZhmuRmaP0uo3UWu2XAikS2Bp3HOUX5g7cA3H5MPIr8Kb06v8wEb4mFz5QVHNm5XG/dBRuEl4ARh4oWAft5gTKTrOupP+eAqJsrBW8Ts484D3vRvkp/bn60/I450/azM5Kx+/FGMwh2lHv7QlqJ71EvV6Kcut9mn9rd1BmQE7vMXgU+fgp4gfSmcnTyKDODtmd5ZXxc/o+/tX7GPPu5CzTUsA4r6ii/JzJn6Kr/79H2wD7GBxPO5JVaGg4cnxyz2nSWfBECy4aGL8F9fjJ8kDzWvk4A2sORhhHHnUeqRfBCav1R90yw3GqBpaTiP2DKInbl8Oumctv6woLTyeePStMMFL+T/BGLjliKVQaiQ7kB2kHFw3mF/AltTRxQYVJ1UoXRAg1fB5MAhvjBsRCqLKSiYUHglGIaZdZrXDHn+Le+5AQ2R7SJakljR99FQIKyP9A+UH4xv3FCSob+i+URQpZhmesbu9syWHTTbcy/hK+8TrSf7f6ozeZqZetnpqsCL8h0wfmOPXg/hwCEv/n9pTroN+61V/Qc9EC2gzqgABbG+I3/VKbaRV5jH8hfBdvy1mGPjYgCgIP58zR9MMyvh3ATMiP1ELire5q97j6wfe17sTg+8/3voywX6eGpTusrrvw0hTwYBCsML1Nr2RXc314CXT/ZldTvTswI6AMjPqq7rvpbet28sH8vQfEEHcVGhTXC+H8deiz0Fu4caLWkemIMYkpkymmfcCT31EAeR8LOqhN2lg9W4dVZUlBOeInDxgqDN0F3wXfC5AW1yMbMaE79EA7P4U17yOpC9XuRtAls4+aK4nWgGWCjo3toDa6g9ax8sgLXx/gK78wgS6iJlwbUg8qBTT/B/9RBbgR3iKRNhhKjFpCZSdoDGLUUoA7EB5N/Wfcm77FpgmXj5Bjk3qe16/XxIvaHO4x/TYGmQjOBET8JfEL5p/dL9pg3ebnaPmDEPUq4kUyXvlw13tJfd50SWNGSmws0Qys7uvU18HQtiG0Arm8w+XRwOCd7Tv2G/mw9Xns7t5JzzzAirSrrmuwpronzaLm2wTuJKBD0V3bcOZ6Jnvxca5gqknBLwYWWP8A7nDjEuBB42nrRPYtAYoJJg2ICisBlvFQ3a3GhLDOnT2R44zmkVSgHbcy1MP0mxWCM6dL9FtTY8ZhZVgtSb429COLE7gH4wF3AtMIZxPsH7krJzTuNoIySybDEnD5sdx8v/ukIZBOgwGAooZ2lrit1Mm55z0EihxwLqw4Djt0NqUsCyBcEzIJrgMoBAALiBciKG86pkv2WOZfs16QVMlBvyfCCMjnEMi/rHaYAI0hi3iSlqEytnjNauRG+OIG+A5DEIoLfQJ09xXt9OUw5CTpMPWiB9AeQTgFURJmrHTFej13EmphVEA4hRhk+AnbOMPwsjWr8Kv7s1XBY9FY4ZfuDPd8+aj1XuxS3+nQ3MPYuhu4I71tymLfYPrpGPc3U1QBa6V5x34Ieits91YAPU0h8way8JjgyNdR1j7bs+RB8Dn7EgPLBTACEfhB6IzUcL/Qq4ucHZRDlLydK7AeyjfpcgqQKm9GeFvrZxZrZGVMWBZGizGUHdUMUAEm/G79OwTADpIaASWAKwAsQiUIFycCb+h2zEWx9ZlHiUqBFYOgjsiibL2724b6rRaFLSU9pUQxRAA9HjEfI8MVjAtoBmsHog4WG+sqnjtjSoVUy1fGUgxFTi9GE4fzKdNqtUedGY1NhjqJE5UOqJu/wNh+8DIE8RG+GKwY0RIbCQb+PPQ17tntN/RYAT0U9SrgQgNZcmqtdPt1qG0eXN5CUSR7A6Dj1MeisrelsqEZpm6xZ8FF0zXktPHl+dT7lfc97rvhktR8yQTDKsMXy+vasfF4DZEr3Ug5Yt10v37Ofhp10WIUSrItzRB09jbh4dI+zATN6NPU3jPrU/bK/cz/cvvZ8CXhWs4Xuz6qjJ46mqueN6wZwoTe1P7mH3g+klfiaAhxum/MZQ9VC0CtKd0UGwQv+er0E/d0/gMJPBRwHTUiuyASGFgIs/I42aW+CqZhki+GJoPziSCaI7KNz1jvSg5aKRQ+4Eo1T6FLrUGmM0AkPBb7CzQHrggoEGMcSytHOo9Glk1mTetEHjQQHMv+F98hwBalvZAdhT6DBYs/m8ux3ctk5mn+dxHmHQ4jWCEmGqAPWwQA++L1rPYe/u8L0h6cNJBKuF1MaxVxuG3qYIFLWS8hDwPuPc/AtdCjv5rFmgSjp7EoxKvXYunt9q/+AABE+9bx2eXl2azQjsxHz6rZeutqA0cfODwYV+NsFHv6f/F6eWwjVmE6NBzL/hnlfdFyxWXBs8TDzUPahuff8gr6efuP9rzraNzMypy5rquSozejo6vFvHfVmPNOFGI0olBMZl9z4HbzcNFink4bN0ofBwqm+ajvj+zQ7+r3pQJlDYkV0BisFYMLx/rs5ELMobMUnmyO4IbGiFyUwKgJxITjBgRYIpY7j00EV9JX5FAWROozLiOXFGEKAAbvB54Pixt1Ka82hUCYRD5BvjVxIsIIAushzFGvn5eSh9OA/oOLkOOklb6n2vz1tQ2UHz4qYi3BKQYhihX4CegAh/w7/nMGlxQTJ4w7Mk8fX75oJWpbYoFR0Th9Gmv519jyu3ilW5eLktaW/KLXtK/Jld7L8CD+OQXBBWkA0vZH63Hg7djq1t3bP+h6+/ETOC9aSjtiBHR5fU59TnNkYIFGWigUCd7rhtMnwuS4zrflvUTJateX5S7xGPgI+bPz0+gU2tbJ2rrhr0OroK6cusPOkumfCOooNUduYBNygXoneZVuZ1wMRXMrphJp/dftKOWJ4xvoGvEk/I8G0A3VD1oLFgDQ7kLZ6cGwq42ZG45Bi+yR7qEAuuLXqPgTGfw1skxSWwFh/l2UU+tDsjHEH8MQugbXAkcFLQ3IGLElNDG2OBE66DPfJa8QE/aW2EO7Q6F2jRWCZoCViLCZwLERzojrBwfXHfktZzYtN2Ax8iZjGmsOjQXCASsE6AwSG9Qsrj/IUFhdBGM3YF5UAUC5JAAF6OOxxG6qmJfIjYSNMZYuphC79dHm50H6Cwc3DcAMpgbI/JXxuue54YvhV+g/9lUKuSLOPI9V+mltdwN82HYlaD1RZzSRFPb0sdhiwtWz0K0CsBC50sae1qzld/Ec+Jf46fIa6BDaS8uPvnu2K7Xpu/jKhOG0/eUc+ju+V05td3r5fa93l2inUpA4YR0iBHDvJ+Eu2lfac+CD6v71OADABr8HOgI79tbkBtBsuvamephUkRGTN54tsknNAu1CDsYtgUgGXMlmV2hTYWZT+EDfLPkZyAogAeT97gAZCWwUYCBGKqEvjS7+JfQVgP+l5B7IA61lluuGdIDfg+mQNaZ6wcrf9v3xGDQuDDzOQeM/tDdxK74dUxGWCEgFPwhLETwfBTAJQXRPoVh6WsVTUkQQLewPoO9Uz0OyUZupjIOH94sBmamsQ8TQ3GDzdAVWEUUWkxSKDT8DQ/g874nq5usp9B8DixdNL6VHj10qbhd3z3bXbNdZgz9tIK//h+D1xViyJqfDpHmqm7a/xh7Y8efW8yP6Ifoh9HDpKdzlzl/EDL/FwHvKEdxX9CsRui/bTHFl1XYqf5t9cnITX8pFfSlPDTj0oeAg1EHPf9Fe2aTkrvDW+swA+QCv+kjuIt1vyei1dKW+mtmX9J0srYDE8OE=" type="audio/wav" />
+                    Your browser does not support the audio element.
+                </audio>
+              </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">filtered_recording</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Filtered Recording&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;f(t)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\elibo\anaconda3\lib\site-packages\matplotlib\cbook\__init__.py:1298: ComplexWarning: Casting complex values to real discards the imaginary part
+  return np.asarray(x, float)
+</pre></div>
+</div>
+<img alt="../../../_images/7a00e8c98eb4f8f5aaf594646f0225845813c7a2593decfe1013b37c4224e665.png" src="../../../_images/7a00e8c98eb4f8f5aaf594646f0225845813c7a2593decfe1013b37c4224e665.png" />
+</div>
+</div>
+<p>Note: We are clearly able to seperate the noise from the original signal due to the large difference between amplitudes of the frequencies. If the original signal and the ambient noise had the similar amplitude, we wouldnt be able to get a properly filtered signal.</p>
+<section id="exercise-1">
+<h3><span style="color:red"> Exercise 1 </span><a class="headerlink" href="#exercise-1" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Build a signal that is a sum of sines of 5 different frequencies. Vary the magnitude of the coefficients so that one is very large compared to the others.</p></li>
+<li><p>Play the sound corresponding to this signal.</p></li>
+<li><p>Compute the DFT and plot their magnitude.</p></li>
+<li><p>For what value of <span class="math notranslate nohighlight">\(k\)</span> is the magnitude of <span class="math notranslate nohighlight">\(F[k]\)</span> the largest? Denote this value of <span class="math notranslate nohighlight">\(k\)</span> by <span class="math notranslate nohighlight">\(k_0\)</span>.</p></li>
+<li><p>What frequency does the <span class="math notranslate nohighlight">\(k_0\)</span> you identified correspond to? Denote that frequency by <span class="math notranslate nohighlight">\(f_0\)</span>.</p></li>
+<li><p>Play the sound which only has the frequency <span class="math notranslate nohighlight">\(f_0\)</span>. How does it compare to the original sound?</p></li>
+</ul>
+</section>
+</section>
+<section id="determining-the-dominant-frequency-components-of-a-signal">
+<h2><span style="color:#d97f00;"> 3. Determining the Dominant Frequency Components of a Signal </span><a class="headerlink" href="#determining-the-dominant-frequency-components-of-a-signal" title="Link to this heading">#</a></h2>
+<section id="exercise-2">
+<h3><span style="color:red"> Exercise 2 </span><a class="headerlink" href="#exercise-2" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Load <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/signal_analysis/melodica_recording.wav">melodica_recording.wav</a> and plot the recording.</p>
+<ul>
+<li><p>Hint: load the file using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.io.wavfile.read.html">scipy.io.wavfile.read</a> and convert the file to a numpy array.</p></li>
+</ul>
+</li>
+<li><p>Play the sound corresponding to this signal.</p></li>
+<li><p>Compute the DFT and plot its magnitude.</p></li>
+<li><p>For what value of <span class="math notranslate nohighlight">\(k\)</span> is the magnitude of <span class="math notranslate nohighlight">\(F[k]\)</span> the largest? Denote this value of <span class="math notranslate nohighlight">\(k\)</span> by <span class="math notranslate nohighlight">\(k_0\)</span>.</p></li>
+<li><p>What frequency does the <span class="math notranslate nohighlight">\(k_0\)</span> you identified correspond to? Denote that frequency by <span class="math notranslate nohighlight">\(f_0\)</span>.</p></li>
+<li><p>Play the sound which only has the frequency <span class="math notranslate nohighlight">\(f_0\)</span>. How does it compare to the original sound?</p></li>
+</ul>
+<p>We can see that a few frequencies really dominate the others. Which are they? Let’s pick an arbitrary threshold and inspect the five biggest amplitudes.</p>
+</section>
+<section id="exercise-3">
+<h3><span style="color:red"> Exercise 3 </span><a class="headerlink" href="#exercise-3" title="Link to this heading">#</a></h3>
+<p>Keep the five most dominant frequencies from <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/signal_analysis/melodica_recording.wav">melodica_recording.wav</a> and remove the rest. Plot its DFT and play the modified signal.</p>
+</section>
+<section id="exercise-4">
+<h3><span style="color:red"> Exercise 4 </span><a class="headerlink" href="#exercise-4" title="Link to this heading">#</a></h3>
+<p>Load up a recording of the ukulele, <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Fourier/blob/main/book/labs/analysis/signal_analysis/uke_recording.wav">uke_recording.wav</a>.</p>
+<ul class="simple">
+<li><p>What are the dominant frequencies in this recording?</p></li>
+<li><p>Remove frequencies with magnitude less than 500 from the recording.</p></li>
+<li><p>Play the new sound and plot its DFT.</p></li>
+<li><p>How does the new sound compare to the original?</p></li>
+</ul>
+</section>
+<section id="exercise-5">
+<h3><span style="color:red"> Exercise 5 </span><a class="headerlink" href="#exercise-5" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Use the voice recorder code from week 8 to record any song for a duration of 2 seconds.</p></li>
+<li><p>Suppress the background noise in the recording.</p></li>
+<li><p>Plot the amplitude and dft of the signals before and after denoising.</p></li>
+<li><p>Play the modified signal.</p></li>
+</ul>
+</section>
+<section id="exercise-6">
+<h3><span style="color:red"> Exercise 6 </span><a class="headerlink" href="#exercise-6" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Modify the voice changer from week 8 to save the original and modified voice.</p></li>
+<li><p>List the complete code here in a seperate code block.</p></li>
+<li><p>Plot the amplitude and dft of both the signals.</p></li>
+<li><p>Comment on the difference between the plots.</p></li>
+</ul>
+</section>
+</section>
+<section id="reflection">
+<h2><span style="color:green;"> Reflection </span><a class="headerlink" href="#reflection" title="Link to this heading">#</a></h2>
+<p>Do not skip this section! Assignment will be graded only on completing this section.</p>
+<p><strong>1. What parts of the lab, if any, do you feel you did well? <br>
+2. What are some things you learned today? <br>
+3. Are there any topics that could use more clarification? <br>
+4. Do you have any suggestions on parts of the lab to improve?</strong></p>
+<h3 style="background-color:#6994a2"> Write Answers for the Reflection Below </h3></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./labs/analysis/signal_analysis"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../dft/dft.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lab 9: The Discrete Fourier Transform (DFT)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../pedometer/pedometer_project.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lab 11: Build a Pedometer</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content"><span style="color:#d97f00;"> 00. Content </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematics">Mathematics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-skills">Programming Skills</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embedded-systems">Embedded Systems</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-hardware"><span style="color:#d97f00;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction"><span style="color:#d97f00;"> 1. Introduction </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#denoising-a-signal"><span style="color:#d97f00;"> 2. Denoising a Signal </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1"><span style="color:red"> Exercise 1 </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#determining-the-dominant-frequency-components-of-a-signal"><span style="color:#d97f00;"> 3. Determining the Dominant Frequency Components of a Signal </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2"><span style="color:red"> Exercise 2 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3"><span style="color:red"> Exercise 3 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4"><span style="color:red"> Exercise 4 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5"><span style="color:red"> Exercise 5 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-6"><span style="color:red"> Exercise 6 </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection"><span style="color:green;"> Reflection </span></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mireille Boutin, Alden Bradford, and Adharsh Sabukumar
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>This work is licensed under a 
+<a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

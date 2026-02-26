@@ -1,0 +1,426 @@
+/* Custom TOC styling for right-hand in-page table of contents */
+.bd-toc nav a {
+  color: #1f4e79 !important;  /* Darker blue for better contrast */
+}
+.bd-toc nav a:hover,
+.bd-toc nav a:focus {
+  color: #0d2a4a !important;  /* Even darker on hover */
+}
+.bd-toc nav .active > a {
+  color: #0d2a4a !important;
+  font-weight: 600;
+}
+
+/* Orange content headers in right-side TOC (light mode only) */
+.bd-toc nav a[href*="d97f00"],
+.bd-toc nav a[href*="color-d97f00"],
+.bd-content span[style*="#d97f00"],
+.bd-content span[style*="color:#d97f00"] {
+  color: #b85e00 !important;  /* ANDI suggested color for better contrast */
+}
+
+/* Red exercise text in right-side TOC */
+.bd-toc nav a[href*="red"],
+.bd-toc nav a[style*="color:red"],
+.bd-content span[style*="color:red"] {
+  color: #ef0000 !important;
+}
+
+/* Green reflection text in right-side TOC */
+.bd-toc nav a[href*="green"],
+.bd-toc nav a[style*="color:green"],
+.bd-content span[style*="color:green"],
+.bd-content .Reflection,
+span.Reflection {
+  color: #0a8a0a !important;  /* ANDI suggested color for better contrast */
+}
+
+/* Content hyperlinks */
+.bd-content a {
+  color: #1f4e79 !important;  /* Darker blue for better contrast */
+}
+.bd-content a:hover,
+.bd-content a:focus {
+  color: #0d2a4a !important;  /* Even darker on hover */
+}
+
+/* Left sidebar (book-wide table of contents) - More specific selectors */
+.bd-sidebar .nav-link,
+.bd-sidebar-primary .nav-link,
+.bd-sidebar .toctree-l1 > a,
+.bd-sidebar .toctree-l2 > a {
+  color: #1f4e79 !important;  /* Darker blue for better contrast */
+}
+
+.bd-sidebar .nav-link:hover,
+.bd-sidebar .nav-link:focus,
+.bd-sidebar-primary .nav-link:hover,
+.bd-sidebar-primary .nav-link:focus,
+.bd-sidebar .toctree-l1 > a:hover,
+.bd-sidebar .toctree-l2 > a:hover {
+  color: #0d2a4a !important;  /* Even darker on hover */
+}
+
+.bd-sidebar .nav-link.active,
+.bd-sidebar-primary .nav-link.active,
+.bd-sidebar .current > a {
+  color: #0d2a4a !important;
+  font-weight: 600;
+}
+
+/* Catch-all for any remaining links */
+a {
+  color: #1f4e79 !important;  /* Darker blue for better contrast */
+}
+a:hover,
+a:focus {
+  color: #0d2a4a !important;  /* Even darker on hover */
+}
+
+/* Navigation links (Previous/Next) at bottom of page - More comprehensive selectors */
+.prev-next-area a,
+.footer-item a,
+nav.bd-links a,
+.prev-next-bottom a,
+.bd-page-nav a,
+.bd-footer a,
+.bd-footer-content a,
+.bd-footer-article a,
+nav[aria-label="Page navigation"] a,
+.page-nav a,
+.navigation a,
+.prev-next a,
+.bd-prev-next a,
+a[rel="prev"],
+a[rel="next"],
+.prev-next-footer a,
+.left-prev a,
+.right-next a {
+  color: #397cac !important;  /* ANDI suggested color for light mode */
+}
+
+.prev-next-area a:hover,
+.footer-item a:hover,
+nav.bd-links a:hover,
+.prev-next-bottom a:hover,
+.bd-page-nav a:hover,
+.bd-footer a:hover,
+.bd-footer-content a:hover,
+.bd-footer-article a:hover,
+nav[aria-label="Page navigation"] a:hover,
+.page-nav a:hover,
+.navigation a:hover,
+.prev-next a:hover,
+.bd-prev-next a:hover,
+a[rel="prev"]:hover,
+a[rel="next"]:hover,
+.prev-next-footer a:hover,
+.left-prev a:hover,
+.right-next a:hover {
+  color: #3677a5 !important;  /* Darker on hover */
+}
+
+/* Override CSS custom properties for prev/next navigation links */
+.prev-next-area .prev-next-title,
+.prev-next-area p,
+.prev-next-area a,
+.left-prev .prev-next-title,
+.right-next .prev-next-title,
+.left-prev p,
+.right-next p,
+.left-prev a,
+.right-next a {
+  color: #397cac !important;  /* Override CSS variables and inline styles */
+}
+
+.prev-next-area .prev-next-title:hover,
+.prev-next-area p:hover,
+.prev-next-area a:hover,
+.left-prev .prev-next-title:hover,
+.right-next .prev-next-title:hover,
+.left-prev p:hover,
+.right-next p:hover,
+.left-prev a:hover,
+.right-next a:hover {
+  color: #3677a5 !important;
+}
+
+/* Navigation links in dark mode - revert to original blue */
+html[data-theme="dark"] .prev-next-area a,
+html[data-theme="dark"] .footer-item a,
+html[data-theme="dark"] nav.bd-links a,
+html[data-theme="dark"] .prev-next-bottom a,
+html[data-theme="dark"] .bd-page-nav a,
+html[data-theme="dark"] .bd-footer a,
+html[data-theme="dark"] .bd-footer-content a,
+html[data-theme="dark"] .bd-footer-article a,
+html[data-theme="dark"] nav[aria-label="Page navigation"] a,
+html[data-theme="dark"] .page-nav a,
+html[data-theme="dark"] .navigation a,
+html[data-theme="dark"] .prev-next a,
+html[data-theme="dark"] .bd-prev-next a,
+html[data-theme="dark"] a[rel="prev"],
+html[data-theme="dark"] a[rel="next"],
+html[data-theme="dark"] .prev-next-footer a,
+html[data-theme="dark"] .left-prev a,
+html[data-theme="dark"] .right-next a,
+.theme-dark .prev-next-area a,
+.theme-dark .footer-item a,
+.theme-dark nav.bd-links a,
+.theme-dark .prev-next-bottom a,
+.theme-dark .bd-page-nav a,
+.theme-dark .bd-footer a,
+.theme-dark .bd-footer-content a,
+.theme-dark .bd-footer-article a,
+.theme-dark nav[aria-label="Page navigation"] a,
+.theme-dark .page-nav a,
+.theme-dark .navigation a,
+.theme-dark .prev-next a,
+.theme-dark .bd-prev-next a,
+.theme-dark a[rel="prev"],
+.theme-dark a[rel="next"],
+.theme-dark .prev-next-footer a,
+.theme-dark .left-prev a,
+.theme-dark .right-next a {
+  color: #5584af !important;  /* Original blue color in dark mode */
+}
+
+html[data-theme="dark"] .prev-next-area a:hover,
+html[data-theme="dark"] .footer-item a:hover,
+html[data-theme="dark"] nav.bd-links a:hover,
+html[data-theme="dark"] .prev-next-bottom a:hover,
+html[data-theme="dark"] .bd-page-nav a:hover,
+html[data-theme="dark"] .bd-footer a:hover,
+html[data-theme="dark"] .bd-footer-content a:hover,
+html[data-theme="dark"] .bd-footer-article a:hover,
+html[data-theme="dark"] nav[aria-label="Page navigation"] a:hover,
+html[data-theme="dark"] .page-nav a:hover,
+html[data-theme="dark"] .navigation a:hover,
+html[data-theme="dark"] .prev-next a:hover,
+html[data-theme="dark"] .bd-prev-next a:hover,
+html[data-theme="dark"] a[rel="prev"]:hover,
+html[data-theme="dark"] a[rel="next"]:hover,
+.theme-dark .prev-next-area a:hover,
+.theme-dark .footer-item a:hover,
+.theme-dark nav.bd-links a:hover,
+.theme-dark .prev-next-bottom a:hover,
+.theme-dark .bd-page-nav a:hover,
+.theme-dark .bd-footer a:hover,
+.theme-dark .bd-footer-content a:hover,
+.theme-dark .bd-footer-article a:hover,
+.theme-dark nav[aria-label="Page navigation"] a:hover,
+.theme-dark .page-nav a:hover,
+.theme-dark .navigation a:hover,
+.theme-dark .prev-next a:hover,
+.theme-dark .bd-prev-next a:hover,
+.theme-dark a[rel="prev"]:hover,
+.theme-dark a[rel="next"]:hover {
+  color: #7ca3d1 !important;
+}
+
+/* Dark mode overrides for navigation */
+html[data-theme="dark"] .prev-next-area .prev-next-title,
+html[data-theme="dark"] .prev-next-area p,
+html[data-theme="dark"] .prev-next-area a,
+html[data-theme="dark"] .left-prev .prev-next-title,
+html[data-theme="dark"] .right-next .prev-next-title,
+html[data-theme="dark"] .left-prev p,
+html[data-theme="dark"] .right-next p,
+html[data-theme="dark"] .left-prev a,
+html[data-theme="dark"] .right-next a,
+.theme-dark .prev-next-area .prev-next-title,
+.theme-dark .prev-next-area p,
+.theme-dark .prev-next-area a,
+.theme-dark .left-prev .prev-next-title,
+.theme-dark .right-next .prev-next-title,
+.theme-dark .left-prev p,
+.theme-dark .right-next p,
+.theme-dark .left-prev a,
+.theme-dark .right-next a {
+  color: #5584af !important;
+}
+
+html[data-theme="dark"] .prev-next-area .prev-next-title:hover,
+html[data-theme="dark"] .prev-next-area p:hover,
+html[data-theme="dark"] .prev-next-area a:hover,
+html[data-theme="dark"] .left-prev .prev-next-title:hover,
+html[data-theme="dark"] .right-next .prev-next-title:hover,
+html[data-theme="dark"] .left-prev p:hover,
+html[data-theme="dark"] .right-next p:hover,
+html[data-theme="dark"] .left-prev a:hover,
+html[data-theme="dark"] .right-next a:hover,
+.theme-dark .prev-next-area .prev-next-title:hover,
+.theme-dark .prev-next-area p:hover,
+.theme-dark .prev-next-area a:hover,
+.theme-dark .left-prev .prev-next-title:hover,
+.theme-dark .right-next .prev-next-title:hover,
+.theme-dark .left-prev p:hover,
+.theme-dark .right-next p:hover,
+.theme-dark .left-prev a:hover,
+.theme-dark .right-next a:hover {
+  color: #7ca3d1 !important;
+}
+
+/* DARK MODE STYLES using Jupyter Book's dark theme class */
+html[data-theme="dark"],
+.theme-dark {
+  background-color: #13171d !important;
+}
+
+html[data-theme="dark"] body,
+.theme-dark body {
+  background-color: #13171d !important;
+}
+
+html[data-theme="dark"] .bd-toc nav a,
+.theme-dark .bd-toc nav a {
+  color: #5584af !important;
+}
+html[data-theme="dark"] .bd-toc nav a:hover,
+html[data-theme="dark"] .bd-toc nav a:focus,
+.theme-dark .bd-toc nav a:hover,
+.theme-dark .bd-toc nav a:focus {
+  color: #7ca3d1 !important;
+}
+
+/* Orange content headers in dark mode - revert to original color */
+html[data-theme="dark"] .bd-toc nav a[href*="d97f00"],
+html[data-theme="dark"] .bd-toc nav a[href*="color-d97f00"],
+html[data-theme="dark"] .bd-content span[style*="#d97f00"],
+html[data-theme="dark"] .bd-content span[style*="color:#d97f00"],
+.theme-dark .bd-toc nav a[href*="d97f00"],
+.theme-dark .bd-toc nav a[href*="color-d97f00"],
+.theme-dark .bd-content span[style*="#d97f00"],
+.theme-dark .bd-content span[style*="color:#d97f00"] {
+  color: #d97f00 !important;  /* Original orange color in dark mode */
+}
+
+/* Red exercise text stays the same in dark mode */
+html[data-theme="dark"] .bd-toc nav a[href*="red"],
+html[data-theme="dark"] .bd-toc nav a[style*="color:red"],
+html[data-theme="dark"] .bd-content span[style*="color:red"],
+.theme-dark .bd-toc nav a[href*="red"],
+.theme-dark .bd-toc nav a[style*="color:red"],
+.theme-dark .bd-content span[style*="color:red"] {
+  color: red !important;  /* Keep original red in dark mode */
+}
+
+/* Change green in dark mode */
+html[data-theme="dark"] .bd-toc nav a[href*="green"],
+html[data-theme="dark"] .bd-toc nav a[style*="color:green"],
+html[data-theme="dark"] .bd-content span[style*="color:green"],
+html[data-theme="dark"] .bd-content .Reflection,
+html[data-theme="dark"] span.Reflection,
+.theme-dark .bd-toc nav a[href*="green"],
+.theme-dark .bd-toc nav a[style*="color:green"],
+.theme-dark .bd-content span[style*="color:green"],
+.theme-dark .bd-content .Reflection,
+.theme-dark span.Reflection {
+  color: #149414 !important;  /* Change in dark mode */
+}
+
+html[data-theme="dark"] .bd-content a,
+.theme-dark .bd-content a {
+  color: #5584af !important;
+}
+html[data-theme="dark"] .bd-content a:hover,
+html[data-theme="dark"] .bd-content a:focus,
+.theme-dark .bd-content a:hover,
+.theme-dark .bd-content a:focus {
+  color: #7ca3d1 !important;
+}
+
+html[data-theme="dark"] .bd-sidebar .nav-link,
+html[data-theme="dark"] .bd-sidebar-primary .nav-link,
+html[data-theme="dark"] .bd-sidebar .toctree-l1 > a,
+html[data-theme="dark"] .bd-sidebar .toctree-l2 > a,
+.theme-dark .bd-sidebar .nav-link,
+.theme-dark .bd-sidebar-primary .nav-link,
+.theme-dark .bd-sidebar .toctree-l1 > a,
+.theme-dark .bd-sidebar .toctree-l2 > a {
+  color: #5584af !important;
+}
+
+html[data-theme="dark"] .bd-sidebar .nav-link:hover,
+html[data-theme="dark"] .bd-sidebar .nav-link:focus,
+.theme-dark .bd-sidebar .nav-link:hover,
+.theme-dark .bd-sidebar .nav-link:focus {
+  color: #7ca3d1 !important;
+}
+
+/* Navigation links in dark mode - revert to original blue */
+html[data-theme="dark"] .prev-next-area a,
+html[data-theme="dark"] .footer-item a,
+html[data-theme="dark"] nav.bd-links a,
+html[data-theme="dark"] .prev-next-bottom a,
+html[data-theme="dark"] .bd-page-nav a,
+.theme-dark .prev-next-area a,
+.theme-dark .footer-item a,
+.theme-dark nav.bd-links a,
+.theme-dark .prev-next-bottom a,
+.theme-dark .bd-page-nav a {
+  color: #5584af !important;  /* Original blue color in dark mode */
+}
+
+html[data-theme="dark"] .prev-next-area a:hover,
+html[data-theme="dark"] .footer-item a:hover,
+html[data-theme="dark"] nav.bd-links a:hover,
+html[data-theme="dark"] .prev-next-bottom a:hover,
+html[data-theme="dark"] .bd-page-nav a:hover,
+.theme-dark .prev-next-area a:hover,
+.theme-dark .footer-item a:hover,
+.theme-dark nav.bd-links a:hover,
+.theme-dark .prev-next-bottom a:hover,
+.theme-dark .bd-page-nav a:hover {
+  color: #7ca3d1 !important;
+}
+
+html[data-theme="dark"],
+html[data-theme="dark"] body,
+html[data-theme="dark"] .bd-container,
+html[data-theme="dark"] .bd-main,
+html[data-theme="dark"] .bd-content,
+.theme-dark,
+.theme-dark body,
+.theme-dark .bd-container,
+.theme-dark .bd-main,
+.theme-dark .bd-content {
+  background-color: #13171d !important;
+}
+
+/* More aggressive background targeting */
+[data-theme="dark"] {
+  background-color: #13171d !important;
+}
+
+[data-theme="dark"] * {
+  background-color: inherit;
+}
+
+html[data-theme="dark"] a,
+.theme-dark a {
+  color: #5584af !important;
+}
+html[data-theme="dark"] a:hover,
+html[data-theme="dark"] a:focus,
+.theme-dark a:hover,
+.theme-dark a:focus {
+  color: #7ca3d1 !important;
+}
+
+/* Change lightblue background to #6994a2 in dark mode for better contrast */
+html[data-theme="dark"] h3[style*="background-color:lightblue"],
+html[data-theme="dark"] h3[style*="background-color: lightblue"],
+html[data-theme="dark"] [style*="background-color:lightblue"],
+html[data-theme="dark"] [style*="background-color: lightblue"],
+.theme-dark h3[style*="background-color:lightblue"],
+.theme-dark h3[style*="background-color: lightblue"],
+.theme-dark [style*="background-color:lightblue"],
+.theme-dark [style*="background-color: lightblue"] {
+  background-color: #6994a2 !important;
+}
+
+/* More aggressive background targeting */
+[data-theme="dark"] {
+  background-color: #13171d !important;
+}
